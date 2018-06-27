@@ -56,6 +56,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\Release;..\..\Detours\lib;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
