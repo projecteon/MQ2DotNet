@@ -17,5 +17,7 @@
         public FloatType Distance3D => GetMember<FloatType>("Distance3D");
         public HeadingType HeadingTo => GetMember<HeadingType>("HeadingTo");
         public BoolType xLineOfSight => GetMember<BoolType>("xLineOfSight");
+        public GroundType Next => GetMember<GroundType>("Next");
+        public GroundType Prev => GetMember<GroundType>("Prev");
     }
 }

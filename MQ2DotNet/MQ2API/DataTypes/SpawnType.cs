@@ -201,6 +201,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType SeeInvis => GetMember<IntType>("SeeInvis");
         public IntType SpawnStatus => GetMember<IntType>("SpawnStatus");
         public BoolType bWaitingForPort => GetMember<BoolType>("bWaitingForPort");
+        public StringType ActorDef => GetMember<StringType>("ActorDef");
 
         public static IEnumerable<SpawnType> All
         {

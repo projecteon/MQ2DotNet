@@ -3,6 +3,12 @@
     // TODO: Check and handle indexed members for SpellType
     public class SpellType : MQ2DataType
     {
+        public SpellType()
+        {
+            HasSPA = new IndexedMember<BoolType, int>(this, "HasSPA");
+            Trigger = new IndexedMember<SpellType, int>(this, "Trigger");
+        }
+
         public IntType ID => GetMember<IntType>("ID");
         public StringType Name => GetMember<StringType>("Name");
         public IntType Level => GetMember<IntType>("Level");
@@ -75,5 +81,7 @@
         public BoolType IsSwarmSpell => GetMember<BoolType>("IsSwarmSpell");
         public IntType DurationValue1 => GetMember<IntType>("DurationValue1");
         public BoolType IllusionOkWhenMounted => GetMember<BoolType>("IllusionOkWhenMounted");
+        public IndexedMember<BoolType, int> HasSPA { get; }
+        public IndexedMember<SpellType, int> Trigger { get; }
     }
 }
