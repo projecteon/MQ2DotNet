@@ -50,7 +50,7 @@ namespace MQ2DotNet.MQ2API
             public T this[TIndex index] => _owner.GetMember<T>(_name, index.ToString());
         }
 
-        public class IndexedMember<T, TIndex1, TIndex2> where T : MQ2DataType
+        public class IndexedMember<T1, TIndex1, T2, TIndex2> where T1 : MQ2DataType where T2 : MQ2DataType
         {
             private readonly MQ2DataType _owner;
             private readonly string _name;
@@ -61,8 +61,8 @@ namespace MQ2DotNet.MQ2API
                 _name = name;
             }
 
-            public T this[TIndex1 index] => _owner.GetMember<T>(_name, index.ToString());
-            public T this[TIndex2 index] => _owner.GetMember<T>(_name, index.ToString());
+            public T1 this[TIndex1 index] => _owner.GetMember<T1>(_name, index.ToString());
+            public T2 this[TIndex2 index] => _owner.GetMember<T2>(_name, index.ToString());
         }
 
         public class IndexedMember<T> : IndexedMember<T, string> where T : MQ2DataType
