@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EQ\EQ.cs" />
+    <Compile Include="EQ\Spawns.cs" />
     <Compile Include="EventLoopContext.cs" />
     <Compile Include="MQ2API\DataTypes\AdvLootItemType.cs" />
     <Compile Include="MQ2API\DataTypes\AdvLootType.cs" />

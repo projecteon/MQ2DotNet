@@ -10,6 +10,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         public SpawnType()
         {
+            SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
+            SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
+            NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
+            HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
+            Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
+            DragNames = new IndexedMember<StringType, int>(this, "DragNames");
+            CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
         }
 
         public SpawnType(IntPtr pSpawn) : base("spawn",
@@ -18,7 +25,24 @@ namespace MQ2DotNet.MQ2API.DataTypes
                 FullArray = BitConverter.GetBytes(pSpawn.ToInt32()).Concat(Enumerable.Repeat((byte) 0, 4)).ToArray()
             })
         {
+            SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
+            SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
+            NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
+            HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
+            Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
+            DragNames = new IndexedMember<StringType, int>(this, "DragNames");
+            CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
         }
+
+        /// <summary>
+        /// Dunno wtf this is or why I would care about it
+        /// </summary>
+        public IntType AARank => GetMember<IntType>("AARank");
+
+        /// <summary>
+        /// ActorDef name for this spawn
+        /// </summary>
+        public StringType ActorDef => GetMember<StringType>("ActorDef");
 
         /// <summary>
         /// Memory address of the SPAWNINFO struct for this spawn
@@ -26,76 +50,183 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType Address => GetMember<IntType>("Address");
 
         /// <summary>
-        /// Level of the spawn
+        /// AFK flag set?
         /// </summary>
-        public IntType Level => GetMember<IntType>("Level");
-
+        public BoolType AFK => GetMember<BoolType>("AFK");
+        
         /// <summary>
-        /// Spawn's ID
+        /// returns TRUE or FALSE if a mob is aggressive or not
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
-
-        /// <summary>
-        /// Internal name of the spawn e.g. a_rat01
-        /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
-
-        public StringType Surname => GetMember<StringType>("Surname");
-        public StringType CleanName => GetMember<StringType>("CleanName");
-        public StringType DisplayName => GetMember<StringType>("DisplayName");
-        public FloatType E => GetMember<FloatType>("E");
-        public FloatType X => GetMember<FloatType>("X");
-        public FloatType S => GetMember<FloatType>("S");
-        public FloatType Y => GetMember<FloatType>("Y");
-        public FloatType D => GetMember<FloatType>("D");
-        public FloatType Z => GetMember<FloatType>("Z");
-        public FloatType FloorZ => GetMember<FloatType>("FloorZ");
-        public SpawnType Next => GetMember<SpawnType>("Next");
-        public SpawnType Prev => GetMember<SpawnType>("Prev");
-        public Int64Type CurrentHPs => GetMember<Int64Type>("CurrentHPs");
-        public Int64Type MaxHPs => GetMember<Int64Type>("MaxHPs");
-        public Int64Type PctHPs => GetMember<Int64Type>("PctHPs");
-        public IntType AARank => GetMember<IntType>("AARank");
-        public FloatType Speed => GetMember<FloatType>("Speed");
-        public HeadingType Heading => GetMember<HeadingType>("Heading");
-        public PetType Pet => GetMember<PetType>("Pet");
-        public SpawnType Master => GetMember<SpawnType>("Master");
-        public StringType Gender => GetMember<StringType>("Gender");
-        public RaceType Race => GetMember<RaceType>("Race");
-        public ClassType Class => GetMember<ClassType>("Class");
-        public BodyType Body => GetMember<BodyType>("Body");
-        public BoolType GM => GetMember<BoolType>("GM");
-        public BoolType Levitating => GetMember<BoolType>("Levitating");
-        public BoolType Sneaking => GetMember<BoolType>("Sneaking");
-        public BoolType Invis => GetMember<BoolType>("Invis");
-        public FloatType Height => GetMember<FloatType>("Height");
-        public FloatType MaxRange => GetMember<FloatType>("MaxRange");
-        public FloatType MaxRangeTo => GetMember<FloatType>("MaxRangeTo");
-        public StringType Guild => GetMember<StringType>("Guild");
-        public StringType GuildStatus => GetMember<StringType>("GuildStatus");
-        public StringType Type => GetMember<StringType>("Type");
-        public StringType Light => GetMember<StringType>("Light");
-        public IntType StandState => GetMember<IntType>("StandState");
-        public StringType State => GetMember<StringType>("State");
-        public BoolType Standing => GetMember<BoolType>("Standing");
-        public BoolType Sitting => GetMember<BoolType>("Sitting");
-        public TimeStampType TimeBeenDead => GetMember<TimeStampType>("TimeBeenDead");
-        public BoolType IsSummoned => GetMember<BoolType>("IsSummoned");
-        public SpawnType TargetOfTarget => GetMember<SpawnType>("TargetOfTarget");
-        public BoolType Ducking => GetMember<BoolType>("Ducking");
-        public BoolType Feigning => GetMember<BoolType>("Feigning");
-        public BoolType Binding => GetMember<BoolType>("Binding");
-        public BoolType Dead => GetMember<BoolType>("Dead");
-        public BoolType Stunned => GetMember<BoolType>("Stunned");
         public BoolType Aggressive => GetMember<BoolType>("Aggressive");
-        public BoolType Hovering => GetMember<BoolType>("Hovering");
+
+        /// <summary>
+        /// Current animation ID, see https://www.macroquest2.com/wiki/index.php/Animations
+        /// </summary>
+        public IntType Animation => GetMember<IntType>("Animation");
+
+        /// <summary>
+        /// Anon flag set
+        /// </summary>
+        public BoolType Anonymous => GetMember<BoolType>("Anonymous");
+
+        /// <summary>
+        /// Current Raid or Group assist target?
+        /// </summary>
+        public BoolType Assist => GetMember<BoolType>("Assist");
+
+        /// <summary>
+        /// TODO: SpawnType.AssistName is always blank?
+        /// </summary>
+        public StringType AssistName => GetMember<StringType>("AssistName");
+
+        /// <summary>
+        /// TODO: What is SpawnType.bAlwaysShowAura
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bAlwaysShowAura => GetMember<BoolType>("bAlwaysShowAura");
+
+        /// <summary>
+        /// TODO: What is SpawnType.bBetaBuffed
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bBetaBuffed => GetMember<BoolType>("bBetaBuffed");
+
+        /// <summary>
+        /// Returns stupid numbers
+        /// </summary>
+        [Obsolete]
+        public FloatType BearingToTarget => GetMember<FloatType>("BearingToTarget");
+
+        /// <summary>
+        /// Binding wounds?
+        /// </summary>
+        public BoolType Binding => GetMember<BoolType>("Binding");
+
+        /// <summary>
+        /// Blind?
+        /// </summary>
+        public IntType Blind => GetMember<IntType>("Blind");
+
+        /// <summary>
+        /// Body type
+        /// </summary>
+        public BodyType Body => GetMember<BodyType>("Body");
+
+        /// <summary>
+        /// Seems broken and useless even if it wasn't
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bShowHelm => GetMember<BoolType>("bShowHelm");
+
+        /// <summary>
+        /// True for stationary spawns maybe? Returns FALSE for me when I'm standing still
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bStationary => GetMember<BoolType>("bStationary");
+
+        /// <summary>
+        /// Is the spawn a temp pet?
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bTempPet => GetMember<BoolType>("bTempPet");
+
+        /// <summary>
+        /// Is a buyer? (ie. Buyer in the bazaar)
+        /// </summary>
+        public BoolType Buyer => GetMember<BoolType>("Buyer");
+
+        /// <summary>
+        /// No idea
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public BoolType bWaitingForPort => GetMember<BoolType>("bWaitingForPort");
+
+        /// <summary>
+        /// TRUE/FALSE on if a splash spell can land...NOTE! This check is ONLY for line of sight to the targetindicator (red/green circle)
+        /// </summary>
+        public BoolType CanSplashLand => GetMember<BoolType>("CanSplashLand");
+
+        /// <summary>
+        /// Spell, if currently casting (only accurate on yourself, not NPCs or other group members)
+        /// </summary>
+        public SpellType Casting => GetMember<SpellType>("Casting");
+
+        /// <summary>
+        /// Ceiling height at the spawn's current location
+        /// </summary>
+        public FloatType CeilingHeightAtCurrLocation => GetMember<FloatType>("CeilingHeightAtCurrLocation");
+
+        /// <summary>
+        /// Class
+        /// </summary>
+        public ClassType Class => GetMember<ClassType>("Class");
+
+        /// <summary>
+        /// The "cleaned up" name
+        /// </summary>
+        public StringType CleanName => GetMember<StringType>("CleanName");
+
+        /// <summary>
+        /// Collision counter
+        /// </summary>
+        public IntType CollisionCounter => GetMember<IntType>("CollisionCounter");
+
+        /// <summary>
+        /// Valid indexes are 0 & 1. TODO: What is SpawnType.CombatSkillTicks
+        /// </summary>
+        public IndexedMember<IntType, int> CombatSkillTicks { get; }
+
+        /// <summary>
+        /// Spawn ID of this spawn's contractor
+        /// </summary>
+        public IntType ContractorID => GetMember<IntType>("ContractorID");
+
+        /// <summary>
+        /// Returns weird numbers
+        /// </summary>
+        [Obsolete]
+        public IntType CorpseDragCount => GetMember<IntType>("CorpseDragCount");
+
+        /// <summary>
+        /// Current Endurance points (only updates when target/group)
+        /// </summary>
+        public IntType CurrentEndurance => GetMember<IntType>("CurrentEndurance");
+
+        /// <summary>
+        /// Current hit points
+        /// </summary>
+        public Int64Type CurrentHPs => GetMember<Int64Type>("CurrentHPs");
+
+        /// <summary>
+        /// Current Mana points (only updates when target/group)
+        /// </summary>
+        public IntType CurrentMana => GetMember<IntType>("CurrentMana");
+
+        /// <summary>
+        /// Shortcut for -Z (makes Downward positive)
+        /// </summary>
+        public FloatType D => GetMember<FloatType>("D");
+
+        /// <summary>
+        /// Dead?
+        /// </summary>
+        public BoolType Dead => GetMember<BoolType>("Dead");
+
+        /// <summary>
+        /// Deity
+        /// </summary>
         public DeityType Deity => GetMember<DeityType>("Deity");
+
+        /// <summary>
+        /// Name displayed in game (same as EQ's %T)
+        /// </summary>
+        public StringType DisplayName => GetMember<StringType>("DisplayName");
 
         /// <summary>
         /// 2D distance to the spawn in the XY plane
         /// </summary>
         public FloatType Distance => GetMember<FloatType>("Distance");
-        
+
         /// <summary>
         /// 3D distance to the spawn in the XYZ plane
         /// </summary>
@@ -122,103 +253,493 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public FloatType DistanceZ => GetMember<FloatType>("DistanceZ");
 
         /// <summary>
+        /// Player this corpse is being dragged by
+        /// </summary>
+        public StringType DraggingPlayer => GetMember<StringType>("DraggingPlayer");
+
+        /// <summary>
+        /// Players whose corpse this spawn is dragging. Valid indexes are 0 & 1
+        /// </summary>
+        public IndexedMember<StringType, int> DragNames { get; }
+
+        /// <summary>
+        /// Ducking?
+        /// </summary>
+        public BoolType Ducking => GetMember<BoolType>("Ducking");
+
+        /// <summary>
+        /// Shortcut for -X (makes Eastward positive)
+        /// </summary>
+        public FloatType E => GetMember<FloatType>("E");
+
+        /// <summary>
+        /// Location using EQ format
+        /// </summary>
+        public StringType EQLoc => GetMember<StringType>("EQLoc");
+        /// <summary>
+        /// ID of the equipment used by the spawn
+        /// returns a inttype, it takes numbers 0-8 or names: head chest arms wrists hands legs feet primary offhand
+        /// </summary>
+        public IndexedMember<IntType, int, IntType, string> Equipment { get; }
+
+        /// <summary>
+        /// TODO: What is SpawnType.FD?
+        /// </summary>
+        public IntType FD => GetMember<IntType>("FD");
+
+        /// <summary>
+        /// Feet wet/swimming?
+        /// </summary>
+        public BoolType FeetWet => GetMember<BoolType>("FeetWet");
+
+        /// <summary>
+        /// Feigning?
+        /// </summary>
+        public BoolType Feigning => GetMember<BoolType>("Feigning");
+
+        /// <summary>
+        /// Is your target moving away from you?
+        /// </summary>
+        public BoolType Fleeing => GetMember<BoolType>("Fleeing");
+
+        /// <summary>
+        /// Floor z value at the spawn's location
+        /// </summary>
+        public FloatType FloorZ => GetMember<FloatType>("FloorZ");
+
+        /// <summary>
+        /// The spawn a player is following using /follow on - also returns your pet's target via ${Me.Pet.Following}
+        /// </summary>
+        public SpawnType Following => GetMember<SpawnType>("Following");
+
+        /// <summary>
+        /// Gender
+        /// </summary>
+        public StringType Gender => GetMember<StringType>("Gender");
+
+        /// <summary>
+        /// GM or Guide?
+        /// </summary>
+        public BoolType GM => GetMember<BoolType>("GM");
+
+        /// <summary>
+        /// GM rank
+        /// </summary>
+        public IntType GMRank => GetMember<IntType>("GMRank");
+
+        /// <summary>
+        /// Name of the spawn's guild
+        /// </summary>
+        public StringType Guild => GetMember<StringType>("Guild");
+
+        /// <summary>
+        /// Guild status (Leader, Officer, Member)
+        /// </summary>
+        public StringType GuildStatus => GetMember<StringType>("GuildStatus");
+
+        /// <summary>
+        /// Direction the spawn is facing
+        /// </summary>
+        public HeadingType Heading => GetMember<HeadingType>("Heading");
+
+        /// <summary>
         /// Heading player must travel in to reach this spawn
         /// </summary>
         public HeadingType HeadingTo => GetMember<HeadingType>("HeadingTo");
-        public SpellType Casting => GetMember<SpellType>("Casting");
-        public SpawnType Mount => GetMember<SpawnType>("Mount");
-        public BoolType Underwater => GetMember<BoolType>("Underwater");
-        public BoolType FeetWet => GetMember<BoolType>("FeetWet");
-        public IntType PlayerState => GetMember<IntType>("PlayerState");
-        public BoolType Stuck => GetMember<BoolType>("Stuck");
-        public IntType Animation => GetMember<IntType>("Animation");
+
+        /// <summary>
+        /// Heading to the coordinates y,x from the spawn
+        /// </summary>
+        public IndexedMember<HeadingType> HeadingToLoc { get; }
+
+        /// <summary>
+        /// Height
+        /// </summary>
+        public FloatType Height => GetMember<FloatType>("Height");
+
+        /// <summary>
+        /// Represents what the pc/npc is holding
+        /// </summary>
         public BoolType Holding => GetMember<BoolType>("Holding");
-        public FloatType Look => GetMember<FloatType>("Look");
-        public StringType xConColor => GetMember<StringType>("xConColor");
-        public BoolType Invited => GetMember<BoolType>("Invited");
-        public StringType Inviter => GetMember<StringType>("Inviter");
-        public SpawnType NearestSpawn => GetMember<SpawnType>("NearestSpawn");
-        public BoolType Trader => GetMember<BoolType>("Trader");
-        public BoolType AFK => GetMember<BoolType>("AFK");
-        public BoolType LFG => GetMember<BoolType>("LFG");
-        public BoolType Linkdead => GetMember<BoolType>("Linkdead");
-        public StringType Title => GetMember<StringType>("Title");
-        public StringType Suffix => GetMember<StringType>("Suffix");
-        public BoolType xGroupLeader => GetMember<BoolType>("xGroupLeader");
-        public BoolType Assist => GetMember<BoolType>("Assist");
-        public IntType Mark => GetMember<IntType>("Mark");
-        public BoolType Anonymous => GetMember<BoolType>("Anonymous");
-        public BoolType Roleplaying => GetMember<BoolType>("Roleplaying");
-        public BoolType xLineOfSight => GetMember<BoolType>("xLineOfSight");
-        public HeadingType HeadingToLoc => GetMember<HeadingType>("HeadingToLoc");
-        public BoolType Fleeing => GetMember<BoolType>("Fleeing");
-        public BoolType Named => GetMember<BoolType>("Named");
-        public BoolType Buyer => GetMember<BoolType>("Buyer");
-        public BoolType Moving => GetMember<BoolType>("Moving");
-        public IntType CurrentMana => GetMember<IntType>("CurrentMana");
-        public IntType MaxMana => GetMember<IntType>("MaxMana");
-        public IntType PctMana => GetMember<IntType>("PctMana");
-        public IntType CurrentEndurance => GetMember<IntType>("CurrentEndurance");
-        public IntType PctEndurance => GetMember<IntType>("PctEndurance");
-        public IntType MaxEndurance => GetMember<IntType>("MaxEndurance");
-        public StringType Loc => GetMember<StringType>("Loc");
-        public StringType LocYX => GetMember<StringType>("LocYX");
-        public StringType LocYXZ => GetMember<StringType>("LocYXZ");
-        public StringType EQLoc => GetMember<StringType>("EQLoc");
-        public StringType MQLoc => GetMember<StringType>("MQLoc");
-        public SpawnType Owner => GetMember<SpawnType>("Owner");
-        public SpawnType Following => GetMember<SpawnType>("Following");
-        public IntType MercID => GetMember<IntType>("MercID");
-        public IntType ContractorID => GetMember<IntType>("ContractorID");
-        public IntType Primary => GetMember<IntType>("Primary");
-        public IntType Secondary => GetMember<IntType>("Secondary");
-        public IntType Equipment => GetMember<IntType>("Equipment");
-        public BoolType xTargetable => GetMember<BoolType>("xTargetable");
-        public BoolType CanSplashLand => GetMember<BoolType>("CanSplashLand");
-        public IntType IsBerserk => GetMember<IntType>("IsBerserk");
-        public IntType pTouchingSwitch => GetMember<IntType>("pTouchingSwitch");
-        public BoolType bShowHelm => GetMember<BoolType>("bShowHelm");
-        public IntType CorpseDragCount => GetMember<IntType>("CorpseDragCount");
-        public BoolType bBetaBuffed => GetMember<BoolType>("bBetaBuffed");
-        public IntType CombatSkillTicks => GetMember<IntType>("CombatSkillTicks");
-        public IntType FD => GetMember<IntType>("FD");
-        public IntType InPvPArea => GetMember<IntType>("InPvPArea");
-        public BoolType bAlwaysShowAura => GetMember<BoolType>("bAlwaysShowAura");
-        public IntType GMRank => GetMember<IntType>("GMRank");
-        public IntType WarCry => GetMember<IntType>("WarCry");
-        public IntType IsPassenger => GetMember<IntType>("IsPassenger");
-        public IntType LastCastTime => GetMember<IntType>("LastCastTime");
-        public StringType DragNames => GetMember<StringType>("DragNames");
-        public StringType DraggingPlayer => GetMember<StringType>("DraggingPlayer");
-        public BoolType bStationary => GetMember<BoolType>("bStationary");
-        public FloatType BearingToTarget => GetMember<FloatType>("BearingToTarget");
-        public BoolType bTempPet => GetMember<BoolType>("bTempPet");
+
+        /// <summary>
+        /// Holding animation
+        /// </summary>
         public IntType HoldingAnimation => GetMember<IntType>("HoldingAnimation");
-        public IntType Blind => GetMember<IntType>("Blind");
+
+        /// <summary>
+        /// Hovering?
+        /// </summary>
+        public BoolType Hovering => GetMember<BoolType>("Hovering");
+
+        /// <summary>
+        /// Spawn's ID
+        /// </summary>
+        public IntType ID => GetMember<IntType>("ID");
+
+        /// <summary>
+        /// In a PvP area?
+        /// </summary>
+        public IntType InPvPArea => GetMember<IntType>("InPvPArea");
+
+        /// <summary>
+        /// Invis?
+        /// </summary>
+        public BoolType Invis => GetMember<BoolType>("Invis");
+
+        /// <summary>
+        /// Spawn has been invited to a group
+        /// </summary>
+        public BoolType Invited => GetMember<BoolType>("Invited");
+
+        /// <summary>
+        /// Who invited the spawn to a group?
+        /// </summary>
+        public StringType Inviter => GetMember<StringType>("Inviter");
+
+        /// <summary>
+        /// Spawn is berserk?
+        /// </summary>
+        public IntType IsBerserk => GetMember<IntType>("IsBerserk");
+
+        /// <summary>
+        /// Spawn is a passenger?
+        /// </summary>
+        public IntType IsPassenger => GetMember<IntType>("IsPassenger");
+
+        /// <summary>
+        /// If it's a summoned being (pet for example). Unsure if useful for druid nukes.
+        /// </summary>
+        public BoolType IsSummoned => GetMember<BoolType>("IsSummoned");
+
+        /// <summary>
+        /// TODO: What is SpawnType.LastCastNum
+        /// </summary>
         public IntType LastCastNum => GetMember<IntType>("LastCastNum");
-        public IntType CollisionCounter => GetMember<IntType>("CollisionCounter");
-        public FloatType CeilingHeightAtCurrLocation => GetMember<FloatType>("CeilingHeightAtCurrLocation");
-        public StringType AssistName => GetMember<StringType>("AssistName");
-        public IntType SeeInvis => GetMember<IntType>("SeeInvis");
-        public IntType SpawnStatus => GetMember<IntType>("SpawnStatus");
-        public BoolType bWaitingForPort => GetMember<BoolType>("bWaitingForPort");
-        public StringType ActorDef => GetMember<StringType>("ActorDef");
 
-        public static IEnumerable<SpawnType> All
-        {
-            get
-            {
-                var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
-                var ppSpawnManager = Marshal.ReadIntPtr(NativeMethods.GetProcAddress(hDll, "ppSpawnManager"));
-                var pSpawnManager = Marshal.ReadIntPtr(ppSpawnManager);
-                var pSpawn = Marshal.ReadIntPtr(pSpawnManager + 8);
+        /// <summary>
+        /// TODO: What is SpawnType.LastCastTime
+        /// </summary>
+        public IntType LastCastTime => GetMember<IntType>("LastCastTime");
 
-                while (pSpawn != IntPtr.Zero)
-                {
-                    yield return new SpawnType(pSpawn);
-                    pSpawn = Marshal.ReadIntPtr(pSpawn + 8);
-                }
-            }
-        }
+        /// <summary>
+        /// Level of the spawn
+        /// </summary>
+        public IntType Level => GetMember<IntType>("Level");
+
+        /// <summary>
+        /// Spawn is levitating?
+        /// </summary>
+        public BoolType Levitating => GetMember<BoolType>("Levitating");
+
+        /// <summary>
+        /// LFG flag set?
+        /// </summary>
+        public BoolType LFG => GetMember<BoolType>("LFG");
+
+        /// <summary>
+        /// Name of the light class this spawn has
+        /// </summary>
+        public StringType Light => GetMember<StringType>("Light");
+
+        /// <summary>
+        /// Linkdead?
+        /// </summary>
+        public BoolType Linkdead => GetMember<BoolType>("Linkdead");
+
+        /// <summary>
+        /// Loc of the spawn (Y, X)
+        /// </summary>
+        public StringType Loc => GetMember<StringType>("Loc");
+
+        /// <summary>
+        /// Loc of the spawn (Y, X)
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public StringType LocYX => GetMember<StringType>("LocYX");
+
+        /// <summary>
+        /// Loc of the spawn (Y, X, Z)
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public StringType LocYXZ => GetMember<StringType>("LocYXZ");
+
+        /// <summary>
+        /// Looking this angle
+        /// </summary>
+        public FloatType Look => GetMember<FloatType>("Look");
+
+        /// <summary>
+        /// Current Raid or Group marked npc mark number (raid first)
+        /// </summary>
+        public IntType Mark => GetMember<IntType>("Mark");
+
+        /// <summary>
+        /// Master, if it is charmed or a pet
+        /// </summary>
+        public SpawnType Master => GetMember<SpawnType>("Master");
+
+        /// <summary>
+        /// Maximum Endurance points (only updates when target/group)
+        /// </summary>
+        public IntType MaxEndurance => GetMember<IntType>("MaxEndurance");
+
+        /// <summary>
+        /// Maximum hit points
+        /// </summary>
+        public Int64Type MaxHPs => GetMember<Int64Type>("MaxHPs");
+
+        /// <summary>
+        /// Maximum Mana points (only updates when target/group)
+        /// </summary>
+        public IntType MaxMana => GetMember<IntType>("MaxMana");
+
+        /// <summary>
+        /// The max distance from this spawn for it to hit you
+        /// </summary>
+        public FloatType MaxRange => GetMember<FloatType>("MaxRange");
+
+        /// <summary>
+        /// The Max distance from this spawn for you to hit it
+        /// </summary>
+        public FloatType MaxRangeTo => GetMember<FloatType>("MaxRangeTo");
+
+        /// <summary>
+        /// Spawn ID of this spawn's contractor
+        /// </summary>
+        public IntType MercID => GetMember<IntType>("MercID");
+
+        /// <summary>
+        /// This spawn's mount 
+        /// </summary>
+        public SpawnType Mount => GetMember<SpawnType>("Mount");
+
+        /// <summary>
+        /// Moving?
+        /// </summary>
+        public BoolType Moving => GetMember<BoolType>("Moving");
+
+        /// <summary>
+        /// Location using MQ format (Y, X, Z)
+        /// </summary>
+        public StringType MQLoc => GetMember<StringType>("MQLoc");
+
+        /// <summary>
+        /// Internal name of the spawn e.g. a_rat01
+        /// </summary>
+        public StringType Name => GetMember<StringType>("Name");
+
+        /// <summary>
+        /// Is this a "named" spawn (ie. does it's name not start with an "a" or an "an", plus a bunch of other checks. See IsNamed() in MQ2Utilities.cpp)
+        /// </summary>
+        public BoolType Named => GetMember<BoolType>("Named");
+
+        /// <summary>
+        /// Nth closest spawn to this spawn, or the nth closest matching a search string e.g. "2,npc" for the second closest NPC
+        /// </summary>
+        public IndexedMember<SpawnType, int, SpawnType, string> NearestSpawn { get; }
+        
+        /// <summary>
+        /// Next spawn in the linked list
+        /// </summary>
+        public SpawnType Next => GetMember<SpawnType>("Next");
+
+        /// <summary>
+        /// Owner, if mercenary
+        /// </summary>
+        public SpawnType Owner => GetMember<SpawnType>("Owner");
+
+        /// <summary>
+        /// Endurance as a percentage
+        /// </summary>
+        public IntType PctEndurance => GetMember<IntType>("PctEndurance");
+
+        /// <summary>
+        /// HP as a percentage
+        /// </summary>
+        public Int64Type PctHPs => GetMember<Int64Type>("PctHPs");
+
+        /// <summary>
+        /// Mana as a percentage
+        /// </summary>
+        public IntType PctMana => GetMember<IntType>("PctMana");
+
+        /// <summary>
+        /// Spawn's pet
+        /// </summary>
+        public PetType Pet => GetMember<PetType>("Pet");
+
+        /// <summary>
+        /// returns a mask as an inttype which has the following meaning:
+        /// 0=Idle 1=Open 2=WeaponSheathed 4=Aggressive 8=ForcedAggressive 0x10=InstrumentEquipped 0x20=Stunned 0x40=PrimaryWeaponEquipped 0x80=SecondaryWeaponEquipped
+        /// </summary>
+        public IntType PlayerState => GetMember<IntType>("PlayerState");
+
+        /// <summary>
+        /// Next spawn in EQ's favourite data structure
+        /// </summary>
+        public SpawnType Prev => GetMember<SpawnType>("Prev");
+
+        /// <summary>
+        /// Item ID of anything that may be in the Primary slot
+        /// </summary>
+        public IntType Primary => GetMember<IntType>("Primary");
+
+        /// <summary>
+        /// TODO: What is SpawnType.pTouchingSwitch
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public IntType pTouchingSwitch => GetMember<IntType>("pTouchingSwitch");
+
+        /// <summary>
+        /// Spawn's race
+        /// </summary>
+        public RaceType Race => GetMember<RaceType>("Race");
+
+        /// <summary>
+        /// Roleplaying flag set?
+        /// </summary>
+        public BoolType Roleplaying => GetMember<BoolType>("Roleplaying");
+
+        /// <summary>
+        /// Shortcut for -Y (makes Southward positive)
+        /// </summary>
+        public FloatType S => GetMember<FloatType>("S");
+
+        /// <summary>
+        /// Item ID of anything that may be in the Secondary slot
+        /// </summary>
+        public IntType Secondary => GetMember<IntType>("Secondary");
+
+        /// <summary>
+        /// Spawn can see invis, takes an index of 0 - 2, guessing for invis/invis vs undead/improved invis?
+        /// TODO: Confirm function of SpawnType.SeeInvis
+        /// </summary>
+        public IndexedMember<IntType, int> SeeInvis { get; }
+
+        /// <summary>
+        /// Sitting?
+        /// </summary>
+        public BoolType Sitting => GetMember<BoolType>("Sitting");
+
+        /// <summary>
+        /// Sneaking?
+        /// </summary>
+        public BoolType Sneaking => GetMember<BoolType>("Sneaking");
+
+        /// <summary>
+        /// Spawn status, takes an index of 0 - 5. TODO: Confirm what they mean
+        /// </summary>
+        public IndexedMember<IntType, int> SpawnStatus { get; }
+
+        /// <summary>
+        /// Speed as a percentage of regular run speed
+        /// </summary>
+        public FloatType Speed => GetMember<FloatType>("Speed");
+
+        /// <summary>
+        /// Standing?
+        /// </summary>
+        public BoolType Standing => GetMember<BoolType>("Standing");
+
+        /// <summary>
+        /// StandState
+        /// </summary>
+        public IntType StandState => GetMember<IntType>("StandState");
+
+        /// <summary>
+        /// STAND, SIT, DUCK, BIND, FEIGN, DEAD, STUN, HOVER, MOUNT, UNKNOWN
+        /// </summary>
+        public StringType State => GetMember<StringType>("State");
+
+        /// <summary>
+        /// Stuck?
+        /// </summary>
+        public BoolType Stuck => GetMember<BoolType>("Stuck");
+
+        /// <summary>
+        /// Stunned?
+        /// </summary>
+        public BoolType Stunned => GetMember<BoolType>("Stunned");
+
+        /// <summary>
+        /// Suffix attached to name, eg. of servername
+        /// </summary>
+        public StringType Suffix => GetMember<StringType>("Suffix");
+
+        /// <summary>
+        /// Last name
+        /// </summary>
+        public StringType Surname => GetMember<StringType>("Surname");
+
+        /// <summary>
+        /// Target of this spawn's target
+        /// </summary>
+        public SpawnType TargetOfTarget => GetMember<SpawnType>("TargetOfTarget");
+
+        /// <summary>
+        /// Time this spawn has been dead for
+        /// </summary>
+        public TimeStampType TimeBeenDead => GetMember<TimeStampType>("TimeBeenDead");
+
+        /// <summary>
+        /// Prefix/Title before name
+        /// </summary>
+        public StringType Title => GetMember<StringType>("Title");
+
+        /// <summary>
+        /// Trader (in bazaar)?
+        /// </summary>
+        public BoolType Trader => GetMember<BoolType>("Trader");
+
+        /// <summary>
+        /// PC, NPC, Untargetable, Mount, Pet, Corpse, Chest, Trigger, Trap, Timer, Item, Mercenary, Aura, Object, Banner, Campfire, Flyer
+        /// </summary>
+        public StringType Type => GetMember<StringType>("Type");
+
+        /// <summary>
+        /// Underwater?
+        /// </summary>
+        public BoolType Underwater => GetMember<BoolType>("Underwater");
+
+        /// <summary>
+        /// TODO: What is SpawnType.WarCry?
+        /// </summary>
+        public IntType WarCry => GetMember<IntType>("WarCry");
+
+        /// <summary>
+        /// X, the Northward-positive coordinate
+        /// </summary>
+        public FloatType X => GetMember<FloatType>("X");
+
+        /// <summary>
+        /// GREY, GREEN, LIGHT BLUE, BLUE, WHITE, YELLOW, RED
+        /// </summary>
+        public StringType ConColor => GetMember<StringType>("ConColor");
+
+        /// <summary>
+        /// Group leader?
+        /// </summary>
+        public BoolType GroupLeader => GetMember<BoolType>("GroupLeader");
+
+        /// <summary>
+        /// Returns TRUE if spawn is in LoS
+        /// </summary>
+        public BoolType LineOfSight => GetMember<BoolType>("LineOfSight");
+
+        /// <summary>
+        /// Spawn can be targetted?
+        /// </summary>
+        public BoolType Targetable => GetMember<BoolType>("Targetable");
+
+        /// <summary>
+        /// Y, the Westward-positive coordinate
+        /// </summary>
+        public FloatType Y => GetMember<FloatType>("Y");
+
+        /// <summary>
+        /// Z, the Upward-positive coordinate
+        /// </summary>
+        public FloatType Z => GetMember<FloatType>("Z");
     }
 }
