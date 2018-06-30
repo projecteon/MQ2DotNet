@@ -1,6 +1,7 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for BuffType
     public class BuffType : SpellType
     {
         /// <summary>

@@ -1,6 +1,7 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for AdvLootType
     public class AdvLootType : MQ2DataType
     {
         public AdvLootType()
@@ -42,6 +43,7 @@
         /// <summary>
         /// True if any item is currently being looted? TODO: Confirm this
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public BoolType xLootInProgress => GetMember<BoolType>("xLootInProgress");
 
         /// <summary>

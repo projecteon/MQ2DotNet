@@ -1,6 +1,7 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for AdvLootItemType
     public class AdvLootItemType : MQ2DataType
     {
         /// <summary>
@@ -11,6 +12,7 @@
         /// <summary>
         /// Index of the item in either the shared or personal loot list
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType xIndex => GetMember<IntType>("xIndex");
 
         /// <summary>
@@ -76,6 +78,7 @@
         /// <summary>
         /// True if the item is no drop
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public BoolType xNoDrop => GetMember<BoolType>("xNoDrop");
     }
 }

@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for CharacterType
     public class CharacterType : SpawnType
     {
         public CharacterType()

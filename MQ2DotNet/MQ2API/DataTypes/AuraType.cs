@@ -1,13 +1,15 @@
 ﻿using System;
+// ReSharper disable UnusedMember.Global
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for AuraType
     public class AuraType : MQ2DataType
     {
         public AuraType()
         {
+#pragma warning disable 612
             Find = new IndexedMember<IntType>(this, "Find");
+#pragma warning restore 612
         }
 
         /// <summary>

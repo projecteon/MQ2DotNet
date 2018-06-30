@@ -1,6 +1,5 @@
 namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for CurrentZoneType
     public class CurrentZoneType : MQ2DataType
     {
         /// <summary>
@@ -47,9 +46,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Maximum setting for far clip plane
         /// </summary>
         public FloatType MaxClip => GetMember<FloatType>("MaxClip");
-        
+
         /// <summary>
-        /// TODO: Description
+        /// Zone type:0=Indoor Dungeon 1=Outdoor 2=Outdoor City 3=Dungeon City 4=Indoor City 5=Outdoor Dungeon
         /// </summary>
         public IntType ZoneType => GetMember<IntType>("ZoneType");
         
