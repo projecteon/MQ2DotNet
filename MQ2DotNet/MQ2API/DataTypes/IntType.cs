@@ -7,5 +7,10 @@
         {
             return typeVar.VarPtr.Int;
         }
+
+        public static implicit operator Class(IntType typeVar)
+        {
+            return (Class) typeVar.VarPtr.Int;
+        }
     }
 }

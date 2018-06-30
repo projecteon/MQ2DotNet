@@ -60,6 +60,7 @@
     <Compile Include="MQ2API\DataTypes\CastType.cs" />
     <Compile Include="MQ2API\DataTypes\CharacterType.cs" />
     <Compile Include="MQ2API\DataTypes\CharSelectListType.cs" />
+    <Compile Include="EQ\Class.cs" />
     <Compile Include="MQ2API\DataTypes\ClassType.cs" />
     <Compile Include="MQ2API\DataTypes\CorpseType.cs" />
     <Compile Include="MQ2API\DataTypes\CurrentZoneType.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="MQ2API\DataTypes\PluginType.cs" />
     <Compile Include="MQ2API\DataTypes\PointMerchantItemType.cs" />
     <Compile Include="MQ2API\DataTypes\PointMerchantType.cs" />
+    <Compile Include="EQ\Race.cs" />
     <Compile Include="MQ2API\DataTypes\RaceType.cs" />
     <Compile Include="MQ2API\DataTypes\RaidMemberType.cs" />
     <Compile Include="MQ2API\DataTypes\RaidType.cs" />

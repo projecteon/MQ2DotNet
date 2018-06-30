@@ -623,36 +623,49 @@ namespace MQ2DotNet.MQ2API.DataTypes
 
         /// <summary>
         /// Total Heroic Agility bonus from gear
+        /// Increases endurance pool, endurance regen, and the maximum amount of endurance regen a character can have
+        /// Also increases the chance to dodge an attack, grants a bonus to defense skill, and reduces falling damage
         /// </summary>
         public IntType HeroicAGIBonus => GetMember<IntType>("HeroicAGIBonus");
 
         /// <summary>
         /// Total Heroic Charisma bonus from gear
+        /// Improves reaction rolls with some NPCs and increases the amount of faction you gain or lose when faction is adjusted
         /// </summary>
         public IntType HeroicCHABonus => GetMember<IntType>("HeroicCHABonus");
 
         /// <summary>
         /// Total Heroic Dexterity bonus from gear
+        /// Increases endurance pool, endurance regen, and the maximum amount of endurance regen a character can have
+        /// Also increases damage done by ranged attacks, improves chance to successfully assassinate or headshot, and improves the chance to riposte, block, and parry incoming attacks
         /// </summary>
         public IntType HeroicDEXBonus => GetMember<IntType>("HeroicDEXBonus");
 
         /// <summary>
         /// Total Heroic Intelligence bonus from gear
+        /// Increases mana pool, mana regen, and the maximum amount of mana regen an int-based caster can have
+        /// It requires +25 heroic intel to gain a single point of +mana regeneration
         /// </summary>
         public IntType HeroicINTBonus => GetMember<IntType>("HeroicINTBonus");
 
         /// <summary>
         /// Total Heroic Stamina bonus from gear
+        /// Increases hit point pool, hit point regen, and the maximum amount of hit point regen a character can have
+        /// Also increases endurance pool, endurance regen, and the maximum amount of endurance regen a character can have.
         /// </summary>
         public IntType HeroicSTABonus => GetMember<IntType>("HeroicSTABonus");
 
         /// <summary>
         /// Total Heroic Strength bonus from gear
+        /// Increases endurance pool, endurance regen, and the maximum amount of endurance regen a character can have
+        /// Also increases damage done by melee attacks and improves the bonus granted to armor class while using a shield
+        /// (10 Heroic STR increases each Melee Hit by 1 point)
         /// </summary>
         public IntType HeroicSTRBonus => GetMember<IntType>("HeroicSTRBonus");
 
         /// <summary>
         /// Total Heroic Wisdom bonus from gear
+        /// Increases mana pool, mana regen, and the maximum amount of mana regen a wis-based caster can have
         /// </summary>
         public IntType HeroicWISBonus => GetMember<IntType>("HeroicWISBonus");
 

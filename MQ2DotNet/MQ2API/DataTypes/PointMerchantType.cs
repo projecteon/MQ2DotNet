@@ -1,13 +1,17 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // TODO: Check and handle indexed members for PointMerchantType
     public class PointMerchantType : SpawnType
     {
         public PointMerchantType()
         {
-            Item = new IndexedMember<PointMerchantItemType>(this, "Item");
+            Item = new IndexedMember<PointMerchantItemType, string, PointMerchantItemType, int>(this, "Item");
         }
 
-        public IndexedMember<PointMerchantItemType> Item { get; }
+        /// <summary>
+        /// Item by name or slot number (1 based)
+        /// </summary>
+        public IndexedMember<PointMerchantItemType, string, PointMerchantItemType, int> Item { get; }
     }
 }

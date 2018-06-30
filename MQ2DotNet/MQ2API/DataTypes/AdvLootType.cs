@@ -43,8 +43,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// True if any item is currently being looted? TODO: Confirm this
         /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public BoolType xLootInProgress => GetMember<BoolType>("xLootInProgress");
+        public BoolType LootInProgress => GetMember<BoolType>("LootInProgress");
 
         /// <summary>
         /// Returns a filter from the advanced loot filters TODO: By what? Number in list or item ID?

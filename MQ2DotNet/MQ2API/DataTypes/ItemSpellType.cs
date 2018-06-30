@@ -1,5 +1,7 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+namespace MQ2DotNet.MQ2API.DataTypes
 {
+    //TODO: Document ItemSpellType. Most names are self-explantory but several could use example values e.g. EffectType
     public class ItemSpellType : MQ2DataType
     {
         public IntType SpellID => GetMember<IntType>("SpellID");

@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Index of the item in either the shared or personal loot list
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public IntType xIndex => GetMember<IntType>("xIndex");
+        public IntType Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Name of the item
@@ -78,7 +78,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// True if the item is no drop
         /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public BoolType xNoDrop => GetMember<BoolType>("xNoDrop");
+        public BoolType NoDrop => GetMember<BoolType>("NoDrop");
     }
 }
