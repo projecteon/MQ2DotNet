@@ -110,9 +110,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Process ID of this eqgame.exe
         /// </summary>
         public IntType PID => GetMember<IntType>("PID");
-
-        [Obsolete]
-        public IntType xScreenMode => GetMember<IntType>("xScreenMode");
+        
+        /// <summary>
+        /// Screen mode, 2 = windowed ?
+        /// </summary>
+        public IntType ScreenMode => GetMember<IntType>("ScreenMode");
 
         /// <summary>
         /// Process priority of this eqgame.exe, one of "LOW", "BELOW NORMAL", "NORMAL", "ABOVE NORMAL", "REALTIME"

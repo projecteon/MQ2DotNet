@@ -66,7 +66,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Index (0 based) of the member in the group
         /// </summary>
-        public IntType xIndex => GetMember<IntType>("xIndex");
+        public IntType Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// TRUE if the member is offline and FALSE if online

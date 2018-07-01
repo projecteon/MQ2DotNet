@@ -83,7 +83,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE if ground spawn is in line of sight
         /// </summary>
-        public BoolType xLineOfSight => GetMember<BoolType>("xLineOfSight");
+        public BoolType LineOfSight => GetMember<BoolType>("LineOfSight");
 
         /// <summary>
         /// Next ground spawn

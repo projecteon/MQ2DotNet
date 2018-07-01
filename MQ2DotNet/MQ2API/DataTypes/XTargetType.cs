@@ -7,7 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of XTargetMgr
         /// </summary>
-        public IntType xAddress => GetMember<IntType>("xAddress");
+        public new IntType Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Extended target type e.g. Auto Hater

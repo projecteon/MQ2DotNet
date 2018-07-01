@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+
 // ReSharper disable UnusedMember.Global
 
 namespace MQ2DotNet.MQ2API.DataTypes
@@ -9,6 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         public CharacterType()
         {
+            Language = new IndexedMember<IntType, string, StringType, int>(this, "Language");
             XTarget = new IndexedMember<XTargetType, int>(this, "XTarget");
             XTAggroCount = new IndexedMember<IntType, int>(this, "XTAggroCount");
             SpellReady = new IndexedMember<BoolType, int, BoolType, string>(this, "SpellReady");
@@ -752,6 +752,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Level of HoTT of the current group leader (not your own ability level)
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType LAHoTT => GetMember<IntType>("LAHoTT");
 
         /// <summary>
@@ -772,7 +773,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Language number by name, or name by number
         /// </summary>
-        public IndexedMember<IntType, string, StringType, int> Language { get; } = new IndexedMember<IntType, string, StringType, int>(this, "Language");
+        public IndexedMember<IntType, string, StringType, int> Language { get; }
 
         /// <summary>
         /// Language skill by name or number
@@ -782,6 +783,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Level of NPC Health of the current group leader (not your own ability level)
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType LANPCHealth => GetMember<IntType>("LANPCHealth");
 
         /// <summary>
@@ -802,6 +804,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total points earned across all LDoN missions
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType LDoNPoints => GetMember<IntType>("LDoNPoints");
 
         /// <summary>
@@ -1058,6 +1061,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Buff from the Spiritual Enlightenment line
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public BuffType SE => GetMember<BuffType>("SE");
 
         /// <summary>
@@ -1198,46 +1202,55 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Buff from the Spiritual Vivacity line
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public BuffType SV => GetMember<BuffType>("SV");
 
         /// <summary>
         /// Your character's lowest resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svChromatic => GetMember<IntType>("svChromatic");
 
         /// <summary>
         /// Cold resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svCold => GetMember<IntType>("svCold");
 
         /// <summary>
         /// Corruption resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svCorruption => GetMember<IntType>("svCorruption");
 
         /// <summary>
         /// Disease resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svDisease => GetMember<IntType>("svDisease");
 
         /// <summary>
         /// Fire resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svFire => GetMember<IntType>("svFire");
 
         /// <summary>
         /// Magic resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svMagic => GetMember<IntType>("svMagic");
 
         /// <summary>
         /// Poison resist
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svPoison => GetMember<IntType>("svPoison");
 
         /// <summary>
         /// The average of your character's resists
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public IntType svPrismatic => GetMember<IntType>("svPrismatic");
 
         /// <summary>

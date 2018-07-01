@@ -100,10 +100,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns the amount of points spent on an AA
         /// </summary>
         public IntType PointsSpent => GetMember<IntType>("PointsSpent");
-
-        [Obsolete]
+        
+        /// <summary>
+        /// TODO: What is AltAbilityType.Index
+        /// </summary>
         // ReSharper disable once InconsistentNaming
-        public IntType xIndex => GetMember<IntType>("xIndex");
+        public IntType Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Returns true/false on if the Alternative Ability can be trained
