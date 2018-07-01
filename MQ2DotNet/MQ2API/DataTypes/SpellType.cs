@@ -90,6 +90,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// "Beneficial(Group)", "Beneficial", "Detrimental" or "Unknown"
         /// </summary>
+        // ReSharper disable once InconsistentNaming
         public StringType SpellType_ => GetMember<StringType>("SpellType");
 
         /// <summary>

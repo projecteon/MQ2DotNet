@@ -1,4 +1,6 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class DeityType : MQ2DataType
     {
