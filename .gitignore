@@ -328,3 +328,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder
 .mfractor/
+
+# Sandcastle Help File Builder is a documentation generator add-in
+Documentation/**/Help/
+Documentation/WebHelp/
+**/Doc/Help/
+*.shfbproj_*
