@@ -2,7 +2,7 @@
 {
     public class FriendsType : MQ2DataType
     {
-        public FriendsType()
+        internal FriendsType(MQ2TypeVar typeVar)
         {
             xFriend = new IndexedMember<StringType, int, BoolType, string>(this, "xFriend");
         }

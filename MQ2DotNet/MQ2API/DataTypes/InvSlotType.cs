@@ -14,6 +14,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 
     public class InvSlotType : MQ2DataType
     {
+        internal InvSlotType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// ID of this item slot (usable directly by /itemnotify)
         /// </summary>

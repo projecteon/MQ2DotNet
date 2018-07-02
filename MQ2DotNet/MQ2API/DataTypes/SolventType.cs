@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class SolventType : MQ2DataType
     {
+        internal SolventType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Item name
         /// </summary>

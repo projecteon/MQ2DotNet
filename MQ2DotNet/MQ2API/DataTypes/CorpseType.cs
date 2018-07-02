@@ -1,8 +1,9 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿// ReSharper disable UnusedMember.Global
+namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class CorpseType : SpawnType
     {
-        public CorpseType()
+        internal CorpseType(MQ2TypeVar typeVar) : base(typeVar)
         {
             Item = new IndexedMember<ItemType, int, ItemType, string>(this, "Item");
         }

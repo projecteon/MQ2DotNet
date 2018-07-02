@@ -4,7 +4,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class GroupType : MQ2DataType
     {
-        public GroupType()
+        internal GroupType(MQ2TypeVar typeVar)
         {
             Injured = new IndexedMember<IntType, int>(this, "Injured");
             Member = new IndexedMember<GroupMemberType, string, GroupMemberType, int>(this, "Member");

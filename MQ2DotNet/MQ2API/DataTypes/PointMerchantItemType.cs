@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class PointMerchantItemType : MQ2DataType
     {
+        internal PointMerchantItemType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Item name
         /// </summary>

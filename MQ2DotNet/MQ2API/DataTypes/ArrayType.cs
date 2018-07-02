@@ -2,5 +2,8 @@
 {
     public class ArrayType : MQ2DataType
     {
+        internal ArrayType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
     }
 }

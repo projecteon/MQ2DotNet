@@ -2,6 +2,10 @@
 {
     public class IntType : MQ2DataType
     {
+        internal IntType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         // MQ2 type has a bunch of members, but it hardly seems worth implementing them here
         public static implicit operator int(IntType typeVar)
         {

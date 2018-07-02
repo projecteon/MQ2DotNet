@@ -7,6 +7,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     public class AlertListType : MQ2DataType
     {
+        internal AlertListType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Minimum level, inclusive
         /// </summary>

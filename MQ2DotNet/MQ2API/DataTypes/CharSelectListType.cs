@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class CharSelectListType : MQ2DataType
     {
+        internal CharSelectListType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Character's name
         /// </summary>

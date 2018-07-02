@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class MercenaryType : SpawnType
     {
+        internal MercenaryType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Number of unspent mercenary AA points
         /// </summary>

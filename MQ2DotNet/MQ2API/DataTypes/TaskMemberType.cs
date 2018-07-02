@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TaskMemberType : MQ2DataType
     {
+        internal TaskMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Name of the task member
         /// </summary>

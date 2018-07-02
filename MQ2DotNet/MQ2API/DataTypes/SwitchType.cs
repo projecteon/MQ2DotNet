@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class SwitchType : MQ2DataType
     {
+        internal SwitchType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of the DOOR struct
         /// </summary>

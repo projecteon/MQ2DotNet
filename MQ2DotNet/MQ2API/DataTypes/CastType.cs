@@ -2,6 +2,10 @@
 {
     public class CastType : MQ2DataType
     {
+        internal CastType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         public BoolType Active => GetMember<BoolType>("Active");
         public SpellType Effect => GetMember<SpellType>("Effect");
         public SpellType Stored => GetMember<SpellType>("Stored");

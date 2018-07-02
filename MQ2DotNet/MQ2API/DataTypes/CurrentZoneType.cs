@@ -2,6 +2,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class CurrentZoneType : MQ2DataType
     {
+        internal CurrentZoneType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of the TODO: struct
         /// </summary>

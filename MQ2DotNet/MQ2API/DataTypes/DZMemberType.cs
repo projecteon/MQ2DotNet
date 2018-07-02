@@ -2,6 +2,10 @@
 {
     public class DZMemberType : MQ2DataType
     {
+        internal DZMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// The name of the member
         /// </summary>

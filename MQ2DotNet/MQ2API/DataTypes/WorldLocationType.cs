@@ -7,6 +7,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     public class WorldLocationType : MQ2DataType
     {
+        internal WorldLocationType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Zone ID
         /// </summary>

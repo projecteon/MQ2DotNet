@@ -5,6 +5,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TimeStampType : MQ2DataType
     {
+        internal TimeStampType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
 
         [Obsolete("Use conversion to TimeSpan")]
         public Int64Type Hours => GetMember<Int64Type>("Hours");

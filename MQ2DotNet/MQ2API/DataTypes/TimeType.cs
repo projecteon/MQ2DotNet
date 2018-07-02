@@ -6,6 +6,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TimeType : MQ2DataType
     {
+        internal TimeType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         private struct tm
         {

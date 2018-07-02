@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class PluginType : MQ2DataType
     {
+        internal PluginType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Plugin's name e.g. mq2cast
         /// </summary>

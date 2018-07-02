@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class XTargetType : SpawnType
     {
+        internal XTargetType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of XTargetMgr
         /// </summary>

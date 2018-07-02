@@ -5,6 +5,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TicksType : MQ2DataType
     {
+        internal TicksType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         [Obsolete("Use conversion to TimeSpan")]
         public IntType Hours => GetMember<IntType>("Hours");
 

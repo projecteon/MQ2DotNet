@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class SpawnType : MQ2DataType
     {
-        public SpawnType()
+        internal SpawnType(MQ2TypeVar typeVar) : base(typeVar)
         {
             SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
             SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
@@ -172,7 +172,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType CollisionCounter => GetMember<IntType>("CollisionCounter");
 
         /// <summary>
-        /// Valid indexes are 0 & 1. TODO: What is SpawnType.CombatSkillTicks
+        /// Valid indexes are 0 and 1. TODO: What is SpawnType.CombatSkillTicks
         /// </summary>
         public IndexedMember<IntType, int> CombatSkillTicks { get; }
 
@@ -258,7 +258,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public StringType DraggingPlayer => GetMember<StringType>("DraggingPlayer");
 
         /// <summary>
-        /// Players whose corpse this spawn is dragging. Valid indexes are 0 & 1
+        /// Players whose corpse this spawn is dragging. Valid indexes are 0 and 1
         /// </summary>
         public IndexedMember<StringType, int> DragNames { get; }
 

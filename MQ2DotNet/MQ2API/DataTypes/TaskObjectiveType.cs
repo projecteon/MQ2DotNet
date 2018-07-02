@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TaskObjectiveType : MQ2DataType
     {
+        internal TaskObjectiveType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Index of this objective in the list (0 based)
         /// Confusingly, ${Task[taskname].Objective[1].Index} == 0

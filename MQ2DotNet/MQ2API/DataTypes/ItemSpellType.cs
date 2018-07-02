@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
     ///TODO: Document ItemSpellType. Most names are self-explantory but several could use example values e.g. EffectType
     public class ItemSpellType : MQ2DataType
     {
+        internal ItemSpellType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         public IntType SpellID => GetMember<IntType>("SpellID");
         public IntType RequiredLevel => GetMember<IntType>("RequiredLevel");
         public IntType EffectType => GetMember<IntType>("EffectType");

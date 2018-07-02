@@ -124,6 +124,7 @@
     <Compile Include="MQ2API\DataTypes\ZoneType.cs" />
     <Compile Include="MQ2API\MQ2.cs" />
     <Compile Include="MQ2API\MQ2DataType.cs" />
+    <Compile Include="MQ2API\MQ2TypeFactory.cs" />
     <Compile Include="MQ2API\MQ2TypeVar.cs" />
     <Compile Include="MQ2API\MQ2VarPtr.cs" />
     <Compile Include="MQ2API\TLO.cs" />

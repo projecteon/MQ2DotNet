@@ -5,6 +5,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
     // TODO: Check and handle indexed members for FellowshipMemberType
     public class FellowshipMemberType : MQ2DataType
     {
+        internal FellowshipMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Zone the member is currently in
         /// </summary>

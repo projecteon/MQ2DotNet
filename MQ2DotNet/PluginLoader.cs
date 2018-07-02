@@ -100,7 +100,7 @@ namespace MQ2DotNet
 
             public override void InitializePlugin() => EventLoopContext.Instance.SetExecuteRestore(() =>
             {
-                MQ2DataType.RegisterBuiltInTypes();
+                MQ2TypeFactory.RegisterBuiltInTypes();
                 _plugin.InitializePlugin();
             });
 

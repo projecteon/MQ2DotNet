@@ -6,7 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class CharacterType : SpawnType
     {
-        public CharacterType()
+        internal CharacterType(MQ2TypeVar typeVar) : base(typeVar)
         {
             Language = new IndexedMember<IntType, string, StringType, int>(this, "Language");
             XTarget = new IndexedMember<XTargetType, int>(this, "XTarget");

@@ -90,7 +90,7 @@ namespace MQ2DotNet
 
             public override void Start(string[] args) => EventLoopContext.Instance.SetExecuteRestore(() =>
             {
-                MQ2DataType.RegisterBuiltInTypes();
+                MQ2TypeFactory.RegisterBuiltInTypes();
                 
                 // This returns a task, which is never actually ran, and yet it seems to work...
                 _task = (Task)_mainMethod.Invoke(null, new object[] { args });

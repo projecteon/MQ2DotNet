@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class BuffType : SpellType
     {
+        internal BuffType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of the SPELLBUFF struct
         /// </summary>

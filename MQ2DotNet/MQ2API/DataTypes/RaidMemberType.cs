@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class RaidMemberType : MQ2DataType
     {
+        internal RaidMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Raid member's name
         /// </summary>

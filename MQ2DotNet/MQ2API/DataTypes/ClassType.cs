@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class ClassType : MQ2DataType
     {
+        internal ClassType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         public IntType ID => GetMember<IntType>("ID");
 
         /// <summary>

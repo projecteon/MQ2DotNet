@@ -4,7 +4,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TargetType : SpawnType
     {
-        public TargetType()
+        internal TargetType(MQ2TypeVar typeVar) : base(typeVar)
         {
             BuffDuration = new IndexedMember<TimeStampType, string, TimeStampType, int>(this, "BuffDuration");
             MyBuffDuration = new IndexedMember<TimeStampType, string, TimeStampType, int>(this, "MyBuffDuration");

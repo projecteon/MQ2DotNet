@@ -36,7 +36,7 @@ namespace MQ2DotNet.MQ2API
             if (!MQ2Type__GetMember(pType, VarPtr, memberName, index, out var result))
                 return null;
 
-            return (T) MQ2DataType.Create(result);
+            return (T) MQ2TypeFactory.Create(result);
         }
 
         public override string ToString()

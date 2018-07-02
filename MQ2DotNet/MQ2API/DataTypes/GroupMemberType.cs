@@ -3,6 +3,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class GroupMemberType : SpawnType
     {
+        internal GroupMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of the GROUPMEMBER struct
         /// </summary>

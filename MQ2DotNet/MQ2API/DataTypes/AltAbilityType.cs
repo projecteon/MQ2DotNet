@@ -5,6 +5,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class AltAbilityType : MQ2DataType
     {
+        internal AltAbilityType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Name of the ability
         /// </summary>

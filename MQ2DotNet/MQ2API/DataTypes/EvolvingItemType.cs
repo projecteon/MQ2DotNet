@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class EvolvingItemType : MQ2DataType
     {
+        internal EvolvingItemType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Current percentage experience
         /// </summary>

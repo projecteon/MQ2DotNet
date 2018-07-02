@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TargetBuffType : SpellType
     {
+        internal TargetBuffType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Memory address of the spell ID DWORD for this buff slot in CTARGETWND
         /// </summary>

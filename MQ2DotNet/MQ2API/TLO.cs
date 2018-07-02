@@ -40,7 +40,7 @@ namespace MQ2DotNet.MQ2API
             if (!tlo.Function(index, out var typeVar))
                 return null;
 
-            return (T)MQ2DataType.Create(typeVar);
+            return (T)MQ2TypeFactory.Create(typeVar);
         }
 
         /// <summary>

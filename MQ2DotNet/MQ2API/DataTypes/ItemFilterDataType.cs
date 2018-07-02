@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class ItemFilterDataType : MQ2DataType
     {
+        internal ItemFilterDataType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Name of the item
         /// </summary>

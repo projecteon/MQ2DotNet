@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class MacroQuestType : EverQuestType
     {
+        internal MacroQuestType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Last normal error message
         /// </summary>

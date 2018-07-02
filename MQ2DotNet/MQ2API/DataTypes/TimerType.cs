@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TimerType : MQ2DataType
     {
+        internal TimerType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         /// <summary>
         /// Current value of the timer in 100ms intervals
         /// </summary>

@@ -4,6 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class GroundType : MQ2DataType
     {
+        internal GroundType(MQ2TypeVar typeVar) : base(typeVar)
+        {
+        }
+
         public IntType Address => GetMember<IntType>("Address");
 
         /// <summary>
