@@ -24,7 +24,7 @@ namespace MQ2DotNet.MQ2API
         {
         }
 
-        internal MQ2DataType(string typeName, MQ2TypeVar.MQ2VarPtr varPtr)
+        internal MQ2DataType(string typeName, MQ2VarPtr varPtr)
         {
             _typeVar.pType = FindMQ2DataType(typeName);
             _typeVar.VarPtr = varPtr;
@@ -79,7 +79,7 @@ namespace MQ2DotNet.MQ2API
         }
 
         // Exposed for use in basic types e.g. int, double, etc
-        internal MQ2TypeVar.MQ2VarPtr VarPtr => _typeVar.VarPtr;
+        internal MQ2VarPtr VarPtr => _typeVar.VarPtr;
 
 
         #region Static

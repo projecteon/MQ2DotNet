@@ -20,9 +20,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         public SpawnType(IntPtr pSpawn) : base("spawn",
-            new MQ2TypeVar.MQ2VarPtr()
+            new MQ2VarPtr()
             {
-                FullArray = BitConverter.GetBytes(pSpawn.ToInt32()).Concat(Enumerable.Repeat((byte) 0, 4)).ToArray()
+                Ptr = pSpawn
             })
         {
             SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");

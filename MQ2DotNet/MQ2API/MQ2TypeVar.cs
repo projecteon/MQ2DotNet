@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -9,26 +7,6 @@ namespace MQ2DotNet.MQ2API
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     internal struct MQ2TypeVar
     {
-        [StructLayout(LayoutKind.Explicit, Size = 8)]
-        internal struct MQ2VarPtr
-        {
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            [FieldOffset(0)]
-            public byte[] FullArray;
-
-            // PInvoke doesn't seem to have good support for unions, so everything else gets handled with BitConverter
-
-            public IntPtr Ptr => new IntPtr(BitConverter.ToInt32(FullArray, 0));
-            public uint HighPart => BitConverter.ToUInt32(FullArray, 4);
-            public float Float => BitConverter.ToSingle(FullArray, 0);
-            public uint Dword => BitConverter.ToUInt32(FullArray, 0);
-            public Color Argb => Color.FromArgb(Int);
-            public int Int => BitConverter.ToInt32(FullArray, 0);
-            public byte[] Array => FullArray.Take(4).ToArray(); // This one seems pointless
-            public double Double => BitConverter.ToDouble(FullArray, 0);
-            public long Int64 => BitConverter.ToInt64(FullArray, 0);
-            public ulong UInt64 => BitConverter.ToUInt64(FullArray, 0);
-        }
 
         // Since we don't care about members and will only be calling functions, marshalling as IntPtr seems the easiest/safest option
         // Only a 4 byte field but gets packed to 8 bytes. Many hours wasted before realizing this :(
