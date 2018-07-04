@@ -20,13 +20,13 @@ namespace MQ2DotNet.MQ2API
         [FieldOffset(0)]
         public int Int;
 
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        [FieldOffset(0)]
-        public byte[] Array; // This one seems pointless
+        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        //[FieldOffset(0)]
+        //public byte[] Array; // This one seems pointless
         
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-        [FieldOffset(0)]
-        public byte[] FullArray;
+        //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        //[FieldOffset(0)]
+        //public byte[] FullArray;
 
         [FieldOffset(0)]
         public double Double;
