@@ -33,6 +33,9 @@ namespace MQ2DotNet.MQ2API
 
         public T GetMember<T>(string memberName, string index) where T : MQ2DataType
         {
+            if (pType == IntPtr.Zero)
+                throw new InvalidOperationException();
+
             if (!MQ2Type__GetMember(pType, VarPtr, memberName, index, out var result))
                 return null;
 

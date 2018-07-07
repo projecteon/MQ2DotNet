@@ -11,13 +11,17 @@ namespace MQ2DotNet.MQ2API
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool fMQData([MarshalAs(UnmanagedType.LPStr)] string szIndex, out MQ2TypeVar ret);
 
-        [StructLayout(LayoutKind.Explicit, Size = 68, CharSet = CharSet.Ansi)]
+        [StructLayout(LayoutKind.Explicit, Size = 68)]
         internal struct MQ2DataItem
         {
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
             [FieldOffset(0)]
-            public string Name;
-            [FieldOffset(64)] public fMQData Function;
+            public byte[] Name;
+
+            [FieldOffset(64)]
+            public IntPtr pFunction;
+
+            public fMQData Function => Marshal.GetDelegateForFunctionPointer<fMQData>(pFunction);
         }
 
         // Marshal doesn't want to return this struct (since it's non-blittable thanks to the delegate & string) so gotta do it manually
@@ -27,7 +31,7 @@ namespace MQ2DotNet.MQ2API
         }
 
         [DllImport("MQ2Main.dll", EntryPoint = "FindMQ2Data", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr FindMQ2DataIntPtr(string szName);
+        private static extern IntPtr FindMQ2DataIntPtr([MarshalAs(UnmanagedType.LPStr)] string szName);
         #endregion
 
         #region Helper classes
@@ -37,7 +41,7 @@ namespace MQ2DotNet.MQ2API
             var tlo = FindMQ2Data(name);// ?? throw new KeyNotFoundException();
 
             // Then we call that function, providing the index as a parameter
-            if (!tlo.Function(index, out var typeVar))
+            if (tlo.pFunction == IntPtr.Zero || !tlo.Function(index, out var typeVar))
                 return null;
 
             return (T)MQ2TypeFactory.Create(typeVar);
