@@ -7,7 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     public class AlertType : MQ2DataType
     {
-        internal AlertType(MQ2TypeVar typeVar)
+        internal AlertType(MQ2TypeVar typeVar) : base(typeVar)
         {
             List = new IndexedMember<AlertListType, int>(this, "List");
         }

@@ -4,7 +4,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TypeType : MQ2DataType
     {
-        internal TypeType(MQ2TypeVar typeVar)
+        internal TypeType(MQ2TypeVar typeVar) : base(typeVar)
         {
             Member = new IndexedMember<StringType, int, IntType, string>(this, "Member");
         }

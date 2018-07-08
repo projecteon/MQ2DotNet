@@ -5,7 +5,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class EverQuestType : MQ2DataType
     {
-        internal EverQuestType(MQ2TypeVar typeVar)
+        internal EverQuestType(MQ2TypeVar typeVar) : base(typeVar)
         {
             CharSelectList = new IndexedMember<CharSelectListType, string, CharSelectListType, int>(this, "CharSelectList");
             ChatChannel = new IndexedMember<StringType, int, BoolType, string>(this, "ChatChannel");

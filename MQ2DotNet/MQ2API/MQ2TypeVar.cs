@@ -5,7 +5,7 @@ using System.Text;
 namespace MQ2DotNet.MQ2API
 {
     [StructLayout(LayoutKind.Explicit, Size = 16)]
-    internal struct MQ2TypeVar
+    public struct MQ2TypeVar
     {
 
         // Since we don't care about members and will only be calling functions, marshalling as IntPtr seems the easiest/safest option

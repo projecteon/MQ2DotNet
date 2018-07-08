@@ -4,7 +4,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class FellowshipType : MQ2DataType
     {
-        internal FellowshipType(MQ2TypeVar typeVar)
+        internal FellowshipType(MQ2TypeVar typeVar) : base(typeVar)
         {
             xMember = new IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int>(this, "xMember");
         }

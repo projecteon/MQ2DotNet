@@ -4,7 +4,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class TaskType : MQ2DataType
     {
-        internal TaskType(MQ2TypeVar typeVar)
+        internal TaskType(MQ2TypeVar typeVar) : base(typeVar)
         {
             Member = new IndexedMember<TaskMemberType, string, TaskMemberType, int>(this, "Member");
             Objective = new IndexedMember<TaskObjectiveType, string, TaskObjectiveType, int>(this, "Objective");

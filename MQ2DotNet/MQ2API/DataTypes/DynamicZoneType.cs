@@ -2,7 +2,7 @@
 {
     public class DynamicZoneType : MQ2DataType
     {
-        internal DynamicZoneType(MQ2TypeVar typeVar)
+        internal DynamicZoneType(MQ2TypeVar typeVar) : base(typeVar)
         {
             Member = new IndexedMember<DZMemberType, int, DZMemberType, string>(this, "Member");
         }

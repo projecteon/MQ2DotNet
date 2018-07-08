@@ -5,7 +5,7 @@ using MQ2DotNet.MQ2API.DataTypes;
 
 namespace MQ2DotNet.MQ2API
 {
-    internal static class MQ2TypeFactory
+    public static class MQ2TypeFactory
     {
         private static readonly Dictionary<IntPtr, Func<MQ2TypeVar, MQ2DataType>> _constructors = new Dictionary<IntPtr, Func<MQ2TypeVar, MQ2DataType>>();
 
@@ -27,12 +27,14 @@ namespace MQ2DotNet.MQ2API
         [DllImport("MQ2Main.dll", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr FindMQ2DataType(string Name);
 
-        internal static void Register(string typeName, Func<MQ2TypeVar, MQ2DataType> constructor)
+        public static void Register(string typeName, Func<MQ2TypeVar, MQ2DataType> constructor)
         {
             var dataType = FindMQ2DataType(typeName);
 
             if (dataType != IntPtr.Zero)
                 _constructors[dataType] = constructor;
+            else
+                throw new KeyNotFoundException($"Could not find data type: {typeName}");
         }
 
         internal static void RegisterBuiltInTypes()

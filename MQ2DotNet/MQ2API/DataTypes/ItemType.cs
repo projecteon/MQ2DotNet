@@ -5,7 +5,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class ItemType : MQ2DataType
     {
-        internal ItemType(MQ2TypeVar typeVar)
+        internal ItemType(MQ2TypeVar typeVar) : base(typeVar)
         {
             WornSlot = new IndexedMember<BoolType, string, InvSlotType, int>(this, "WornSlot");
             Race = new IndexedMember<RaceType, int, RaceType, string>(this, "Race");

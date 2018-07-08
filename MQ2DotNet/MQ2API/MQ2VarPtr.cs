@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace MQ2DotNet.MQ2API
 {
     [StructLayout(LayoutKind.Explicit, Size = 8)]
-    internal struct MQ2VarPtr
+    public struct MQ2VarPtr
     {
         [FieldOffset(0)]
         public IntPtr Ptr;

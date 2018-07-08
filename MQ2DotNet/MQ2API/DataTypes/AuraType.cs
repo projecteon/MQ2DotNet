@@ -5,7 +5,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class AuraType : MQ2DataType
     {
-        internal AuraType(MQ2TypeVar typeVar)
+        internal AuraType(MQ2TypeVar typeVar) : base(typeVar)
         {
 #pragma warning disable 612
             Find = new IndexedMember<IntType>(this, "Find");

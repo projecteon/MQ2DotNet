@@ -4,10 +4,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class MacroType : MQ2DataType
     {
-        internal MacroType(MQ2TypeVar typeVar)
+        internal MacroType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            IsTLO = new MQ2DataType.IndexedMember<BoolType>(this, "IsTLO");
-            IsOuterVariable = new MQ2DataType.IndexedMember<BoolType>(this, "IsOuterVariable");
+            IsTLO = new IndexedMember<BoolType>(this, "IsTLO");
+            IsOuterVariable = new IndexedMember<BoolType>(this, "IsOuterVariable");
         }
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is the given name a Top Level Object?
         /// </summary>
-        public MQ2DataType.IndexedMember<BoolType> IsTLO { get; }
+        public IndexedMember<BoolType> IsTLO { get; }
 
         /// <summary>
         /// Is the given name a variable declared with outer scope?
         /// </summary>
-        public MQ2DataType.IndexedMember<BoolType> IsOuterVariable { get; }
+        public IndexedMember<BoolType> IsOuterVariable { get; }
 
         /// <summary>
         /// Stack depth of the currently executing macro
