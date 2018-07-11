@@ -83,7 +83,7 @@ namespace MQ2DotNet.MQ2API
             Register("heading", typeVar => new HeadingType(typeVar));
             Register("invslot", typeVar => new InvSlotType(typeVar));
             Register("plugin", typeVar => new PluginType(typeVar));
-            Register("benchmark", typeVar => new BenchmarkType(typeVar));
+            //Register("benchmark", typeVar => new BenchmarkType(typeVar));
             Register("skill", typeVar => new SkillType(typeVar));
             Register("altability", typeVar => new AltAbilityType(typeVar));
             Register("timer", typeVar => new TimerType(typeVar));
