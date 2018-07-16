@@ -741,5 +741,30 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Z, the Upward-positive coordinate
         /// </summary>
         public FloatType Z => GetMember<FloatType>("Z");
+
+        /// <summary>
+        /// Targets the spawn (equivalent of /target)
+        /// </summary>
+        public void DoTarget() => GetMember<MQ2DataType>("DoTarget");
+
+        /// <summary>
+        /// Faces the spawn (equivalent of /face)
+        /// </summary>
+        public void DoFace() => GetMember<MQ2DataType>("DoFace");
+
+        /// <summary>
+        /// Left click on the spawn
+        /// </summary>
+        public void LeftClick() => GetMember<MQ2DataType>("LeftClick");
+
+        /// <summary>
+        /// Right click on the spawn
+        /// </summary>
+        public void RightClick() => GetMember<MQ2DataType>("RightClick");
+
+        /// <summary>
+        /// Assists the spawn (equivalent of /assist)
+        /// </summary>
+        public void DoAssist() => GetMember<MQ2DataType>("DoAssist");
     }
 }

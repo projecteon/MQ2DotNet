@@ -36,7 +36,7 @@ namespace MQ2DotNet.MQ2API
             if (pType == IntPtr.Zero)
                 throw new InvalidOperationException();
 
-            if (!MQ2Type__GetMember(pType, VarPtr, memberName, index, out var result))
+            if (!MQ2Type__GetMember(pType, VarPtr, memberName, index, out var result) || result.pType == IntPtr.Zero)
                 return null;
 
             return (T) MQ2TypeFactory.Create(result);

@@ -62,5 +62,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Memory usage in bytes of the currently executing macro
         /// </summary>
         public IntType MemUse => GetMember<IntType>("MemUse");
+
+        /// <summary>
+        /// Prints undeclared variables to chat
+        /// </summary>
+        public void Undeclared() => GetMember<MQ2DataType>("Undeclared");
     }
 }

@@ -2,7 +2,10 @@
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
-    public class BuffType : SpellType
+    // SpellType inheritance would be nice but is problematic. BuffType.VarPtr is a PSPELLBUFF, but SpellType.VarPtr requires a PSPELL
+    // MQ2 system gets around this by finding the spell before calling the base class, but we don't have that luxury here.
+    // Use .Spell instead
+    public class BuffType : MQ2DataType //SpellType
     {
         internal BuffType(MQ2TypeVar typeVar) : base(typeVar)
         {
@@ -73,5 +76,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Number of hit counts remaining on the buff
         /// </summary>
         public IntType HitCount => GetMember<IntType>("HitCount");
+
+        /// <summary>
+        /// Remove the buff
+        /// </summary>
+        public void Remove() => GetMember<MQ2DataType>("Remove");
     }
 }
