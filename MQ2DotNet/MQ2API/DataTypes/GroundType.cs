@@ -98,5 +98,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Previous ground spawn
         /// </summary>
         public GroundType Prev => GetMember<GroundType>("Prev");
+
+        /// <summary>
+        /// Pick up the item (must be within 20 units of it
+        /// </summary>
+        public void Grab() => GetMember<MQ2DataType>("Grab");
     }
 }

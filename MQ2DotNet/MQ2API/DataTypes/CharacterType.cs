@@ -1357,5 +1357,25 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Am I zoning?
         /// </summary>
         public BoolType Zoning => GetMember<BoolType>("Zoning");
+
+        /// <summary>
+        /// Equivalent of the command /stand on
+        /// </summary>
+        public void Stand() => GetMember<MQ2DataType>("Stand");
+
+        /// <summary>
+        /// Equivalent of the command /sit on
+        /// </summary>
+        public void Sit() => GetMember<MQ2DataType>("Sit");
+
+        /// <summary>
+        /// Equivalent of the command /dismount
+        /// </summary>
+        public void Dismount() => GetMember<MQ2DataType>("Dismount");
+
+        /// <summary>
+        /// Equivalent of the command /stopcast
+        /// </summary>
+        public void StopCast() => GetMember<MQ2DataType>("StopCast");
     }
 }

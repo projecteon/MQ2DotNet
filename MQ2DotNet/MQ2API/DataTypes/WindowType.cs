@@ -190,6 +190,62 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public ListMember List { get; }
 
+        /// <summary>
+        /// Sends a left mouse button down notification to the window/control
+        /// </summary>
+        public void LeftMouseDown() => GetMember<MQ2DataType>("LeftMouseDown");
+
+        /// <summary>
+        /// Sends a left mouse button up notification to the window/control
+        /// </summary>
+        public void LeftMouseUp() => GetMember<MQ2DataType>("LeftMouseUp");
+
+        /// <summary>
+        /// Sends a left mouse button held notification to the window/control
+        /// </summary>
+        public void LeftMouseHeld() => GetMember<MQ2DataType>("LeftMouseHeld");
+
+        /// <summary>
+        /// Sends a left mouse button held up notification to the window/control
+        /// </summary>
+        public void LeftMouseHeldUp() => GetMember<MQ2DataType>("LeftMouseHeldUp");
+
+        /// <summary>
+        /// Sends a right mouse button down notification to the window/control
+        /// </summary>
+        public void RightMouseDown() => GetMember<MQ2DataType>("RightMouseDown");
+
+        /// <summary>
+        /// Sends a right mouse button up notification to the window/control
+        /// </summary>
+        public void RightMouseUp() => GetMember<MQ2DataType>("RightMouseUp");
+
+        /// <summary>
+        /// Sends a right mouse button held notification to the window/control
+        /// </summary>
+        public void RightMouseHeld() => GetMember<MQ2DataType>("RightMouseHeld");
+
+        /// <summary>
+        /// Sends a right mouse held up notification to the window/control
+        /// </summary>
+        public void RightMouseHeldUp() => GetMember<MQ2DataType>("RightMouseHeldUp");
+
+        /// <summary>
+        /// Open the window
+        /// </summary>
+        public void DoOpen() => GetMember<MQ2DataType>("DoOpen");
+
+        /// <summary>
+        /// Close the window
+        /// </summary>
+        public void DoClose() => GetMember<MQ2DataType>("DoClose");
+
+        /// <summary>
+        /// Select an item in a listbox or combobox
+        /// </summary>
+        /// <param name="index">1 based index of the item to select</param>
+        public void Select(int index) => GetMember<MQ2DataType>("Select", index.ToString());
+
         public class ListMember
         {
             private readonly WindowType _owner;

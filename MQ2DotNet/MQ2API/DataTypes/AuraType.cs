@@ -32,5 +32,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Spawn ID of the caster
         /// </summary>
         public IntType SpawnID => GetMember<IntType>("SpawnID");
+
+        /// <summary>
+        /// Remove the aura
+        /// </summary>
+        public void Remove() => GetMember<MQ2DataType>("Remove");
     }
 }

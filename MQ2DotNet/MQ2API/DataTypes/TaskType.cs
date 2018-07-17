@@ -59,5 +59,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// First task objective with a status other than "Done"
         /// </summary>
         public TaskObjectiveType Step => GetMember<TaskObjectiveType>("Step");
+
+        /// <summary>
+        /// Select the task in the task window
+        /// </summary>
+        public void Select() => GetMember<MQ2DataType>("Select");
     }
 }

@@ -87,5 +87,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns TRUE if the switch is in LoS
         /// </summary>
         public BoolType LineOfSight => GetMember<BoolType>("LineOfSight");
+
+        /// <summary>
+        /// Toggle the switch, equivalent of clicking on it. Uses an item if you have it on the cursor
+        /// </summary>
+        public void Toggle() => GetMember<MQ2DataType>("Toggle");
     }
 }
