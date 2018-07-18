@@ -22,7 +22,7 @@ namespace MQ2DotNet.MQ2API
         {
         }
 
-        internal MQ2DataType(MQ2TypeVar typeVar)
+        public MQ2DataType(MQ2TypeVar typeVar)
         {
             _typeVar = typeVar;
         }

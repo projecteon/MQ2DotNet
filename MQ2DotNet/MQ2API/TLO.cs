@@ -34,8 +34,7 @@ namespace MQ2DotNet.MQ2API
         private static extern IntPtr FindMQ2DataIntPtr([MarshalAs(UnmanagedType.LPStr)] string szName);
         #endregion
 
-        #region Helper classes
-        private static T GetTLO<T>(string name, string index = "") where T : MQ2DataType
+        public static T GetTLO<T>(string name, string index = "") where T : MQ2DataType
         {
             // To get an MQ2TypeVar from a TLO, first we call FindMQ2Data to get a function pointer to the TLO's function
             var tlo = FindMQ2Data(name);// ?? throw new KeyNotFoundException();
@@ -47,6 +46,7 @@ namespace MQ2DotNet.MQ2API
             return (T)MQ2TypeFactory.Create(typeVar);
         }
 
+        #region Helper classes
         /// <summary>
         /// Helper class for a TLO that is accessed with an indexer
         /// </summary>
