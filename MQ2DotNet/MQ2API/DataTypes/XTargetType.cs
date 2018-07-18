@@ -16,7 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Extended target type e.g. Auto Hater
         /// </summary>
-        public StringType TargetType => GetMember<StringType>("TargetType");
+        public string TargetType => GetMember<StringType>("TargetType");
 
         /// <summary>
         /// Spawn ID
@@ -26,7 +26,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn's name
         /// </summary>
-        public new StringType Name => GetMember<StringType>("Name");
+        public new string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Your percentage aggro on the spawn

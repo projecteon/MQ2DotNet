@@ -26,12 +26,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The short compass direction, eg. "S", "SSE"
         /// </summary>
-        public StringType ShortName => GetMember<StringType>("ShortName");
+        public string ShortName => GetMember<StringType>("ShortName");
 
         /// <summary>
         /// The long compass direction, eg. "south", "south by southeast"
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         public static implicit operator float(HeadingType typeVar)
         {

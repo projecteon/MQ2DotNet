@@ -9,11 +9,11 @@
         /// <summary>
         /// The name of the member
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// The status of the member - one of the following: Unknown, Online, Offline, In Dynamic Zone, Link Dead
         /// </summary>
-        public StringType Status => GetMember<StringType>("Status");
+        public string Status => GetMember<StringType>("Status");
     }
 }

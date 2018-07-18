@@ -16,6 +16,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Description e.g. Humanoid
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
     }
 }

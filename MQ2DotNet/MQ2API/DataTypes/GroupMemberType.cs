@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The name of the group member. This works even if they are not in the same zone as you
         /// </summary>
-        public new StringType Name => GetMember<StringType>("Name");
+        public new string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// TRUE if the member is the group's leader, FALSE otherwise

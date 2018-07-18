@@ -18,18 +18,18 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Instruction text for this objective, as seen in the Quest Journal window
         /// Note that accessing this member will select the task
         /// </summary>
-        public StringType Instruction => GetMember<StringType>("Instruction");
+        public string Instruction => GetMember<StringType>("Instruction");
 
         /// <summary>
         /// Status text for the objective, e.g. 0/1 or Done, as seen in the Quest Journal window
         /// Note that accessing this member will select the task
         /// </summary>
-        public StringType Status => GetMember<StringType>("Status");
+        public string Status => GetMember<StringType>("Status");
 
         /// <summary>
         /// Zone for the objective, as seen in the Quest Journal window
         /// Note that accessing this member will select the task
         /// </summary>
-        public StringType Zone => GetMember<StringType>("Zone");
+        public string Zone => GetMember<StringType>("Zone");
     }
 }

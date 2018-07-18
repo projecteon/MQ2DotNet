@@ -17,7 +17,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType TimerID => GetMember<IntType>("TimerID");
         public IntType RecastType => GetMember<IntType>("RecastType");
         public IntType ProcRate => GetMember<IntType>("ProcRate");
-        public StringType OtherName => GetMember<StringType>("OtherName");
+        public string OtherName => GetMember<StringType>("OtherName");
         public IntType OtherID => GetMember<IntType>("OtherID");
         public SpellType Spell => GetMember<SpellType>("Spell");
     }

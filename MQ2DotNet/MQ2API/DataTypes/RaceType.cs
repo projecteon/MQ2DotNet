@@ -16,6 +16,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Full name of the race e.g. Froglok
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
     }
 }

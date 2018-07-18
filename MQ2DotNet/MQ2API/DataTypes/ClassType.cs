@@ -13,12 +13,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Full name of the class e.g. Cleric
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// 3 letter name e.g. CLR
         /// </summary>
-        public StringType ShortName => GetMember<StringType>("ShortName");
+        public string ShortName => GetMember<StringType>("ShortName");
 
         /// <summary>
         /// Can cast spells, including Bard

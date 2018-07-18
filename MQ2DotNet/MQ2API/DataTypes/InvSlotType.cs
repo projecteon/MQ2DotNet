@@ -41,6 +41,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// For inventory slots not inside packs, the slot name, otherwise NULL
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
     }
 }

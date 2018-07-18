@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Attrib = new IndexedMember<IntType, int>(this, "Attrib");
             Base2 = new IndexedMember<IntType, int>(this, "Base");
             Base = new IndexedMember<IntType, int>(this, "Base");
-            Restrictions = new IndexedMember<StringType, int>(this, "Restrictions");
+            Restrictions = new IndexedStringMember<int>(this, "Restrictions");
             WillStack = new IndexedMember<BoolType, string>(this, "WillStack");
             StacksWith = new IndexedMember<BoolType, string>(this, "StacksWith");
             StacksPet = new IndexedMember<BoolType, int>(this, "StacksPet");
@@ -30,7 +30,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spell Name
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Level
@@ -85,23 +85,23 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// One of Chromatic, Corruption, Cold, Disease, Fire, Magic, Poison, Unknown, Unresistable, Prismatic
         /// </summary>
-        public StringType ResistType => GetMember<StringType>("ResistType");
+        public string ResistType => GetMember<StringType>("ResistType");
 
         /// <summary>
         /// "Beneficial(Group)", "Beneficial", "Detrimental" or "Unknown"
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public StringType SpellType_ => GetMember<StringType>("SpellType");
+        public string SpellType_ => GetMember<StringType>("SpellType");
 
         /// <summary>
         /// Target type e.g. Self, Animal, Targeted AE etc
         /// </summary>
-        public StringType TargetType => GetMember<StringType>("TargetType");
+        public string TargetType => GetMember<StringType>("TargetType");
 
         /// <summary>
         /// Casting school, one of Abjuration, Alteration, Conjuration, Divination, Evocation
         /// </summary>
-        public StringType Skill => GetMember<StringType>("Skill");
+        public string Skill => GetMember<StringType>("Skill");
 
         /// <summary>
         /// Adjusted cast time
@@ -121,32 +121,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Message when you cast the spell
         /// </summary>
-        public StringType CastByMe => GetMember<StringType>("CastByMe");
+        public string CastByMe => GetMember<StringType>("CastByMe");
 
         /// <summary>
         /// Message when someone else casts the spell
         /// </summary>
-        public StringType CastByOther => GetMember<StringType>("CastByOther");
+        public string CastByOther => GetMember<StringType>("CastByOther");
 
         /// <summary>
         /// Message when the spell lands on you
         /// </summary>
-        public StringType CastOnYou => GetMember<StringType>("CastOnYou");
+        public string CastOnYou => GetMember<StringType>("CastOnYou");
 
         /// <summary>
         /// Message when the spawn lands on someone else
         /// </summary>
-        public StringType CastOnAnother => GetMember<StringType>("CastOnAnother");
+        public string CastOnAnother => GetMember<StringType>("CastOnAnother");
 
         /// <summary>
         /// Message when the spell wears off
         /// </summary>
-        public StringType WearOff => GetMember<StringType>("WearOff");
+        public string WearOff => GetMember<StringType>("WearOff");
 
         /// <summary>
         /// The resist counter. Will be one of "Disease", "Poison", "Curse" or "Corruption"
         /// </summary>
-        public StringType CounterType => GetMember<StringType>("CounterType");
+        public string CounterType => GetMember<StringType>("CounterType");
 
         /// <summary>
         /// The number of counters that the spell adds
@@ -201,18 +201,18 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Category of the spell e.g. Direct Damage, Heals
         /// First level of the menu when you right click a gem
         /// </summary>
-        public StringType Category => GetMember<StringType>("Category");
+        public string Category => GetMember<StringType>("Category");
 
         /// <summary>
         /// Subcategory of the spell e.g. Combat Innates, Damage Shield
         /// Second level of the menu when you right click a gem
         /// </summary>
-        public StringType Subcategory => GetMember<StringType>("Subcategory");
+        public string Subcategory => GetMember<StringType>("Subcategory");
 
         /// <summary>
         /// Text of the nth restriction (1 based) on the spell
         /// </summary>
-        public IndexedMember<StringType, int> Restrictions { get; }
+        public IndexedStringMember<int> Restrictions { get; }
 
         /// <summary>
         /// Base value of the nth spell effect slot, 1 based
@@ -259,7 +259,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpellType.Extra
         /// </summary>
-        public StringType Extra => GetMember<StringType>("Extra");
+        public string Extra => GetMember<StringType>("Extra");
 
         /// <summary>
         /// Shared recast timer number for this spell
@@ -314,17 +314,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpellType.Target?
         /// </summary>
-        public StringType Target => GetMember<StringType>("Target");
+        public string Target => GetMember<StringType>("Target");
 
         /// <summary>
         /// Spell effect description from the spell window
         /// </summary>
-        public StringType Description => GetMember<StringType>("Description");
+        public string Description => GetMember<StringType>("Description");
 
         /// <summary>
         /// TODO: What is SpellType.Caster?
         /// </summary>
-        public StringType Caster => GetMember<StringType>("Caster");
+        public string Caster => GetMember<StringType>("Caster");
 
         /// <summary>
         /// Returns either 1, 2 or 3 for spells and 4-30 for clickys and potions.

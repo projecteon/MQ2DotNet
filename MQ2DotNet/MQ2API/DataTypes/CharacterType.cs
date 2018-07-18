@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal CharacterType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            Language = new IndexedMember<IntType, string, StringType, int>(this, "Language");
+            Language = new IndexedStringMember<int, IntType, string>(this, "Language");
             XTarget = new IndexedMember<XTargetType, int>(this, "XTarget");
             XTAggroCount = new IndexedMember<IntType, int>(this, "XTAggroCount");
             SpellReady = new IndexedMember<BoolType, int, BoolType, string>(this, "SpellReady");
@@ -20,7 +20,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             RaidAssistTarget = new IndexedMember<SpawnType, int>(this, "RaidAssistTarget");
             RaidMarkNPC = new IndexedMember<SpawnType, int>(this, "RaidMarkNPC");
             PetBuff = new IndexedMember<SpellType, int, IntType, string>(this, "PetBuff");
-            MercList = new IndexedMember<IntType, string, StringType, int>(this, "MercList");
+            MercList = new IndexedStringMember<int, IntType, string>(this, "MercList");
             LanguageSkill = new IndexedMember<IntType>(this, "LanguageSkill");
             ItemReady = new IndexedMember<BoolType>(this, "ItemReady");
             Inventory = new IndexedMember<ItemType, string, ItemType, int>(this, "Inventory");
@@ -38,7 +38,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             AltAbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AltAbilityTimer");
             AltAbility = new IndexedMember<AltAbilityType, int, AltAbilityType, string>(this, "AltAbility");
             AbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AbilityReady");
-            Ability = new IndexedMember<StringType, int, IntType, string>(this, "Ability");
+            Ability = new IndexedStringMember<int, IntType, string>(this, "Ability");
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The doability button number that the skill name is on, or the skill name assigned to a doability button
         /// </summary>
-        public IndexedMember<StringType, int, IntType, string> Ability { get; }
+        public IndexedStringMember<int, IntType, string> Ability { get; }
 
         /// <summary>
         /// Accuracy bonus from gear and spells
@@ -167,7 +167,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Am I the group leader?
         /// </summary>
-        public StringType AmIGroupLeader => GetMember<StringType>("AmIGroupLeader");
+        public string AmIGroupLeader => GetMember<StringType>("AmIGroupLeader");
 
         /// <summary>
         /// Returns true/false if the assist is complete
@@ -313,7 +313,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns one of the following: COMBAT, DEBUFFED, COOLDOWN, ACTIVE, RESTING, UNKNOWN
         /// </summary>
-        public StringType CombatState => GetMember<StringType>("CombatState");
+        public string CombatState => GetMember<StringType>("CombatState");
 
         /// <summary>
         /// Commemorative Coins (alt currency)
@@ -574,7 +574,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Not working
         /// </summary>
         [Obsolete]
-        public StringType GroupList => GetMember<StringType>("GroupList");
+        public string GroupList => GetMember<StringType>("GroupList");
 
         /// <summary>
         /// Current group marked NPC (1 - 3)
@@ -771,9 +771,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType LAMarkNPC => GetMember<IntType>("LAMarkNPC");
 
         /// <summary>
-        /// Language number by name, or name by number
+        /// Language name by number, or number by name
         /// </summary>
-        public IndexedMember<IntType, string, StringType, int> Language { get; }
+        public IndexedStringMember<int, IntType, string> Language { get; }
 
         /// <summary>
         /// Language skill by name or number
@@ -870,12 +870,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current active mercenary stance as a string, default is NULL.
         /// </summary>
-        public StringType MercenaryStance => GetMember<StringType>("MercenaryStance");
+        public string MercenaryStance => GetMember<StringType>("MercenaryStance");
 
         /// <summary>
         /// Merc list description by name, or number by description
         /// </summary>
-        public IndexedMember<IntType, string, StringType, int> MercList;
+        public IndexedStringMember<int, IntType, string> MercList;
 
         /// <summary>
         /// Debuff from the Mez line
@@ -900,7 +900,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// First name
         /// </summary>
-        public new StringType Name => GetMember<StringType>("Name");
+        public new string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Nobles (alt currency)
@@ -1197,7 +1197,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Subscription type GOLD, FREE, (Silver?)
         /// </summary>
-        public StringType Subscription => GetMember<StringType>("Subscription");
+        public string Subscription => GetMember<StringType>("Subscription");
 
         /// <summary>
         /// Buff from the Spiritual Vivacity line

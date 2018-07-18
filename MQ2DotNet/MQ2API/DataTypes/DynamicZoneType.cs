@@ -10,7 +10,7 @@
         /// <summary>
         /// The full name of the dynamic zone
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Current number of characters in the dynamic zone

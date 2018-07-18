@@ -28,7 +28,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType Hour => GetMember<IntType>("Hour");
 
         [Obsolete("Use conversion to DateTime")]
-        public StringType Hour12 => GetMember<StringType>("Hour12");
+        public string Hour12 => GetMember<StringType>("Hour12");
 
         [Obsolete("Use conversion to DateTime")]
         public IntType Minute => GetMember<IntType>("Minute");
@@ -49,13 +49,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IntType Year => GetMember<IntType>("Year");
 
         [Obsolete("Use conversion to DateTime")]
-        public StringType Time12 => GetMember<StringType>("Time12");
+        public string Time12 => GetMember<StringType>("Time12");
 
         [Obsolete("Use conversion to DateTime")]
-        public StringType Time24 => GetMember<StringType>("Time24");
+        public string Time24 => GetMember<StringType>("Time24");
 
         [Obsolete("Use conversion to DateTime")]
-        public StringType Date => GetMember<StringType>("Date");
+        public string Date => GetMember<StringType>("Date");
 
         [Obsolete("Use conversion to DateTime")]
         public BoolType Night => GetMember<BoolType>("Night");

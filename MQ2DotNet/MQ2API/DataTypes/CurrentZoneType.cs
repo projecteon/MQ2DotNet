@@ -19,12 +19,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Full name of the zone e.g. "The Plane of Knowledge"
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
         
         /// <summary>
         /// Short name of the zone e.g. "PoKnowledge"
         /// </summary>
-        public StringType ShortName => GetMember<StringType>("ShortName");
+        public string ShortName => GetMember<StringType>("ShortName");
         
         /// <summary>
         /// TODO: Description

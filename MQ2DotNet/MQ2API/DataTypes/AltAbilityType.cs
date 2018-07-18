@@ -12,17 +12,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the ability
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
         
         /// <summary>
         /// Short name of the ability
         /// </summary>
-        public StringType ShortName => GetMember<StringType>("ShortName");
+        public string ShortName => GetMember<StringType>("ShortName");
 
         /// <summary>
         /// Description as it appears in the AA window
         /// </summary>
-        public StringType Description => GetMember<StringType>("Description");
+        public string Description => GetMember<StringType>("Description");
 
         /// <summary>
         /// ID of the ability, for use with /alt activate

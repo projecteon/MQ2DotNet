@@ -36,7 +36,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the augmentation in the slot
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Item in the augmentation slot

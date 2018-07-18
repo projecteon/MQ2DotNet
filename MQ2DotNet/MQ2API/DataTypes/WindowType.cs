@@ -123,12 +123,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Window's text
         /// </summary>
-        public StringType Text => GetMember<StringType>("Text");
+        public string Text => GetMember<StringType>("Text");
 
         /// <summary>
         /// TooltipReference text
         /// </summary>
-        public StringType Tooltip => GetMember<StringType>("Tooltip");
+        public string Tooltip => GetMember<StringType>("Tooltip");
 
         /// <summary>
         /// Returns TRUE if the button has been checked
@@ -153,17 +153,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of window piece, e.g. "ChatWindow" for top level windows, or the piece name for child windows. Note: this is Custom UI dependent
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// ScreenID of window piece. Note: This is not Custom UI dependent, it must be the same on all UIs
         /// </summary>
-        public StringType ScreenID => GetMember<StringType>("ScreenID");
+        public string ScreenID => GetMember<StringType>("ScreenID");
 
         /// <summary>
         /// Type of window piece (Screen for top level windows, or Listbox, Button, Gauge, Label, Editbox, Slider, etc)
         /// </summary>
-        public StringType Type => GetMember<StringType>("Type");
+        public string Type => GetMember<StringType>("Type");
 
         /// <summary>
         /// Number of items in a Listbox or Combobox
@@ -261,7 +261,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             /// <param name="row"></param>
             /// <param name="column"></param>
             /// <returns></returns>
-            public StringType this[int row, int column = 0] => _owner.GetMember<StringType>("List", $"{row},{column}");
+            public string this[int row, int column = 0] => _owner.GetMember<StringType>("List", $"{row},{column}");
 
             /// <summary>
             /// Returns the 1 based index of an item in the list with a specified text

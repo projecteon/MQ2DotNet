@@ -44,27 +44,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Include spawns matching this name
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Include spawns with this body type description e.g. Humanoid
         /// </summary>
-        public StringType BodyType => GetMember<StringType>("BodyType");
+        public string BodyType => GetMember<StringType>("BodyType");
 
         /// <summary>
         /// Include spawns with this race e.g. Vah Shir
         /// </summary>
-        public StringType Race => GetMember<StringType>("Race");
+        public string Race => GetMember<StringType>("Race");
         
         /// <summary>
         /// Include spawns with this class e.g. Cleric
         /// </summary>
-        public StringType Class => GetMember<StringType>("Class");
+        public string Class => GetMember<StringType>("Class");
 
         /// <summary>
         /// Include spawns with this light
         /// </summary>
-        public StringType Light => GetMember<StringType>("Light");
+        public string Light => GetMember<StringType>("Light");
 
         /// <summary>
         /// Include spawns in this guild ID

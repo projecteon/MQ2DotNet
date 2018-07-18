@@ -200,7 +200,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// "None", "Magic", "Fire", "Cold", "Poison", "Disease"
         /// </summary>
-        public StringType DMGBonusType => GetMember<StringType>("DMGBonusType");
+        public string DMGBonusType => GetMember<StringType>("DMGBonusType");
 
         /// <summary>
         /// DoT Shielding value on the item
@@ -216,7 +216,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Spell Scroll - Scribeable spell scroll
         /// Worn - item has a focus effect
         /// </summary>
-        public StringType EffectType => GetMember<StringType>("EffectType");
+        public string EffectType => GetMember<StringType>("EffectType");
 
         /// <summary>
         /// Endurance value on the item
@@ -398,7 +398,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// just prints the actual hexlink for an item (not clickable)
         /// </summary>
-        public StringType ItemLink => GetMember<StringType>("ItemLink");
+        public string ItemLink => GetMember<StringType>("ItemLink");
 
         /// <summary>
         /// If the item is a container, the number of items in it
@@ -418,7 +418,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// "All", "Deepest Guk", "Miragul's", "Mistmoore", "Rujarkian", "Takish", "Unknown"
         /// </summary>
-        public StringType LDoNTheme => GetMember<StringType>("LDoNTheme");
+        public string LDoNTheme => GetMember<StringType>("LDoNTheme");
 
         /// <summary>
         /// Lore?
@@ -458,7 +458,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the item
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// No destroy?
@@ -699,7 +699,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Type of the item e.g. Armor, 2H Slashing (corresponds to type in bazaar search)
         /// </summary>
-        public StringType Type => GetMember<StringType>("Type");
+        public string Type => GetMember<StringType>("Type");
 
         /// <summary>
         /// Value in coppers

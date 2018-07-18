@@ -18,7 +18,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Type of task, either Shared or Quest
         /// </summary>
-        public StringType Type => GetMember<StringType>("Type");
+        public string Type => GetMember<StringType>("Type");
 
         /// <summary>
         /// Index of the task in your task list, 1 based
@@ -28,12 +28,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the leader of the task
         /// </summary>
-        public StringType Leader => GetMember<StringType>("Leader");
+        public string Leader => GetMember<StringType>("Leader");
 
         /// <summary>
         /// Name/title of the task
         /// </summary>
-        public StringType Title => GetMember<StringType>("Title");
+        public string Title => GetMember<StringType>("Title");
 
         /// <summary>
         /// Time remaining on the task

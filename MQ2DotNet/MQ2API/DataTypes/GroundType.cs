@@ -57,12 +57,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Internal name
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Display name as it appears on MQ2Map
         /// </summary>
-        public StringType DisplayName => GetMember<StringType>("DisplayName");
+        public string DisplayName => GetMember<StringType>("DisplayName");
 
         /// <summary>
         /// Ground item is facing this heading

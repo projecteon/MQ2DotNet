@@ -16,12 +16,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current stance of the mercenary e.g. Balanced
         /// </summary>
-        public StringType Stance => GetMember<StringType>("Stance");
+        public string Stance => GetMember<StringType>("Stance");
 
         /// <summary>
         /// Current state of the mercenary (returns "DEAD","SUSPENDED","ACTIVE", or "UNKNOWN")
         /// </summary>
-        public new StringType State => GetMember<StringType>("State");
+        public new string State => GetMember<StringType>("State");
 
         /// <summary>
         /// Current state ID of the mercenary as a number.

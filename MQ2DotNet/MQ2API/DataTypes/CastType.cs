@@ -10,9 +10,9 @@
         public SpellType Effect => GetMember<SpellType>("Effect");
         public SpellType Stored => GetMember<SpellType>("Stored");
         public IntType Timing => GetMember<IntType>("Timing");
-        public StringType Status => GetMember<StringType>("Status");
-        public StringType Result => GetMember<StringType>("Result");
-        public StringType Return => GetMember<StringType>("Return");
+        public string Status => GetMember<StringType>("Status");
+        public string Result => GetMember<StringType>("Result");
+        public string Return => GetMember<StringType>("Return");
         public BoolType Ready => GetMember<BoolType>("Ready");
         public BoolType Taken => GetMember<BoolType>("Taken");
     }

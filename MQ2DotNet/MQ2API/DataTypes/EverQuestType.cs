@@ -8,33 +8,33 @@ namespace MQ2DotNet.MQ2API.DataTypes
         internal EverQuestType(MQ2TypeVar typeVar) : base(typeVar)
         {
             CharSelectList = new IndexedMember<CharSelectListType, string, CharSelectListType, int>(this, "CharSelectList");
-            ChatChannel = new IndexedMember<StringType, int, BoolType, string>(this, "ChatChannel");
+            ChatChannel = new IndexedStringMember<int, BoolType, string>(this, "ChatChannel");
         }
 
         /// <summary>
         /// Current game state, one of "PRECHARSELECT", "CHARSELECT", "INGAME", "UNKNOWN"
         /// </summary>
-        public StringType GameState => GetMember<StringType>("GameState");
+        public string GameState => GetMember<StringType>("GameState");
 
         /// <summary>
         /// Username of your account name
         /// </summary>
-        public StringType LoginName => GetMember<StringType>("LoginName");
+        public string LoginName => GetMember<StringType>("LoginName");
 
         /// <summary>
         /// Name of the server in short form e.g. firiona
         /// </summary>
-        public StringType Server => GetMember<StringType>("Server");
+        public string Server => GetMember<StringType>("Server");
 
         /// <summary>
         /// Last command executed
         /// </summary>
-        public StringType LastCommand => GetMember<StringType>("LastCommand");
+        public string LastCommand => GetMember<StringType>("LastCommand");
 
         /// <summary>
         /// Name of the person you last received a tell from
         /// </summary>
-        public StringType LastTell => GetMember<StringType>("LastTell");
+        public string LastTell => GetMember<StringType>("LastTell");
 
         /// <summary>
         /// Number of clock ticks this instance of eqgame.exe has been running for
@@ -64,7 +64,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of a chat channel by number, or true/false if you are in a chat channel by name
         /// </summary>
-        public IndexedMember<StringType, int, BoolType, string> ChatChannel { get; }
+        public IndexedStringMember<int, BoolType, string> ChatChannel { get; }
 
         /// <summary>
         /// X (horizontal) start of viewport, always 0?
@@ -104,7 +104,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current window title
         /// </summary>
-        public StringType WinTitle => GetMember<StringType>("WinTitle");
+        public string WinTitle => GetMember<StringType>("WinTitle");
         
         /// <summary>
         /// Process ID of this eqgame.exe
@@ -119,7 +119,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Process priority of this eqgame.exe, one of "LOW", "BELOW NORMAL", "NORMAL", "ABOVE NORMAL", "REALTIME"
         /// </summary>
-        public StringType PPriority => GetMember<StringType>("PPriority");
+        public string PPriority => GetMember<StringType>("PPriority");
 
         /// <summary>
         /// Is a /copylayout currently in progress?
@@ -139,7 +139,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the current UI skin
         /// </summary>
-        public StringType CurrentUI => GetMember<StringType>("CurrentUI");
+        public string CurrentUI => GetMember<StringType>("CurrentUI");
 
         /// <summary>
         /// True if using default UI skin

@@ -62,7 +62,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Specified looter name by number (1 - <see cref="Looters"/>)
         /// </summary>
-        public StringType Looter => GetMember<StringType>("Looter");
+        public string Looter => GetMember<StringType>("Looter");
 
         /// <summary>
         /// Raid main assist

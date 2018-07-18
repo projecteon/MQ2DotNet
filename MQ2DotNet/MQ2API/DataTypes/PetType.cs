@@ -43,7 +43,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current stance, either "FOLLOW" or "GUARD"
         /// </summary>
-        public StringType Stance => GetMember<StringType>("Stance");
+        public string Stance => GetMember<StringType>("Stance");
 
         /// <summary>
         /// Is Stop enabled?

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MQ2DotNet.MQ2API.DataTypes;
 
 /* To create the member properties, grab everything in the switch statement from the cpp MQ2xxxType::GetMember function
  * Then in notepad++, find all:
@@ -68,6 +69,37 @@ namespace MQ2DotNet.MQ2API
             }
 
             public T1 this[TIndex1 index] => _owner.GetMember<T1>(_name, index.ToString());
+            public T2 this[TIndex2 index] => _owner.GetMember<T2>(_name, index.ToString());
+        }
+
+        // This class is "needed" because IndexedMember<string, int> isn't valid because of the where TIndex : MQ2Type constraint
+        public class IndexedStringMember<TIndex>
+        {
+            private readonly MQ2DataType _owner;
+            private readonly string _name;
+
+            public IndexedStringMember(MQ2DataType owner, string name)
+            {
+                _owner = owner;
+                _name = name;
+            }
+
+            public string this[TIndex index] => _owner.GetMember<StringType>(_name, index.ToString());
+        }
+
+        // See above, horrible but it works
+        public class IndexedStringMember<TIndex, T2, TIndex2> where T2 : MQ2DataType
+        {
+            private readonly MQ2DataType _owner;
+            private readonly string _name;
+
+            public IndexedStringMember(MQ2DataType owner, string name)
+            {
+                _owner = owner;
+                _name = name;
+            }
+
+            public string this[TIndex index] => _owner.GetMember<StringType>(_name, index.ToString());
             public T2 this[TIndex2 index] => _owner.GetMember<T2>(_name, index.ToString());
         }
 

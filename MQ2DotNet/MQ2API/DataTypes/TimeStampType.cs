@@ -20,10 +20,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
 
         // ReSharper disable once InconsistentNaming
         [Obsolete("Use conversion to TimeSpan")]
-        public StringType TimeHMS => GetMember<StringType>("TimeHMS");
+        public string TimeHMS => GetMember<StringType>("TimeHMS");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public StringType Time => GetMember<StringType>("Time");
+        public string Time => GetMember<StringType>("Time");
 
         [Obsolete("Use conversion to TimeSpan")]
         public Int64Type TotalMinutes => GetMember<Int64Type>("TotalMinutes");

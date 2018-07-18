@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the currently running macro including extension e.g. kissassist.mac
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
 
         public Int64Type RunTime => GetMember<Int64Type>("RunTime");
@@ -26,7 +26,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Value returned by the last subroutine call
         /// </summary>
-        public StringType Return => GetMember<StringType>("Return");
+        public string Return => GetMember<StringType>("Return");
 
         /// <summary>
         /// Is the given name a Top Level Object?
@@ -56,7 +56,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current command to be run by the executed macro
         /// </summary>
-        public StringType CurCommand => GetMember<StringType>("CurCommand");
+        public string CurCommand => GetMember<StringType>("CurCommand");
 
         /// <summary>
         /// Memory usage in bytes of the currently executing macro

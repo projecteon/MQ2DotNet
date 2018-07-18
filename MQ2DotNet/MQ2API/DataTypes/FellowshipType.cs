@@ -17,12 +17,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Fellowship leader's name
         /// </summary>
-        public StringType Leader => GetMember<StringType>("Leader");
+        public string Leader => GetMember<StringType>("Leader");
 
         /// <summary>
         /// Fellowship Message of the Day
         /// </summary>
-        public StringType MotD => GetMember<StringType>("MotD");
+        public string MotD => GetMember<StringType>("MotD");
 
         /// <summary>
         /// Number of members in the fellowship

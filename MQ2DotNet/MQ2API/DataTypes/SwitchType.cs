@@ -71,7 +71,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// 2D distance from player to this switch in the XY plane

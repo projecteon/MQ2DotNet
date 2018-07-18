@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
-            DragNames = new IndexedMember<StringType, int>(this, "DragNames");
+            DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
         }
 
@@ -30,7 +30,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
-            DragNames = new IndexedMember<StringType, int>(this, "DragNames");
+            DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
         }
 
@@ -42,7 +42,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ActorDef name for this spawn
         /// </summary>
-        public StringType ActorDef => GetMember<StringType>("ActorDef");
+        public string ActorDef => GetMember<StringType>("ActorDef");
 
         /// <summary>
         /// Memory address of the SPAWNINFO struct for this spawn
@@ -77,7 +77,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: SpawnType.AssistName is always blank?
         /// </summary>
-        public StringType AssistName => GetMember<StringType>("AssistName");
+        public string AssistName => GetMember<StringType>("AssistName");
 
         /// <summary>
         /// TODO: What is SpawnType.bAlwaysShowAura
@@ -164,7 +164,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The "cleaned up" name
         /// </summary>
-        public StringType CleanName => GetMember<StringType>("CleanName");
+        public string CleanName => GetMember<StringType>("CleanName");
 
         /// <summary>
         /// Collision counter
@@ -220,7 +220,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name displayed in game (same as EQ's %T)
         /// </summary>
-        public StringType DisplayName => GetMember<StringType>("DisplayName");
+        public string DisplayName => GetMember<StringType>("DisplayName");
 
         /// <summary>
         /// 2D distance to the spawn in the XY plane
@@ -255,12 +255,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Player this corpse is being dragged by
         /// </summary>
-        public StringType DraggingPlayer => GetMember<StringType>("DraggingPlayer");
+        public string DraggingPlayer => GetMember<StringType>("DraggingPlayer");
 
         /// <summary>
         /// Players whose corpse this spawn is dragging. Valid indexes are 0 and 1
         /// </summary>
-        public IndexedMember<StringType, int> DragNames { get; }
+        public IndexedStringMember<int> DragNames { get; }
 
         /// <summary>
         /// Ducking?
@@ -275,7 +275,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Location using EQ format
         /// </summary>
-        public StringType EQLoc => GetMember<StringType>("EQLoc");
+        public string EQLoc => GetMember<StringType>("EQLoc");
         /// <summary>
         /// ID of the equipment used by the spawn
         /// returns a inttype, it takes numbers 0-8 or names: head chest arms wrists hands legs feet primary offhand
@@ -315,7 +315,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Gender
         /// </summary>
-        public StringType Gender => GetMember<StringType>("Gender");
+        public string Gender => GetMember<StringType>("Gender");
 
         /// <summary>
         /// GM or Guide?
@@ -330,12 +330,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the spawn's guild
         /// </summary>
-        public StringType Guild => GetMember<StringType>("Guild");
+        public string Guild => GetMember<StringType>("Guild");
 
         /// <summary>
         /// Guild status (Leader, Officer, Member)
         /// </summary>
-        public StringType GuildStatus => GetMember<StringType>("GuildStatus");
+        public string GuildStatus => GetMember<StringType>("GuildStatus");
 
         /// <summary>
         /// Direction the spawn is facing
@@ -395,7 +395,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Who invited the spawn to a group?
         /// </summary>
-        public StringType Inviter => GetMember<StringType>("Inviter");
+        public string Inviter => GetMember<StringType>("Inviter");
 
         /// <summary>
         /// Spawn is berserk?
@@ -440,7 +440,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Name of the light class this spawn has
         /// </summary>
-        public StringType Light => GetMember<StringType>("Light");
+        public string Light => GetMember<StringType>("Light");
 
         /// <summary>
         /// Linkdead?
@@ -450,19 +450,19 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Loc of the spawn (Y, X)
         /// </summary>
-        public StringType Loc => GetMember<StringType>("Loc");
+        public string Loc => GetMember<StringType>("Loc");
 
         /// <summary>
         /// Loc of the spawn (Y, X)
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public StringType LocYX => GetMember<StringType>("LocYX");
+        public string LocYX => GetMember<StringType>("LocYX");
 
         /// <summary>
         /// Loc of the spawn (Y, X, Z)
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public StringType LocYXZ => GetMember<StringType>("LocYXZ");
+        public string LocYXZ => GetMember<StringType>("LocYXZ");
 
         /// <summary>
         /// Looking this angle
@@ -522,12 +522,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Location using MQ format (Y, X, Z)
         /// </summary>
-        public StringType MQLoc => GetMember<StringType>("MQLoc");
+        public string MQLoc => GetMember<StringType>("MQLoc");
 
         /// <summary>
         /// Internal name of the spawn e.g. a_rat01
         /// </summary>
-        public StringType Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Is this a "named" spawn (ie. does it's name not start with an "a" or an "an", plus a bunch of other checks. See IsNamed() in MQ2Utilities.cpp)
@@ -650,7 +650,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// STAND, SIT, DUCK, BIND, FEIGN, DEAD, STUN, HOVER, MOUNT, UNKNOWN
         /// </summary>
-        public StringType State => GetMember<StringType>("State");
+        public string State => GetMember<StringType>("State");
 
         /// <summary>
         /// Stuck?
@@ -665,12 +665,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Suffix attached to name, eg. of servername
         /// </summary>
-        public StringType Suffix => GetMember<StringType>("Suffix");
+        public string Suffix => GetMember<StringType>("Suffix");
 
         /// <summary>
         /// Last name
         /// </summary>
-        public StringType Surname => GetMember<StringType>("Surname");
+        public string Surname => GetMember<StringType>("Surname");
 
         /// <summary>
         /// Target of this spawn's target
@@ -685,7 +685,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Prefix/Title before name
         /// </summary>
-        public StringType Title => GetMember<StringType>("Title");
+        public string Title => GetMember<StringType>("Title");
 
         /// <summary>
         /// Trader (in bazaar)?
@@ -695,7 +695,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// PC, NPC, Untargetable, Mount, Pet, Corpse, Chest, Trigger, Trap, Timer, Item, Mercenary, Aura, Object, Banner, Campfire, Flyer
         /// </summary>
-        public StringType Type => GetMember<StringType>("Type");
+        public string Type => GetMember<StringType>("Type");
 
         /// <summary>
         /// Underwater?
@@ -715,7 +715,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// GREY, GREEN, LIGHT BLUE, BLUE, WHITE, YELLOW, RED
         /// </summary>
-        public StringType ConColor => GetMember<StringType>("ConColor");
+        public string ConColor => GetMember<StringType>("ConColor");
 
         /// <summary>
         /// Group leader?
