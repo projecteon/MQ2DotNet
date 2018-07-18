@@ -44,7 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MQ2DotNet\MQ2DotNet.csproj">
+    <ProjectReference Include="..\..\MQ2DotNet\MQ2DotNet.csproj">
       <Project>{158B70BD-4F02-4A0B-9F8C-B56E9E422B24}</Project>
       <Name>MQ2DotNet</Name>
     </ProjectReference>

@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolbox", "Examples\Toolbox\Toolbox.csproj", "{19F49178-2314-4448-A5F0-6EF17A2D3361}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddDataType", "AddDataType\AddDataType.csproj", "{F338DBDA-AA23-4B6B-A8F0-C12B0532FA6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddDataType", "Examples\AddDataType\AddDataType.csproj", "{F338DBDA-AA23-4B6B-A8F0-C12B0532FA6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
