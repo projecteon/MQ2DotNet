@@ -7,7 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal ItemType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            WornSlot = new IndexedMember<bool, string, InvSlotType, int>(this, "WornSlot");
+            WornSlot = new IndexedMember<BoolType, string, InvSlotType, int>(this, "WornSlot");
             Race = new IndexedMember<RaceType, int, RaceType, string>(this, "Race");
             Deity = new IndexedMember<DeityType, int, DeityType, string>(this, "Deity");
             Class = new IndexedMember<ClassType, int, ClassType, string>(this, "Class");
@@ -724,7 +724,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Can item be worn in invslot with name, or the nth invslot (1 based) that the item can be worn in
         /// </summary>
-        public IndexedMember<bool, string, InvSlotType, int> WornSlot { get; }
+        public IndexedMember<BoolType, string, InvSlotType, int> WornSlot { get; }
 
         /// <summary>
         /// Number of slots this item can be worn in (fingers/ears count as 2)
