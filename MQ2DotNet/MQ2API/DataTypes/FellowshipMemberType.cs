@@ -17,7 +17,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Member's level
         /// </summary>
-        public IntType Level => GetMember<IntType>("Level");
+        public int Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Member's class

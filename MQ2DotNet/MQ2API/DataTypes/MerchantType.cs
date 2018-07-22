@@ -12,7 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE if merchant is open
         /// </summary>
-        public BoolType Open => GetMember<BoolType>("Open");
+        public bool Open => GetMember<BoolType>("Open");
 
         /// <summary>
         /// An item in the merchant's inventory, by name or slot number (1 based)
@@ -23,7 +23,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items on the merchant
         /// </summary>
-        public IntType Items => GetMember<IntType>("Items");
+        public int Items => GetMember<IntType>("Items");
 
         /// <summary>
         /// The number used to calculate the buy and sell value for an item (this is what is changed by charisma and faction). This value is capped at 1.05
@@ -35,6 +35,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE if the merchant's inventory is full
         /// </summary>
-        public BoolType Full => GetMember<BoolType>("Full");
+        public bool Full => GetMember<BoolType>("Full");
     }
 }

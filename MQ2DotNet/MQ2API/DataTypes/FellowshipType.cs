@@ -12,7 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Fellowship ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Fellowship leader's name
@@ -27,7 +27,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of members in the fellowship
         /// </summary>
-        public IntType Members => GetMember<IntType>("Members");
+        public int Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Member data by name or #
@@ -62,6 +62,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TRUE if campfire is up, FALSE if not
         /// </summary>
-        public BoolType Campfire => GetMember<BoolType>("Campfire");
+        public bool Campfire => GetMember<BoolType>("Campfire");
     }
 }

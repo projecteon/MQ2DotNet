@@ -14,27 +14,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Minimum level, inclusive
         /// </summary>
-        public IntType MinLevel => GetMember<IntType>("MinLevel");
+        public int MinLevel => GetMember<IntType>("MinLevel");
 
         /// <summary>
         /// Maximum level, inclusive
         /// </summary>
-        public IntType MaxLevel => GetMember<IntType>("MaxLevel");
+        public int MaxLevel => GetMember<IntType>("MaxLevel");
 
         /// <summary>
         /// Type, see eSpawnType in MQ2Internal.h
         /// </summary>
-        public IntType SpawnType => GetMember<IntType>("SpawnType");
+        public int SpawnType => GetMember<IntType>("SpawnType");
 
         /// <summary>
         /// Spawn ID to match
         /// </summary>
-        public IntType SpawnID => GetMember<IntType>("SpawnID");
+        public int SpawnID => GetMember<IntType>("SpawnID");
 
         /// <summary>
         /// Last spawn ID returned, used when iterating through a search spawn
         /// </summary>
-        public IntType FromSpawnID => GetMember<IntType>("FromSpawnID");
+        public int FromSpawnID => GetMember<IntType>("FromSpawnID");
 
         /// <summary>
         /// Radius in which to search (around xLoc/yLoc if set, otherwise around character)
@@ -69,188 +69,188 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Include spawns in this guild ID
         /// </summary>
-        public Int64Type GuildID => GetMember<Int64Type>("GuildID");
+        public long GuildID => GetMember<Int64Type>("GuildID");
         
         /// <summary>
         /// SpawnID filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bSpawnID => GetMember<BoolType>("bSpawnID");
+        public bool bSpawnID => GetMember<BoolType>("bSpawnID");
 
         /// <summary>
         /// Not near alert filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNotNearAlert => GetMember<BoolType>("bNotNearAlert");
+        public bool bNotNearAlert => GetMember<BoolType>("bNotNearAlert");
 
         /// <summary>
         /// Near alert filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNearAlert => GetMember<BoolType>("bNearAlert");
+        public bool bNearAlert => GetMember<BoolType>("bNearAlert");
 
         /// <summary>
         /// No alert filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNoAlert => GetMember<BoolType>("bNoAlert");
+        public bool bNoAlert => GetMember<BoolType>("bNoAlert");
 
         /// <summary>
         /// Alert filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bAlert => GetMember<BoolType>("bAlert");
+        public bool bAlert => GetMember<BoolType>("bAlert");
 
         /// <summary>
         /// Only include LFG spawns?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bLFG => GetMember<BoolType>("bLFG");
+        public bool bLFG => GetMember<BoolType>("bLFG");
 
         /// <summary>
         /// Only include trader spawns?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTrader => GetMember<BoolType>("bTrader");
+        public bool bTrader => GetMember<BoolType>("bTrader");
 
         /// <summary>
         /// Light filter enabled?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bLight => GetMember<BoolType>("bLight");
+        public bool bLight => GetMember<BoolType>("bLight");
 
         /// <summary>
         /// Return next spawn in list after <see cref="FromSpawnID"/>?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTargNext => GetMember<BoolType>("bTargNext");
+        public bool bTargNext => GetMember<BoolType>("bTargNext");
 
         /// <summary>
         /// Return prev spawn in list before <see cref="FromSpawnID"/>?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTargPrev => GetMember<BoolType>("bTargPrev");
+        public bool bTargPrev => GetMember<BoolType>("bTargPrev");
 
         /// <summary>
         /// Include group members only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bGroup => GetMember<BoolType>("bGroup");
+        public bool bGroup => GetMember<BoolType>("bGroup");
 
         /// <summary>
         /// Include fellowship members only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bFellowship => GetMember<BoolType>("bFellowship");
+        public bool bFellowship => GetMember<BoolType>("bFellowship");
 
         /// <summary>
         /// Exclude group members?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNoGroup => GetMember<BoolType>("bNoGroup");
+        public bool bNoGroup => GetMember<BoolType>("bNoGroup");
 
         /// <summary>
         /// Exclude raid members?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bRaid => GetMember<BoolType>("bRaid");
+        public bool bRaid => GetMember<BoolType>("bRaid");
 
         /// <summary>
         /// Include GMs only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bGM => GetMember<BoolType>("bGM");
+        public bool bGM => GetMember<BoolType>("bGM");
 
         /// <summary>
         /// Include named NPCs only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNamed => GetMember<BoolType>("bNamed");
+        public bool bNamed => GetMember<BoolType>("bNamed");
 
         /// <summary>
         /// Include merchants only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bMerchant => GetMember<BoolType>("bMerchant");
+        public bool bMerchant => GetMember<BoolType>("bMerchant");
 
         /// <summary>
         /// Include tribute masters only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTributeMaster => GetMember<BoolType>("bTributeMaster");
+        public bool bTributeMaster => GetMember<BoolType>("bTributeMaster");
 
         /// <summary>
         /// Include knights (PAL/SHD) only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bKnight => GetMember<BoolType>("bKnight");
+        public bool bKnight => GetMember<BoolType>("bKnight");
 
         /// <summary>
         /// Include tanks (WAR/PAL/SHD) only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTank => GetMember<BoolType>("bTank");
+        public bool bTank => GetMember<BoolType>("bTank");
 
         /// <summary>
         /// Include healers (CLR/SHM/DRU) only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bHealer => GetMember<BoolType>("bHealer");
+        public bool bHealer => GetMember<BoolType>("bHealer");
 
         /// <summary>
         /// Include DPS classes only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bDps => GetMember<BoolType>("bDps");
+        public bool bDps => GetMember<BoolType>("bDps");
 
         /// <summary>
         /// Include classes (ENC/SHM/BRD) that can slow only?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bSlower => GetMember<BoolType>("bSlower");
+        public bool bSlower => GetMember<BoolType>("bSlower");
 
         /// <summary>
         /// Not used
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bAura => GetMember<BoolType>("bAura");
+        public bool bAura => GetMember<BoolType>("bAura");
 
         /// <summary>
         /// Not used
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bBanner => GetMember<BoolType>("bBanner");
+        public bool bBanner => GetMember<BoolType>("bBanner");
 
         /// <summary>
         /// Not used
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bCampfire => GetMember<BoolType>("bCampfire");
+        public bool bCampfire => GetMember<BoolType>("bCampfire");
 
         /// <summary>
         /// Exclude spawn with an id of <see cref="SpawnID"/>
         /// </summary>
-        public IntType NotID => GetMember<IntType>("NotID");
+        public int NotID => GetMember<IntType>("NotID");
 
         /// <summary>
         /// Exclude spawns near a spawn on this alert list
         /// </summary>
-        public IntType NotNearAlertList => GetMember<IntType>("NotNearAlertList");
+        public int NotNearAlertList => GetMember<IntType>("NotNearAlertList");
 
         /// <summary>
         /// Include spawns near a spawn on this alert list
         /// </summary>
-        public IntType NearAlertList => GetMember<IntType>("NearAlertList");
+        public int NearAlertList => GetMember<IntType>("NearAlertList");
 
         /// <summary>
         /// Exclude spawns on this alert list
         /// </summary>
-        public IntType NoAlertList => GetMember<IntType>("NoAlertList");
+        public int NoAlertList => GetMember<IntType>("NoAlertList");
 
         /// <summary>
         /// Include spawns on this alert list
         /// </summary>
-        public IntType AlertList => GetMember<IntType>("AlertList");
+        public int AlertList => GetMember<IntType>("AlertList");
 
         /// <summary>
         /// Include spawns within this distance of zLoc if set, otherwise character's z location
@@ -278,48 +278,48 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// If true, use xLoc/yLoc/zLoc insted of character's position
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bKnownLocation => GetMember<BoolType>("bKnownLocation");
+        public bool bKnownLocation => GetMember<BoolType>("bKnownLocation");
 
         /// <summary>
         /// Exclude pets?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNoPet => GetMember<BoolType>("bNoPet");
+        public bool bNoPet => GetMember<BoolType>("bNoPet");
 
         /// <summary>
         /// What to sort the list by
         /// 0 = level, 1 = display name (default), 2 = race, 3 = class, 4 = distance (2D, XY), 5 = guild, 6 = id
         /// </summary>
-        public IntType SortBy => GetMember<IntType>("SortBy");
+        public int SortBy => GetMember<IntType>("SortBy");
 
         /// <summary>
         /// Exclude spawns in a guild
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bNoGuild => GetMember<BoolType>("bNoGuild");
+        public bool bNoGuild => GetMember<BoolType>("bNoGuild");
 
         /// <summary>
         /// Only include spawns you have line of sight to
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bLoS => GetMember<BoolType>("bLoS");
+        public bool bLoS => GetMember<BoolType>("bLoS");
 
         /// <summary>
         /// Match exact name rather than partial
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bExactName => GetMember<BoolType>("bExactName");
+        public bool bExactName => GetMember<BoolType>("bExactName");
 
         /// <summary>
         /// Include only targetable spawns
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public BoolType bTargetable => GetMember<BoolType>("bTargetable");
+        public bool bTargetable => GetMember<BoolType>("bTargetable");
 
         /// <summary>
         /// Bitmask of player states to include
         /// </summary>
-        public IntType PlayerState => GetMember<IntType>("PlayerState");
+        public int PlayerState => GetMember<IntType>("PlayerState");
 
         /// <summary>
         /// Return the first spawn matching the ID or Name filters (ignores all other filters)

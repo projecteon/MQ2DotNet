@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
         }
 
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Full name of the class e.g. Cleric
@@ -23,46 +23,46 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Can cast spells, including Bard
         /// </summary>
-        public BoolType CanCast => GetMember<BoolType>("CanCast");
+        public bool CanCast => GetMember<BoolType>("CanCast");
 
         /// <summary>
         /// Any one of: Cleric, Druid, Shaman, Necromancer, Wizard, Mage, Enchanter
         /// </summary>
-        public BoolType PureCaster => GetMember<BoolType>("PureCaster");
+        public bool PureCaster => GetMember<BoolType>("PureCaster");
 
         /// <summary>
         /// Any one of: Shaman, Necromancer, Mage, Beastlord
         /// </summary>
-        public BoolType PetClass => GetMember<BoolType>("PetClass");
+        public bool PetClass => GetMember<BoolType>("PetClass");
 
         /// <summary>
         /// Druid/Ranger?
         /// </summary>
-        public BoolType DruidType => GetMember<BoolType>("DruidType");
+        public bool DruidType => GetMember<BoolType>("DruidType");
 
         /// <summary>
         /// Shaman/Beastlord?
         /// </summary>
-        public BoolType ShamanType => GetMember<BoolType>("ShamanType");
+        public bool ShamanType => GetMember<BoolType>("ShamanType");
 
         /// <summary>
         /// Necromancer/Shadow Knight?
         /// </summary>
-        public BoolType NecromancerType => GetMember<BoolType>("NecromancerType");
+        public bool NecromancerType => GetMember<BoolType>("NecromancerType");
 
         /// <summary>
         /// Cleric/Paladin?
         /// </summary>
-        public BoolType ClericType => GetMember<BoolType>("ClericType");
+        public bool ClericType => GetMember<BoolType>("ClericType");
 
         /// <summary>
         /// Cleric/Druid/Shaman?
         /// </summary>
-        public BoolType HealerType => GetMember<BoolType>("HealerType");
+        public bool HealerType => GetMember<BoolType>("HealerType");
 
         /// <summary>
         /// Mercenary?
         /// </summary>
-        public BoolType MercType => GetMember<BoolType>("MercType");
+        public bool MercType => GetMember<BoolType>("MercType");
     }
 }

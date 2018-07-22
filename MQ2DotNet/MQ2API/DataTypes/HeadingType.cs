@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The nearest clock direction, e.g. 1-12
         /// </summary>
-        public IntType Clock => GetMember<IntType>("Clock");
+        public int Clock => GetMember<IntType>("Clock");
 
         /// <summary>
         /// Heading in degrees (same as casting to float). N = 0, E = 90, S = 180, W = 270

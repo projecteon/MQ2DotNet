@@ -25,28 +25,28 @@ namespace MQ2DotNet.MQ2API.DataTypes
         };
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Hour => GetMember<IntType>("Hour");
+        public int Hour => GetMember<IntType>("Hour");
 
         [Obsolete("Use conversion to DateTime")]
         public string Hour12 => GetMember<StringType>("Hour12");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Minute => GetMember<IntType>("Minute");
+        public int Minute => GetMember<IntType>("Minute");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Second => GetMember<IntType>("Second");
+        public int Second => GetMember<IntType>("Second");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType DayOfWeek => GetMember<IntType>("DayOfWeek");
+        public int DayOfWeek => GetMember<IntType>("DayOfWeek");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Day => GetMember<IntType>("Day");
+        public int Day => GetMember<IntType>("Day");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Month => GetMember<IntType>("Month");
+        public int Month => GetMember<IntType>("Month");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType Year => GetMember<IntType>("Year");
+        public int Year => GetMember<IntType>("Year");
 
         [Obsolete("Use conversion to DateTime")]
         public string Time12 => GetMember<StringType>("Time12");
@@ -58,10 +58,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string Date => GetMember<StringType>("Date");
 
         [Obsolete("Use conversion to DateTime")]
-        public BoolType Night => GetMember<BoolType>("Night");
+        public bool Night => GetMember<BoolType>("Night");
 
         [Obsolete("Use conversion to DateTime")]
-        public IntType SecondsSinceMidnight => GetMember<IntType>("SecondsSinceMidnight");
+        public int SecondsSinceMidnight => GetMember<IntType>("SecondsSinceMidnight");
 
         public static implicit operator DateTime(TimeType timeType)
         {

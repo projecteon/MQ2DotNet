@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items in the personal loot list
         /// </summary>
-        public IntType PCount => GetMember<IntType>("PCount");
+        public int PCount => GetMember<IntType>("PCount");
 
         /// <summary>
         /// Returns an item from the personal loot list
@@ -23,7 +23,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items in the shared loot list
         /// </summary>
-        public IntType SCount => GetMember<IntType>("SCount");
+        public int SCount => GetMember<IntType>("SCount");
 
         /// <summary>
         /// Returns an item from shared loot list
@@ -33,17 +33,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items in the personal loot list with either Need, Always Need, Greed, or Always Greed checked
         /// </summary>
-        public IntType PWantCount => GetMember<IntType>("PWantCount");
+        public int PWantCount => GetMember<IntType>("PWantCount");
 
         /// <summary>
         /// Number of items in the shared loot list with either Need, Always Need, Greed, or Always Greed checked
         /// </summary>
-        public IntType SWantCount => GetMember<IntType>("SWantCount");
+        public int SWantCount => GetMember<IntType>("SWantCount");
 
         /// <summary>
         /// True if any item is currently being looted? TODO: Confirm this
         /// </summary>
-        public BoolType LootInProgress => GetMember<BoolType>("LootInProgress");
+        public bool LootInProgress => GetMember<BoolType>("LootInProgress");
 
         /// <summary>
         /// Returns a filter from the advanced loot filters TODO: By what? Number in list or item ID?

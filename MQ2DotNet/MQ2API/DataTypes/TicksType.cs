@@ -10,13 +10,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType Hours => GetMember<IntType>("Hours");
+        public int Hours => GetMember<IntType>("Hours");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType Minutes => GetMember<IntType>("Minutes");
+        public int Minutes => GetMember<IntType>("Minutes");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType Seconds => GetMember<IntType>("Seconds");
+        public int Seconds => GetMember<IntType>("Seconds");
 
         // ReSharper disable once InconsistentNaming
         [Obsolete("Use conversion to TimeSpan")]
@@ -26,13 +26,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string Time => GetMember<StringType>("Time");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType TotalMinutes => GetMember<IntType>("TotalMinutes");
+        public int TotalMinutes => GetMember<IntType>("TotalMinutes");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType TotalSeconds => GetMember<IntType>("TotalSeconds");
+        public int TotalSeconds => GetMember<IntType>("TotalSeconds");
 
         [Obsolete("Use conversion to TimeSpan")]
-        public IntType Ticks => GetMember<IntType>("Ticks");
+        public int Ticks => GetMember<IntType>("Ticks");
 
         public static implicit operator TimeSpan(TicksType ticksType)
         {

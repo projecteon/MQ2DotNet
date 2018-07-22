@@ -15,12 +15,12 @@
         /// <summary>
         /// Current number of characters in the dynamic zone
         /// </summary>
-        public IntType Members => GetMember<IntType>("Members");
+        public int Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Maximum number of characters that can enter this dynamic zone
         /// </summary>
-        public IntType MaxMembers => GetMember<IntType>("MaxMembers");
+        public int MaxMembers => GetMember<IntType>("MaxMembers");
 
         /// <summary>
         /// Member of the dynamic zone by name or number
@@ -35,6 +35,6 @@
         /// <summary>
         /// TODO: Document DynamicZoneType.InRaid
         /// </summary>
-        public BoolType InRaid => GetMember<BoolType>("InRaid");
+        public bool InRaid => GetMember<BoolType>("InRaid");
     }
 }

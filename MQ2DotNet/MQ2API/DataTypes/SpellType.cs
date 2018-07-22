@@ -6,26 +6,26 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal SpellType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            ReagentID = new IndexedMember<IntType, int>(this, "ReagentID");
-            ReagentCount = new IndexedMember<IntType, int>(this, "ReagentCount");
-            Max = new IndexedMember<IntType, int>(this, "Max");
-            Calc = new IndexedMember<IntType, int>(this, "Calc");
-            Attrib = new IndexedMember<IntType, int>(this, "Attrib");
-            Base2 = new IndexedMember<IntType, int>(this, "Base");
-            Base = new IndexedMember<IntType, int>(this, "Base");
+            ReagentID = new IndexedMember<int, int>(this, "ReagentID");
+            ReagentCount = new IndexedMember<int, int>(this, "ReagentCount");
+            Max = new IndexedMember<int, int>(this, "Max");
+            Calc = new IndexedMember<int, int>(this, "Calc");
+            Attrib = new IndexedMember<int, int>(this, "Attrib");
+            Base2 = new IndexedMember<int, int>(this, "Base");
+            Base = new IndexedMember<int, int>(this, "Base");
             Restrictions = new IndexedStringMember<int>(this, "Restrictions");
-            WillStack = new IndexedMember<BoolType, string>(this, "WillStack");
-            StacksWith = new IndexedMember<BoolType, string>(this, "StacksWith");
-            StacksPet = new IndexedMember<BoolType, int>(this, "StacksPet");
-            Stacks = new IndexedMember<BoolType, int>(this, "Stacks");
-            HasSPA = new IndexedMember<BoolType, int>(this, "HasSPA");
+            WillStack = new IndexedMember<bool, string>(this, "WillStack");
+            StacksWith = new IndexedMember<bool, string>(this, "StacksWith");
+            StacksPet = new IndexedMember<bool, int>(this, "StacksPet");
+            Stacks = new IndexedMember<bool, int>(this, "Stacks");
+            HasSPA = new IndexedMember<bool, int>(this, "HasSPA");
             Trigger = new IndexedMember<SpellType, int>(this, "Trigger");
         }
 
         /// <summary>
         /// Spell ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Spell Name
@@ -35,17 +35,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Level
         /// </summary>
-        public IntType Level => GetMember<IntType>("Level");
+        public int Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Mana cost (unadjusted)
         /// </summary>
-        public IntType Mana => GetMember<IntType>("Mana");
+        public int Mana => GetMember<IntType>("Mana");
 
         /// <summary>
         /// Resist adjustment
         /// </summary>
-        public IntType ResistAdj => GetMember<IntType>("ResistAdj");
+        public int ResistAdj => GetMember<IntType>("ResistAdj");
 
         /// <summary>
         /// Maximum range to target (use <see cref="AERange"/> for AE and group spells)
@@ -151,31 +151,31 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The number of counters that the spell adds
         /// </summary>
-        public IntType CounterNumber => GetMember<IntType>("CounterNumber");
-        public BoolType NewStacks => GetMember<BoolType>("NewStacks");
-        public BoolType NewStacksWith => GetMember<BoolType>("NewStacksWith");
+        public int CounterNumber => GetMember<IntType>("CounterNumber");
+        public bool NewStacks => GetMember<BoolType>("NewStacks");
+        public bool NewStacksWith => GetMember<BoolType>("NewStacksWith");
 
         /// <summary>
         /// Does this spell stack with your current buffs (duration is in ticks)
         /// </summary>
-        public IndexedMember<BoolType, int> Stacks { get; }
+        public IndexedMember<bool, int> Stacks { get; }
 
-        public BoolType NewStacksTarget => GetMember<BoolType>("NewStacksTarget");
+        public bool NewStacksTarget => GetMember<BoolType>("NewStacksTarget");
 
         /// <summary>
         /// Does this spell stack with your pet's current buffs (duration is in ticks)
         /// </summary>
-        public IndexedMember<BoolType, int> StacksPet { get; }
+        public IndexedMember<bool, int> StacksPet { get; }
 
         /// <summary>
         /// Does this spell stack with another spell?
         /// </summary>
-        public IndexedMember<BoolType, string> StacksWith { get; }
+        public IndexedMember<bool, string> StacksWith { get; }
 
         /// <summary>
         /// Does this spell stack with another spell?
         /// </summary>
-        public IndexedMember<BoolType, string> WillStack { get; }
+        public IndexedMember<bool, string> WillStack { get; }
 
         /// <summary>
         /// Adjusted spell range, including focus effects, etc.
@@ -185,17 +185,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the SPELL struct
         /// </summary>
-        public IntType Address => GetMember<IntType>("Address");
+        public int Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Endurance cost of the spell
         /// </summary>
-        public IntType EnduranceCost => GetMember<IntType>("EnduranceCost");
+        public int EnduranceCost => GetMember<IntType>("EnduranceCost");
 
         /// <summary>
         /// Max level the spell can affect
         /// </summary>
-        public IntType MaxLevel => GetMember<IntType>("MaxLevel");
+        public int MaxLevel => GetMember<IntType>("MaxLevel");
 
         /// <summary>
         /// Category of the spell e.g. Direct Damage, Heals
@@ -219,42 +219,42 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// e.g. for a nuke that says Slot 1: Decrease HP by 1000
         /// Base[1] = -1000
         /// </summary>
-        public IndexedMember<IntType, int> Base { get; }
+        public IndexedMember<int, int> Base { get; }
 
         /// <summary>
         /// Base2 value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Base2 { get; }
+        public IndexedMember<int, int> Base2 { get; }
 
         /// <summary>
         /// Max value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Max { get; }
+        public IndexedMember<int, int> Max { get; }
 
         /// <summary>
         /// Calc value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Calc { get; }
+        public IndexedMember<int, int> Calc { get; }
 
         /// <summary>
         /// Attrib value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Attrib { get; }
+        public IndexedMember<int, int> Attrib { get; }
         
         /// <summary>
         /// TODO: What is SpellType.CalcIndex
         /// </summary>
-        public IntType CalcIndex => GetMember<IntType>("CalcIndex");
+        public int CalcIndex => GetMember<IntType>("CalcIndex");
 
         /// <summary>
         /// Number of spell effect slots this spell has
         /// </summary>
-        public IntType NumEffects => GetMember<IntType>("NumEffects");
+        public int NumEffects => GetMember<IntType>("NumEffects");
 
         /// <summary>
         /// TODO: What is SpellType.AutoCast
         /// </summary>
-        public IntType AutoCast => GetMember<IntType>("AutoCast");
+        public int AutoCast => GetMember<IntType>("AutoCast");
 
         /// <summary>
         /// TODO: What is SpellType.Extra
@@ -264,52 +264,52 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Shared recast timer number for this spell
         /// </summary>
-        public IntType RecastTimerID => GetMember<IntType>("RecastTimerID");
+        public int RecastTimerID => GetMember<IntType>("RecastTimerID");
 
         /// <summary>
         /// SPA number of this spell
         /// </summary>
-        public IntType SPA => GetMember<IntType>("SPA");
+        public int SPA => GetMember<IntType>("SPA");
 
         /// <summary>
         /// Item ID of the nth required reagent (valid indexes are 1 - 4)
         /// </summary>
-        public IndexedMember<IntType, int> ReagentID { get; }
+        public IndexedMember<int, int> ReagentID { get; }
 
         /// <summary>
         /// Quantity of the nth required reagent (valid indexes are 1 - 4)
         /// </summary>
-        public IndexedMember<IntType, int> ReagentCount { get; }
+        public IndexedMember<int, int> ReagentCount { get; }
 
         /// <summary>
         /// Required time of day to cast, 0 = any, 1 = day only, 2 = night only
         /// </summary>
-        public IntType TimeOfDay => GetMember<IntType>("TimeOfDay");
+        public int TimeOfDay => GetMember<IntType>("TimeOfDay");
 
         /// <summary>
         /// Which buff window the spell appears in, 0 = long, 1 = short
         /// </summary>
-        public IntType DurationWindow => GetMember<IntType>("DurationWindow");
+        public int DurationWindow => GetMember<IntType>("DurationWindow");
 
         /// <summary>
         /// Spell can be MGBed
         /// </summary>
-        public BoolType CanMGB => GetMember<BoolType>("CanMGB");
+        public bool CanMGB => GetMember<BoolType>("CanMGB");
 
         /// <summary>
         /// Is this spell a skill?
         /// </summary>
-        public BoolType IsSkill => GetMember<BoolType>("IsSkill");
+        public bool IsSkill => GetMember<BoolType>("IsSkill");
 
         /// <summary>
         /// TODO: From spellbook or can be clicked off?
         /// </summary>
-        public BoolType Deletable => GetMember<BoolType>("Deletable");
+        public bool Deletable => GetMember<BoolType>("Deletable");
 
         /// <summary>
         /// Icon ID in the spell book
         /// </summary>
-        public IntType BookIcon => GetMember<IntType>("BookIcon");
+        public int BookIcon => GetMember<IntType>("BookIcon");
 
         /// <summary>
         /// TODO: What is SpellType.Target?
@@ -329,7 +329,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns either 1, 2 or 3 for spells and 4-30 for clickys and potions.
         /// </summary>
-        public IntType Rank => GetMember<IntType>("Rank");
+        public int Rank => GetMember<IntType>("Rank");
 
         /// <summary>
         /// Returns the spell/combat ability name for the rank the character has.
@@ -339,47 +339,47 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpellType.SpellGroup?
         /// </summary>
-        public IntType SpellGroup => GetMember<IntType>("SpellGroup");
+        public int SpellGroup => GetMember<IntType>("SpellGroup");
 
         /// <summary>
         /// TODO: What is SpellType.SubSpellGroup?
         /// </summary>
-        public IntType SubSpellGroup => GetMember<IntType>("SubSpellGroup");
+        public int SubSpellGroup => GetMember<IntType>("SubSpellGroup");
 
         /// <summary>
         /// Is spell beneficial?
         /// </summary>
-        public BoolType Beneficial => GetMember<BoolType>("Beneficial");
+        public bool Beneficial => GetMember<BoolType>("Beneficial");
 
         /// <summary>
         /// Is the spell an active AA?
         /// </summary>
-        public BoolType IsActiveAA => GetMember<BoolType>("IsActiveAA");
+        public bool IsActiveAA => GetMember<BoolType>("IsActiveAA");
 
         /// <summary>
         /// Appears to be max distance
         /// </summary>
-        public IntType Location => GetMember<IntType>("Location");
+        public int Location => GetMember<IntType>("Location");
 
         /// <summary>
         /// Is this spell a swarm spell?
         /// </summary>
-        public BoolType IsSwarmSpell => GetMember<BoolType>("IsSwarmSpell");
+        public bool IsSwarmSpell => GetMember<BoolType>("IsSwarmSpell");
 
         /// <summary>
         /// Duration of the spell (if any). Note - returns DurationCap member of SPELLINFO
         /// </summary>
-        public IntType DurationValue1 => GetMember<IntType>("DurationValue1");
+        public int DurationValue1 => GetMember<IntType>("DurationValue1");
 
         /// <summary>
         /// Illusion cast by this spell is allowed when you are mounted
         /// </summary>
-        public BoolType IllusionOkWhenMounted => GetMember<BoolType>("IllusionOkWhenMounted");
+        public bool IllusionOkWhenMounted => GetMember<BoolType>("IllusionOkWhenMounted");
 
         /// <summary>
         /// Does this spell have a given SPA?
         /// </summary>
-        public IndexedMember<BoolType, int> HasSPA { get; }
+        public IndexedMember<bool, int> HasSPA { get; }
 
         /// <summary>
         /// TODO: What is SpellType.Trigger

@@ -16,7 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// <see cref="ItemType"/> for the solvent, if available
@@ -26,6 +26,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// How many we currently have in inventory
         /// </summary>
-        public IntType Count => GetMember<IntType>("Count");
+        public int Count => GetMember<IntType>("Count");
     }
 }

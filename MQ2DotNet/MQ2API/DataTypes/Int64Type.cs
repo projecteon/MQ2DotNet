@@ -6,6 +6,10 @@
         {
         }
 
+        internal Int64Type(long value) : base("int64", new MQ2VarPtr() {Int64 = value})
+        {
+        }
+
         // MQ2 type has a bunch of members, but it hardly seems worth implementing them here
         public static implicit operator long(Int64Type typeVar)
         {
