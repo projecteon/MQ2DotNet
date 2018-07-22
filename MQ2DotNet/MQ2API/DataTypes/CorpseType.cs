@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Corpse open?
         /// </summary>
-        public BoolType Open => GetMember<BoolType>("Open");
+        public bool Open => GetMember<BoolType>("Open");
 
         /// <summary>
         /// An item on the corpse by name or number
@@ -21,6 +21,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items on the corpse
         /// </summary>
-        public IntType Items => GetMember<IntType>("Items");
+        public int Items => GetMember<IntType>("Items");
     }
 }

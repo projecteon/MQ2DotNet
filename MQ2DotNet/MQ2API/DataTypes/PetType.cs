@@ -23,22 +23,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is pet in combat?
         /// </summary>
-        public BoolType Combat => GetMember<BoolType>("Combat");
+        public bool Combat => GetMember<BoolType>("Combat");
 
         /// <summary>
         /// Is GHold enabled?
         /// </summary>
-        public BoolType GHold => GetMember<BoolType>("GHold");
+        public bool GHold => GetMember<BoolType>("GHold");
 
         /// <summary>
         /// Is Hold enabled?
         /// </summary>
-        public BoolType Hold => GetMember<BoolType>("Hold");
+        public bool Hold => GetMember<BoolType>("Hold");
 
         /// <summary>
         /// Is ReGroup enabled?
         /// </summary>
-        public BoolType ReGroup => GetMember<BoolType>("ReGroup");
+        public bool ReGroup => GetMember<BoolType>("ReGroup");
 
         /// <summary>
         /// Current stance, either "FOLLOW" or "GUARD"
@@ -48,7 +48,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is Stop enabled?
         /// </summary>
-        public BoolType Stop => GetMember<BoolType>("Stop");
+        public bool Stop => GetMember<BoolType>("Stop");
         
         /// <summary>
         /// Pet's target
@@ -58,6 +58,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is Taunt enabled?
         /// </summary>
-        public BoolType Taunt => GetMember<BoolType>("Taunt");
+        public bool Taunt => GetMember<BoolType>("Taunt");
     }
 }

@@ -11,12 +11,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the DOOR struct
         /// </summary>
-        public IntType Address => GetMember<IntType>("Address");
+        public int Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Switch ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// X coordinate (Westward-positive)
@@ -61,7 +61,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Open?
         /// </summary>
-        public BoolType Open => GetMember<BoolType>("Open");
+        public bool Open => GetMember<BoolType>("Open");
 
         /// <summary>
         /// Direction player must move to meet this switch
@@ -86,7 +86,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE if the switch is in LoS
         /// </summary>
-        public BoolType LineOfSight => GetMember<BoolType>("LineOfSight");
+        public bool LineOfSight => GetMember<BoolType>("LineOfSight");
 
         /// <summary>
         /// Toggle the switch, equivalent of clicking on it. Uses an item if you have it on the cursor

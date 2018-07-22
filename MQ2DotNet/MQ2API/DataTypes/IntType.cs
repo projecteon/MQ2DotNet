@@ -16,5 +16,10 @@
         {
             return (Class) typeVar.VarPtr.Int;
         }
+
+        public static implicit operator Int64Type(IntType typeVar)
+        {
+            return new Int64Type(typeVar.VarPtr.Int);
+        }
     }
 }

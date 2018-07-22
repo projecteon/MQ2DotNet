@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of XTargetMgr
         /// </summary>
-        public IntType Address => GetMember<IntType>("Address");
+        public int Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Extended target type e.g. Auto Hater
@@ -21,7 +21,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Spawn's name
@@ -31,7 +31,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Your percentage aggro on the spawn
         /// </summary>
-        public IntType PctAggro => GetMember<IntType>("PctAggro");
+        public int PctAggro => GetMember<IntType>("PctAggro");
 
         /// <summary>
         /// Spawn in the XTarget slot

@@ -14,7 +14,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Zone ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Zone information

@@ -16,16 +16,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is experience enabled?
         /// </summary>
-        public BoolType ExpOn => GetMember<BoolType>("ExpOn");
+        public bool ExpOn => GetMember<BoolType>("ExpOn");
 
         /// <summary>
         /// Current level of the item
         /// </summary>
-        public IntType Level => GetMember<IntType>("Level");
+        public int Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Maximum level of the item
         /// </summary>
-        public IntType MaxLevel => GetMember<IntType>("MaxLevel");
+        public int MaxLevel => GetMember<IntType>("MaxLevel");
     }
 }

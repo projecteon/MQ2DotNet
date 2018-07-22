@@ -16,29 +16,29 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item ID
         /// </summary>
-        public IntType ItemID => GetMember<IntType>("ItemID");
+        public int ItemID => GetMember<IntType>("ItemID");
 
         /// <summary>
         /// Item cost
         /// </summary>
-        public Int64Type Price => GetMember<Int64Type>("Price");
+        public long Price => GetMember<Int64Type>("Price");
 
         /// <summary>
         /// Theme ID TODO: What is PointMerchantItemType.ThemeID? (ITEMINFO::LDTheme)
         /// </summary>
-        public IntType ThemeID => GetMember<IntType>("ThemeID");
+        public int ThemeID => GetMember<IntType>("ThemeID");
 
         /// <summary>
         /// Is the item stackable?
         /// </summary>
-        public BoolType IsStackable => GetMember<BoolType>("IsStackable");
+        public bool IsStackable => GetMember<BoolType>("IsStackable");
 
         /// <summary>
         /// Is the item lore?
         /// </summary>
-        public BoolType IsLore => GetMember<BoolType>("IsLore");
+        public bool IsLore => GetMember<BoolType>("IsLore");
 
-        public IntType RaceMask => GetMember<IntType>("RaceMask");
+        public int RaceMask => GetMember<IntType>("RaceMask");
 
         /// <summary>
         /// Classes that can use the item
@@ -48,6 +48,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Can I use it?
         /// </summary>
-        public BoolType CanUse => GetMember<BoolType>("CanUse");
+        public bool CanUse => GetMember<BoolType>("CanUse");
     }
 }

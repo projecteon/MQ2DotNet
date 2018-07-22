@@ -39,27 +39,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of clock ticks this instance of eqgame.exe has been running for
         /// </summary>
-        public IntType Running => GetMember<IntType>("Running");
+        public int Running => GetMember<IntType>("Running");
 
         /// <summary>
         /// X (horizontal) coordinate of the mouse cursor in UI coordinate space, relative to the left edge of the game window
         /// </summary>
-        public IntType MouseX => GetMember<IntType>("MouseX");
+        public int MouseX => GetMember<IntType>("MouseX");
 
         /// <summary>
         /// Y (vertical) coordinate of the mouse cursor in UI coordinate space relative to the top edge of the game window
         /// </summary>
-        public IntType MouseY => GetMember<IntType>("MouseY");
+        public int MouseY => GetMember<IntType>("MouseY");
 
         /// <summary>
         /// Ping time to the EQ server in milliseconds
         /// </summary>
-        public IntType Ping => GetMember<IntType>("Ping");
+        public int Ping => GetMember<IntType>("Ping");
 
         /// <summary>
         /// Number of chat channels you are in
         /// </summary>
-        public IntType ChatChannels => GetMember<IntType>("ChatChannels");
+        public int ChatChannels => GetMember<IntType>("ChatChannels");
 
         /// <summary>
         /// Name of a chat channel by number, or true/false if you are in a chat channel by name
@@ -69,37 +69,37 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// X (horizontal) start of viewport, always 0?
         /// </summary>
-        public IntType ViewportX => GetMember<IntType>("ViewportX");
+        public int ViewportX => GetMember<IntType>("ViewportX");
 
         /// <summary>
         /// Y (vertical) start of viewport, always 0?
         /// </summary>
-        public IntType ViewportY => GetMember<IntType>("ViewportY");
+        public int ViewportY => GetMember<IntType>("ViewportY");
 
         /// <summary>
         /// X (horizontal) end of viewport
         /// </summary>
-        public IntType ViewportXMax => GetMember<IntType>("ViewportXMax");
+        public int ViewportXMax => GetMember<IntType>("ViewportXMax");
 
         /// <summary>
         /// Y (vertical) end of viewport
         /// </summary>
-        public IntType ViewportYMax => GetMember<IntType>("ViewportYMax");
+        public int ViewportYMax => GetMember<IntType>("ViewportYMax");
 
         /// <summary>
         /// X (horizontal) center of viewport
         /// </summary>
-        public IntType ViewportXCenter => GetMember<IntType>("ViewportXCenter");
+        public int ViewportXCenter => GetMember<IntType>("ViewportXCenter");
 
         /// <summary>
         /// Y (vertical) center of viewport
         /// </summary>
-        public IntType ViewportYCenter => GetMember<IntType>("ViewportYCenter");
+        public int ViewportYCenter => GetMember<IntType>("ViewportYCenter");
 
         /// <summary>
         /// TODO: Document EverQuestType.LClickedObject
         /// </summary>
-        public BoolType LClickedObject => GetMember<BoolType>("LClickedObject");
+        public bool LClickedObject => GetMember<BoolType>("LClickedObject");
 
         /// <summary>
         /// Current window title
@@ -109,12 +109,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Process ID of this eqgame.exe
         /// </summary>
-        public IntType PID => GetMember<IntType>("PID");
+        public int PID => GetMember<IntType>("PID");
         
         /// <summary>
         /// Screen mode, 2 = windowed ?
         /// </summary>
-        public IntType ScreenMode => GetMember<IntType>("ScreenMode");
+        public int ScreenMode => GetMember<IntType>("ScreenMode");
 
         /// <summary>
         /// Process priority of this eqgame.exe, one of "LOW", "BELOW NORMAL", "NORMAL", "ABOVE NORMAL", "REALTIME"
@@ -124,7 +124,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is a /copylayout currently in progress?
         /// </summary>
-        public BoolType LayoutCopyInProgress => GetMember<BoolType>("LayoutCopyInProgress");
+        public bool LayoutCopyInProgress => GetMember<BoolType>("LayoutCopyInProgress");
 
         /// <summary>
         /// Window the mouse cursor was last over
@@ -144,6 +144,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// True if using default UI skin
         /// </summary>
-        public BoolType IsDefaultUILoaded => GetMember<BoolType>("IsDefaultUILoaded");
+        public bool IsDefaultUILoaded => GetMember<BoolType>("IsDefaultUILoaded");
     }
 }

@@ -16,11 +16,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is this member the task leader?
         /// </summary>
-        public BoolType Leader => GetMember<BoolType>("Leader");
+        public bool Leader => GetMember<BoolType>("Leader");
 
         /// <summary>
         /// Index of the member in the list (1 based)
         /// </summary>
-        public IntType Index => GetMember<IntType>("Index");
+        public int Index => GetMember<IntType>("Index");
     }
 }

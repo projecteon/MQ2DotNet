@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE when the target's buffs are finished populating.
         /// </summary>
-        public BoolType BuffsPopulated => GetMember<BoolType>("BuffsPopulated");
+        public bool BuffsPopulated => GetMember<BoolType>("BuffsPopulated");
 
         /// <summary>
         /// Buff/debuff on the target by name or slot # (1 based)
@@ -30,12 +30,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total number of buffs/debuffs
         /// </summary>
-        public IntType BuffCount => GetMember<IntType>("BuffCount");
+        public int BuffCount => GetMember<IntType>("BuffCount");
 
         /// <summary>
         /// Total number of buffs/debuffs cast by you
         /// </summary>
-        public IntType MyBuffCount => GetMember<IntType>("MyBuffCount");
+        public int MyBuffCount => GetMember<IntType>("MyBuffCount");
 
         /// <summary>
         /// Remaining duration on a buff you cast by name or slot # (1 based)
@@ -50,12 +50,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Your percentage aggro on the target
         /// </summary>
-        public IntType PctAggro => GetMember<IntType>("PctAggro");
+        public int PctAggro => GetMember<IntType>("PctAggro");
 
         /// <summary>
         /// Secondary aggro percentage on the target
         /// </summary>
-        public IntType SecondaryPctAggro => GetMember<IntType>("SecondaryPctAggro");
+        public int SecondaryPctAggro => GetMember<IntType>("SecondaryPctAggro");
 
         /// <summary>
         /// Spawn that has secondary aggro

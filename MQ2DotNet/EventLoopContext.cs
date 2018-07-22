@@ -13,7 +13,7 @@ namespace MQ2DotNet
     /// Synchronization context that will run all continuations when DoEvents is called, intended for use with an event loop
     /// Not threadsafe, except for Post
     /// </summary>
-    internal class EventLoopContext : SynchronizationContext
+    public class EventLoopContext : SynchronizationContext
     {
         private readonly ConcurrentQueue<KeyValuePair<SendOrPostCallback, object>> _queue = new ConcurrentQueue<KeyValuePair<SendOrPostCallback, object>>();
 

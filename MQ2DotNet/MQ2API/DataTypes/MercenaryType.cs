@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of unspent mercenary AA points
         /// </summary>
-        public IntType AAPoints => GetMember<IntType>("AAPoints");
+        public int AAPoints => GetMember<IntType>("AAPoints");
 
         /// <summary>
         /// Current stance of the mercenary e.g. Balanced
@@ -26,11 +26,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current state ID of the mercenary as a number.
         /// </summary>
-        public IntType StateID => GetMember<IntType>("StateID");
+        public int StateID => GetMember<IntType>("StateID");
 
         /// <summary>
         /// Index of the mercenary in your mercenary list (1 based)
         /// </summary>
-        public IntType Index => GetMember<IntType>("Index");
+        public int Index => GetMember<IntType>("Index");
     }
 }

@@ -16,36 +16,36 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the item
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Auto roll enabled?
         /// </summary>
-        public BoolType AutoRoll => GetMember<BoolType>("AutoRoll");
+        public bool AutoRoll => GetMember<BoolType>("AutoRoll");
 
         /// <summary>
         /// Always need?
         /// </summary>
-        public BoolType Need => GetMember<BoolType>("Need");
+        public bool Need => GetMember<BoolType>("Need");
 
         /// <summary>
         /// Always greed?
         /// </summary>
-        public BoolType Greed => GetMember<BoolType>("Greed");
+        public bool Greed => GetMember<BoolType>("Greed");
 
         /// <summary>
         /// Never?
         /// </summary>
-        public BoolType Never => GetMember<BoolType>("Never");
+        public bool Never => GetMember<BoolType>("Never");
 
         /// <summary>
         /// Item's icon ID
         /// </summary>
-        public IntType IconID => GetMember<IntType>("IconID");
+        public int IconID => GetMember<IntType>("IconID");
 
         /// <summary>
         /// Bitmask of settings, 1 = AutoRoll, 2 = Need, 4 = Greed, 8 = Never
         /// </summary>
-        public IntType Types => GetMember<IntType>("Types");
+        public int Types => GetMember<IntType>("Types");
     }
 }

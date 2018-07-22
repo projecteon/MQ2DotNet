@@ -20,6 +20,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of spawn searches on the alert list
         /// </summary>
-        public IntType Size => GetMember<IntType>("Size");
+        public int Size => GetMember<IntType>("Size");
     }
 }

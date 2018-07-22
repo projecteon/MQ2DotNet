@@ -8,22 +8,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
         }
 
-        public IntType Address => GetMember<IntType>("Address");
+        public int Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Ground item ID (not the same as item ID, this is like spawn ID)
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// TODO: Document GroundType.SubID
         /// </summary>
-        public IntType SubID => GetMember<IntType>("SubID");
+        public int SubID => GetMember<IntType>("SubID");
 
         /// <summary>
         /// ID of the zone the spawn is in?
         /// </summary>
-        public IntType ZoneID => GetMember<IntType>("ZoneID");
+        public int ZoneID => GetMember<IntType>("ZoneID");
 
         /// <summary>
         /// X coordinate (Westward-positive)
@@ -87,7 +87,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE if ground spawn is in line of sight
         /// </summary>
-        public BoolType LineOfSight => GetMember<BoolType>("LineOfSight");
+        public bool LineOfSight => GetMember<BoolType>("LineOfSight");
 
         /// <summary>
         /// Next ground spawn

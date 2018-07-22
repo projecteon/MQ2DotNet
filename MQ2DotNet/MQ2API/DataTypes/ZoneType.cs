@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the ZONELIST struct
         /// </summary>
-        public IntType Address => GetMember<IntType>("Address");
+        public int Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Long name of the zone e.g. "The Plane of Knowledge"
@@ -26,11 +26,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Zone ID
         /// </summary>
-        public IntType ID => GetMember<IntType>("ID");
+        public int ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Zone flags, see ZONELIST::ZoneFlags in eqdata.h
         /// </summary>
-        public IntType ZoneFlags => GetMember<IntType>("ZoneFlags");
+        public int ZoneFlags => GetMember<IntType>("ZoneFlags");
     }
 }
