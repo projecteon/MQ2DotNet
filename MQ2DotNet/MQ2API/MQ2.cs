@@ -94,13 +94,13 @@ namespace MQ2DotNet.MQ2API
         /// </summary>
         /// <param name="buffer">Text to write</param>
         [DllImport("MQ2Main.dll", EntryPoint = "WriteChatf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WriteChat(string buffer);
+        public static extern void WriteChat([MarshalAs(UnmanagedType.LPStr)] string buffer);
 
         /// <summary>
         /// Threadsafe version of <see cref="WriteChat"/>
         /// </summary>
         /// <param name="buffer">Text to write</param>
         [DllImport("MQ2Main.dll", EntryPoint = "WriteChatfSafe", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WriteChatSafe(string buffer);
+        public static extern void WriteChatSafe([MarshalAs(UnmanagedType.LPStr)] string buffer);
     }
 }
