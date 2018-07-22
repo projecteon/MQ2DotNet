@@ -6,7 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal GroupType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            Injured = new IndexedMember<IntType, int>(this, "Injured");
+            Injured = new IndexedMember<int, int>(this, "Injured");
             Member = new IndexedMember<GroupMemberType, string, GroupMemberType, int>(this, "Member");
         }
 
@@ -103,7 +103,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Will return the numbers of people in the group that has less than a certain percentage HP
         /// </summary>
-        public IndexedMember<IntType, int> Injured;
+        public IndexedMember<int, int> Injured;
 
         /// <summary>
         /// The first non-mercenary cleric in the group

@@ -6,19 +6,19 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal SpellType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            ReagentID = new IndexedMember<IntType, int>(this, "ReagentID");
-            ReagentCount = new IndexedMember<IntType, int>(this, "ReagentCount");
-            Max = new IndexedMember<IntType, int>(this, "Max");
-            Calc = new IndexedMember<IntType, int>(this, "Calc");
-            Attrib = new IndexedMember<IntType, int>(this, "Attrib");
-            Base2 = new IndexedMember<IntType, int>(this, "Base");
-            Base = new IndexedMember<IntType, int>(this, "Base");
+            ReagentID = new IndexedMember<int, int>(this, "ReagentID");
+            ReagentCount = new IndexedMember<int, int>(this, "ReagentCount");
+            Max = new IndexedMember<int, int>(this, "Max");
+            Calc = new IndexedMember<int, int>(this, "Calc");
+            Attrib = new IndexedMember<int, int>(this, "Attrib");
+            Base2 = new IndexedMember<int, int>(this, "Base");
+            Base = new IndexedMember<int, int>(this, "Base");
             Restrictions = new IndexedStringMember<int>(this, "Restrictions");
-            WillStack = new IndexedMember<BoolType, string>(this, "WillStack");
-            StacksWith = new IndexedMember<BoolType, string>(this, "StacksWith");
-            StacksPet = new IndexedMember<BoolType, int>(this, "StacksPet");
-            Stacks = new IndexedMember<BoolType, int>(this, "Stacks");
-            HasSPA = new IndexedMember<BoolType, int>(this, "HasSPA");
+            WillStack = new IndexedMember<bool, string>(this, "WillStack");
+            StacksWith = new IndexedMember<bool, string>(this, "StacksWith");
+            StacksPet = new IndexedMember<bool, int>(this, "StacksPet");
+            Stacks = new IndexedMember<bool, int>(this, "Stacks");
+            HasSPA = new IndexedMember<bool, int>(this, "HasSPA");
             Trigger = new IndexedMember<SpellType, int>(this, "Trigger");
         }
 
@@ -158,24 +158,24 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Does this spell stack with your current buffs (duration is in ticks)
         /// </summary>
-        public IndexedMember<BoolType, int> Stacks { get; }
+        public IndexedMember<bool, int> Stacks { get; }
 
         public bool NewStacksTarget => GetMember<BoolType>("NewStacksTarget");
 
         /// <summary>
         /// Does this spell stack with your pet's current buffs (duration is in ticks)
         /// </summary>
-        public IndexedMember<BoolType, int> StacksPet { get; }
+        public IndexedMember<bool, int> StacksPet { get; }
 
         /// <summary>
         /// Does this spell stack with another spell?
         /// </summary>
-        public IndexedMember<BoolType, string> StacksWith { get; }
+        public IndexedMember<bool, string> StacksWith { get; }
 
         /// <summary>
         /// Does this spell stack with another spell?
         /// </summary>
-        public IndexedMember<BoolType, string> WillStack { get; }
+        public IndexedMember<bool, string> WillStack { get; }
 
         /// <summary>
         /// Adjusted spell range, including focus effects, etc.
@@ -219,27 +219,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// e.g. for a nuke that says Slot 1: Decrease HP by 1000
         /// Base[1] = -1000
         /// </summary>
-        public IndexedMember<IntType, int> Base { get; }
+        public IndexedMember<int, int> Base { get; }
 
         /// <summary>
         /// Base2 value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Base2 { get; }
+        public IndexedMember<int, int> Base2 { get; }
 
         /// <summary>
         /// Max value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Max { get; }
+        public IndexedMember<int, int> Max { get; }
 
         /// <summary>
         /// Calc value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Calc { get; }
+        public IndexedMember<int, int> Calc { get; }
 
         /// <summary>
         /// Attrib value of the nth spell effect slot, 1 based
         /// </summary>
-        public IndexedMember<IntType, int> Attrib { get; }
+        public IndexedMember<int, int> Attrib { get; }
         
         /// <summary>
         /// TODO: What is SpellType.CalcIndex
@@ -274,12 +274,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item ID of the nth required reagent (valid indexes are 1 - 4)
         /// </summary>
-        public IndexedMember<IntType, int> ReagentID { get; }
+        public IndexedMember<int, int> ReagentID { get; }
 
         /// <summary>
         /// Quantity of the nth required reagent (valid indexes are 1 - 4)
         /// </summary>
-        public IndexedMember<IntType, int> ReagentCount { get; }
+        public IndexedMember<int, int> ReagentCount { get; }
 
         /// <summary>
         /// Required time of day to cast, 0 = any, 1 = day only, 2 = night only
@@ -379,7 +379,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Does this spell have a given SPA?
         /// </summary>
-        public IndexedMember<BoolType, int> HasSPA { get; }
+        public IndexedMember<bool, int> HasSPA { get; }
 
         /// <summary>
         /// TODO: What is SpellType.Trigger

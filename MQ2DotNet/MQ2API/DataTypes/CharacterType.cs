@@ -10,41 +10,41 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
             Language = new IndexedStringMember<int, IntType, string>(this, "Language");
             XTarget = new IndexedMember<XTargetType, int>(this, "XTarget");
-            XTAggroCount = new IndexedMember<IntType, int>(this, "XTAggroCount");
-            SpellReady = new IndexedMember<BoolType, int, BoolType, string>(this, "SpellReady");
-            SPA = new IndexedMember<IntType, int>(this, "SPA");
+            XTAggroCount = new IndexedMember<int, int>(this, "XTAggroCount");
+            SpellReady = new IndexedMember<bool, int, BoolType, string>(this, "SpellReady");
+            SPA = new IndexedMember<int, int>(this, "SPA");
             Song = new IndexedMember<BuffType, string, BuffType, int>(this, "Song");
-            SkillCap = new IndexedMember<IntType, string, IntType, int>(this, "SkillCap");
-            SkillBase = new IndexedMember<IntType, string, IntType, int>(this, "SkillBase");
-            Skill = new IndexedMember<IntType, string, IntType, int>(this, "Skill");
+            SkillCap = new IndexedMember<int, string, IntType, int>(this, "SkillCap");
+            SkillBase = new IndexedMember<int, string, IntType, int>(this, "SkillBase");
+            Skill = new IndexedMember<int, string, IntType, int>(this, "Skill");
             RaidAssistTarget = new IndexedMember<SpawnType, int>(this, "RaidAssistTarget");
             RaidMarkNPC = new IndexedMember<SpawnType, int>(this, "RaidMarkNPC");
             PetBuff = new IndexedMember<SpellType, int, IntType, string>(this, "PetBuff");
             MercList = new IndexedStringMember<int, IntType, string>(this, "MercList");
-            LanguageSkill = new IndexedMember<IntType>(this, "LanguageSkill");
-            ItemReady = new IndexedMember<BoolType>(this, "ItemReady");
+            LanguageSkill = new IndexedMember<int>(this, "LanguageSkill");
+            ItemReady = new IndexedMember<bool>(this, "ItemReady");
             Inventory = new IndexedMember<ItemType, string, ItemType, int>(this, "Inventory");
-            HaveExpansion = new IndexedMember<BoolType, int>(this, "HaveExpansion");
+            HaveExpansion = new IndexedMember<bool, int>(this, "HaveExpansion");
             GroupMarkNPC = new IndexedMember<SpawnType, int>(this, "GroupMarkNPC");
             GemTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "GemTimer");
             Gem = new IndexedMember<SpellType, int, IntType, string>(this, "Gem");
             BoundLocation = new IndexedMember<WorldLocationType, int>(this, "BoundLocation");
             AutoSkill = new IndexedMember<SkillType, int>(this, "AutoSkill");
-            AltCurrency = new IndexedMember<IntType, int, IntType, string>(this, "AltCurrency");
+            AltCurrency = new IndexedMember<int, int, IntType, string>(this, "AltCurrency");
             Buff = new IndexedMember<BuffType, string, BuffType, int>(this, "Buff");
             Book = new IndexedMember<SpellType, int, IntType, string>(this, "Book");
             Aura = new IndexedMember<AuraType, string, AuraType, int>(this, "Aura");
-            AltAbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AltAbilityReady");
+            AltAbilityReady = new IndexedMember<bool, int, BoolType, string>(this, "AltAbilityReady");
             AltAbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AltAbilityTimer");
             AltAbility = new IndexedMember<AltAbilityType, int, AltAbilityType, string>(this, "AltAbility");
-            AbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AbilityReady");
+            AbilityReady = new IndexedMember<bool, int, BoolType, string>(this, "AbilityReady");
             Ability = new IndexedStringMember<int, IntType, string>(this, "Ability");
         }
 
         /// <summary>
         /// Ability with this name or on this button # ready?
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> AbilityReady;
+        public IndexedMember<bool, int, BoolType, string> AbilityReady;
 
         /// <summary>
         /// Returns an alt ability by name or number
@@ -54,7 +54,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Alt ability ready by name or number
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> AltAbilityReady;
+        public IndexedMember<bool, int, BoolType, string> AltAbilityReady;
 
         /// <summary>
         /// Alt ability reuse time remaining by name or number
@@ -84,7 +84,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Combat ability ready by name or number
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> CombatAbilityReady;
+        public IndexedMember<bool, int, BoolType, string> CombatAbilityReady;
         
         /// <summary>
         /// Combat ability reuse time remaining by name or number
@@ -159,7 +159,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Quantity of an alt currency by name or number
         /// </summary>
-        public IndexedMember<IntType, int, IntType, string> AltCurrency;
+        public IndexedMember<int, int, IntType, string> AltCurrency;
 
         [Obsolete]
         public bool AltTimerReady => GetMember<BoolType>("AltTimerReady");
@@ -614,7 +614,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns TRUE/FALSE if you have that expansion #
         /// </summary>
-        public IndexedMember<BoolType, int> HaveExpansion { get; }
+        public IndexedMember<bool, int> HaveExpansion { get; }
 
         /// <summary>
         /// Total Heal Amount bonus from gear
@@ -717,7 +717,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is an item ready to cast?
         /// </summary>
-        public IndexedMember<BoolType> ItemReady { get; }
+        public IndexedMember<bool> ItemReady { get; }
 
         /// <summary>
         /// Krono on your character
@@ -778,7 +778,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Language skill by name or number
         /// </summary>
-        public IndexedMember<IntType> LanguageSkill { get; }
+        public IndexedMember<int> LanguageSkill { get; }
 
         /// <summary>
         /// Level of NPC Health of the current group leader (not your own ability level)
@@ -1102,17 +1102,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Skill level by name or number
         /// </summary>
-        public IndexedMember<IntType, string, IntType, int> Skill { get; }
+        public IndexedMember<int, string, IntType, int> Skill { get; }
 
         /// <summary>
         /// Skill base level by name or number
         /// </summary>
-        public IndexedMember<IntType, string, IntType, int> SkillBase { get; }
+        public IndexedMember<int, string, IntType, int> SkillBase { get; }
 
         /// <summary>
         /// Skill cap by name or number
         /// </summary>
-        public IndexedMember<IntType, string, IntType, int> SkillCap { get; }
+        public IndexedMember<int, string, IntType, int> SkillCap { get; }
 
         /// <summary>
         /// Buff from the Skin line
@@ -1137,7 +1137,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns the total amount of an SPA your character has
         /// </summary>
-        public IndexedMember<IntType, int> SPA { get; }
+        public IndexedMember<int, int> SPA { get; }
 
         /// <summary>
         /// The character's spawn
@@ -1157,7 +1157,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Indiciates if a spell is ready, by spell name or gem number
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> SpellReady { get; }
+        public IndexedMember<bool, int, BoolType, string> SpellReady { get; }
 
         /// <summary>
         /// Spell Shield bonus from gear and spells
@@ -1311,7 +1311,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of mobs on your XTarget, excluding your current target, that have less than the supplied % of aggro on you
         /// </summary>
-        public IndexedMember<IntType, int> XTAggroCount { get; }
+        public IndexedMember<int, int> XTAggroCount { get; }
 
         /// <summary>
         /// Returns a spawn from your XTarget by index (1 - 13)

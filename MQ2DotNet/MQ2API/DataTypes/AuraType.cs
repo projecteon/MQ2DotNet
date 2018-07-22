@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         internal AuraType(MQ2TypeVar typeVar) : base(typeVar)
         {
 #pragma warning disable 612
-            Find = new IndexedMember<IntType>(this, "Find");
+            Find = new IndexedMember<int>(this, "Find");
 #pragma warning restore 612
         }
 
@@ -21,7 +21,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns the position of the index if found within the aura's name
         /// </summary>
         [Obsolete]
-        public IndexedMember<IntType> Find { get; }
+        public IndexedMember<int> Find { get; }
 
         /// <summary>
         /// Name of the aura

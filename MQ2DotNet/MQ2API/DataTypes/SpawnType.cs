@@ -10,13 +10,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal SpawnType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
-            SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
+            SpawnStatus = new IndexedMember<int, int>(this, "SpawnStatus");
+            SeeInvis = new IndexedMember<int, int>(this, "SeeInvis");
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
-            Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
+            Equipment = new IndexedMember<int, int, IntType, string>(this, "Equipment");
             DragNames = new IndexedStringMember<int>(this, "DragNames");
-            CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
+            CombatSkillTicks = new IndexedMember<int, int>(this, "CombatSkillTicks");
         }
 
         public SpawnType(IntPtr pSpawn) : base("spawn",
@@ -25,13 +25,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
                 Ptr = pSpawn
             })
         {
-            SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
-            SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
+            SpawnStatus = new IndexedMember<int, int>(this, "SpawnStatus");
+            SeeInvis = new IndexedMember<int, int>(this, "SeeInvis");
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
-            Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
+            Equipment = new IndexedMember<int, int, IntType, string>(this, "Equipment");
             DragNames = new IndexedStringMember<int>(this, "DragNames");
-            CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
+            CombatSkillTicks = new IndexedMember<int, int>(this, "CombatSkillTicks");
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Valid indexes are 0 and 1. TODO: What is SpawnType.CombatSkillTicks
         /// </summary>
-        public IndexedMember<IntType, int> CombatSkillTicks { get; }
+        public IndexedMember<int, int> CombatSkillTicks { get; }
 
         /// <summary>
         /// Spawn ID of this spawn's contractor
@@ -280,7 +280,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// ID of the equipment used by the spawn
         /// returns a inttype, it takes numbers 0-8 or names: head chest arms wrists hands legs feet primary offhand
         /// </summary>
-        public IndexedMember<IntType, int, IntType, string> Equipment { get; }
+        public IndexedMember<int, int, IntType, string> Equipment { get; }
 
         /// <summary>
         /// TODO: What is SpawnType.FD?
@@ -615,7 +615,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Spawn can see invis, takes an index of 0 - 2, guessing for invis/invis vs undead/improved invis?
         /// TODO: Confirm function of SpawnType.SeeInvis
         /// </summary>
-        public IndexedMember<IntType, int> SeeInvis { get; }
+        public IndexedMember<int, int> SeeInvis { get; }
 
         /// <summary>
         /// Sitting?
@@ -630,7 +630,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn status, takes an index of 0 - 5. TODO: Confirm what they mean
         /// </summary>
-        public IndexedMember<IntType, int> SpawnStatus { get; }
+        public IndexedMember<int, int> SpawnStatus { get; }
 
         /// <summary>
         /// Speed as a percentage of regular run speed

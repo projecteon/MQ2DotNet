@@ -6,8 +6,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal MacroType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            IsTLO = new IndexedMember<BoolType>(this, "IsTLO");
-            IsOuterVariable = new IndexedMember<BoolType>(this, "IsOuterVariable");
+            IsTLO = new IndexedMember<bool>(this, "IsTLO");
+            IsOuterVariable = new IndexedMember<bool>(this, "IsOuterVariable");
         }
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is the given name a Top Level Object?
         /// </summary>
-        public IndexedMember<BoolType> IsTLO { get; }
+        public IndexedMember<bool> IsTLO { get; }
 
         /// <summary>
         /// Is the given name a variable declared with outer scope?
         /// </summary>
-        public IndexedMember<BoolType> IsOuterVariable { get; }
+        public IndexedMember<bool> IsOuterVariable { get; }
 
         /// <summary>
         /// Stack depth of the currently executing macro
