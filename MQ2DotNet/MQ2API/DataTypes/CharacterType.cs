@@ -301,7 +301,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public BuffType Clarity => GetMember<BuffType>("Clarity");
 
         /// <summary>
-        /// In combat?
+        /// Is auto attack turned on?
         /// </summary>
         public bool Combat => GetMember<BoolType>("Combat");
 
