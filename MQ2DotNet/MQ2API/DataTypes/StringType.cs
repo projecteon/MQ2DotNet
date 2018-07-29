@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
 
         public static implicit operator string(StringType typeVar)
         {
-            return Marshal.PtrToStringAnsi(typeVar.VarPtr.Ptr);
+            return typeVar != null ? Marshal.PtrToStringAnsi(typeVar.VarPtr.Ptr) : null;
         }
     }
 }

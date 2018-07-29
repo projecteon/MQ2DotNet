@@ -11,11 +11,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current value of the timer in 100ms intervals
         /// </summary>
-        public int Value => GetMember<IntType>("Value");
+        public int? Value => GetMember<IntType>("Value");
 
         /// <summary>
         /// Original value of the timer in 100ms, from when the variable was first created
         /// </summary>
-        public int OriginalValue => GetMember<IntType>("OriginalValue");
+        public int? OriginalValue => GetMember<IntType>("OriginalValue");
     }
 }

@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
         }
 
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Full name of the class e.g. Cleric

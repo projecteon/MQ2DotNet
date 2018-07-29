@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current percentage experience
         /// </summary>
-        public FloatType ExpPct => GetMember<FloatType>("ExpPct");
+        public float? ExpPct => GetMember<FloatType>("ExpPct");
 
         /// <summary>
         /// Is experience enabled?
@@ -21,11 +21,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current level of the item
         /// </summary>
-        public int Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Maximum level of the item
         /// </summary>
-        public int MaxLevel => GetMember<IntType>("MaxLevel");
+        public int? MaxLevel => GetMember<IntType>("MaxLevel");
     }
 }

@@ -31,7 +31,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Build number
         /// </summary>
-        public int Build => GetMember<IntType>("Build");
+        public int? Build => GetMember<IntType>("Build");
 
         /// <summary>
         /// Directory of MQ2Main.dll (equivalent of INI path, <seealso cref="MQ2.INIPath"/>)

@@ -15,12 +15,12 @@
         /// <summary>
         /// Current number of characters in the dynamic zone
         /// </summary>
-        public int Members => GetMember<IntType>("Members");
+        public int? Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Maximum number of characters that can enter this dynamic zone
         /// </summary>
-        public int MaxMembers => GetMember<IntType>("MaxMembers");
+        public int? MaxMembers => GetMember<IntType>("MaxMembers");
 
         /// <summary>
         /// Member of the dynamic zone by name or number

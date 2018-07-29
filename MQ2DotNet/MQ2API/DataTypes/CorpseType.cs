@@ -21,6 +21,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items on the corpse
         /// </summary>
-        public int Items => GetMember<IntType>("Items");
+        public int? Items => GetMember<IntType>("Items");
     }
 }

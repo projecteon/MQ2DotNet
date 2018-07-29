@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the race, this should correspond to the <see cref="Race"/> enum
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Full name of the race e.g. Froglok

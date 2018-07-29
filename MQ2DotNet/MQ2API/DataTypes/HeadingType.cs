@@ -11,17 +11,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The nearest clock direction, e.g. 1-12
         /// </summary>
-        public int Clock => GetMember<IntType>("Clock");
+        public int? Clock => GetMember<IntType>("Clock");
 
         /// <summary>
         /// Heading in degrees (same as casting to float). N = 0, E = 90, S = 180, W = 270
         /// </summary>
-        public FloatType Degrees => GetMember<FloatType>("Degrees");
+        public float? Degrees => GetMember<FloatType>("Degrees");
 
         /// <summary>
         /// Heading in degrees, counter clockwise from north. N = 0, W = 90, S = 180, E = 270
         /// </summary>
-        public FloatType DegreesCCW => GetMember<FloatType>("DegreesCCW");
+        public float? DegreesCCW => GetMember<FloatType>("DegreesCCW");
 
         /// <summary>
         /// The short compass direction, eg. "S", "SSE"

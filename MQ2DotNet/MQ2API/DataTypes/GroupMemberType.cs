@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the GROUPMEMBER struct
         /// </summary>
-        public new int Address => GetMember<IntType>("Address");
+        public new int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// The name of the group member. This works even if they are not in the same zone as you
@@ -30,7 +30,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The member's level
         /// </summary>
-        public new int Level => GetMember<IntType>("Level");
+        public new int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// TRUE if the member is designated as the group's Main Tank, FALSE otherwise
@@ -65,12 +65,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Member's aggro percentage as shown in the group window
         /// </summary>
-        public int PctAggro => GetMember<IntType>("PctAggro");
+        public int? PctAggro => GetMember<IntType>("PctAggro");
 
         /// <summary>
         /// Index (0 based) of the member in the group
         /// </summary>
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// TRUE if the member is offline and FALSE if online

@@ -27,27 +27,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the ability, for use with /alt activate
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Reuse time in seconds
         /// </summary>
-        public int ReuseTime => GetMember<IntType>("ReuseTime");
+        public int? ReuseTime => GetMember<IntType>("ReuseTime");
 
         /// <summary>
         /// Reuse time in seconds after modifiers have been applied
         /// </summary>
-        public int MyReuseTime => GetMember<IntType>("MyReuseTime");
+        public int? MyReuseTime => GetMember<IntType>("MyReuseTime");
 
         /// <summary>
         /// Minimum level to train
         /// </summary>
-        public int MinLevel => GetMember<IntType>("MinLevel");
+        public int? MinLevel => GetMember<IntType>("MinLevel");
 
         /// <summary>
         /// Base cost to train
         /// </summary>
-        public int Cost => GetMember<IntType>("Cost");
+        public int? Cost => GetMember<IntType>("Cost");
 
         /// <summary>
         /// Spell used by the ability (if any)
@@ -62,38 +62,38 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Points required in <see cref="RequiresAbility"/>
         /// </summary>
-        public int RequiresAbilityPoints => GetMember<IntType>("RequiresAbilityPoints");
+        public int? RequiresAbilityPoints => GetMember<IntType>("RequiresAbilityPoints");
 
         /// <summary>
         /// Max rank available in this ability
         /// </summary>
-        public int MaxRank => GetMember<IntType>("MaxRank");
+        public int? MaxRank => GetMember<IntType>("MaxRank");
 
         /// <summary>
         /// Current rank in this ability
         /// </summary>
-        public int Rank => GetMember<IntType>("Rank");
+        public int? Rank => GetMember<IntType>("Rank");
 
         /// <summary>
         /// Deprecated, use <see cref="Rank"/>
         /// </summary>
         [Obsolete]
-        public int AARankRequired => Rank;
+        public int? AARankRequired => Rank;
 
         /// <summary>
         /// Type (1-6) TODO: Document properly
         /// </summary>
-        public int Type => GetMember<IntType>("Type");
+        public int? Type => GetMember<IntType>("Type");
 
         /// <summary>
         /// TODO: Document properly
         /// </summary>
-        public int Flags => GetMember<IntType>("Flags");
+        public int? Flags => GetMember<IntType>("Flags");
 
         /// <summary>
         /// TODO: Document properly
         /// </summary>
-        public int Expansion => GetMember<IntType>("Expansion");
+        public int? Expansion => GetMember<IntType>("Expansion");
 
         /// <summary>
         /// True if the ability does not require activation
@@ -103,13 +103,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns the amount of points spent on an AA
         /// </summary>
-        public int PointsSpent => GetMember<IntType>("PointsSpent");
+        public int? PointsSpent => GetMember<IntType>("PointsSpent");
         
         /// <summary>
         /// TODO: What is AltAbilityType.Index
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Returns true/false on if the Alternative Ability can be trained
@@ -119,7 +119,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns the next index number of the Alternative Ability
         /// </summary>
-        public int NextIndex => GetMember<IntType>("NextIndex");
+        public int? NextIndex => GetMember<IntType>("NextIndex");
 
     }
 }

@@ -9,12 +9,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the TODO: struct
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
         
         /// <summary>
         /// ID of the zone
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Full name of the zone e.g. "The Plane of Knowledge"
@@ -29,32 +29,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: Description
         /// </summary>
-        public int Type => GetMember<IntType>("Type");
+        public int? Type => GetMember<IntType>("Type");
         
         /// <summary>
         /// Value of gravity in the zone
         /// </summary>
-        public FloatType Gravity => GetMember<FloatType>("Gravity");
+        public float? Gravity => GetMember<FloatType>("Gravity");
         
         /// <summary>
         /// Type of sky in the zone
         /// </summary>
-        public int SkyType => GetMember<IntType>("SkyType");
+        public int? SkyType => GetMember<IntType>("SkyType");
         
         /// <summary>
         /// Minimum setting for far clip plane
         /// </summary>
-        public FloatType MinClip => GetMember<FloatType>("MinClip");
+        public float? MinClip => GetMember<FloatType>("MinClip");
         
         /// <summary>
         /// Maximum setting for far clip plane
         /// </summary>
-        public FloatType MaxClip => GetMember<FloatType>("MaxClip");
+        public float? MaxClip => GetMember<FloatType>("MaxClip");
 
         /// <summary>
         /// Zone type:0=Indoor Dungeon 1=Outdoor 2=Outdoor City 3=Dungeon City 4=Indoor City 5=Outdoor Dungeon
         /// </summary>
-        public int ZoneType => GetMember<IntType>("ZoneType");
+        public int? ZoneType => GetMember<IntType>("ZoneType");
         
         /// <summary>
         /// Is the zone a dungeon, i.e. mounts cannot be used

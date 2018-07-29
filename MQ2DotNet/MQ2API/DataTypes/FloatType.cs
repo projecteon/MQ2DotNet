@@ -6,9 +6,9 @@
         {
         }
 
-        public static implicit operator float(FloatType typeVar)
+        public static implicit operator float?(FloatType typeVar)
         {
-            return typeVar.VarPtr.Float;
+            return typeVar?.VarPtr.Float;
         }
     }
 }

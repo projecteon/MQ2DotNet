@@ -11,12 +11,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Slot number of the augment on the item
         /// </summary>
-        public int Slot => GetMember<IntType>("Slot");
+        public int? Slot => GetMember<IntType>("Slot");
 
         /// <summary>
         /// Type of the augmentation
         /// </summary>
-        public int Type => GetMember<IntType>("Type");
+        public int? Type => GetMember<IntType>("Type");
 
         /// <summary>
         /// TODO: What does AugType.Visible mean?

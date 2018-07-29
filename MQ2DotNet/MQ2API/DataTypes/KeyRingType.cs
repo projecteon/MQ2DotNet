@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Index of the item in the list (1 based)
         /// </summary>
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Name of the item

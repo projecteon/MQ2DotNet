@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the body type, internal use only?
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Description e.g. Humanoid

@@ -25,7 +25,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spell ID
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Spell Name
@@ -35,32 +35,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Level
         /// </summary>
-        public int Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Mana cost (unadjusted)
         /// </summary>
-        public int Mana => GetMember<IntType>("Mana");
+        public int? Mana => GetMember<IntType>("Mana");
 
         /// <summary>
         /// Resist adjustment
         /// </summary>
-        public int ResistAdj => GetMember<IntType>("ResistAdj");
+        public int? ResistAdj => GetMember<IntType>("ResistAdj");
 
         /// <summary>
         /// Maximum range to target (use <see cref="AERange"/> for AE and group spells)
         /// </summary>
-        public FloatType Range => GetMember<FloatType>("Range");
+        public float? Range => GetMember<FloatType>("Range");
 
         /// <summary>
         /// AE range (group spells use this for their range)
         /// </summary>
-        public FloatType AERange => GetMember<FloatType>("AERange");
+        public float? AERange => GetMember<FloatType>("AERange");
 
         /// <summary>
         /// Push back amount
         /// </summary>
-        public FloatType PushBack => GetMember<FloatType>("PushBack");
+        public float? PushBack => GetMember<FloatType>("PushBack");
 
         /// <summary>
         /// Cast time (unadjusted)
@@ -151,7 +151,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The number of counters that the spell adds
         /// </summary>
-        public int CounterNumber => GetMember<IntType>("CounterNumber");
+        public int? CounterNumber => GetMember<IntType>("CounterNumber");
         public bool NewStacks => GetMember<BoolType>("NewStacks");
         public bool NewStacksWith => GetMember<BoolType>("NewStacksWith");
 
@@ -180,22 +180,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Adjusted spell range, including focus effects, etc.
         /// </summary>
-        public FloatType MyRange => GetMember<FloatType>("MyRange");
+        public float? MyRange => GetMember<FloatType>("MyRange");
 
         /// <summary>
         /// Memory address of the SPELL struct
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Endurance cost of the spell
         /// </summary>
-        public int EnduranceCost => GetMember<IntType>("EnduranceCost");
+        public int? EnduranceCost => GetMember<IntType>("EnduranceCost");
 
         /// <summary>
         /// Max level the spell can affect
         /// </summary>
-        public int MaxLevel => GetMember<IntType>("MaxLevel");
+        public int? MaxLevel => GetMember<IntType>("MaxLevel");
 
         /// <summary>
         /// Category of the spell e.g. Direct Damage, Heals
@@ -244,17 +244,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpellType.CalcIndex
         /// </summary>
-        public int CalcIndex => GetMember<IntType>("CalcIndex");
+        public int? CalcIndex => GetMember<IntType>("CalcIndex");
 
         /// <summary>
         /// Number of spell effect slots this spell has
         /// </summary>
-        public int NumEffects => GetMember<IntType>("NumEffects");
+        public int? NumEffects => GetMember<IntType>("NumEffects");
 
         /// <summary>
         /// TODO: What is SpellType.AutoCast
         /// </summary>
-        public int AutoCast => GetMember<IntType>("AutoCast");
+        public int? AutoCast => GetMember<IntType>("AutoCast");
 
         /// <summary>
         /// TODO: What is SpellType.Extra
@@ -264,12 +264,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Shared recast timer number for this spell
         /// </summary>
-        public int RecastTimerID => GetMember<IntType>("RecastTimerID");
+        public int? RecastTimerID => GetMember<IntType>("RecastTimerID");
 
         /// <summary>
         /// SPA number of this spell
         /// </summary>
-        public int SPA => GetMember<IntType>("SPA");
+        public int? SPA => GetMember<IntType>("SPA");
 
         /// <summary>
         /// Item ID of the nth required reagent (valid indexes are 1 - 4)
@@ -284,12 +284,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Required time of day to cast, 0 = any, 1 = day only, 2 = night only
         /// </summary>
-        public int TimeOfDay => GetMember<IntType>("TimeOfDay");
+        public int? TimeOfDay => GetMember<IntType>("TimeOfDay");
 
         /// <summary>
         /// Which buff window the spell appears in, 0 = long, 1 = short
         /// </summary>
-        public int DurationWindow => GetMember<IntType>("DurationWindow");
+        public int? DurationWindow => GetMember<IntType>("DurationWindow");
 
         /// <summary>
         /// Spell can be MGBed
@@ -309,7 +309,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Icon ID in the spell book
         /// </summary>
-        public int BookIcon => GetMember<IntType>("BookIcon");
+        public int? BookIcon => GetMember<IntType>("BookIcon");
 
         /// <summary>
         /// TODO: What is SpellType.Target?
@@ -329,7 +329,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns either 1, 2 or 3 for spells and 4-30 for clickys and potions.
         /// </summary>
-        public int Rank => GetMember<IntType>("Rank");
+        public int? Rank => GetMember<IntType>("Rank");
 
         /// <summary>
         /// Returns the spell/combat ability name for the rank the character has.
@@ -339,12 +339,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpellType.SpellGroup?
         /// </summary>
-        public int SpellGroup => GetMember<IntType>("SpellGroup");
+        public int? SpellGroup => GetMember<IntType>("SpellGroup");
 
         /// <summary>
         /// TODO: What is SpellType.SubSpellGroup?
         /// </summary>
-        public int SubSpellGroup => GetMember<IntType>("SubSpellGroup");
+        public int? SubSpellGroup => GetMember<IntType>("SubSpellGroup");
 
         /// <summary>
         /// Is spell beneficial?
@@ -359,7 +359,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Appears to be max distance
         /// </summary>
-        public int Location => GetMember<IntType>("Location");
+        public int? Location => GetMember<IntType>("Location");
 
         /// <summary>
         /// Is this spell a swarm spell?
@@ -369,7 +369,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Duration of the spell (if any). Note - returns DurationCap member of SPELLINFO
         /// </summary>
-        public int DurationValue1 => GetMember<IntType>("DurationValue1");
+        public int? DurationValue1 => GetMember<IntType>("DurationValue1");
 
         /// <summary>
         /// Illusion cast by this spell is allowed when you are mounted

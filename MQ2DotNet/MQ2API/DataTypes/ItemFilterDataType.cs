@@ -16,7 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the item
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Auto roll enabled?
@@ -41,11 +41,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item's icon ID
         /// </summary>
-        public int IconID => GetMember<IntType>("IconID");
+        public int? IconID => GetMember<IntType>("IconID");
 
         /// <summary>
         /// Bitmask of settings, 1 = AutoRoll, 2 = Need, 4 = Greed, 8 = Never
         /// </summary>
-        public int Types => GetMember<IntType>("Types");
+        public int? Types => GetMember<IntType>("Types");
     }
 }

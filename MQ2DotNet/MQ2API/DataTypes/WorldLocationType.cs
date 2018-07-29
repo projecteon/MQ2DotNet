@@ -14,7 +14,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Zone ID
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Zone information
@@ -24,21 +24,21 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Y coordinate (Northward-positive)
         /// </summary>
-        public FloatType Y => GetMember<FloatType>("Y");
+        public float? Y => GetMember<FloatType>("Y");
 
         /// <summary>
         /// X coordinate (Westward-positive)
         /// </summary>
-        public FloatType X => GetMember<FloatType>("X");
+        public float? X => GetMember<FloatType>("X");
 
         /// <summary>
         /// Z coordinate (Upward-positive)
         /// </summary>
-        public FloatType Z => GetMember<FloatType>("Z");
+        public float? Z => GetMember<FloatType>("Z");
 
         /// <summary>
         /// Direction facing
         /// </summary>
-        public FloatType Heading => GetMember<FloatType>("Heading");
+        public float? Heading => GetMember<FloatType>("Heading");
     }
 }

@@ -11,13 +11,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the LOOTITEM struct
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Index of the item in either the shared or personal loot list
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Name of the item
@@ -27,12 +27,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the item
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Maximum number of these items in one stack
         /// </summary>
-        public int StackSize => GetMember<IntType>("StackSize");
+        public int? StackSize => GetMember<IntType>("StackSize");
 
         /// <summary>
         /// Spawn the item was dropped by
@@ -77,7 +77,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the icon for this item
         /// </summary>
-        public int IconID => GetMember<IntType>("IconID");
+        public int? IconID => GetMember<IntType>("IconID");
 
         /// <summary>
         /// True if the item is no drop

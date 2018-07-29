@@ -6,9 +6,9 @@
         {
         }
 
-        public static implicit operator double(DoubleType typeVar)
+        public static implicit operator double?(DoubleType typeVar)
         {
-            return typeVar.VarPtr.Double;
+            return typeVar?.VarPtr.Double;
         }
     }
 }

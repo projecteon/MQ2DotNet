@@ -23,14 +23,14 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of items on the merchant
         /// </summary>
-        public int Items => GetMember<IntType>("Items");
+        public int? Items => GetMember<IntType>("Items");
 
         /// <summary>
         /// The number used to calculate the buy and sell value for an item (this is what is changed by charisma and faction). This value is capped at 1.05
         /// Markup*Item Value = Amount you buy item for
         /// Item Value*(1/Markup) = Amount you sell item for
         /// </summary>
-        public FloatType Markup => GetMember<FloatType>("Markup");
+        public float? Markup => GetMember<FloatType>("Markup");
 
         /// <summary>
         /// Returns TRUE if the merchant's inventory is full

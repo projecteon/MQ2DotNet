@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Appears to be the slot the aura is in. 1 based
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Returns the position of the index if found within the aura's name
@@ -31,7 +31,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn ID of the caster
         /// </summary>
-        public int SpawnID => GetMember<IntType>("SpawnID");
+        public int? SpawnID => GetMember<IntType>("SpawnID");
 
         /// <summary>
         /// Remove the aura

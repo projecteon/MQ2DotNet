@@ -16,7 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current group number (or 0)
         /// </summary>
-        public int Group => GetMember<IntType>("Group");
+        public int? Group => GetMember<IntType>("Group");
 
         /// <summary>
         /// Returns TRUE if the member is a group leader
@@ -41,7 +41,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Raid member's level (works without being in zone)
         /// </summary>
-        public int Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Raid member's class (works without being in zone)

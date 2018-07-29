@@ -12,7 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Index of this objective in the list (0 based)
         /// Confusingly, ${Task[taskname].Objective[1].Index} == 0
         /// </summary>
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Instruction text for this objective, as seen in the Quest Journal window

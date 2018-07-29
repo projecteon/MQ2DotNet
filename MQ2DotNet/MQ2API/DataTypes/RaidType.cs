@@ -27,7 +27,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total number of raid members
         /// </summary>
-        public int Members => GetMember<IntType>("Members");
+        public int? Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Raid target (clicked in raid window)
@@ -42,22 +42,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Sum of all raid members' levels
         /// </summary>
-        public int TotalLevels => GetMember<IntType>("TotalLevels");
+        public int? TotalLevels => GetMember<IntType>("TotalLevels");
 
         /// <summary>
         /// Average level of raid members (more accurate than in the window)
         /// </summary>
-        public FloatType AverageLevel => GetMember<FloatType>("AverageLevel");
+        public float? AverageLevel => GetMember<FloatType>("AverageLevel");
 
         /// <summary>
         /// Loot type number (1 = Leader, 2 = Leader and GroupLeader, 3 = Leader and Specified
         /// </summary>
-        public int LootType => GetMember<IntType>("LootType");
+        public int? LootType => GetMember<IntType>("LootType");
 
         /// <summary>
         /// Number of specified looters
         /// </summary>
-        public int Looters => GetMember<IntType>("Looters");
+        public int? Looters => GetMember<IntType>("Looters");
 
         /// <summary>
         /// Specified looter name by number (1 - <see cref="Looters"/>)

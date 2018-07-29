@@ -37,7 +37,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Dunno wtf this is or why I would care about it
         /// </summary>
-        public int AARank => GetMember<IntType>("AARank");
+        public int? AARank => GetMember<IntType>("AARank");
 
         /// <summary>
         /// ActorDef name for this spawn
@@ -47,7 +47,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the SPAWNINFO struct for this spawn
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// AFK flag set?
@@ -62,7 +62,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current animation ID, see https://www.macroquest2.com/wiki/index.php/Animations
         /// </summary>
-        public int Animation => GetMember<IntType>("Animation");
+        public int? Animation => GetMember<IntType>("Animation");
 
         /// <summary>
         /// Anon flag set
@@ -95,7 +95,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns stupid numbers
         /// </summary>
         [Obsolete]
-        public FloatType BearingToTarget => GetMember<FloatType>("BearingToTarget");
+        public float? BearingToTarget => GetMember<FloatType>("BearingToTarget");
 
         /// <summary>
         /// Binding wounds?
@@ -105,7 +105,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Blind?
         /// </summary>
-        public int Blind => GetMember<IntType>("Blind");
+        public int? Blind => GetMember<IntType>("Blind");
 
         /// <summary>
         /// Body type
@@ -154,7 +154,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Ceiling height at the spawn's current location
         /// </summary>
-        public FloatType CeilingHeightAtCurrLocation => GetMember<FloatType>("CeilingHeightAtCurrLocation");
+        public float? CeilingHeightAtCurrLocation => GetMember<FloatType>("CeilingHeightAtCurrLocation");
 
         /// <summary>
         /// Class
@@ -169,7 +169,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Collision counter
         /// </summary>
-        public int CollisionCounter => GetMember<IntType>("CollisionCounter");
+        public int? CollisionCounter => GetMember<IntType>("CollisionCounter");
 
         /// <summary>
         /// Valid indexes are 0 and 1. TODO: What is SpawnType.CombatSkillTicks
@@ -179,33 +179,33 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn ID of this spawn's contractor
         /// </summary>
-        public int ContractorID => GetMember<IntType>("ContractorID");
+        public int? ContractorID => GetMember<IntType>("ContractorID");
 
         /// <summary>
         /// Returns weird numbers
         /// </summary>
         [Obsolete]
-        public int CorpseDragCount => GetMember<IntType>("CorpseDragCount");
+        public int? CorpseDragCount => GetMember<IntType>("CorpseDragCount");
 
         /// <summary>
         /// Current Endurance points (only updates when target/group)
         /// </summary>
-        public int CurrentEndurance => GetMember<IntType>("CurrentEndurance");
+        public int? CurrentEndurance => GetMember<IntType>("CurrentEndurance");
 
         /// <summary>
         /// Current hit points
         /// </summary>
-        public long CurrentHPs => GetMember<Int64Type>("CurrentHPs");
+        public long? CurrentHPs => GetMember<Int64Type>("CurrentHPs");
 
         /// <summary>
         /// Current Mana points (only updates when target/group)
         /// </summary>
-        public int CurrentMana => GetMember<IntType>("CurrentMana");
+        public int? CurrentMana => GetMember<IntType>("CurrentMana");
 
         /// <summary>
         /// Shortcut for -Z (makes Downward positive)
         /// </summary>
-        public FloatType D => GetMember<FloatType>("D");
+        public float? D => GetMember<FloatType>("D");
 
         /// <summary>
         /// Dead?
@@ -225,32 +225,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// 2D distance to the spawn in the XY plane
         /// </summary>
-        public FloatType Distance => GetMember<FloatType>("Distance");
+        public float? Distance => GetMember<FloatType>("Distance");
 
         /// <summary>
         /// 3D distance to the spawn in the XYZ plane
         /// </summary>
-        public FloatType Distance3D => GetMember<FloatType>("Distance3D");
+        public float? Distance3D => GetMember<FloatType>("Distance3D");
 
         /// <summary>
         /// 2D distance to the spawn in the XY plane, taking into account the spawn's movement but not the player's
         /// </summary>
-        public FloatType DistancePredict => GetMember<FloatType>("DistancePredict");
+        public float? DistancePredict => GetMember<FloatType>("DistancePredict");
 
         /// <summary>
         /// 1D distance to the spawn in the X plane
         /// </summary>
-        public FloatType DistanceX => GetMember<FloatType>("DistanceX");
+        public float? DistanceX => GetMember<FloatType>("DistanceX");
 
         /// <summary>
         /// 1D distance to the spawn in the Y plane
         /// </summary>
-        public FloatType DistanceY => GetMember<FloatType>("DistanceY");
+        public float? DistanceY => GetMember<FloatType>("DistanceY");
 
         /// <summary>
         /// 1D distance to the spawn in the Z plane
         /// </summary>
-        public FloatType DistanceZ => GetMember<FloatType>("DistanceZ");
+        public float? DistanceZ => GetMember<FloatType>("DistanceZ");
 
         /// <summary>
         /// Player this corpse is being dragged by
@@ -270,7 +270,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Shortcut for -X (makes Eastward positive)
         /// </summary>
-        public FloatType E => GetMember<FloatType>("E");
+        public float? E => GetMember<FloatType>("E");
 
         /// <summary>
         /// Location using EQ format
@@ -285,7 +285,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpawnType.FD?
         /// </summary>
-        public int FD => GetMember<IntType>("FD");
+        public int? FD => GetMember<IntType>("FD");
 
         /// <summary>
         /// Feet wet/swimming?
@@ -305,7 +305,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Floor z value at the spawn's location
         /// </summary>
-        public FloatType FloorZ => GetMember<FloatType>("FloorZ");
+        public float? FloorZ => GetMember<FloatType>("FloorZ");
 
         /// <summary>
         /// The spawn a player is following using /follow on - also returns your pet's target via ${Me.Pet.Following}
@@ -325,7 +325,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// GM rank
         /// </summary>
-        public int GMRank => GetMember<IntType>("GMRank");
+        public int? GMRank => GetMember<IntType>("GMRank");
 
         /// <summary>
         /// Name of the spawn's guild
@@ -355,7 +355,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Height
         /// </summary>
-        public FloatType Height => GetMember<FloatType>("Height");
+        public float? Height => GetMember<FloatType>("Height");
 
         /// <summary>
         /// Represents what the pc/npc is holding
@@ -365,7 +365,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Holding animation
         /// </summary>
-        public int HoldingAnimation => GetMember<IntType>("HoldingAnimation");
+        public int? HoldingAnimation => GetMember<IntType>("HoldingAnimation");
 
         /// <summary>
         /// Hovering?
@@ -375,12 +375,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn's ID
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// In a PvP area?
         /// </summary>
-        public int InPvPArea => GetMember<IntType>("InPvPArea");
+        public int? InPvPArea => GetMember<IntType>("InPvPArea");
 
         /// <summary>
         /// Invis?
@@ -400,12 +400,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn is berserk?
         /// </summary>
-        public int IsBerserk => GetMember<IntType>("IsBerserk");
+        public int? IsBerserk => GetMember<IntType>("IsBerserk");
 
         /// <summary>
         /// Spawn is a passenger?
         /// </summary>
-        public int IsPassenger => GetMember<IntType>("IsPassenger");
+        public int? IsPassenger => GetMember<IntType>("IsPassenger");
 
         /// <summary>
         /// If it's a summoned being (pet for example). Unsure if useful for druid nukes.
@@ -415,17 +415,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpawnType.LastCastNum
         /// </summary>
-        public int LastCastNum => GetMember<IntType>("LastCastNum");
+        public int? LastCastNum => GetMember<IntType>("LastCastNum");
 
         /// <summary>
         /// TODO: What is SpawnType.LastCastTime
         /// </summary>
-        public int LastCastTime => GetMember<IntType>("LastCastTime");
+        public int? LastCastTime => GetMember<IntType>("LastCastTime");
 
         /// <summary>
         /// Level of the spawn
         /// </summary>
-        public int Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// Spawn is levitating?
@@ -467,12 +467,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Looking this angle
         /// </summary>
-        public FloatType Look => GetMember<FloatType>("Look");
+        public float? Look => GetMember<FloatType>("Look");
 
         /// <summary>
         /// Current Raid or Group marked npc mark number (raid first)
         /// </summary>
-        public int Mark => GetMember<IntType>("Mark");
+        public int? Mark => GetMember<IntType>("Mark");
 
         /// <summary>
         /// Master, if it is charmed or a pet
@@ -482,32 +482,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Maximum Endurance points (only updates when target/group)
         /// </summary>
-        public int MaxEndurance => GetMember<IntType>("MaxEndurance");
+        public int? MaxEndurance => GetMember<IntType>("MaxEndurance");
 
         /// <summary>
         /// Maximum hit points
         /// </summary>
-        public long MaxHPs => GetMember<Int64Type>("MaxHPs");
+        public long? MaxHPs => GetMember<Int64Type>("MaxHPs");
 
         /// <summary>
         /// Maximum Mana points (only updates when target/group)
         /// </summary>
-        public int MaxMana => GetMember<IntType>("MaxMana");
+        public int? MaxMana => GetMember<IntType>("MaxMana");
 
         /// <summary>
         /// The max distance from this spawn for it to hit you
         /// </summary>
-        public FloatType MaxRange => GetMember<FloatType>("MaxRange");
+        public float? MaxRange => GetMember<FloatType>("MaxRange");
 
         /// <summary>
         /// The Max distance from this spawn for you to hit it
         /// </summary>
-        public FloatType MaxRangeTo => GetMember<FloatType>("MaxRangeTo");
+        public float? MaxRangeTo => GetMember<FloatType>("MaxRangeTo");
 
         /// <summary>
         /// Spawn ID of this spawn's contractor
         /// </summary>
-        public int MercID => GetMember<IntType>("MercID");
+        public int? MercID => GetMember<IntType>("MercID");
 
         /// <summary>
         /// This spawn's mount 
@@ -552,17 +552,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Endurance as a percentage
         /// </summary>
-        public int PctEndurance => GetMember<IntType>("PctEndurance");
+        public int? PctEndurance => GetMember<IntType>("PctEndurance");
 
         /// <summary>
         /// HP as a percentage
         /// </summary>
-        public long PctHPs => GetMember<Int64Type>("PctHPs");
+        public long? PctHPs => GetMember<Int64Type>("PctHPs");
 
         /// <summary>
         /// Mana as a percentage
         /// </summary>
-        public int PctMana => GetMember<IntType>("PctMana");
+        public int? PctMana => GetMember<IntType>("PctMana");
 
         /// <summary>
         /// Spawn's pet
@@ -573,7 +573,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// returns a mask as an inttype which has the following meaning:
         /// 0=Idle 1=Open 2=WeaponSheathed 4=Aggressive 8=ForcedAggressive 0x10=InstrumentEquipped 0x20=Stunned 0x40=PrimaryWeaponEquipped 0x80=SecondaryWeaponEquipped
         /// </summary>
-        public int PlayerState => GetMember<IntType>("PlayerState");
+        public int? PlayerState => GetMember<IntType>("PlayerState");
 
         /// <summary>
         /// Next spawn in EQ's favourite data structure
@@ -583,13 +583,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item ID of anything that may be in the Primary slot
         /// </summary>
-        public int Primary => GetMember<IntType>("Primary");
+        public int? Primary => GetMember<IntType>("Primary");
 
         /// <summary>
         /// TODO: What is SpawnType.pTouchingSwitch
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public int pTouchingSwitch => GetMember<IntType>("pTouchingSwitch");
+        public int? pTouchingSwitch => GetMember<IntType>("pTouchingSwitch");
 
         /// <summary>
         /// Spawn's race
@@ -604,12 +604,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Shortcut for -Y (makes Southward positive)
         /// </summary>
-        public FloatType S => GetMember<FloatType>("S");
+        public float? S => GetMember<FloatType>("S");
 
         /// <summary>
         /// Item ID of anything that may be in the Secondary slot
         /// </summary>
-        public int Secondary => GetMember<IntType>("Secondary");
+        public int? Secondary => GetMember<IntType>("Secondary");
 
         /// <summary>
         /// Spawn can see invis, takes an index of 0 - 2, guessing for invis/invis vs undead/improved invis?
@@ -635,7 +635,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Speed as a percentage of regular run speed
         /// </summary>
-        public FloatType Speed => GetMember<FloatType>("Speed");
+        public float? Speed => GetMember<FloatType>("Speed");
 
         /// <summary>
         /// Standing?
@@ -645,7 +645,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// StandState
         /// </summary>
-        public int StandState => GetMember<IntType>("StandState");
+        public int? StandState => GetMember<IntType>("StandState");
 
         /// <summary>
         /// STAND, SIT, DUCK, BIND, FEIGN, DEAD, STUN, HOVER, MOUNT, UNKNOWN
@@ -705,12 +705,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// TODO: What is SpawnType.WarCry?
         /// </summary>
-        public int WarCry => GetMember<IntType>("WarCry");
+        public int? WarCry => GetMember<IntType>("WarCry");
 
         /// <summary>
         /// X, the Northward-positive coordinate
         /// </summary>
-        public FloatType X => GetMember<FloatType>("X");
+        public float? X => GetMember<FloatType>("X");
 
         /// <summary>
         /// GREY, GREEN, LIGHT BLUE, BLUE, WHITE, YELLOW, RED
@@ -735,12 +735,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Y, the Westward-positive coordinate
         /// </summary>
-        public FloatType Y => GetMember<FloatType>("Y");
+        public float? Y => GetMember<FloatType>("Y");
 
         /// <summary>
         /// Z, the Upward-positive coordinate
         /// </summary>
-        public FloatType Z => GetMember<FloatType>("Z");
+        public float? Z => GetMember<FloatType>("Z");
 
         /// <summary>
         /// Targets the spawn (equivalent of /target)

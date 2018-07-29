@@ -11,42 +11,42 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the DOOR struct
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Switch ID
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// X coordinate (Westward-positive)
         /// </summary>
-        public FloatType X => GetMember<FloatType>("X");
+        public float? X => GetMember<FloatType>("X");
 
         /// <summary>
         /// Y coordinate (Northward-positive)
         /// </summary>
-        public FloatType Y => GetMember<FloatType>("Y");
+        public float? Y => GetMember<FloatType>("Y");
 
         /// <summary>
         /// Z coordinate (Upward-positive)
         /// </summary>
-        public FloatType Z => GetMember<FloatType>("Z");
+        public float? Z => GetMember<FloatType>("Z");
 
         /// <summary>
         /// X coordinate of "closed" switch (Westward-positive)
         /// </summary>
-        public FloatType DefaultX => GetMember<FloatType>("DefaultX");
+        public float? DefaultX => GetMember<FloatType>("DefaultX");
 
         /// <summary>
         /// Y coordinate of "closed" switch (Northward-positive)
         /// </summary>
-        public FloatType DefaultY => GetMember<FloatType>("DefaultY");
+        public float? DefaultY => GetMember<FloatType>("DefaultY");
 
         /// <summary>
         /// Z coordinate of "closed" switch (Upward-positive)
         /// </summary>
-        public FloatType DefaultZ => GetMember<FloatType>("DefaultZ");
+        public float? DefaultZ => GetMember<FloatType>("DefaultZ");
 
         /// <summary>
         /// Switch is facing this heading
@@ -76,12 +76,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// 2D distance from player to this switch in the XY plane
         /// </summary>
-        public FloatType Distance => GetMember<FloatType>("Distance");
+        public float? Distance => GetMember<FloatType>("Distance");
 
         /// <summary>
         /// 3D distance from player to this switch
         /// </summary>
-        public FloatType Distance3D => GetMember<FloatType>("Distance3D");
+        public float? Distance3D => GetMember<FloatType>("Distance3D");
 
         /// <summary>
         /// Returns TRUE if the switch is in LoS

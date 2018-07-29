@@ -16,16 +16,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Character's level
         /// </summary>
-        public int Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// ID of the zone the character is in
         /// </summary>
-        public int ZoneID => GetMember<IntType>("ZoneID");
+        public int? ZoneID => GetMember<IntType>("ZoneID");
 
         /// <summary>
         /// Total number of characters in the character select list
         /// </summary>
-        public int Count => GetMember<IntType>("Count");
+        public int? Count => GetMember<IntType>("Count");
     }
 }

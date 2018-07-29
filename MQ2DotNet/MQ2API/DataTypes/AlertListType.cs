@@ -14,32 +14,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Minimum level, inclusive
         /// </summary>
-        public int MinLevel => GetMember<IntType>("MinLevel");
+        public int? MinLevel => GetMember<IntType>("MinLevel");
 
         /// <summary>
         /// Maximum level, inclusive
         /// </summary>
-        public int MaxLevel => GetMember<IntType>("MaxLevel");
+        public int? MaxLevel => GetMember<IntType>("MaxLevel");
 
         /// <summary>
         /// Type, see eSpawnType in MQ2Internal.h
         /// </summary>
-        public int SpawnType => GetMember<IntType>("SpawnType");
+        public int? SpawnType => GetMember<IntType>("SpawnType");
 
         /// <summary>
         /// Spawn ID to match
         /// </summary>
-        public int SpawnID => GetMember<IntType>("SpawnID");
+        public int? SpawnID => GetMember<IntType>("SpawnID");
 
         /// <summary>
         /// Last spawn ID returned, used when iterating through a search spawn
         /// </summary>
-        public int FromSpawnID => GetMember<IntType>("FromSpawnID");
+        public int? FromSpawnID => GetMember<IntType>("FromSpawnID");
 
         /// <summary>
         /// Radius in which to search (around xLoc/yLoc if set, otherwise around character)
         /// </summary>
-        public FloatType Radius => GetMember<FloatType>("Radius");
+        public float? Radius => GetMember<FloatType>("Radius");
 
         /// <summary>
         /// Include spawns matching this name
@@ -69,7 +69,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Include spawns in this guild ID
         /// </summary>
-        public long GuildID => GetMember<Int64Type>("GuildID");
+        public long? GuildID => GetMember<Int64Type>("GuildID");
         
         /// <summary>
         /// SpawnID filter enabled?
@@ -230,27 +230,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Exclude spawn with an id of <see cref="SpawnID"/>
         /// </summary>
-        public int NotID => GetMember<IntType>("NotID");
+        public int? NotID => GetMember<IntType>("NotID");
 
         /// <summary>
         /// Exclude spawns near a spawn on this alert list
         /// </summary>
-        public int NotNearAlertList => GetMember<IntType>("NotNearAlertList");
+        public int? NotNearAlertList => GetMember<IntType>("NotNearAlertList");
 
         /// <summary>
         /// Include spawns near a spawn on this alert list
         /// </summary>
-        public int NearAlertList => GetMember<IntType>("NearAlertList");
+        public int? NearAlertList => GetMember<IntType>("NearAlertList");
 
         /// <summary>
         /// Exclude spawns on this alert list
         /// </summary>
-        public int NoAlertList => GetMember<IntType>("NoAlertList");
+        public int? NoAlertList => GetMember<IntType>("NoAlertList");
 
         /// <summary>
         /// Include spawns on this alert list
         /// </summary>
-        public int AlertList => GetMember<IntType>("AlertList");
+        public int? AlertList => GetMember<IntType>("AlertList");
 
         /// <summary>
         /// Include spawns within this distance of zLoc if set, otherwise character's z location
@@ -266,13 +266,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// X location to base search around instead of character's
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public FloatType xLoc => GetMember<FloatType>("xLoc");
+        public float? xLoc => GetMember<FloatType>("xLoc");
 
         /// <summary>
         /// Y location to base search around instead of character's
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public FloatType yLoc => GetMember<FloatType>("yLoc");
+        public float? yLoc => GetMember<FloatType>("yLoc");
 
         /// <summary>
         /// If true, use xLoc/yLoc/zLoc insted of character's position
@@ -290,7 +290,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// What to sort the list by
         /// 0 = level, 1 = display name (default), 2 = race, 3 = class, 4 = distance (2D, XY), 5 = guild, 6 = id
         /// </summary>
-        public int SortBy => GetMember<IntType>("SortBy");
+        public int? SortBy => GetMember<IntType>("SortBy");
 
         /// <summary>
         /// Exclude spawns in a guild
@@ -319,7 +319,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Bitmask of player states to include
         /// </summary>
-        public int PlayerState => GetMember<IntType>("PlayerState");
+        public int? PlayerState => GetMember<IntType>("PlayerState");
 
         /// <summary>
         /// Return the first spawn matching the ID or Name filters (ignores all other filters)

@@ -21,7 +21,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of this item slot (usable directly by /itemnotify)
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Item data for the item in this slot
@@ -36,7 +36,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Slot number inside the pack which holds the item, otherwise NULL
         /// </summary>
-        public int Slot => GetMember<IntType>("Slot");
+        public int? Slot => GetMember<IntType>("Slot");
 
         /// <summary>
         /// For inventory slots not inside packs, the slot name, otherwise NULL

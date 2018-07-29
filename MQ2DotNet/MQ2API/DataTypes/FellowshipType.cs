@@ -12,7 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Fellowship ID
         /// </summary>
-        public int ID => GetMember<IntType>("ID");
+        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Fellowship leader's name
@@ -27,7 +27,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of members in the fellowship
         /// </summary>
-        public int Members => GetMember<IntType>("Members");
+        public int? Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Member data by name or #
@@ -42,17 +42,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Campfire Y location
         /// </summary>
-        public FloatType CampfireY => GetMember<FloatType>("CampfireY");
+        public float? CampfireY => GetMember<FloatType>("CampfireY");
 
         /// <summary>
         /// Campfire X location
         /// </summary>
-        public FloatType CampfireX => GetMember<FloatType>("CampfireX");
+        public float? CampfireX => GetMember<FloatType>("CampfireX");
 
         /// <summary>
         /// Campfire Z location
         /// </summary>
-        public FloatType CampfireZ => GetMember<FloatType>("CampfireZ");
+        public float? CampfireZ => GetMember<FloatType>("CampfireZ");
 
         /// <summary>
         /// Zone information for the zone that contains your campfire

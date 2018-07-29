@@ -11,12 +11,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the spell ID DWORD for this buff slot in CTARGETWND
         /// </summary>
-        public new int Address => GetMember<IntType>("Address");
+        public new int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Index (0 based) of this buff in the target's buff window, i.e. slot #
         /// </summary>
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Remaining duration on the buff

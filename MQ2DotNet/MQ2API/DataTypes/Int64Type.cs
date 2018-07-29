@@ -11,9 +11,9 @@
         }
 
         // MQ2 type has a bunch of members, but it hardly seems worth implementing them here
-        public static implicit operator long(Int64Type typeVar)
+        public static implicit operator long?(Int64Type typeVar)
         {
-            return typeVar.VarPtr.Int64;
+            return typeVar?.VarPtr.Int64;
         }
     }
 }

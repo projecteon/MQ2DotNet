@@ -39,27 +39,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of clock ticks this instance of eqgame.exe has been running for
         /// </summary>
-        public int Running => GetMember<IntType>("Running");
+        public int? Running => GetMember<IntType>("Running");
 
         /// <summary>
         /// X (horizontal) coordinate of the mouse cursor in UI coordinate space, relative to the left edge of the game window
         /// </summary>
-        public int MouseX => GetMember<IntType>("MouseX");
+        public int? MouseX => GetMember<IntType>("MouseX");
 
         /// <summary>
         /// Y (vertical) coordinate of the mouse cursor in UI coordinate space relative to the top edge of the game window
         /// </summary>
-        public int MouseY => GetMember<IntType>("MouseY");
+        public int? MouseY => GetMember<IntType>("MouseY");
 
         /// <summary>
         /// Ping time to the EQ server in milliseconds
         /// </summary>
-        public int Ping => GetMember<IntType>("Ping");
+        public int? Ping => GetMember<IntType>("Ping");
 
         /// <summary>
         /// Number of chat channels you are in
         /// </summary>
-        public int ChatChannels => GetMember<IntType>("ChatChannels");
+        public int? ChatChannels => GetMember<IntType>("ChatChannels");
 
         /// <summary>
         /// Name of a chat channel by number, or true/false if you are in a chat channel by name
@@ -69,32 +69,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// X (horizontal) start of viewport, always 0?
         /// </summary>
-        public int ViewportX => GetMember<IntType>("ViewportX");
+        public int? ViewportX => GetMember<IntType>("ViewportX");
 
         /// <summary>
         /// Y (vertical) start of viewport, always 0?
         /// </summary>
-        public int ViewportY => GetMember<IntType>("ViewportY");
+        public int? ViewportY => GetMember<IntType>("ViewportY");
 
         /// <summary>
         /// X (horizontal) end of viewport
         /// </summary>
-        public int ViewportXMax => GetMember<IntType>("ViewportXMax");
+        public int? ViewportXMax => GetMember<IntType>("ViewportXMax");
 
         /// <summary>
         /// Y (vertical) end of viewport
         /// </summary>
-        public int ViewportYMax => GetMember<IntType>("ViewportYMax");
+        public int? ViewportYMax => GetMember<IntType>("ViewportYMax");
 
         /// <summary>
         /// X (horizontal) center of viewport
         /// </summary>
-        public int ViewportXCenter => GetMember<IntType>("ViewportXCenter");
+        public int? ViewportXCenter => GetMember<IntType>("ViewportXCenter");
 
         /// <summary>
         /// Y (vertical) center of viewport
         /// </summary>
-        public int ViewportYCenter => GetMember<IntType>("ViewportYCenter");
+        public int? ViewportYCenter => GetMember<IntType>("ViewportYCenter");
 
         /// <summary>
         /// TODO: Document EverQuestType.LClickedObject
@@ -109,12 +109,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Process ID of this eqgame.exe
         /// </summary>
-        public int PID => GetMember<IntType>("PID");
+        public int? PID => GetMember<IntType>("PID");
         
         /// <summary>
         /// Screen mode, 2 = windowed ?
         /// </summary>
-        public int ScreenMode => GetMember<IntType>("ScreenMode");
+        public int? ScreenMode => GetMember<IntType>("ScreenMode");
 
         /// <summary>
         /// Process priority of this eqgame.exe, one of "LOW", "BELOW NORMAL", "NORMAL", "ABOVE NORMAL", "REALTIME"

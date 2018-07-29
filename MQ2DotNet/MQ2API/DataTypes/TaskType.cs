@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Memory address of the TASKMEMBER struct
         /// </summary>
-        public int Address => GetMember<IntType>("Address");
+        public int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// Type of task, either Shared or Quest
@@ -23,7 +23,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Index of the task in your task list, 1 based
         /// </summary>
-        public int Index => GetMember<IntType>("Index");
+        public int? Index => GetMember<IntType>("Index");
 
         /// <summary>
         /// Name of the leader of the task
@@ -48,7 +48,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Number of members
         /// </summary>
-        public int Members => GetMember<IntType>("Members");
+        public int? Members => GetMember<IntType>("Members");
 
         /// <summary>
         /// Task objective by name or index (1 based)
