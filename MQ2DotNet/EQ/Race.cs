@@ -1,7 +1,8 @@
 ﻿using System;
+
 // ReSharper disable UnusedMember.Global
 
-namespace MQ2DotNet.MQ2API.DataTypes
+namespace MQ2DotNet.EQ
 {
     [Flags]
     public enum Race

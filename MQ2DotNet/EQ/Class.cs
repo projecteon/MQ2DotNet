@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MQ2DotNet.MQ2API.DataTypes
+namespace MQ2DotNet.EQ
 {
     [Flags]
     public enum Class

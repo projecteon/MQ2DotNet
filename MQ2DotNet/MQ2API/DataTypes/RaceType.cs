@@ -1,5 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 
+using MQ2DotNet.EQ;
+
 namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class RaceType : MQ2DataType

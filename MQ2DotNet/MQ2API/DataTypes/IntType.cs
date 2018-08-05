@@ -1,4 +1,6 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿using MQ2DotNet.EQ;
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
     public class IntType : MQ2DataType
     {
