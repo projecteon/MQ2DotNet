@@ -42,11 +42,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(NETFXKitsDir)Include\um;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>bin\Debug\</OutDir>
+    <OutDir>..\..\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(NETFXKitsDir)Include\um;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>bin\Release\</OutDir>
+    <OutDir>..\..\Release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

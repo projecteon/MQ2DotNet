@@ -27,17 +27,19 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\Release\MQ2DotNet.dll" xmlns="" />
+      <DocumentationSource sourceFile="..\..\Release\MQ2DotNet.dll" />
+      <DocumentationSource sourceFile="..\..\Release\MQ2DotNet.xml" />
     </DocumentationSources>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="MQ2DotNet" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="MQ2DotNet.EQ" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="MQ2DotNet.MQ2API" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="System" isExposed="True" xmlns="">
-  <Filter entryType="Class" fullName="System.MarshalByRefObject" filterName="MarshalByRefObject" isExposed="False" />
-  <Filter entryType="Class" fullName="System.Object" filterName="Object" isExposed="False" />
-</Filter></ApiFilter>
+      <Filter entryType="Namespace" fullName="MQ2DotNet.EQ" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="MQ2DotNet.MQ2API" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="System" isExposed="True" xmlns="">
+        <Filter entryType="Class" fullName="System.MarshalByRefObject" filterName="MarshalByRefObject" isExposed="False" />
+        <Filter entryType="Class" fullName="System.Object" filterName="Object" isExposed="False" />
+      </Filter>
+    </ApiFilter>
     <MissingTags>Summary, Parameter, Returns, Namespace, TypeParameter</MissingTags>
     <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
     <SyntaxFilters>None</SyntaxFilters>

@@ -151,7 +151,7 @@ namespace Toolbox
 
         private static int RemoveSPA(int spa)
         {
-            var buffs = Enumerable.Range(1, TLO.Me.MaxBuffSlots)
+            var buffs = Enumerable.Range(1, TLO.Me.MaxBuffSlots ?? 1)
                 .Select(index => TLO.Me.Buff[index])
                 .Where(buff => buff != null && buff.Spell.HasSPA[spa])
                 .ToList();
