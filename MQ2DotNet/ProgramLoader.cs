@@ -19,10 +19,20 @@ namespace MQ2DotNet
         /// <param name="appDomainName"></param>
         public ProgramLoader(string assemblyName, string appDomainName)
         {
+            // First look for it in its own folder
+            var applicationBase = MQ2.INIPath + "\\DotNet\\Programs\\" + assemblyName + "\\";
+            if (!File.Exists(applicationBase + assemblyName + ".dll"))
+            {
+                // Then in the plugins folder
+                applicationBase = MQ2.INIPath + "\\DotNet\\Programs\\";
+                if (!File.Exists(applicationBase + assemblyName + ".dll"))
+                    throw new FileNotFoundException($"Couldn't find program: {assemblyName}");
+            }
+
             // Configure & create a new app domain
             var appDomainSetup = new AppDomainSetup
             {
-                ApplicationBase = MQ2.INIPath
+                ApplicationBase = applicationBase
             };
             _appDomain = AppDomain.CreateDomain(appDomainName, null, appDomainSetup);
 
@@ -78,11 +88,15 @@ namespace MQ2DotNet
                 var assemblyMethods = assembly.GetExportedTypes().SelectMany(t => t.GetMethods()).Where(m => m.IsPublic);
 
                 // Find a method called Main with the required signature
-                _mainMethod = assemblyMethods.Single(m => m.Name == "Main"
-                                                          && m.IsStatic
-                                                          && m.ReturnType == typeof(Task)
-                                                          && m.GetParameters().Length == 1
-                                                          && m.GetParameters()[0].ParameterType == typeof(string[]));
+                _mainMethod = assemblyMethods.SingleOrDefault(m => m.Name == "Main"
+                                                              && m.IsStatic
+                                                              && m.ReturnType == typeof(Task)
+                                                              && m.GetParameters().Length == 1
+                                                              && m.GetParameters()[0].ParameterType == typeof(string[]));
+
+                if (_mainMethod == null)
+                    throw new MissingMethodException(
+                        "Failed to find a unique method with the signature: static async Task Main(string[])");
             }
 
             #region Plugin methods, delegated to the subclass of Plugin in the loaded assembly

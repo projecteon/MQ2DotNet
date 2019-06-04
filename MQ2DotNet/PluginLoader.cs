@@ -18,10 +18,20 @@ namespace MQ2DotNet
         /// <param name="appDomainName"></param>
         public PluginLoader(string assemblyName, string appDomainName)
         {
+            // First look for it in its own folder
+            var applicationBase = MQ2.INIPath + "\\DotNet\\Plugins\\" + assemblyName + "\\";
+            if (!File.Exists(applicationBase + assemblyName + ".dll"))
+            {
+                // Then in the plugins folder
+                applicationBase = MQ2.INIPath + "\\DotNet\\Plugins\\";
+                if (!File.Exists(applicationBase + assemblyName + ".dll"))
+                    throw new FileNotFoundException($"Couldn't find plugin: {assemblyName}");
+            }
+
             // Configure & create a new app domain
             var appDomainSetup = new AppDomainSetup
             {
-                ApplicationBase = MQ2.INIPath
+                ApplicationBase = applicationBase
             };
             _appDomain = AppDomain.CreateDomain(appDomainName, null, appDomainSetup);
 
