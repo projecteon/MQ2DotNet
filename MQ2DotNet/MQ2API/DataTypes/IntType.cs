@@ -1,4 +1,5 @@
-﻿using MQ2DotNet.EQ;
+﻿using System;
+using MQ2DotNet.EQ;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -12,6 +13,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public static implicit operator int?(IntType typeVar)
         {
             return typeVar?.VarPtr.Int;
+        }
+
+        public static implicit operator IntPtr?(IntType typeVar)
+        {
+            return typeVar?.VarPtr.Ptr;
         }
 
         public static implicit operator Class?(IntType typeVar)

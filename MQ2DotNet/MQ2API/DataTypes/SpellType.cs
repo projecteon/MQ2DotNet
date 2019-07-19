@@ -20,6 +20,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Stacks = new IndexedMember<BoolType, int>(this, "Stacks");
             HasSPA = new IndexedMember<BoolType, int>(this, "HasSPA");
             Trigger = new IndexedMember<SpellType, int>(this, "Trigger");
+            NoExpendReagentID = new IndexedMember<IntType, int>(this, "NoExpendReagentID");
+            StacksSpawn = new IndexedMember<BoolType, string, BoolType, int>(this, "StacksSpawn");
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public IndexedMember<BoolType, int> Stacks { get; }
 
-        public bool NewStacksTarget => GetMember<BoolType>("NewStacksTarget");
+        public bool StacksTarget => GetMember<BoolType>("StacksTarget");
 
         /// <summary>
         /// Does this spell stack with your pet's current buffs (duration is in ticks)
@@ -385,5 +387,20 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// TODO: What is SpellType.Trigger
         /// </summary>
         public IndexedMember<SpellType, int> Trigger { get; }
+
+        /// <summary>
+        /// Name of the spell, without rank
+        /// </summary>
+        public string BaseName => GetMember<StringType>("BaseName");
+
+        /// <summary>
+        /// Item ID of a non-expended reagent. 1 based index
+        /// </summary>
+        public IndexedMember<IntType, int> NoExpendReagentID { get; }
+
+        /// <summary>
+        /// Uses cached buffs to see if the spell will stack on a spawn, by name or Id. Not recommended.
+        /// </summary>
+        public IndexedMember<BoolType, string, BoolType, int> StacksSpawn { get; }
     }
 }

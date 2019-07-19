@@ -216,5 +216,30 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Shining buff if the target has one
         /// </summary>
         public TargetBuffType Shining => GetMember<TargetBuffType>("Shining");
+
+        /// <summary>
+        /// Fear debuff if the target has one
+        /// </summary>
+        public TargetBuffType Feared => GetMember<TargetBuffType>("Feared");
+
+        /// <summary>
+        /// Silence debuff if the target has one
+        /// </summary>
+        public TargetBuffType Silenced => GetMember<TargetBuffType>("Silenced");
+
+        /// <summary>
+        /// Invulnerability buff if the target has one
+        /// </summary>
+        public TargetBuffType Invulnerable => GetMember<TargetBuffType>("Invulnerable");
+
+        /// <summary>
+        /// DoT debuff if the target has one
+        /// </summary>
+        public TargetBuffType Dotted => GetMember<TargetBuffType>("Dotted");
+
+        /// <summary>
+        /// Maximum range from which the character can melee hit the target
+        /// </summary>
+        public TargetBuffType MaxMeleeTo => GetMember<TargetBuffType>("MaxMeleeTo");
     }
 }

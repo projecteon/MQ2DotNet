@@ -57,9 +57,12 @@
     <Compile Include="MQ2API\DataTypes\ArrayType.cs" />
     <Compile Include="MQ2API\DataTypes\AugType.cs" />
     <Compile Include="MQ2API\DataTypes\AuraType.cs" />
+    <Compile Include="MQ2API\DataTypes\BandolierItemType.cs" />
+    <Compile Include="MQ2API\DataTypes\BandolierType.cs" />
     <Compile Include="MQ2API\DataTypes\BenchmarkType.cs" />
     <Compile Include="MQ2API\DataTypes\BodyType.cs" />
     <Compile Include="MQ2API\DataTypes\BoolType.cs" />
+    <Compile Include="MQ2API\DataTypes\CachedBuffType.cs" />
     <Compile Include="MQ2API\DataTypes\BuffType.cs" />
     <Compile Include="MQ2API\DataTypes\ByteType.cs" />
     <Compile Include="MQ2API\DataTypes\CastType.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="MQ2API\DataTypes\MacroType.cs" />
     <Compile Include="MQ2API\DataTypes\MathType.cs" />
     <Compile Include="MQ2API\DataTypes\MercenaryType.cs" />
+    <Compile Include="MQ2API\DataTypes\MenuType.cs" />
     <Compile Include="MQ2API\DataTypes\MerchantType.cs" />
     <Compile Include="MQ2API\DataTypes\PetType.cs" />
     <Compile Include="MQ2API\DataTypes\PluginType.cs" />

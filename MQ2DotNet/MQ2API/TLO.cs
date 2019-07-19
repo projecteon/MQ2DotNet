@@ -345,6 +345,16 @@ namespace MQ2DotNet.MQ2API
         /// </summary>
         public static StringType Alerts => GetTLO<StringType>("Alert");
 
+        /// <summary>
+        /// Currently open context menu
+        /// </summary>
+        public static MenuType Menu => GetTLO<MenuType>("Menu");
+
+        /// <summary>
+        /// Is a sub with the given name defined?
+        /// </summary>
+        public static IndexedTLO<BoolType> SubDefined { get; } = new IndexedTLO<BoolType>("SubDefined");
+
         // Plugin types
         public static CastType Cast => GetTLO<CastType>("Cast");
     }

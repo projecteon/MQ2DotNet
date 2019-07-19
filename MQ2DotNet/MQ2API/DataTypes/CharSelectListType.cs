@@ -27,5 +27,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Total number of characters in the character select list
         /// </summary>
         public int? Count => GetMember<IntType>("Count");
+
+        /// <summary>
+        /// Character's class
+        /// </summary>
+        public string Class => GetMember<StringType>("Class");
+
+        /// <summary>
+        /// Character's race
+        /// </summary>
+        public string Race => GetMember<StringType>("Race");
     }
 }

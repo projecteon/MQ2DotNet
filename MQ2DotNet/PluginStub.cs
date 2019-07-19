@@ -373,7 +373,7 @@ namespace MQ2DotNet
         }
 
         #region Plugin API callbacks, each of these will invoke the corresponding method on each loaded plugin
-            private static void BeginZone()
+        private static void BeginZone()
         {
             foreach (var kvp in _plugins)
                 try

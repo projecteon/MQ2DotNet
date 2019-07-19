@@ -67,5 +67,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Prints undeclared variables to chat
         /// </summary>
         public void Undeclared() => GetMember<MQ2DataType>("Undeclared");
+
+        /// <summary>
+        /// Subroutine currently being executed, including arguments e.g. "MySub(string arg1)"
+        /// </summary>
+        public string CurSub => GetMember<StringType>("CurSub");
     }
 }

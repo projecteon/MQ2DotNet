@@ -36,5 +36,43 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns TRUE if the merchant's inventory is full
         /// </summary>
         public bool Full => GetMember<BoolType>("Full");
+
+        /// <summary>
+        /// Is the items list populated yet?
+        /// </summary>
+        public bool ItemsReceived => GetMember<BoolType>("ItemsReceived");
+
+        /// <summary>
+        /// Currently selected item
+        /// </summary>
+        public ItemType SelectedItem => GetMember<ItemType>("SelectedItem");
+
+        /// <summary>
+        /// Select an item in the merchants inventory by name. Prepend with '=' for an exact match, otherwise partial is used
+        /// </summary>
+        /// <param name="itemName"></param>
+        public void SelectItem(string itemName) => GetMember<MQ2DataType>("SelectItem", itemName);
+
+        /// <summary>
+        /// Buy the specified quantity of the currently selected item
+        /// </summary>
+        /// <param name="quantity"></param>
+        public void Buy(int quantity) => GetMember<MQ2DataType>("Buy", quantity.ToString());
+
+        /// <summary>
+        /// Sell the specified quantity of the currently selected item
+        /// </summary>
+        /// <param name="quantity"></param>
+        public void Sell(int quantity) => GetMember<MQ2DataType>("SellBuy", quantity.ToString());
+
+        /// <summary>
+        /// Open the merchant window for the current target if it is a merchant, otherwise the closest merchant
+        /// </summary>
+        public void OpenWindow() => GetMember<MQ2DataType>("OpenWindow");
+
+        /// <summary>
+        /// Close the merchant window if it is open
+        /// </summary>
+        public void CloseWindow() => GetMember<MQ2DataType>("CloseWindow");
     }
 }

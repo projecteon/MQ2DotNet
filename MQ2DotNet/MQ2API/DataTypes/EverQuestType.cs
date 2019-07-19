@@ -9,6 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
             CharSelectList = new IndexedMember<CharSelectListType, string, CharSelectListType, int>(this, "CharSelectList");
             ChatChannel = new IndexedStringMember<int, BoolType, string>(this, "ChatChannel");
+            ValidLoc = new IndexedMember<BoolType, string>(this, "ValidLoc");
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Is a /copylayout currently in progress?
         /// </summary>
-        public bool LayoutCopyInProgress => GetMember<BoolType>("LayoutCopyInProgress");
+        public bool? LayoutCopyInProgress => GetMember<BoolType>("LayoutCopyInProgress");
 
         /// <summary>
         /// Window the mouse cursor was last over
@@ -144,6 +145,21 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// True if using default UI skin
         /// </summary>
-        public bool IsDefaultUILoaded => GetMember<BoolType>("IsDefaultUILoaded");
+        public bool? IsDefaultUILoaded => GetMember<BoolType>("IsDefaultUILoaded");
+
+        /// <summary>
+        /// Handle to the window
+        /// </summary>
+        public IntPtr? HWND => GetMember<IntType>("HWND");
+
+        /// <summary>
+        /// Is the window in the foreground?
+        /// </summary>
+        public bool? Foreground => GetMember<BoolType>("Foreground");
+
+        /// <summary>
+        /// Is the given location, in yxz format separated by spaces, a valid location in the current zone?
+        /// </summary>
+        public IndexedMember<BoolType, string> ValidLoc { get; }
     }
 }

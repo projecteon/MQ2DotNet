@@ -39,6 +39,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             AltAbility = new IndexedMember<AltAbilityType, int, AltAbilityType, string>(this, "AltAbility");
             AbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AbilityReady");
             Ability = new IndexedStringMember<int, IntType, string>(this, "Ability");
+            Bandolier = new IndexedMember<BandolierType, string, BandolierType, int>(this, "Bandolier");
         }
 
         /// <summary>
@@ -1357,6 +1358,46 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Am I zoning?
         /// </summary>
         public bool Zoning => GetMember<BoolType>("Zoning");
+
+        /// <summary>
+        /// Bandolier set by slot number (1 - 20) or name
+        /// </summary>
+        public IndexedMember<BandolierType, string, BandolierType, int> Bandolier { get; }
+
+        /// <summary>
+        /// Luck
+        /// </summary>
+        public int? LCK => GetMember<IntType>("LCK");
+
+        /// <summary>
+        /// Blocked buff by index, valid index are 1 - 40
+        /// </summary>
+        public IndexedMember<SpellType, int> BlockedBuff { get; }
+
+        /// <summary>
+        /// Blocked pet buff by index, valid index are 1 - 40
+        /// </summary>
+        public IndexedMember<SpellType, int> BlockedPetBuff { get; }
+
+        /// <summary>
+        /// Fear debuff if the target has one
+        /// </summary>
+        public BuffType Feared => GetMember<BuffType>("Feared");
+
+        /// <summary>
+        /// Silence debuff if the target has one
+        /// </summary>
+        public BuffType Silenced => GetMember<BuffType>("Silenced");
+
+        /// <summary>
+        /// Invulnerability buff if the target has one
+        /// </summary>
+        public BuffType Invulnerable => GetMember<BuffType>("Invulnerable");
+
+        /// <summary>
+        /// DoT debuff if the target has one
+        /// </summary>
+        public BuffType Dotted => GetMember<BuffType>("Dotted");
 
         /// <summary>
         /// Equivalent of the command /stand on

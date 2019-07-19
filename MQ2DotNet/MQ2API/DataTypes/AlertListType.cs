@@ -325,5 +325,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Return the first spawn matching the ID or Name filters (ignores all other filters)
         /// </summary>
         public SpawnType Spawn => GetMember<SpawnType>("Spawn");
+        
+        /// <summary>
+        /// Include only bankers
+        /// </summary>
+        // ReSharper disable once InconsistentNaming
+        public bool bBanker => GetMember<BoolType>("bBanker");
     }
 }

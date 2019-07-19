@@ -730,5 +730,25 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Number of slots this item can be worn in (fingers/ears count as 2)
         /// </summary>
         public int? WornSlots => GetMember<IntType>("WornSlots");
+
+        /// <summary>
+        /// Item is lore when equipped?
+        /// </summary>
+        public bool LoreEquipped => GetMember<BoolType>("LoreEquipped");
+
+        /// <summary>
+        /// Luck value on item
+        /// </summary>
+        public int? Luck => GetMember<IntType>("Luck");
+
+        /// <summary>
+        /// Minimum luck value on item
+        /// </summary>
+        public int? MinLuck => GetMember<IntType>("MinLuck");
+
+        /// <summary>
+        /// Maximum luck value on item
+        /// </summary>
+        public int? MaxLuck => GetMember<IntType>("MaxLuck");
     }
 }

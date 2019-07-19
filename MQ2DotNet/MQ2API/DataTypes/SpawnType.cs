@@ -17,6 +17,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
             DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
+            CachedBuff = new IndexedMember<CachedBuffType>(this, "CachedBuff");
         }
 
         public SpawnType(IntPtr pSpawn) : base("spawn",
@@ -32,6 +33,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
             DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
+            CachedBuff = new IndexedMember<CachedBuffType>(this, "CachedBuff");
         }
 
         /// <summary>
@@ -741,6 +743,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Z, the Upward-positive coordinate
         /// </summary>
         public float? Z => GetMember<FloatType>("Z");
+
+        /// <summary>
+        /// This is fucked, not dealing with it
+        /// </summary>
+        public IndexedMember<CachedBuffType> CachedBuff { get; }
+
+        /// <summary>
+        /// Number of cached buffs
+        /// </summary>
+        public int? CachedBuffCount => GetMember<IntType>("CachedBuffCount");
 
         /// <summary>
         /// Targets the spawn (equivalent of /target)
