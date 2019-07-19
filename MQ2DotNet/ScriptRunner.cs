@@ -132,14 +132,15 @@ namespace MQ2DotNet
                 {
                     // Find the file
                     var filePath = MQ2.INIPath + "\\DotNet\\Scripts\\" + scriptName;
-                    if (!filePath.EndsWith(".cs"))
-                        filePath += ".cs";
+                    if (!filePath.EndsWith(".csx"))
+                        filePath += ".csx";
 
                     if (!File.Exists(filePath))
                         throw new FileNotFoundException($"Couldn't find script: {scriptName}");
 
                     // Add a few default references & usings
                     var options = ScriptOptions.Default
+                        .WithFilePath(filePath)
                         .AddReferences(Assembly.GetExecutingAssembly())
                         .AddImports("MQ2DotNet.MQ2API", "MQ2DotNet.MQ2API.DataTypes", "System.Threading.Tasks");
 
