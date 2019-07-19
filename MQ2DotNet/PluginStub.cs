@@ -64,6 +64,7 @@ namespace MQ2DotNet
 
         private static readonly Dictionary<string, PluginLoader> _plugins = new Dictionary<string, PluginLoader>();
         private static readonly Dictionary<string, ProgramLoader> _programs = new Dictionary<string, ProgramLoader>();
+        private static ScriptRunner _script;
 
         // ReSharper disable once UnusedMember.Global
         public static int InitializePlugin(string arg)
@@ -97,6 +98,13 @@ namespace MQ2DotNet
                 Commands.AddCommand("/netrun", NetRunCommand);
                 Commands.AddCommand("/netend", NetEndCommand);
 
+                // And C# scripts
+                Commands.AddCommand("/cs", CsCommand);
+                Commands.AddCommand("/endcs", EndCsCommand);
+
+                // The script app domain gets loaded immediately
+                _script = new ScriptRunner("CsScriptDomain");
+
                 // Load any plugins that are set to autoload. Fuck ini files
                 try
                 {
@@ -120,6 +128,8 @@ namespace MQ2DotNet
             Commands.RemoveCommand("/netplugin");
             Commands.RemoveCommand("/netrun");
             Commands.RemoveCommand("/netend");
+            Commands.RemoveCommand("/cs");
+            Commands.RemoveCommand("/endcs");
 
             // Call shutdown on each plugin, then dispose of it to unload the appdomain/dll
             foreach (var kvp in _plugins.ToList())
@@ -136,6 +146,9 @@ namespace MQ2DotNet
                 kvp.Value.Dispose();
                 _programs.Remove(kvp.Key);
             }
+
+            _script.Stop();
+            _script.Dispose();
         }
 
         private static void NetPluginCommand(params string[] args)
@@ -145,8 +158,8 @@ namespace MQ2DotNet
                                  || (args.Length >= 2 && args[1] != "noauto" && args[1] != "unload")
                                  || (args.Length == 3 && (args[1] != "unload" || args[2] != "noauto")))
             {
-                MQ2.WriteChat("Usage: /netplugin <plugin> [unload] [noauto]");
-                MQ2.WriteChat("Usage: /netplugin list");
+                MQ2.WriteChatPlugin("Usage: /netplugin <plugin> [unload] [noauto]");
+                MQ2.WriteChatPlugin("Usage: /netplugin list");
                 return;
             }
 
@@ -154,8 +167,8 @@ namespace MQ2DotNet
             if (args[0] == "list")
             {
                 foreach (var plugin in _plugins.Keys)
-                    MQ2.WriteChat(plugin);
-                MQ2.WriteChat($"{_plugins.Count} .NET plugins loaded");
+                    MQ2.WriteChatPlugin(plugin);
+                MQ2.WriteChatPlugin($"{_plugins.Count} plugins loaded");
                 return;
             }
 
@@ -168,21 +181,21 @@ namespace MQ2DotNet
             {
                 if (_plugins.ContainsKey(pluginName))
                 {
-                    MQ2.WriteChat($".NET plugin {pluginName} already loaded");
+                    MQ2.WriteChatPlugin($"{pluginName} already loaded");
                     return;
                 }
 
                 try
                 {
                     _plugins[pluginName] = new PluginLoader(pluginName, pluginName + "Domain");
-                    MQ2.WriteChat($".NET plugin {pluginName} loaded");
+                    MQ2.WriteChatPlugin($"{pluginName} loaded");
                     NativeMethods.WritePrivateProfileString("Plugins", pluginName, noauto ? "0" : "1", MQ2.INIPath + "\\MQ2DotNet.ini");
 
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"Error loading plugin {pluginName}:");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Error loading plugin {pluginName}:");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
 
                 return;
@@ -194,22 +207,55 @@ namespace MQ2DotNet
                 _plugins[pluginName].Dispose();
                 _plugins.Remove(pluginName);
 
-                MQ2.WriteChat($".NET plugin {pluginName} unloaded");
+                MQ2.WriteChatPlugin($"{pluginName} unloaded");
 
                 if (noauto)
                     NativeMethods.WritePrivateProfileString("Plugins", pluginName, "0", MQ2.INIPath + "\\MQ2DotNet.ini");
             }
             else
             {
-                MQ2.WriteChat($".NET plugin {pluginName} not loaded");
+                MQ2.WriteChatPlugin($"{pluginName} not loaded");
             }
+        }
+
+        private static void CsCommand(params string[] args)
+        {
+            if (args.Length == 0)
+            {
+                MQ2.WriteChatScript("Usage: /cs <file> [<arg1> <arg2> ...]");
+                return;
+            }
+
+            var scriptFile = args[0];
+
+            try
+            {
+                _script.RunScript(scriptFile, args.Skip(1).ToArray());
+
+            }
+            catch (Exception e)
+            {
+                MQ2.WriteChatScriptError($"Error running C# script {scriptFile}:");
+                MQ2.WriteChatScriptError(e.ToString());
+            }
+        }
+
+        private static void EndCsCommand(params string[] args)
+        {
+            if (_script.Name == null)
+            {
+                MQ2.WriteChatScript("No C# script running");
+                return;
+            }
+
+            _script.Stop();
         }
 
         private static void NetRunCommand(params string[] args)
         {
             if (args.Length == 0)
             {
-                MQ2.WriteChat("Usage: /netrun <program> [<arg1> <arg2> ...]");
+                MQ2.WriteChatProgram("Usage: /netrun <program> [<arg1> <arg2> ...]");
                 return;
             }
 
@@ -218,13 +264,13 @@ namespace MQ2DotNet
             try
             {
                 _programs[programName] = new ProgramLoader(programName, programName + "Domain");
-                MQ2.WriteChat($"Starting .NET program {programName}");
+                MQ2.WriteChatProgram($"Starting {programName}");
 
             }
             catch (Exception e)
             {
-                MQ2.WriteChat($"Error loading program {programName}:");
-                MQ2.WriteChat(e.ToString());
+                MQ2.WriteChatProgramError($"Error loading {programName}:");
+                MQ2.WriteChatProgramError(e.ToString());
             }
 
             try
@@ -236,8 +282,8 @@ namespace MQ2DotNet
                 _programs[programName].Stop();
                 _programs[programName].Dispose();
                 _programs.Remove(programName);
-                MQ2.WriteChat($"Error starting program {programName}:");
-                MQ2.WriteChat(e.ToString());
+                MQ2.WriteChatProgramError($"Error starting {programName}:");
+                MQ2.WriteChatProgramError(e.ToString());
             }
         }
 
@@ -245,13 +291,13 @@ namespace MQ2DotNet
         {
             if (args.Length != 1)
             {
-                MQ2.WriteChat("Usage: /netrun <program|*>");
+                MQ2.WriteChatProgram("Usage: /netend <program|*>");
                 return;
             }
 
             if (_programs.Count == 0)
             {
-                MQ2.WriteChat("No .NET programs running");
+                MQ2.WriteChatProgram("No programs running");
                 return;
             }
 
@@ -264,7 +310,7 @@ namespace MQ2DotNet
                     kvp.Value.Stop();
                     kvp.Value.Dispose();
                     _programs.Remove(kvp.Key);
-                    MQ2.WriteChat($".NET program {kvp.Key} ended");
+                    MQ2.WriteChatProgram($"{kvp.Key} ended");
                 }
             }
             else
@@ -274,10 +320,10 @@ namespace MQ2DotNet
                     program.Stop();
                     program.Dispose();
                     _programs.Remove(programName);
-                    MQ2.WriteChat($".NET program {programName} ended");
+                    MQ2.WriteChatProgram($"{programName} ended");
                 }
                 else
-                    MQ2.WriteChat($".NET program {programName} not running");
+                    MQ2.WriteChatProgram($"{programName} not running");
             }
         }
 
@@ -289,10 +335,10 @@ namespace MQ2DotNet
                 {
                     kvp.Value.OnPulse();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //Chat.WriteChat($"[MQ2DotNet] Exception in OnPulse in plugin {kvp.Key}");
-                    //Chat.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnPulse in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
 
             // Also call OnPulse for each program, which will run any queued continuations. Remove & unload any finished programs
@@ -300,23 +346,34 @@ namespace MQ2DotNet
                 try
                 {
                     var status = kvp.Value.OnPulse();
-                    if (status == TaskStatus.RanToCompletion || status == TaskStatus.Canceled || status == TaskStatus.Faulted)
+                    if (status == TaskStatus.RanToCompletion || status == TaskStatus.Canceled ||
+                        status == TaskStatus.Faulted)
                     {
-                        MQ2.WriteChat($".NET program {kvp.Key} finished, status = {status}");
+                        MQ2.WriteChatProgram($"{kvp.Key} finished, status = {status}");
                         kvp.Value.Stop();
                         kvp.Value.Dispose();
                         _programs.Remove(kvp.Key);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //Chat.WriteChat($"[MQ2DotNet] Exception in OnPulse in plugin {kvp.Key}");
-                    //Chat.WriteChat(e.ToString());
+                    MQ2.WriteChatProgramError($"Exception in OnPulse in program {kvp.Key}");
+                    MQ2.WriteChatProgramError(e.ToString());
                 }
+
+            try
+            {
+                _script.OnPulse();
+            }
+            catch (Exception e)
+            {
+                MQ2.WriteChatScriptError($"Exception in OnPulse in script");
+                MQ2.WriteChatScriptError(e.ToString());
+            }
         }
 
         #region Plugin API callbacks, each of these will invoke the corresponding method on each loaded plugin
-        private static void BeginZone()
+            private static void BeginZone()
         {
             foreach (var kvp in _plugins)
                 try
@@ -325,8 +382,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in BeginZone in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in BeginZone in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -339,8 +396,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in EndZone in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in EndZone in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -353,8 +410,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnAddGroundItem in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnAddGroundItem in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -367,8 +424,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnAddSpawn in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnAddSpawn in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -381,8 +438,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnCleanUI in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnCleanUI in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -395,8 +452,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnDrawHUD in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnDrawHUD in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -411,8 +468,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnIncomingChat in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnIncomingChat in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
 
             return ret;
@@ -427,8 +484,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnReloadUI in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnReloadUI in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -441,8 +498,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnRemoveGroundItem in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnRemoveGroundItem in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -455,8 +512,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnRemoveSpawn in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnRemoveSpawn in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -469,8 +526,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnWriteChatColor in plugin {kvp.Key}:");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnWriteChatColor in plugin {kvp.Key}:");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
 
             return 0;
@@ -485,8 +542,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in OnZoned in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in OnZoned in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
 
@@ -499,8 +556,8 @@ namespace MQ2DotNet
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"[MQ2DotNet] Exception in SetGameState in plugin {kvp.Key}");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatPluginError($"Exception in SetGameState in plugin {kvp.Key}");
+                    MQ2.WriteChatPluginError(e.ToString());
                 }
         }
         #endregion

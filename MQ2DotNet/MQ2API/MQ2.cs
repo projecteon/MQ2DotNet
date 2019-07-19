@@ -15,6 +15,12 @@ namespace MQ2DotNet.MQ2API
 
         [DllImport("MQ2Main.dll", EntryPoint = "HideDoCommand", CallingConvention = CallingConvention.Cdecl)]
         private static extern void MQ2HideDoCommand(IntPtr pCharSpawn, [MarshalAs(UnmanagedType.LPStr)] string Command, bool delayed);
+
+        [DllImport("MQ2Main.dll", EntryPoint = "WriteChatf", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void MQ2WriteChatf([MarshalAs(UnmanagedType.LPStr)] string buffer);
+
+        [DllImport("MQ2Main.dll", EntryPoint = "WriteChatfSafe", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void MQ2WriteChatfSafe([MarshalAs(UnmanagedType.LPStr)] string buffer);
         #endregion
 
         /// <summary>
@@ -89,18 +95,95 @@ namespace MQ2DotNet.MQ2API
             }
         }
 
+        private static string Sanitize(string text)
+        {
+            // Trim so as to not crash MQ2/EQ
+            var sanitized = text.Substring(0, Math.Min(text.Length, 2047));
+            var index = text.IndexOfAny(new[] { '\r', '\n' });
+            if (index > 0)
+                sanitized = sanitized.Substring(0, index);
+            return sanitized;
+        }
+
         /// <summary>
         /// Write a line of chat to the MQ2 chat window
         /// </summary>
-        /// <param name="buffer">Text to write</param>
-        [DllImport("MQ2Main.dll", EntryPoint = "WriteChatf", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WriteChat([MarshalAs(UnmanagedType.LPStr)] string buffer);
+        /// <param name="text">Text to write</param>
+        public static void WriteChat(string text)
+        {
+            MQ2WriteChatf(Sanitize(text));
+        }
 
         /// <summary>
         /// Threadsafe version of <see cref="WriteChat"/>
         /// </summary>
-        /// <param name="buffer">Text to write</param>
-        [DllImport("MQ2Main.dll", EntryPoint = "WriteChatfSafe", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void WriteChatSafe([MarshalAs(UnmanagedType.LPStr)] string buffer);
+        /// <param name="text">Text to write</param>
+        public static void WriteChatSafe(string text)
+        {
+            // Trim so as to not crash MQ2/EQ
+            MQ2WriteChatf(Sanitize(text));
+        }
+
+        #region Internal WriteChat overloads
+        internal static void WriteChatGeneralError(string text)
+        {
+            WriteChat($"\ag[.NET] \arError: \aw{text}");
+        }
+
+        internal static void WriteChatGeneralWarning(string text)
+        {
+            WriteChat($"\ag[.NET] \ayWarning: \aw{text}");
+        }
+
+        internal static void WriteChatGeneral(string text)
+        {
+            WriteChat($"\ag[.NET] \aw{text}");
+        }
+
+        internal static void WriteChatPluginError(string text)
+        {
+            WriteChat($"\ag[.NET Plugin] \arError: \aw{text}");
+        }
+
+        internal static void WriteChatPluginWarning(string text)
+        {
+            WriteChat($"\ag[.NET Plugin] \ayWarning: \aw{text}");
+        }
+
+        internal static void WriteChatPlugin(string text)
+        {
+            WriteChat($"\ag[.NET Plugin] \aw{text}");
+        }
+
+        internal static void WriteChatProgramError(string text)
+        {
+            WriteChat($"\ag[.NET Program] \arError: \aw{text}");
+        }
+
+        internal static void WriteChatProgramWarning(string text)
+        {
+            WriteChat($"\ag[.NET Program] \ayWarning: \aw{text}");
+        }
+
+        internal static void WriteChatProgram(string text)
+        {
+            WriteChat($"\ag[.NET Program] \aw{text}");
+        }
+
+        internal static void WriteChatScriptError(string text)
+        {
+            WriteChat($"\ag[C# Script] \arError: \aw{text}");
+        }
+
+        internal static void WriteChatScriptWarning(string text)
+        {
+            WriteChat($"\ag[C# Script] \ayWarning: \aw{text}");
+        }
+
+        internal static void WriteChatScript(string text)
+        {
+            WriteChat($"\ag[C# Script] \aw{text}");
+        }
+        #endregion
     }
 }

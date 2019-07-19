@@ -58,8 +58,8 @@ namespace MQ2DotNet.MQ2API
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChat($"Exception in {command}:");
-                    MQ2.WriteChat(e.ToString());
+                    MQ2.WriteChatGeneralError($"Exception in {command}: {e}");
+                    MQ2.WriteChatGeneralError(e.ToString());
                 }
             });
         }
@@ -82,8 +82,8 @@ namespace MQ2DotNet.MQ2API
                     catch (Exception e)
                     {
                         // This won't catch exceptions from the command handler, since that will get called from EventLoopContext.DoEvents
-                        MQ2.WriteChat($"Exception in {command}:");
-                        MQ2.WriteChat(e.ToString());
+                        MQ2.WriteChatGeneralError($"Exception in {command}:");
+                        MQ2.WriteChatGeneralError(e.ToString());
                     }
                 });
             });

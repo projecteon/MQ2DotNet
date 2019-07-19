@@ -32,7 +32,8 @@ namespace MQ2DotNet
             // Configure & create a new app domain
             var appDomainSetup = new AppDomainSetup
             {
-                ApplicationBase = applicationBase
+                ApplicationBase = MQ2.INIPath,
+                PrivateBinPath = applicationBase
             };
             _appDomain = AppDomain.CreateDomain(appDomainName, null, appDomainSetup);
 
@@ -116,7 +117,7 @@ namespace MQ2DotNet
                 var removedContinuationCount = EventLoopContext.Instance.RemoveAll();
 
                 if (removedContinuationCount > 0)
-                    MQ2.WriteChat($"Warning, removed {removedContinuationCount} continuations from queue");
+                    MQ2.WriteChatProgramWarning($"Removed {removedContinuationCount} continuations from queue");
             });
 
             public override TaskStatus OnPulse()

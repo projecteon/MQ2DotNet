@@ -123,7 +123,7 @@ namespace MQ2DotNet
                 var removedContinuationCount = EventLoopContext.Instance.RemoveAll();
 
                 if (removedContinuationCount > 0)
-                    MQ2.WriteChat($"Warning, removed {removedContinuationCount} continuations from queue");
+                    MQ2.WriteChatPluginWarning($"Removed {removedContinuationCount} continuations from queue");
             });
 
             public override void OnPulse()
