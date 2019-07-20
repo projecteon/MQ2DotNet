@@ -5,11 +5,16 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using MQ2DotNet.MQ2API;
+using MQ2DotNet.MQ2API.DataTypes;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet
 {
-    // ReSharper disable once UnusedMember.Global
+    /// <summary>
+    /// Class containing functions for MQ2DotNetLoader to call from the regular plugin callbacks
+    /// </summary>
     public static class PluginStub
     {
         #region Delegates/typedefs
@@ -66,7 +71,13 @@ namespace MQ2DotNet
         private static readonly Dictionary<string, ProgramLoader> _programs = new Dictionary<string, ProgramLoader>();
         private static ScriptRunner _script;
 
-        // ReSharper disable once UnusedMember.Global
+        /// <summary>
+        /// Entrypoint, called by MQ2DotNetLoader
+        /// Entrypoint, called by MQ2DotNetLoader
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        [PublicAPI]
         public static int InitializePlugin(string arg)
         {
             // This will be the first managed function that gets called. 
@@ -385,6 +396,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in BeginZone in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllBeginZone();
         }
 
         private static void EndZone()
@@ -399,34 +412,44 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in EndZone in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllEndZone();
         }
 
         private static void OnAddGroundItem(IntPtr pNewGroundItem)
         {
+            var groundItem = new GroundType(pNewGroundItem);
+
             foreach (var kvp in _plugins)
                 try
                 {
-                    kvp.Value.OnAddGroundItem(pNewGroundItem);
+                    kvp.Value.OnAddGroundItem(groundItem);
                 }
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnAddGroundItem in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnAddGroundItem(groundItem);
         }
 
         private static void OnAddSpawn(IntPtr pNewSpawn)
         {
+            var spawn = new SpawnType(pNewSpawn);
+
             foreach (var kvp in _plugins)
                 try
                 {
-                    kvp.Value.OnAddSpawn(pNewSpawn);
+                    kvp.Value.OnAddSpawn(spawn);
                 }
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnAddSpawn in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnAddSpawn(spawn);
         }
 
         private static void OnCleanUI()
@@ -441,6 +464,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnCleanUI in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnCleanUI();
         }
 
         private static void OnDrawHUD()
@@ -455,6 +480,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnDrawHUD in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnDrawHUD();
         }
 
         private static uint OnIncomingChat(string line, uint color)
@@ -471,6 +498,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnIncomingChat in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+            
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnChatEQ(line);
 
             return ret;
         }
@@ -487,34 +516,44 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnReloadUI in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnReloadUI();
         }
 
         private static void OnRemoveGroundItem(IntPtr pGroundItem)
         {
+            var groundItem = new GroundType(pGroundItem);
+
             foreach (var kvp in _plugins)
                 try
                 {
-                    kvp.Value.OnRemoveGroundItem(pGroundItem);
+                    kvp.Value.OnRemoveGroundItem(groundItem);
                 }
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnRemoveGroundItem in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnRemoveGroundItem(groundItem);
         }
 
         private static void OnRemoveSpawn(IntPtr pSpawn)
         {
+            var spawn = new SpawnType(pSpawn);
+
             foreach (var kvp in _plugins)
                 try
                 {
-                    kvp.Value.OnRemoveSpawn(pSpawn);
+                    kvp.Value.OnRemoveSpawn(spawn);
                 }
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnRemoveSpawn in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnRemoveSpawn(spawn);
         }
 
         private static uint OnWriteChatColor(string line, uint color, uint filter)
@@ -529,6 +568,9 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnWriteChatColor in plugin {kvp.Key}:");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnChatMQ2(line);
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnChat(line);
 
             return 0;
         }
@@ -545,6 +587,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in OnZoned in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllOnZoned();
         }
 
         private static void SetGameState(uint gameState)
@@ -559,6 +603,8 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError($"Exception in SetGameState in plugin {kvp.Key}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
+
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllSetGameState(gameState);
         }
         #endregion
     }

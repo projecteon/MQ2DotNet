@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for information about the currently running macro
+    /// </summary>
+    [PublicAPI]
     public class MacroType : MQ2DataType
     {
         internal MacroType(MQ2TypeVar typeVar) : base(typeVar)
@@ -15,7 +19,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public string Name => GetMember<StringType>("Name");
 
-
+        /// <summary>
+        /// Time in milliseconds that the macro has been running for
+        /// </summary>
         public long? RunTime => GetMember<Int64Type>("RunTime");
 
         /// <summary>

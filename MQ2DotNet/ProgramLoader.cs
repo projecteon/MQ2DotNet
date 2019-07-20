@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using MQ2DotNet.MQ2API;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet
 {

@@ -1,5 +1,11 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿using JetBrains.Annotations;
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a bandolier item set
+    /// </summary>
+    [PublicAPI]
     public class BandolierType : MQ2DataType
     {
         internal BandolierType(MQ2TypeVar typeVar) : base(typeVar)

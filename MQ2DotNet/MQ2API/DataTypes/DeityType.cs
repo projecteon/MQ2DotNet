@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a deity
+    /// </summary>
+    [PublicAPI]
     public class DeityType : MQ2DataType
     {
         internal DeityType(MQ2TypeVar typeVar) : base(typeVar)

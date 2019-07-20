@@ -1,10 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
     /// <summary>
-    /// An alert list is a list of spawn searches
+    /// MQ2 type for an alert list (a list of spawn searches)
     /// </summary>
+    [PublicAPI]
     public class AlertType : MQ2DataType
     {
         internal AlertType(MQ2TypeVar typeVar) : base(typeVar)

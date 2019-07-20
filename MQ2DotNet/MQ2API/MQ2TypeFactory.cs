@@ -5,6 +5,9 @@ using MQ2DotNet.MQ2API.DataTypes;
 
 namespace MQ2DotNet.MQ2API
 {
+    /// <summary>
+    /// Creates a wrapper class from an MQ2TypeVar
+    /// </summary>
     public static class MQ2TypeFactory
     {
         private static readonly Dictionary<IntPtr, Func<MQ2TypeVar, MQ2DataType>> _constructors = new Dictionary<IntPtr, Func<MQ2TypeVar, MQ2DataType>>();
@@ -27,6 +30,11 @@ namespace MQ2DotNet.MQ2API
         [DllImport("MQ2Main.dll", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr FindMQ2DataType(string Name);
 
+        /// <summary>
+        /// Register a type
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <param name="constructor"></param>
         public static void Register(string typeName, Func<MQ2TypeVar, MQ2DataType> constructor)
         {
             var dataType = FindMQ2DataType(typeName);

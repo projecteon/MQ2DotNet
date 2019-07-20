@@ -1,13 +1,33 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using System;
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a ground object
+    /// </summary>
+    [PublicAPI]
     public class GroundType : MQ2DataType
     {
         internal GroundType(MQ2TypeVar typeVar) : base(typeVar)
         {
         }
 
+        /// <summary>
+        /// Create a new instance from a pointer to a GROUNDOBJECT struct
+        /// </summary>
+        /// <param name="pGroundItem"></param>
+        public GroundType(IntPtr pGroundItem) : base("ground",
+            new MQ2VarPtr()
+            {
+                Ptr = pGroundItem
+            })
+        {
+        }
+
+        /// <summary>
+        /// Address of the GROUNDOBJECT struct
+        /// </summary>
         public int? Address => GetMember<IntType>("Address");
 
         /// <summary>

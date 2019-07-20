@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a heading
+    /// </summary>
+    [PublicAPI]
     public class HeadingType : MQ2DataType
     {
         internal HeadingType(MQ2TypeVar typeVar) : base(typeVar)
@@ -33,9 +37,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public string Name => GetMember<StringType>("Name");
 
-        public static implicit operator float(HeadingType typeVar)
+        /// <summary>
+        /// Implicit conversion to a nullable float
+        /// </summary>
+        /// <param name="typeVar"></param>
+        public static implicit operator float?(HeadingType typeVar)
         {
-            return typeVar.VarPtr.Float;
+            return typeVar?.VarPtr.Float;
         }
     }
 }

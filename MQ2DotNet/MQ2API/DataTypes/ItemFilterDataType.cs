@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a filter in advanced loot
+    /// </summary>
+    [PublicAPI]
     public class ItemFilterDataType : MQ2DataType
     {
         internal ItemFilterDataType(MQ2TypeVar typeVar) : base(typeVar)

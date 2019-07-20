@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a cached buff (i.e. a buff that's been "remembered" after you've targeted another spawn
+    /// </summary>
+    [PublicAPI]
     public class CachedBuffType : MQ2DataType
     {
         internal CachedBuffType(MQ2TypeVar typeVar) : base(typeVar)
@@ -13,6 +17,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public string CasterName => GetMember<StringType>("CasterName");
         
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public int? Count => GetMember<IntType>("Count");
 
         /// <summary>

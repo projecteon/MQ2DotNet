@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MQ2DotNet
+namespace MQ2DotNet.Utility
 {
     internal static class NativeMethods
     {

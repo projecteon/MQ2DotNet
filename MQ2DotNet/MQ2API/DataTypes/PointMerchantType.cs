@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a point merchant
+    /// </summary>
+    [PublicAPI]
     public class PointMerchantType : SpawnType
     {
         internal PointMerchantType(MQ2TypeVar typeVar) : base(typeVar)

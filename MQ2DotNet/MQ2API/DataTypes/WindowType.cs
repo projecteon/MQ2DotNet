@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// This type is used for both windows and controls on the window
     /// Some members are only applicable to controls e.g. Checked
     /// </summary>
+    [PublicAPI]
     public class WindowType : MQ2DataType
     {
         internal WindowType(MQ2TypeVar typeVar) : base(typeVar)
@@ -246,11 +247,14 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <param name="index">1 based index of the item to select</param>
         public void Select(int index) => GetMember<MQ2DataType>("Select", index.ToString());
 
+        /// <summary>
+        /// Provides custom index access for list box items
+        /// </summary>
         public class ListMember
         {
             private readonly WindowType _owner;
 
-            public ListMember(WindowType owner)
+            internal ListMember(WindowType owner)
             {
                 _owner = owner;
             }

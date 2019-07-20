@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using MQ2DotNet.MQ2API;
 
-namespace MQ2DotNet
+namespace MQ2DotNet.Utility
 {
     /// <summary>
     /// Synchronization context that will run all continuations when DoEvents is called, intended for use with an event loop
@@ -17,16 +13,21 @@ namespace MQ2DotNet
     {
         private readonly ConcurrentQueue<KeyValuePair<SendOrPostCallback, object>> _queue = new ConcurrentQueue<KeyValuePair<SendOrPostCallback, object>>();
 
+        /// <inheritdoc />
         public override void Post(SendOrPostCallback d, object state)
         {
             _queue.Enqueue(new KeyValuePair<SendOrPostCallback, object>(d, state));
         }
 
+        /// <inheritdoc />
         public override void Send(SendOrPostCallback d, object state)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Invoke all queued continuations
+        /// </summary>
         public void DoEvents()
         {
             // Any continuations currently in the queue get removed and inserted into a list
@@ -75,8 +76,15 @@ namespace MQ2DotNet
             }
         }
 
+        /// <summary>
+        /// Singleton instance of the context
+        /// </summary>
         public static EventLoopContext Instance { get; } = new EventLoopContext();
 
+        /// <summary>
+        /// Remove all queued continuations
+        /// </summary>
+        /// <returns></returns>
         public int RemoveAll()
         {
             var count = 0;

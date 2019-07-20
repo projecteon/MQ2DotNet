@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a fellowship
+    /// </summary>
+    [PublicAPI]
     public class FellowshipType : MQ2DataType
     {
         internal FellowshipType(MQ2TypeVar typeVar) : base(typeVar)

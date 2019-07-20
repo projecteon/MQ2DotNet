@@ -1,8 +1,12 @@
 ﻿using System;
-// ReSharper disable UnusedMember.Global
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an aura
+    /// </summary>
+    [PublicAPI]
     public class AuraType : MQ2DataType
     {
         internal AuraType(MQ2TypeVar typeVar) : base(typeVar)

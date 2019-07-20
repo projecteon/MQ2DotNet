@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MQ2DotNet
 {
-    public abstract class Program : MarshalByRefObject
+    internal abstract class Program : MarshalByRefObject
     {
         public virtual void Start(string[] args)
         {

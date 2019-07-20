@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an augmentation slot on an item
+    /// </summary>
+    [PublicAPI]
     public class AugType : MQ2DataType
     {
         internal AugType(MQ2TypeVar typeVar) : base(typeVar)

@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a member of a raid
+    /// </summary>
+    [PublicAPI]
     public class RaidMemberType : MQ2DataType
     {
         internal RaidMemberType(MQ2TypeVar typeVar) : base(typeVar)

@@ -1,7 +1,9 @@
-﻿// ReSharper disable UnusedMember.Global
-
-namespace MQ2DotNet.MQ2API.DataTypes
+﻿namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the character's group
+    /// </summary>
+    /// [PublicAPI]
     public class GroupType : MQ2DataType
     {
         internal GroupType(MQ2TypeVar typeVar) : base(typeVar)

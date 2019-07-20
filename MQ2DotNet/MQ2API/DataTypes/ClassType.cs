@@ -1,13 +1,21 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
+using MQ2DotNet.EQ;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a character class
+    /// </summary>
+    [PublicAPI]
     public class ClassType : MQ2DataType
     {
         internal ClassType(MQ2TypeVar typeVar) : base(typeVar)
         {
         }
 
+        /// <summary>
+        /// TODO: What is this
+        /// </summary>
         public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
@@ -64,5 +72,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Mercenary?
         /// </summary>
         public bool MercType => GetMember<BoolType>("MercType");
+
+        /// <summary>
+        /// Implicit conversion to a Class enumeration
+        /// </summary>
+        /// <param name="typeVar"></param>
+        /// <returns></returns>
+        public static implicit operator Class?(ClassType typeVar) => (Class?) typeVar?.VarPtr.Int;
     }
 }

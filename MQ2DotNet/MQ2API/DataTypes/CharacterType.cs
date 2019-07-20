@@ -1,9 +1,12 @@
 ﻿using System;
-
-// ReSharper disable UnusedMember.Global
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the local player character
+    /// </summary>
+    [PublicAPI]
     public class CharacterType : SpawnType
     {
         internal CharacterType(MQ2TypeVar typeVar) : base(typeVar)
@@ -162,7 +165,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public IndexedMember<IntType, int, IntType, string> AltCurrency;
 
-        [Obsolete]
+        /// <summary>
+        /// Don't use this
+        /// </summary>
+        [Obsolete("This is broken and always returns true")]
         public bool AltTimerReady => GetMember<BoolType>("AltTimerReady");
 
         /// <summary>

@@ -1,16 +1,21 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿using JetBrains.Annotations;
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the friends list
+    /// </summary>
+    [PublicAPI]
     public class FriendsType : MQ2DataType
     {
         internal FriendsType(MQ2TypeVar typeVar) : base(typeVar)
         {
-            xFriend = new IndexedStringMember<int, BoolType, string>(this, "xFriend");
+            Friend = new IndexedStringMember<int, BoolType, string>(this, "Friend");
         }
 
         /// <summary>
         /// Name of a friend by index (1 based) or true/false if a name is on your friend list
         /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public IndexedStringMember<int, BoolType, string> xFriend { get; }
+        public IndexedStringMember<int, BoolType, string> Friend { get; }
     }
 }

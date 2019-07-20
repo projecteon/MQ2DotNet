@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API
 {
+    /// <summary>
+    /// Data component of an MQ2 variable
+    /// </summary>
+    [PublicAPI]
     [StructLayout(LayoutKind.Explicit, Size = 8)]
     public struct MQ2VarPtr
     {
+#pragma warning disable 1591
         [FieldOffset(0)]
         public IntPtr Ptr;
 
@@ -45,5 +50,6 @@ namespace MQ2DotNet.MQ2API
 
         [FieldOffset(4)]
         public uint HighPart;
+#pragma warning restore 1591
     }
 }

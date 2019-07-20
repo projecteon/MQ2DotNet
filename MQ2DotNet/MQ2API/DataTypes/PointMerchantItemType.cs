@@ -1,9 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
-
+﻿using JetBrains.Annotations;
 using MQ2DotNet.EQ;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an item sold by a point merchant
+    /// </summary>
+    [PublicAPI]
     public class PointMerchantItemType : MQ2DataType
     {
         internal PointMerchantItemType(MQ2TypeVar typeVar) : base(typeVar)
@@ -40,6 +43,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public bool IsLore => GetMember<BoolType>("IsLore");
 
+        /// <summary>
+        /// Races that can use the item
+        /// </summary>
         public int? RaceMask => GetMember<IntType>("RaceMask");
 
         /// <summary>

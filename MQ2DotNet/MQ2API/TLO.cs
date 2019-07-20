@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 using MQ2DotNet.MQ2API.DataTypes;
-// ReSharper disable UnusedMember.Global
 
 namespace MQ2DotNet.MQ2API
 {
+    [PublicAPI]
     public static class TLO
     {
         #region Unmanaged imports
@@ -286,6 +287,15 @@ namespace MQ2DotNet.MQ2API
         /// <summary>
         /// An inventory slot by name or number
         /// </summary>
+        /// <remarks>Valid slot numbers are:
+        /// 2000-2015 bank window
+        /// 2500-2503 shared bank
+        /// 5000-5031 loot window
+        /// 3000-3015 trade window (including npc) 3000-3007 are your slots, 3008-3015 are other character's slots
+        /// 4000-4010 world container window
+        /// 6000-6080 merchant window
+        /// 7000-7080 bazaar window
+        /// 8000-8031 inspect window</remarks>
         public static IndexedTLO<InvSlotType, string, InvSlotType, int> InvSlot { get; } = new IndexedTLO<InvSlotType, string, InvSlotType, int>("InvSlot");
 
         /// <summary>

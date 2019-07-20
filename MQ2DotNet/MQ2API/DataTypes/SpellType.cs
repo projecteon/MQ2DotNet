@@ -1,7 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using System;
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a spell
+    /// </summary>
+    [PublicAPI]
     public class SpellType : MQ2DataType
     {
         internal SpellType(MQ2TypeVar typeVar) : base(typeVar)
@@ -154,14 +159,27 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// The number of counters that the spell adds
         /// </summary>
         public int? CounterNumber => GetMember<IntType>("CounterNumber");
-        public bool NewStacks => GetMember<BoolType>("NewStacks");
-        public bool NewStacksWith => GetMember<BoolType>("NewStacksWith");
+
+        /// <summary>
+        /// Same as Stacks
+        /// </summary>
+        [Obsolete("Use " + nameof(Stacks))]
+        public IndexedMember<BoolType, int> NewStacks => Stacks;
+
+        /// <summary>
+        /// Same as WillStack
+        /// </summary>
+        [Obsolete("Use " + nameof(WillStack))]
+        public IndexedMember<BoolType, string> NewStacksWith => WillStack;
 
         /// <summary>
         /// Does this spell stack with your current buffs (duration is in ticks)
         /// </summary>
         public IndexedMember<BoolType, int> Stacks { get; }
 
+        /// <summary>
+        /// Will this spell stack on your target?
+        /// </summary>
         public bool StacksTarget => GetMember<BoolType>("StacksTarget");
 
         /// <summary>

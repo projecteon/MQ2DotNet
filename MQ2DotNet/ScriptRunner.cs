@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using MQ2DotNet.MQ2API;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet
 {
-    public class ScriptGlobals
-    {
-        public string[] Args;
-        public CancellationToken Token;
-    }
-
     internal class ScriptRunner : MarshalByRefObject, IDisposable
     {
         private ScriptLoaderProxy _loaderProxy;
@@ -52,9 +47,10 @@ namespace MQ2DotNet
         }
 
         /// <summary>
-        /// Loads & run a new C# script from the specified file
+        /// Loads and runs a new C# script from the specified file
         /// </summary>
         /// <param name="scriptName"></param>
+        /// <param name="args"></param>
         public void RunScript(string scriptName, params string[] args)
         {
             // Get the LoaderProxy to load & run it in the appdomain
@@ -123,6 +119,7 @@ namespace MQ2DotNet
             /// Loads a new C# script from the specified file
             /// </summary>
             /// <param name="scriptName"></param>
+            /// <param name="args"></param>
             public void RunScript(string scriptName, params string[] args)
             {
                 // If a script is already running, stop it

@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API
     /// <summary>
     /// Base class from which all wrapped MQ2 data types derive
     /// </summary>
-    public class MQ2DataType
+    public class MQ2DataType : MarshalByRefObject // Allows passing across AppDomains e.g. in Events
     {
         private MQ2TypeVar _typeVar;
 
@@ -23,6 +23,10 @@ namespace MQ2DotNet.MQ2API
         {
         }
 
+        /// <summary>
+        /// Create a new MQ2DataType from an MQ2TypeVar
+        /// </summary>
+        /// <param name="typeVar"></param>
         public MQ2DataType(MQ2TypeVar typeVar)
         {
             _typeVar = typeVar;
@@ -38,79 +42,174 @@ namespace MQ2DotNet.MQ2API
         }
 
         #region Helpers for derived classes
+        /// <summary>
+        /// Get a member from the variable
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <param name="index"></param>
+        /// <returns>The member if the call succeeded and was able to be cast to the <typeparamref name="T"/>, otherwise null</returns>
+        /// <exception cref="InvalidCastException" />
         protected T GetMember<T>(string name, string index = "") where T : MQ2DataType
         {
             return _typeVar.GetMember<T>(name, index);
         }
 
+        /// <summary>
+        /// Helper class to access members with an indexer
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TIndex"></typeparam>
         public class IndexedMember<T, TIndex> where T : MQ2DataType
         {
             private readonly MQ2DataType _owner;
             private readonly string _name;
 
+            /// <summary>
+            /// Create a new IndexedMember that accesses the specified member in the specified MQ2DataType
+            /// </summary>
+            /// <param name="owner"></param>
+            /// <param name="name"></param>
+            /// <remarks>
+            /// Should be used in the constructor, e.g. <code>MyIndexedMember = new MyIndexedMember(this, "MyIndexedMember"</code>
+            /// Users can then do <code>myVar.MyIndexedMember["index"]</code> just like in macros
+            /// </remarks>
             public IndexedMember(MQ2DataType owner, string name)
             {
                 _owner = owner;
                 _name = name;
             }
 
+            /// <summary>
+            /// Get the member using an index
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public T this[TIndex index] => _owner.GetMember<T>(_name, index.ToString());
         }
 
+        /// <summary>
+        /// Helper class to access members with an indexer that return a different type for a different index type, e.g. spell given an int, or int given a spell name
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="TIndex1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="TIndex2"></typeparam>
         public class IndexedMember<T1, TIndex1, T2, TIndex2> where T1 : MQ2DataType where T2 : MQ2DataType
         {
             private readonly MQ2DataType _owner;
             private readonly string _name;
 
+            /// <summary>
+            /// See <see cref="IndexedMember{T}.IndexedMember(MQ2DataType, string)"/>
+            /// </summary>
+            /// <param name="owner"></param>
+            /// <param name="name"></param>
             public IndexedMember(MQ2DataType owner, string name)
             {
                 _owner = owner;
                 _name = name;
             }
 
+            /// <summary>
+            /// Get the member using an index of type <typeparamref name="TIndex1"/>
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public T1 this[TIndex1 index] => _owner.GetMember<T1>(_name, index.ToString());
+
+            /// <summary>
+            /// Get the member using an index of the <typeparamref name="TIndex2"/>
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public T2 this[TIndex2 index] => _owner.GetMember<T2>(_name, index.ToString());
         }
-
-        // This class is "needed" because IndexedMember<string, int> isn't valid because of the where TIndex : MQ2Type constraint
+        
+        /// <summary>
+        /// Helper class to access members with an indexer that return a string type
+        /// </summary>
+        /// <typeparam name="TIndex"></typeparam>
         public class IndexedStringMember<TIndex>
         {
+            // This class is "needed" because IndexedMember<string, int> isn't valid because of the where TIndex : MQ2Type constraint
             private readonly MQ2DataType _owner;
             private readonly string _name;
 
+            /// <summary>
+            /// See <see cref="IndexedMember{T}.IndexedMember(MQ2DataType, string)"/>
+            /// </summary>
+            /// <param name="owner"></param>
+            /// <param name="name"></param>
             public IndexedStringMember(MQ2DataType owner, string name)
             {
                 _owner = owner;
                 _name = name;
             }
 
+            /// <summary>
+            /// Get the member using an index
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public string this[TIndex index] => _owner.GetMember<StringType>(_name, index.ToString());
         }
 
-        // See above, horrible but it works
+        /// <summary>
+        /// Helper class to access members with an indexer that returns a string for one index type and something else for another, e.g. string given an int, or int given a string
+        /// </summary>
+        /// <typeparam name="TIndex"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="TIndex2"></typeparam>
         public class IndexedStringMember<TIndex, T2, TIndex2> where T2 : MQ2DataType
         {
             private readonly MQ2DataType _owner;
             private readonly string _name;
 
+            /// <summary>
+            /// See <see cref="IndexedMember{T}.IndexedMember(MQ2DataType, string)"/>
+            /// </summary>
+            /// <param name="owner"></param>
+            /// <param name="name"></param>
             public IndexedStringMember(MQ2DataType owner, string name)
             {
                 _owner = owner;
                 _name = name;
             }
 
+            /// <summary>
+            /// Get the member using an index of type <typeparamref name="TIndex"/>
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public string this[TIndex index] => _owner.GetMember<StringType>(_name, index.ToString());
+
+            /// <summary>
+            /// Get the member using an index of the <typeparamref name="TIndex2"/>
+            /// </summary>
+            /// <param name="index"></param>
+            /// <returns></returns>
             public T2 this[TIndex2 index] => _owner.GetMember<T2>(_name, index.ToString());
         }
 
+        /// <summary>
+        /// Helper class to access a member with an indexer, where the indexer is a string
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public class IndexedMember<T> : IndexedMember<T, string> where T : MQ2DataType
         {
+            /// <summary>
+            /// See <see cref="IndexedMember{T}.IndexedMember(MQ2DataType, string)"/>
+            /// </summary>
+            /// <param name="owner"></param>
+            /// <param name="name"></param>
             public IndexedMember(MQ2DataType owner, string name) : base(owner, name)
             {
             }
         }
         #endregion
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return _typeVar.ToString();

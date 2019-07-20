@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an item on the keyring
+    /// </summary>
+    [PublicAPI]
     public class KeyRingType : MQ2DataType
     {
         internal KeyRingType(MQ2TypeVar typeVar) : base(typeVar)

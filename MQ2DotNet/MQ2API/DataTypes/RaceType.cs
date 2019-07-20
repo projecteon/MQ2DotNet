@@ -1,9 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
-
+﻿using JetBrains.Annotations;
 using MQ2DotNet.EQ;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a character race
+    /// </summary>
+    [PublicAPI]
     public class RaceType : MQ2DataType
     {
         internal RaceType(MQ2TypeVar typeVar) : base(typeVar)

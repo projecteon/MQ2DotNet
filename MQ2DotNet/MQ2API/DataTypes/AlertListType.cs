@@ -1,10 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
     /// <summary>
-    /// VarPtr identifies a SPAWNSEARCH struct on an alert list
+    /// MQ2 type for an alert list
     /// </summary>
+    /// <remarks>VarPtr identifies a SPAWNSEARCH struct on an alert list</remarks>
+    [PublicAPI]
     public class AlertListType : MQ2DataType
     {
         internal AlertListType(MQ2TypeVar typeVar) : base(typeVar)

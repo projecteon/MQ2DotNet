@@ -1,12 +1,16 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
-    // SpellType inheritance would be nice but is problematic. BuffType.VarPtr is a PSPELLBUFF, but SpellType.VarPtr requires a PSPELL
-    // MQ2 system gets around this by finding the spell before calling the base class, but we don't have that luxury here.
-    // Use .Spell instead
+    /// <summary>
+    /// MQ2 type for a buff on the local character
+    /// </summary>
+    [PublicAPI]
     public class BuffType : MQ2DataType //SpellType
     {
+        // SpellType inheritance would be nice but is problematic. BuffType.VarPtr is a PSPELLBUFF, but SpellType.VarPtr requires a PSPELL
+        // MQ2 system gets around this by finding the spell before calling the base class, but we don't have that luxury here.
+        // Use .Spell instead
         internal BuffType(MQ2TypeVar typeVar) : base(typeVar)
         {
         }

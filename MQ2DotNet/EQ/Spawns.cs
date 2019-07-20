@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 using MQ2DotNet.MQ2API.DataTypes;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet.EQ
 {
+    /// <summary>
+    /// Contains utility methods and properties relating to ingame chat (messages in a chat window, from EQ or MQ2)
+    /// </summary>
+    [PublicAPI]
     public class Spawns
     {
         internal Spawns()
         {
-
         }
         
-        public static IEnumerable<SpawnType> All
+        /// <summary>
+        /// All spawns in the current zone
+        /// </summary>
+        public IEnumerable<SpawnType> All
         {
             get
             {

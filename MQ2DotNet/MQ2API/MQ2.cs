@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using JetBrains.Annotations;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet.MQ2API
 {
+    /// <summary>
+    /// Contains methods and properties relating to MQ2 functionality
+    /// </summary>
+    [PublicAPI]
     public static class MQ2
     {
         #region MQ2Main imports
@@ -121,7 +127,7 @@ namespace MQ2DotNet.MQ2API
         public static void WriteChatSafe(string text)
         {
             // Trim so as to not crash MQ2/EQ
-            MQ2WriteChatf(Sanitize(text));
+            MQ2WriteChatfSafe(Sanitize(text));
         }
 
         #region Internal WriteChat overloads

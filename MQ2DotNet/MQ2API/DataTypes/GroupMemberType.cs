@@ -1,6 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
+
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a member of a group
+    /// </summary>
+    [PublicAPI]
     public class GroupMemberType : SpawnType
     {
         internal GroupMemberType(MQ2TypeVar typeVar) : base(typeVar)

@@ -1,8 +1,12 @@
 ﻿using System;
-// ReSharper disable UnusedMember.Global
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an item. This is used for both generic item information (ITEMINFO), and a specific item (CONTENTS)
+    /// </summary>
+    [PublicAPI]
     public class ItemType : MQ2DataType
     {
         internal ItemType(MQ2TypeVar typeVar) : base(typeVar)
@@ -32,10 +36,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// AGI value on item
         /// </summary>
+        /// 
         public int? AGI => GetMember<IntType>("AGI");
         /// <summary>
         /// Attack value on item
         /// </summary>
+        /// 
         public int? Attack => GetMember<IntType>("Attack");
         /// <summary>
         /// Attuneable?
@@ -321,21 +327,39 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public int? HeroicSTR => GetMember<IntType>("HeroicSTR");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvCold => GetMember<IntType>("HeroicSvCold");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvCorruption => GetMember<IntType>("HeroicSvCorruption");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvDisease => GetMember<IntType>("HeroicSvDisease");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvFire => GetMember<IntType>("HeroicSvFire");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvMagic => GetMember<IntType>("HeroicSvMagic");
 
+        /// <summary>
+        /// Don't use this
+        /// </summary>
         [Obsolete]
         public int? HeroicSvPoison => GetMember<IntType>("HeroicSvPoison");
 

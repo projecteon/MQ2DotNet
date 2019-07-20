@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a buff on the current target spawn
+    /// </summary>
+    [PublicAPI]
     public class TargetBuffType : SpellType
     {
         internal TargetBuffType(MQ2TypeVar typeVar) : base(typeVar)

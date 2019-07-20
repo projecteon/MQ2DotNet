@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a context menu
+    /// </summary>
+    [PublicAPI]
     public class MenuType : MQ2DataType
     {
         internal MenuType(MQ2TypeVar typeVar) : base(typeVar)
@@ -21,14 +25,29 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         public int? Address => GetMember<IntType>("Address");
 
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public int? NumVisibleMenus => GetMember<IntType>("NumVisibleMenus");
 
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public int? CurrMenu => GetMember<IntType>("CurrMenu");
 
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public string Name => GetMember<StringType>("Name");
 
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public int? NumItems => GetMember<IntType>("NumItems");
 
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
         public IndexedMember<StringType, int> Items { get; }
     }
 }

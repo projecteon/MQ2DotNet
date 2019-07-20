@@ -4,13 +4,28 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet.MQ2API
 {
+    /// <summary>
+    /// Plugin functions for adding or removing commands
+    /// </summary>
+    [PublicAPI]
     public static class Commands
     {
+        /// <summary>
+        /// Delegate for a synchronous command handler
+        /// </summary>
+        /// <param name="args"></param>
         public delegate void Command(params string[] args);
 
+        /// <summary>
+        /// Delegate for an asynchronous command handler
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public delegate Task AsyncCommand(params string[] args);
 
         #region MQ2Main imports
@@ -47,6 +62,14 @@ namespace MQ2DotNet.MQ2API
             MQ2AddCommand(command, function, EQ, parse, inGame);
         }
 
+        /// <summary>
+        /// Add a new synchronous command
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="handler"></param>
+        /// <param name="EQ"></param>
+        /// <param name="parse"></param>
+        /// <param name="inGame"></param>
         public static void AddCommand(string command, Command handler, bool EQ = false, bool parse = true, bool inGame = false)
         {
             AddCommand(command, (pChar, buffer) =>
@@ -64,6 +87,14 @@ namespace MQ2DotNet.MQ2API
             });
         }
 
+        /// <summary>
+        /// Add a new asynchronous command
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="handler"></param>
+        /// <param name="EQ"></param>
+        /// <param name="parse"></param>
+        /// <param name="inGame"></param>
         public static void AddAsyncCommand(string command, AsyncCommand handler, bool EQ = false, bool parse = true, bool inGame = false)
         {
             AddCommand(command, (pChar, buffer) =>

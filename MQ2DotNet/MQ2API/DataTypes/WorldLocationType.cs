@@ -1,10 +1,12 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
     /// <summary>
-    /// This type is only used for character's bound locations, VarPtr.Dword is an index in CHARINFO2::BoundLocations
+    /// MQ2 type for a world location
     /// </summary>
+    /// <remarks>This type is only used for character's bound locations, VarPtr.Dword is an index in CHARINFO2::BoundLocations</remarks>
+    [PublicAPI]
     public class WorldLocationType : MQ2DataType
     {
         internal WorldLocationType(MQ2TypeVar typeVar) : base(typeVar)

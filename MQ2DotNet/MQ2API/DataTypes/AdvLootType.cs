@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the advanced loot window. Moreso the contents than the window itself
+    /// </summary>
+    [PublicAPI]
     public class AdvLootType : MQ2DataType
     {
         internal AdvLootType(MQ2TypeVar typeVar) : base(typeVar)

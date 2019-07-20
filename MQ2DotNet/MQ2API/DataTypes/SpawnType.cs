@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-// ReSharper disable UnusedMember.Global
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for a spawn
+    /// </summary>
+    [PublicAPI]
     public class SpawnType : MQ2DataType
     {
         internal SpawnType(MQ2TypeVar typeVar) : base(typeVar)
@@ -20,11 +21,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
             CachedBuff = new IndexedMember<CachedBuffType>(this, "CachedBuff");
         }
 
-        public SpawnType(IntPtr pSpawn) : base("spawn",
-            new MQ2VarPtr()
-            {
-                Ptr = pSpawn
-            })
+        /// <summary>
+        /// Create a SpawnType from a pointer to a SPAWNINFO struct
+        /// </summary>
+        /// <param name="pSpawn"></param>
+        public SpawnType(IntPtr pSpawn) 
+            : base("spawn", new MQ2VarPtr {Ptr = pSpawn})
         {
             SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
             SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");

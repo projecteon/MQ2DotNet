@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the character in the select list
+    /// </summary>
+    [PublicAPI]
     public class CharSelectListType : MQ2DataType
     {
         internal CharSelectListType(MQ2TypeVar typeVar) : base(typeVar)

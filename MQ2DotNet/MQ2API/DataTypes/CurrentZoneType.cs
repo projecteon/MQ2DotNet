@@ -1,5 +1,11 @@
+using JetBrains.Annotations;
+
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for the current zone
+    /// </summary>
+    [PublicAPI]
     public class CurrentZoneType : MQ2DataType
     {
         internal CurrentZoneType(MQ2TypeVar typeVar) : base(typeVar)

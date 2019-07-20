@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using MQ2DotNet.MQ2API;
+using MQ2DotNet.MQ2API.DataTypes;
+using MQ2DotNet.Utility;
 
 namespace MQ2DotNet
 {
@@ -97,13 +99,13 @@ namespace MQ2DotNet
             public override void OnCleanUI() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnCleanUI());
             public override void OnReloadUI() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnReloadUI());
             public override void OnDrawHUD() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnDrawHUD());
-            public override void SetGameState(uint GameState) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.SetGameState(GameState));
-            public override uint OnWriteChatColor(string Line, uint Color, uint Filter) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnWriteChatColor(Line, Color, Filter));
-            public override uint OnIncomingChat(string Line, uint Color) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnIncomingChat(Line, Color));
-            public override void OnAddSpawn(IntPtr pNewSpawn) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnAddSpawn(pNewSpawn));
-            public override void OnRemoveSpawn(IntPtr pSpawn) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnRemoveSpawn(pSpawn));
-            public override void OnAddGroundItem(IntPtr pNewGroundItem) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnAddGroundItem(pNewGroundItem));
-            public override void OnRemoveGroundItem(IntPtr pGroundItem) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnRemoveGroundItem(pGroundItem));
+            public override void SetGameState(uint gameState) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.SetGameState(gameState));
+            public override uint OnWriteChatColor(string line, uint color, uint filter) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnWriteChatColor(line, color, filter));
+            public override uint OnIncomingChat(string line, uint color) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnIncomingChat(line, color));
+            public override void OnAddSpawn(SpawnType spawn) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnAddSpawn(spawn));
+            public override void OnRemoveSpawn(SpawnType spawn) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnRemoveSpawn(spawn));
+            public override void OnAddGroundItem(GroundType groundItem) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnAddGroundItem(groundItem));
+            public override void OnRemoveGroundItem(GroundType groundItem) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnRemoveGroundItem(groundItem));
             public override void BeginZone() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.BeginZone());
             public override void EndZone() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.EndZone());
             public override void Zoned() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.Zoned());
@@ -172,10 +174,10 @@ namespace MQ2DotNet
         public override void OnPulse() => _loaderProxy.OnPulse();
         public override uint OnWriteChatColor(string Line, uint Color, uint Filter) => _loaderProxy.OnWriteChatColor(Line, Color, Filter);
         public override uint OnIncomingChat(string Line, uint Color) => _loaderProxy.OnIncomingChat(Line, Color);
-        public override void OnAddSpawn(IntPtr pNewSpawn) => _loaderProxy.OnAddSpawn(pNewSpawn);
-        public override void OnRemoveSpawn(IntPtr pSpawn) => _loaderProxy.OnRemoveSpawn(pSpawn);
-        public override void OnAddGroundItem(IntPtr pNewGroundItem) => _loaderProxy.OnAddGroundItem(pNewGroundItem);
-        public override void OnRemoveGroundItem(IntPtr pGroundItem) => _loaderProxy.OnRemoveGroundItem(pGroundItem);
+        public override void OnAddSpawn(SpawnType spawn) => _loaderProxy.OnAddSpawn(spawn);
+        public override void OnRemoveSpawn(SpawnType spawn) => _loaderProxy.OnRemoveSpawn(spawn);
+        public override void OnAddGroundItem(GroundType groundItem) => _loaderProxy.OnAddGroundItem(groundItem);
+        public override void OnRemoveGroundItem(GroundType groundItem) => _loaderProxy.OnRemoveGroundItem(groundItem);
         public override void BeginZone() => _loaderProxy.BeginZone();
         public override void EndZone() => _loaderProxy.EndZone();
         public override void Zoned() => _loaderProxy.Zoned();

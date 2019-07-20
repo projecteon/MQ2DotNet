@@ -1,7 +1,11 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
+    /// <summary>
+    /// MQ2 type for an entry in the xtarget list
+    /// </summary>
+    [PublicAPI]
     public class XTargetType : MQ2DataType
     {
         internal XTargetType(MQ2TypeVar typeVar) : base(typeVar)

@@ -45,9 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EQ\Chat.cs" />
     <Compile Include="EQ\EQ.cs" />
     <Compile Include="EQ\Spawns.cs" />
-    <Compile Include="EventLoopContext.cs" />
+    <Compile Include="ScriptGlobals.cs" />
+    <Compile Include="Utility\TaskExtensions.cs" />
+    <Compile Include="Utility\EventLoopContext.cs" />
+    <Compile Include="Utility\AppDomainHelper.cs" />
     <Compile Include="MQ2API\DataTypes\AdvLootItemType.cs" />
     <Compile Include="MQ2API\DataTypes\AdvLootType.cs" />
     <Compile Include="MQ2API\DataTypes\AlertListType.cs" />
@@ -127,16 +131,18 @@
     <Compile Include="MQ2API\DataTypes\WorldLocationType.cs" />
     <Compile Include="MQ2API\DataTypes\XTargetType.cs" />
     <Compile Include="MQ2API\DataTypes\ZoneType.cs" />
+    <Compile Include="MQ2API\Events.cs" />
     <Compile Include="MQ2API\MQ2.cs" />
     <Compile Include="MQ2API\MQ2DataType.cs" />
     <Compile Include="MQ2API\MQ2TypeFactory.cs" />
     <Compile Include="MQ2API\MQ2TypeVar.cs" />
     <Compile Include="MQ2API\MQ2VarPtr.cs" />
+    <Compile Include="Utility\Singleton.cs" />
     <Compile Include="MQ2API\TLO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="MQ2API\Commands.cs" />
-    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Utility\NativeMethods.cs" />
     <Compile Include="ProgramLoader.cs" />
     <Compile Include="PluginLoader.cs" />
     <Compile Include="PluginStub.cs" />
@@ -146,6 +152,9 @@
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
       <Version>3.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="JetBrains.Annotations">
+      <Version>2019.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
       <Version>2.6.2</Version>

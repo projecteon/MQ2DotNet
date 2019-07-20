@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedMember.Global
+﻿using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -12,6 +12,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
     // 7000-7080 bazaar window
     // 8000-8031 inspect window
 
+    /// <summary>
+    /// MQ2 type for an inventory slot
+    /// </summary>
+    [PublicAPI]
     public class InvSlotType : MQ2DataType
     {
         internal InvSlotType(MQ2TypeVar typeVar) : base(typeVar)
