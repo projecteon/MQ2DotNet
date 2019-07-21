@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for information about the currently running macro
     /// </summary>
     [PublicAPI]
+    [MQ2Type("macro")]
     public class MacroType : MQ2DataType
     {
         internal MacroType(MQ2TypeVar typeVar) : base(typeVar)

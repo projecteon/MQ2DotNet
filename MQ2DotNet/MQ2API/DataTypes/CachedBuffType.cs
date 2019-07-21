@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a cached buff (i.e. a buff that's been "remembered" after you've targeted another spawn
     /// </summary>
     [PublicAPI]
+    [MQ2Type("cachedbuff")]
     public class CachedBuffType : MQ2DataType
     {
         internal CachedBuffType(MQ2TypeVar typeVar) : base(typeVar)

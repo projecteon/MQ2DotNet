@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an alert list (a list of spawn searches)
     /// </summary>
     [PublicAPI]
+    [MQ2Type("alert")]
     public class AlertType : MQ2DataType
     {
         internal AlertType(MQ2TypeVar typeVar) : base(typeVar)

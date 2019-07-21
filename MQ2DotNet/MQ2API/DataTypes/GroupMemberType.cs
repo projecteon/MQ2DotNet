@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a member of a group
     /// </summary>
     [PublicAPI]
+    [MQ2Type("groupmember")]
     public class GroupMemberType : SpawnType
     {
         internal GroupMemberType(MQ2TypeVar typeVar) : base(typeVar)

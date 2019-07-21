@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API;
 using MQ2DotNet.MQ2API.DataTypes;
 using MQ2DotNet.Utility;
@@ -15,7 +16,7 @@ namespace MQ2DotNet
     /// <summary>
     /// Class containing functions for MQ2DotNetLoader to call from the regular plugin callbacks
     /// </summary>
-    public static class PluginStub
+    public static partial class PluginStub
     {
         #region Delegates/typedefs
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -117,13 +118,20 @@ namespace MQ2DotNet
                 _script = new ScriptRunner("CsScriptDomain");
 
                 // Load any plugins that are set to autoload. Fuck ini files
-                try
+                var iniFile = MQ2.INIPath + "\\MQ2DotNet.ini";
+                if (File.Exists(iniFile))
                 {
-                    foreach (Match match in Regex.Matches(File.ReadAllText(MQ2.INIPath + "\\MQ2DotNet.ini"), @"(?<name>\w+)=1"))
-                        NetPluginCommand(match.Groups["name"].Value);
-                }
-                catch (Exception)
-                {
+                    foreach (Match match in Regex.Matches(File.ReadAllText(iniFile), @"(?<name>\w+)=1"))
+                    {
+                        try
+                        {
+                            NetPluginCommand(match.Groups["name"].Value);
+                        }
+                        catch (Exception e)
+                        {
+                            MQ2.WriteChatPluginError($"{match.Groups["name"].Value} failed to load: {e}");
+                        }
+                    }
                 }
 
                 return 0;
@@ -593,10 +601,12 @@ namespace MQ2DotNet
 
         private static void SetGameState(uint gameState)
         {
+            var gameStateEnum = Enum.IsDefined(typeof(GameState), gameState) ? (GameState)gameState : GameState.Unknown;
+
             foreach (var kvp in _plugins)
                 try
                 {
-                    kvp.Value.SetGameState(gameState);
+                    kvp.Value.SetGameState(gameStateEnum);
                 }
                 catch (Exception e)
                 {
@@ -604,7 +614,7 @@ namespace MQ2DotNet
                     MQ2.WriteChatPluginError(e.ToString());
                 }
 
-            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllSetGameState(gameState);
+            Singleton<Events.GlobalEventsInvoker>.Instance.InvokeAllSetGameState(gameStateEnum);
         }
         #endregion
     }

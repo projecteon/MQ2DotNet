@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a single precision float
     /// </summary>
     [PublicAPI]
+    [MQ2Type("float")]
     public class FloatType : MQ2DataType
     {
         internal FloatType(MQ2TypeVar typeVar) : base(typeVar)

@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a number of in game ticks
     /// </summary>
     [PublicAPI]
+    [MQ2Type("ticks")]
     public class TicksType : MQ2DataType
     {
         internal TicksType(MQ2TypeVar typeVar) : base(typeVar)

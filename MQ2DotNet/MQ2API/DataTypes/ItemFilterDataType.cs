@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a filter in advanced loot
     /// </summary>
     [PublicAPI]
+    [MQ2Type("itemfilterdata")]
     public class ItemFilterDataType : MQ2DataType
     {
         internal ItemFilterDataType(MQ2TypeVar typeVar) : base(typeVar)

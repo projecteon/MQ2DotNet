@@ -14,15 +14,6 @@ namespace AddDataType
     {
         public override void InitializePlugin()
         {
-            // To use a type, it needs to be registered
-            // This takes the name of the type (as per constructor to the MQ2Type C++ class)
-            // And a function to create the type, given an MQ2TypeVar
-            MQ2TypeFactory.Register("bazaar", typeVar => new BazaarType(typeVar));
-            MQ2TypeFactory.Register("bazaaritem", typeVar => new BazaarItemType(typeVar));
-
-            // Registering the type like this only affects this AppDomain (each plugin/program is loaded to its own AppDomain)
-            // So there is no need to unregister it - the whole AppDomain is unloaded when the plugin is unloaded, and nothing unmanaged is modified
-
             Commands.AddAsyncCommand("/datatypetest", DataTypeTest);
 
             // Commands do need unregistering because they do stuff in the unmanaged world and MQ2 doesn't keep track of what plugin owns them
@@ -54,6 +45,8 @@ namespace AddDataType
         }
     }
 
+    // Adding the MQ2Type attribute to a class that derives from MQ2DataType registers it for use with the type by the supplied name
+    [MQ2Type("bazaar")]
     public class BazaarType : MQ2DataType
     {
         // Constructor typically needs to call the base with the typeVar, and create any IndexedMember helpers
@@ -73,6 +66,7 @@ namespace AddDataType
         public IndexedMember<BazaarItemType, int> Item { get; }
     }
 
+    [MQ2Type("bazaaritem")]
     public class BazaarItemType : MQ2DataType
     {
         public BazaarItemType(MQ2TypeVar typeVar) : base(typeVar)

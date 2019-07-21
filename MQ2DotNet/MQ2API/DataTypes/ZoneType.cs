@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a zone
     /// </summary>
     [PublicAPI]
+    [MQ2Type("zone")]
     public class ZoneType : MQ2DataType
     {
         internal ZoneType(MQ2TypeVar typeVar) : base(typeVar)

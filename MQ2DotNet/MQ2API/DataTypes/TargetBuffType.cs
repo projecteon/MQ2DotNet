@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a buff on the current target spawn
     /// </summary>
     [PublicAPI]
+    [MQ2Type("targetbuff")]
     public class TargetBuffType : SpellType
     {
         internal TargetBuffType(MQ2TypeVar typeVar) : base(typeVar)

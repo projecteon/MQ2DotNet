@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a byte
     /// </summary>
     [PublicAPI]
+    [MQ2Type("byte")]
     public class ByteType : MQ2DataType
     {
         internal ByteType(MQ2TypeVar typeVar) : base(typeVar)

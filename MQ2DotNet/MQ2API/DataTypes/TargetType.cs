@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for the current target
     /// </summary>
     [PublicAPI]
+    [MQ2Type("target")]
     public class TargetType : SpawnType
     {
         internal TargetType(MQ2TypeVar typeVar) : base(typeVar)

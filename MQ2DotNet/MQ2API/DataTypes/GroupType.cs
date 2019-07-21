@@ -1,9 +1,12 @@
-﻿namespace MQ2DotNet.MQ2API.DataTypes
+﻿using JetBrains.Annotations;
+
+namespace MQ2DotNet.MQ2API.DataTypes
 {
     /// <summary>
     /// MQ2 type for the character's group
     /// </summary>
-    /// [PublicAPI]
+    [PublicAPI]
+    [MQ2Type("group")]
     public class GroupType : MQ2DataType
     {
         internal GroupType(MQ2TypeVar typeVar) : base(typeVar)

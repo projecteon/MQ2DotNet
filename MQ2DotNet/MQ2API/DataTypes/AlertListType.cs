@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     /// <remarks>VarPtr identifies a SPAWNSEARCH struct on an alert list</remarks>
     [PublicAPI]
+    [MQ2Type("alertlist")]
     public class AlertListType : MQ2DataType
     {
         internal AlertListType(MQ2TypeVar typeVar) : base(typeVar)

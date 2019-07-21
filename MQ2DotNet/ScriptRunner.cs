@@ -107,12 +107,7 @@ namespace MQ2DotNet
                 Compiling,
                 Running
             }
-
-            public ScriptLoaderProxy()
-            {
-                MQ2TypeFactory.RegisterBuiltInTypes();
-            }
-
+            
             public string Name { get; private set; }
 
             /// <summary>

@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a member of a dynamic zone
     /// </summary>
     [PublicAPI]
+    [MQ2Type("dzmember")]
     public class DZMemberType : MQ2DataType
     {
         internal DZMemberType(MQ2TypeVar typeVar) : base(typeVar)

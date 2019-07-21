@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for the body type of a spawn
     /// </summary>
     [PublicAPI]
+    [MQ2Type("body")]
     public class BodyType : MQ2DataType
     {
         internal BodyType(MQ2TypeVar typeVar) : base(typeVar)

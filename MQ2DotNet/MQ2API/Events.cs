@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API.DataTypes;
 using MQ2DotNet.Utility;
 
@@ -98,8 +99,8 @@ namespace MQ2DotNet.MQ2API
         /// <summary>
         /// Called once directly after initialization, and then every time the gamestate changes
         /// </summary>
-        public static event EventHandler<uint> SetGameState;
-        internal static void InvokeSetGameState(uint gameState) => SetGameState?.Invoke(null, gameState);
+        public static event EventHandler<GameState> SetGameState;
+        internal static void InvokeSetGameState(GameState gameState) => SetGameState?.Invoke(null, gameState);
 
         /// <summary>
         /// Even though <see cref="Events"/> is a static class, there will still be one of it per AppDomain
@@ -123,7 +124,7 @@ namespace MQ2DotNet.MQ2API
             internal void InvokeOnDrawHUD() => Events.InvokeOnDrawHUD();
             internal void InvokeOnReloadUI() => Events.InvokeOnReloadUI();
             internal void InvokeOnZoned() => Events.InvokeOnZoned();
-            internal void InvokeSetGameState(uint gameState) => Events.InvokeSetGameState(gameState);
+            internal void InvokeSetGameState(GameState gameState) => Events.InvokeSetGameState(gameState);
         }
 
         internal class GlobalEventsInvoker : MarshalByRefObject
@@ -160,7 +161,7 @@ namespace MQ2DotNet.MQ2API
             internal void InvokeAllOnDrawHUD() => _invokers.ForEach(i => TryCatch(i.InvokeOnDrawHUD));
             internal void InvokeAllOnReloadUI() => _invokers.ForEach(i => TryCatch(i.InvokeOnReloadUI));
             internal void InvokeAllOnZoned() => _invokers.ForEach(i => TryCatch(i.InvokeOnZoned));
-            internal void InvokeAllSetGameState(uint gameState) => _invokers.ForEach(i => TryCatch(() => i.InvokeSetGameState(gameState)));
+            internal void InvokeAllSetGameState(GameState gameState) => _invokers.ForEach(i => TryCatch(() => i.InvokeSetGameState(gameState)));
         }
     }
 }

@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for general information about MQ2
     /// </summary>
     [PublicAPI]
+    [MQ2Type("macroquest")]
     public class MacroQuestType : EverQuestType
     {
         internal MacroQuestType(MQ2TypeVar typeVar) : base(typeVar)

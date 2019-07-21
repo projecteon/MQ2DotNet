@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an item. This is used for both generic item information (ITEMINFO), and a specific item (CONTENTS)
     /// </summary>
     [PublicAPI]
+    [MQ2Type("item")]
     public class ItemType : MQ2DataType
     {
         internal ItemType(MQ2TypeVar typeVar) : base(typeVar)

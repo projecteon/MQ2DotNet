@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for general game information
     /// </summary>
     [PublicAPI]
+    [MQ2Type("everquest")]
     public class EverQuestType : MQ2DataType
     {
         internal EverQuestType(MQ2TypeVar typeVar) : base(typeVar)

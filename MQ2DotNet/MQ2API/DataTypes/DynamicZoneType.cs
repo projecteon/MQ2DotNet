@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a dynamic zone
     /// </summary>
     [PublicAPI]
+    [MQ2Type("dynamiczone")]
     public class DynamicZoneType : MQ2DataType
     {
         internal DynamicZoneType(MQ2TypeVar typeVar) : base(typeVar)

@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a mercenary
     /// </summary>
     [PublicAPI]
+    [MQ2Type("mercenary")]
     public class MercenaryType : SpawnType
     {
         internal MercenaryType(MQ2TypeVar typeVar) : base(typeVar)

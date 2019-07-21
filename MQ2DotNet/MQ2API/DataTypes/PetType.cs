@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a pet
     /// </summary>
     [PublicAPI]
+    [MQ2Type("pet")]
     public class PetType : MQ2DataType
     {
         internal PetType(MQ2TypeVar typeVar) : base(typeVar)

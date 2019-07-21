@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// TODO: Invalidate this and make member calls throw if MQ2Cast isn't loaded
     /// </summary>
     [PublicAPI]
+    [MQ2Type("Cast")]
     public class CastType : MQ2DataType
     {
         internal CastType(MQ2TypeVar typeVar) : base(typeVar)

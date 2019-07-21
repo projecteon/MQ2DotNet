@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a context menu
     /// </summary>
     [PublicAPI]
+    [MQ2Type("menu")]
     public class MenuType : MQ2DataType
     {
         internal MenuType(MQ2TypeVar typeVar) : base(typeVar)

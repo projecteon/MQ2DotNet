@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an AA
     /// </summary>
     [PublicAPI]
+    [MQ2Type("altability")]
     public class AltAbilityType : MQ2DataType
     {
         internal AltAbilityType(MQ2TypeVar typeVar) : base(typeVar)

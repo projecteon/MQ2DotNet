@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a member of a raid
     /// </summary>
     [PublicAPI]
+    [MQ2Type("raidmember")]
     public class RaidMemberType : MQ2DataType
     {
         internal RaidMemberType(MQ2TypeVar typeVar) : base(typeVar)

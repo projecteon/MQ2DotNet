@@ -48,6 +48,8 @@
     <Compile Include="EQ\Chat.cs" />
     <Compile Include="EQ\EQ.cs" />
     <Compile Include="EQ\Spawns.cs" />
+    <Compile Include="EQ\GameState.cs" />
+    <Compile Include="MQ2API\MQ2TypeAttribute.cs" />
     <Compile Include="ScriptGlobals.cs" />
     <Compile Include="Utility\TaskExtensions.cs" />
     <Compile Include="Utility\EventLoopContext.cs" />

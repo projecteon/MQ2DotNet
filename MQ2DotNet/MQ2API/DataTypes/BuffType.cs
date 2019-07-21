@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a buff on the local character
     /// </summary>
     [PublicAPI]
+    [MQ2Type("buff")]
     public class BuffType : MQ2DataType //SpellType
     {
         // SpellType inheritance would be nice but is problematic. BuffType.VarPtr is a PSPELLBUFF, but SpellType.VarPtr requires a PSPELL

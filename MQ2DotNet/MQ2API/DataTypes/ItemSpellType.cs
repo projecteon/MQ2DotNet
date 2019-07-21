@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a spell effect on an item
     /// </summary>
     [PublicAPI]
+    [MQ2Type("itemspell")]
     public class ItemSpellType : MQ2DataType
     {
         internal ItemSpellType(MQ2TypeVar typeVar) : base(typeVar)

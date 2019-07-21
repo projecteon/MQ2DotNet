@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an entry in the xtarget list
     /// </summary>
     [PublicAPI]
+    [MQ2Type("xtarget")]
     public class XTargetType : MQ2DataType
     {
         internal XTargetType(MQ2TypeVar typeVar) : base(typeVar)

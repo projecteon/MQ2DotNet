@@ -8,6 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a 32 bit integer
     /// </summary>
     [PublicAPI]
+    [MQ2Type("int")]
     public class IntType : MQ2DataType
     {
         internal IntType(MQ2TypeVar typeVar) : base(typeVar)

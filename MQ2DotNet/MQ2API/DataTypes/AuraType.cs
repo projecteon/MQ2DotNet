@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an aura
     /// </summary>
     [PublicAPI]
+    [MQ2Type("auratype")]
     public class AuraType : MQ2DataType
     {
         internal AuraType(MQ2TypeVar typeVar) : base(typeVar)

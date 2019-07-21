@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a solvent
     /// </summary>
     [PublicAPI]
+    [MQ2Type("solventtype")]
     public class SolventType : MQ2DataType
     {
         internal SolventType(MQ2TypeVar typeVar) : base(typeVar)

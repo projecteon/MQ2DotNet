@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for details about another type
     /// </summary>
     [PublicAPI]
+    [MQ2Type("type")]
     public class TypeType : MQ2DataType
     {
         internal TypeType(MQ2TypeVar typeVar) : base(typeVar)

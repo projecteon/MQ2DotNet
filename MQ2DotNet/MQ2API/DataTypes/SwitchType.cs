@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a switch object
     /// </summary>
     [PublicAPI]
+    [MQ2Type("switch")]
     public class SwitchType : MQ2DataType
     {
         internal SwitchType(MQ2TypeVar typeVar) : base(typeVar)

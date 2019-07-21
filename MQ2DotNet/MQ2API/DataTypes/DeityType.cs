@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a deity
     /// </summary>
     [PublicAPI]
+    [MQ2Type("Deity")]
     public class DeityType : MQ2DataType
     {
         internal DeityType(MQ2TypeVar typeVar) : base(typeVar)

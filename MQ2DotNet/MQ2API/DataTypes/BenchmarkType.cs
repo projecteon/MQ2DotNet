@@ -6,6 +6,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a benchmark. This does not seem to be implemented.
     /// </summary>
     [PublicAPI]
+    // The definition exists in MQ2, but the implementation doesn't and it's never added as a type
+    //[MQ2Type("benchmark")]
     public class BenchmarkType : MQ2DataType
     {
         internal BenchmarkType(MQ2TypeVar typeVar) : base(typeVar)

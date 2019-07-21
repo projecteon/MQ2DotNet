@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a character class
     /// </summary>
     [PublicAPI]
+    [MQ2Type("class")]
     public class ClassType : MQ2DataType
     {
         internal ClassType(MQ2TypeVar typeVar) : base(typeVar)

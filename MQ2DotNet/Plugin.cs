@@ -1,4 +1,5 @@
 ﻿using System;
+using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API.DataTypes;
 
 namespace MQ2DotNet
@@ -53,7 +54,7 @@ namespace MQ2DotNet
         /// <summary>
         /// Called once directly after initialization, and then every time the gamestate changes
         /// </summary>
-        public virtual void SetGameState(uint gameState)
+        public virtual void SetGameState(GameState gameState)
         {
         }
 

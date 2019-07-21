@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a member of a fellowship
     /// </summary>
     [PublicAPI]
+    [MQ2Type("fellowshipmember")]
     public class FellowshipMemberType : MQ2DataType
     {
         internal FellowshipMemberType(MQ2TypeVar typeVar) : base(typeVar)

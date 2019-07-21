@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for the friends list
     /// </summary>
     [PublicAPI]
+    [MQ2Type("friend")]
     public class FriendsType : MQ2DataType
     {
         internal FriendsType(MQ2TypeVar typeVar) : base(typeVar)

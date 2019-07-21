@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a 64 bit integer
     /// </summary>
     [PublicAPI]
+    [MQ2Type("int64")]
     public class Int64Type : MQ2DataType
     {
         internal Int64Type(MQ2TypeVar typeVar) : base(typeVar)

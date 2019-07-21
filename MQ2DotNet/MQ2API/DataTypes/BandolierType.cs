@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a bandolier item set
     /// </summary>
     [PublicAPI]
+    [MQ2Type("bandolier")]
     public class BandolierType : MQ2DataType
     {
         internal BandolierType(MQ2TypeVar typeVar) : base(typeVar)

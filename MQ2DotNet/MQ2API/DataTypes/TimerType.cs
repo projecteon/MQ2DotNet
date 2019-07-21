@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a timer
     /// </summary>
     [PublicAPI]
+    [MQ2Type("timer")]
     public class TimerType : MQ2DataType
     {
         internal TimerType(MQ2TypeVar typeVar) : base(typeVar)

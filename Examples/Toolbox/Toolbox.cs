@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MQ2DotNet;
+using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API;
 using Newtonsoft.Json;
 
@@ -43,9 +44,9 @@ namespace Toolbox
             }
         }
 
-        public override void SetGameState(uint GameState)
+        public override void SetGameState(GameState gameState)
         {
-            if (GameState == 5) // GAMESTATE_INGAME
+            if (gameState == GameState.InGame)
                 LoadSettings();
 
         }

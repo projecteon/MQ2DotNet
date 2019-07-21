@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 array type. Not well supported
     /// </summary>
     [PublicAPI]
+    [MQ2Type("array")]
     public class ArrayType : MQ2DataType
     {
         internal ArrayType(MQ2TypeVar typeVar) : base(typeVar)

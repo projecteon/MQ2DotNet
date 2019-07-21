@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a boolean
     /// </summary>
     [PublicAPI]
+    [MQ2Type("bool")]
     public class BoolType : MQ2DataType
     {
         internal BoolType(MQ2TypeVar typeVar) : base(typeVar)

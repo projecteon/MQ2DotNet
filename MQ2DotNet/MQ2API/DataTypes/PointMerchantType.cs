@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a point merchant
     /// </summary>
     [PublicAPI]
+    [MQ2Type("pointmerchant")]
     public class PointMerchantType : SpawnType
     {
         internal PointMerchantType(MQ2TypeVar typeVar) : base(typeVar)

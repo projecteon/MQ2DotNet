@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a corpse
     /// </summary>
     [PublicAPI]
+    [MQ2Type("corpse")]
     public class CorpseType : SpawnType
     {
         internal CorpseType(MQ2TypeVar typeVar) : base(typeVar)

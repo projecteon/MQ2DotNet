@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API;
 using MQ2DotNet.MQ2API.DataTypes;
 using MQ2DotNet.Utility;
@@ -99,7 +100,7 @@ namespace MQ2DotNet
             public override void OnCleanUI() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnCleanUI());
             public override void OnReloadUI() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnReloadUI());
             public override void OnDrawHUD() => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnDrawHUD());
-            public override void SetGameState(uint gameState) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.SetGameState(gameState));
+            public override void SetGameState(GameState gameState) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.SetGameState(gameState));
             public override uint OnWriteChatColor(string line, uint color, uint filter) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnWriteChatColor(line, color, filter));
             public override uint OnIncomingChat(string line, uint color) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnIncomingChat(line, color));
             public override void OnAddSpawn(SpawnType spawn) => EventLoopContext.Instance.SetExecuteRestore(() => _plugin.OnAddSpawn(spawn));
@@ -112,7 +113,6 @@ namespace MQ2DotNet
 
             public override void InitializePlugin() => EventLoopContext.Instance.SetExecuteRestore(() =>
             {
-                MQ2TypeFactory.RegisterBuiltInTypes();
                 _plugin.InitializePlugin();
             });
 
@@ -170,7 +170,7 @@ namespace MQ2DotNet
         public override void OnCleanUI() => _loaderProxy.OnCleanUI();
         public override void OnReloadUI() => _loaderProxy.OnReloadUI();
         public override void OnDrawHUD() => _loaderProxy.OnDrawHUD();
-        public override void SetGameState(uint GameState) => _loaderProxy.SetGameState(GameState);
+        public override void SetGameState(GameState GameState) => _loaderProxy.SetGameState(GameState);
         public override void OnPulse() => _loaderProxy.OnPulse();
         public override uint OnWriteChatColor(string Line, uint Color, uint Filter) => _loaderProxy.OnWriteChatColor(Line, Color, Filter);
         public override uint OnIncomingChat(string Line, uint Color) => _loaderProxy.OnIncomingChat(Line, Color);

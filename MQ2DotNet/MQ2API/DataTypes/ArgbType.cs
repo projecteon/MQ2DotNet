@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a colour
     /// </summary>
     [PublicAPI]
+    [MQ2Type("argb")]
     public class ArgbType : MQ2DataType
     {
         internal ArgbType(MQ2TypeVar typeVar) : base(typeVar)

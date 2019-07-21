@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     /// <remarks>This type is only used for character's bound locations, VarPtr.Dword is an index in CHARINFO2::BoundLocations</remarks>
     [PublicAPI]
+    [MQ2Type("worldlocation")]
     public class WorldLocationType : MQ2DataType
     {
         internal WorldLocationType(MQ2TypeVar typeVar) : base(typeVar)

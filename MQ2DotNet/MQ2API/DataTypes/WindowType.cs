@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// Some members are only applicable to controls e.g. Checked
     /// </summary>
     [PublicAPI]
+    [MQ2Type("window")]
     public class WindowType : MQ2DataType
     {
         internal WindowType(MQ2TypeVar typeVar) : base(typeVar)

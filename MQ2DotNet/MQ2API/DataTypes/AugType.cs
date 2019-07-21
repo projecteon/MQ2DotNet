@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an augmentation slot on an item
     /// </summary>
     [PublicAPI]
+    [MQ2Type("augtype")]
     public class AugType : MQ2DataType
     {
         internal AugType(MQ2TypeVar typeVar) : base(typeVar)

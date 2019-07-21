@@ -7,7 +7,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for the local player character
     /// </summary>
     [PublicAPI]
-    public class CharacterType : SpawnType
+    [MQ2Type("character")]
+    public class CharacterType : MQ2DataType // Inheritance won't work, use Spawn
     {
         internal CharacterType(MQ2TypeVar typeVar) : base(typeVar)
         {

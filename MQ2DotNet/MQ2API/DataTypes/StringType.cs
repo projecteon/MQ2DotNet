@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
     /// <summary>
     /// MQ2 type for a string
     /// </summary>
+    [PublicAPI]
+    [MQ2Type("string")]
     public class StringType : MQ2DataType
     {
         private string _string;

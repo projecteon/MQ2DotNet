@@ -7,6 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for a ground object
     /// </summary>
     [PublicAPI]
+    [MQ2Type("ground")]
     public class GroundType : MQ2DataType
     {
         internal GroundType(MQ2TypeVar typeVar) : base(typeVar)

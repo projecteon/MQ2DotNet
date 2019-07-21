@@ -6,6 +6,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an item on the keyring
     /// </summary>
     [PublicAPI]
+    [MQ2Type("keyring")]
     public class KeyRingType : MQ2DataType
     {
         internal KeyRingType(MQ2TypeVar typeVar) : base(typeVar)

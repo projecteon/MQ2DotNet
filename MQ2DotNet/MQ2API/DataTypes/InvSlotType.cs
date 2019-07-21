@@ -16,6 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// MQ2 type for an inventory slot
     /// </summary>
     [PublicAPI]
+    [MQ2Type("invslot")]
     public class InvSlotType : MQ2DataType
     {
         internal InvSlotType(MQ2TypeVar typeVar) : base(typeVar)
