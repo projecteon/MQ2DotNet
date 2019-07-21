@@ -134,7 +134,7 @@ namespace MQ2DotNet
                     var options = ScriptOptions.Default
                         .WithFilePath(filePath)
                         .AddReferences(Assembly.GetExecutingAssembly())
-                        .AddImports("MQ2DotNet.MQ2API", "MQ2DotNet.MQ2API.DataTypes", "System.Threading.Tasks");
+                        .AddImports("MQ2DotNet.EQ", "MQ2DotNet.MQ2API", "MQ2DotNet.MQ2API.DataTypes", "System.Threading.Tasks");
 
                     // Even though it's not actually running yet, set it as the currently running script to prevent others being run
                     Name = scriptName;
