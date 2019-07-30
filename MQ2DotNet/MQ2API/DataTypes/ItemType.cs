@@ -17,6 +17,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Deity = new IndexedMember<DeityType, int, DeityType, string>(this, "Deity");
             Class = new IndexedMember<ClassType, int, ClassType, string>(this, "Class");
             AugSlot = new IndexedMember<AugType, int>(this, "AugSlot");
+            Item = new IndexedMember<ItemType, int>(this, "Item");
         }
 
         /// <summary>
@@ -411,9 +412,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public InvSlotType InvSlot => GetMember<InvSlotType>("InvSlot");
 
         /// <summary>
-        /// If the item is a container, the item in the nth slot (0 based)
+        /// If the item is a container, the item in the nth slot (1 based)
         /// </summary>
-        public ItemType Item => GetMember<ItemType>("Item");
+        public IndexedMember<ItemType, int> Item { get; }
 
         /// <summary>
         /// Weapon delay
