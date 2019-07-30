@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("mercenary")]
     public class MercenaryType : SpawnType
     {
-        internal MercenaryType(MQ2TypeVar typeVar) : base(typeVar)
+        internal MercenaryType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

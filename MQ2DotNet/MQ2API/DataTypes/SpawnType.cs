@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("spawn")]
     public class SpawnType : MQ2DataType
     {
-        internal SpawnType(MQ2TypeVar typeVar) : base(typeVar)
+        internal SpawnType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
             SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");
@@ -25,9 +25,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Create a SpawnType from a pointer to a SPAWNINFO struct
         /// </summary>
+        /// <param name="mq2TypeFactory"></param>
         /// <param name="pSpawn"></param>
-        public SpawnType(IntPtr pSpawn) 
-            : base("spawn", new MQ2VarPtr {Ptr = pSpawn})
+        public SpawnType(MQ2TypeFactory mq2TypeFactory, IntPtr pSpawn) 
+            : base("spawn", mq2TypeFactory, new MQ2VarPtr {Ptr = pSpawn})
         {
             SpawnStatus = new IndexedMember<IntType, int>(this, "SpawnStatus");
             SeeInvis = new IndexedMember<IntType, int>(this, "SeeInvis");

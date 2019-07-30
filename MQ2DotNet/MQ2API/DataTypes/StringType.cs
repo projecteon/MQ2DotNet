@@ -13,7 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         private string _string;
 
-        internal StringType(MQ2TypeVar typeVar) : base(typeVar)
+        internal StringType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             // Since most MQ2 strings share the same storage (DataTypeTemp), lazy evaluation is a bad idea
             _string = typeVar.VarPtr.Ptr != IntPtr.Zero ? Marshal.PtrToStringAnsi(typeVar.VarPtr.Ptr) : null;

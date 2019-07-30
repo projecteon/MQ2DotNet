@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("altability")]
     public class AltAbilityType : MQ2DataType
     {
-        internal AltAbilityType(MQ2TypeVar typeVar) : base(typeVar)
+        internal AltAbilityType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

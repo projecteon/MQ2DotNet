@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("timestamp")]
     public class TimeStampType : MQ2DataType
     {
-        internal TimeStampType(MQ2TypeVar typeVar) : base(typeVar)
+        internal TimeStampType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
         

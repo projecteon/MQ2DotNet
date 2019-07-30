@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("window")]
     public class WindowType : MQ2DataType
     {
-        internal WindowType(MQ2TypeVar typeVar) : base(typeVar)
+        internal WindowType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             List = new ListMember(this);
             Child = new IndexedMember<WindowType>(this, "Child");

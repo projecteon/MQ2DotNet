@@ -12,7 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("time")]
     public class TimeType : MQ2DataType
     {
-        internal TimeType(MQ2TypeVar typeVar) : base(typeVar)
+        internal TimeType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

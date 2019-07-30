@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("groupmember")]
     public class GroupMemberType : SpawnType
     {
-        internal GroupMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        internal GroupMemberType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

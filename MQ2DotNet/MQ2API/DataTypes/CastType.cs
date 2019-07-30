@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("Cast")]
     public class CastType : MQ2DataType
     {
-        internal CastType(MQ2TypeVar typeVar) : base(typeVar)
+        internal CastType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

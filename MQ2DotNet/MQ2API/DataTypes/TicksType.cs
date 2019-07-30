@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("ticks")]
     public class TicksType : MQ2DataType
     {
-        internal TicksType(MQ2TypeVar typeVar) : base(typeVar)
+        internal TicksType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

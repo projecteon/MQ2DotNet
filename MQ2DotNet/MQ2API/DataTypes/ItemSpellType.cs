@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("itemspell")]
     public class ItemSpellType : MQ2DataType
     {
-        internal ItemSpellType(MQ2TypeVar typeVar) : base(typeVar)
+        internal ItemSpellType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

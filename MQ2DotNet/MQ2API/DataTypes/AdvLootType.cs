@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("advloot")]
     public class AdvLootType : MQ2DataType
     {
-        internal AdvLootType(MQ2TypeVar typeVar) : base(typeVar)
+        internal AdvLootType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             PList = new IndexedMember<AdvLootItemType>(this, "PList");
             SList = new IndexedMember<AdvLootItemType>(this, "SList");

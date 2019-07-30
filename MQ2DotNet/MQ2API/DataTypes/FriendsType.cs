@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("friend")]
     public class FriendsType : MQ2DataType
     {
-        internal FriendsType(MQ2TypeVar typeVar) : base(typeVar)
+        internal FriendsType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Friend = new IndexedStringMember<int, BoolType, string>(this, "Friend");
         }

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("charselectlist")]
     public class CharSelectListType : MQ2DataType
     {
-        internal CharSelectListType(MQ2TypeVar typeVar) : base(typeVar)
+        internal CharSelectListType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("macro")]
     public class MacroType : MQ2DataType
     {
-        internal MacroType(MQ2TypeVar typeVar) : base(typeVar)
+        internal MacroType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             IsTLO = new IndexedMember<BoolType>(this, "IsTLO");
             IsOuterVariable = new IndexedMember<BoolType>(this, "IsOuterVariable");

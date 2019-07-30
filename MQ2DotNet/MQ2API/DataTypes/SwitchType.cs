@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("switch")]
     public class SwitchType : MQ2DataType
     {
-        internal SwitchType(MQ2TypeVar typeVar) : base(typeVar)
+        internal SwitchType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

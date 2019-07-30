@@ -2,10 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using MQ2DotNet.MQ2API;
 using MQ2DotNet.Utility;
 
-namespace MQ2DotNet.EQ
+namespace MQ2DotNet.Services
 {
     /// <summary>
     /// Contains utility methods and properties relating to ingame chat (messages in a chat window, from EQ or MQ2)
@@ -13,8 +12,11 @@ namespace MQ2DotNet.EQ
     [PublicAPI]
     public class Chat
     {
-        internal Chat()
+        private readonly Events _events;
+
+        internal Chat(Events events)
         {
+            _events = events;
         }
 
         /// <summary>
@@ -25,7 +27,7 @@ namespace MQ2DotNet.EQ
         /// <returns></returns>
         public async Task WaitFor(Predicate<string> predicate, CancellationToken cancellationToken)
         {
-            await WaitForInternal(predicate, cancellationToken, handler => Events.OnChat += handler, handler => Events.OnChat -= handler);
+            await WaitForInternal(predicate, cancellationToken, handler => _events.OnChat += handler, handler => _events.OnChat -= handler);
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitFor(Predicate<string> predicate, int timeout, CancellationToken cancellationToken)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => Events.OnChat += handler, handler => Events.OnChat -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => _events.OnChat += handler, handler => _events.OnChat -= handler);
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitFor(Predicate<string> predicate, int timeout)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => Events.OnChat += handler, handler => Events.OnChat -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => _events.OnChat += handler, handler => _events.OnChat -= handler);
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace MQ2DotNet.EQ
         /// <returns></returns>
         public async Task WaitForEQ(Predicate<string> predicate, CancellationToken cancellationToken)
         {
-            await WaitForInternal(predicate, cancellationToken, handler => Events.OnChatEQ += handler, handler => Events.OnChatEQ -= handler);
+            await WaitForInternal(predicate, cancellationToken, handler => _events.OnChatEQ += handler, handler => _events.OnChatEQ -= handler);
         }
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitForEQ(Predicate<string> predicate, int timeout, CancellationToken cancellationToken)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => Events.OnChatEQ += handler, handler => Events.OnChatEQ -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => _events.OnChatEQ += handler, handler => _events.OnChatEQ -= handler);
         }
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitForEQ(Predicate<string> predicate, int timeout)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => Events.OnChatEQ += handler, handler => Events.OnChatEQ -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => _events.OnChatEQ += handler, handler => _events.OnChatEQ -= handler);
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace MQ2DotNet.EQ
         /// <returns></returns>
         public async Task WaitForMQ2(Predicate<string> predicate, CancellationToken cancellationToken)
         {
-            await WaitForInternal(predicate, cancellationToken, handler => Events.OnChatMQ2 += handler, handler => Events.OnChatMQ2 -= handler);
+            await WaitForInternal(predicate, cancellationToken, handler => _events.OnChatMQ2 += handler, handler => _events.OnChatMQ2 -= handler);
         }
 
         /// <summary>
@@ -110,7 +112,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitForMQ2(Predicate<string> predicate, int timeout, CancellationToken cancellationToken)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => Events.OnChatMQ2 += handler, handler => Events.OnChatMQ2 -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), cancellationToken, handler => _events.OnChatMQ2 += handler, handler => _events.OnChatMQ2 -= handler);
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace MQ2DotNet.EQ
         /// <exception cref="TaskCanceledException" />
         public async Task<bool> WaitForMQ2(Predicate<string> predicate, int timeout)
         {
-            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => Events.OnChatMQ2 += handler, handler => Events.OnChatMQ2 -= handler);
+            return await WaitForInternal(predicate, TimeSpan.FromMilliseconds(timeout), CancellationToken.None, handler => _events.OnChatMQ2 += handler, handler => _events.OnChatMQ2 -= handler);
         }
 
         private async Task WaitForInternal(Predicate<string> predicate, CancellationToken cancellationToken, Action<EventHandler<string>> subscribe, Action<EventHandler<string>> unsubscribe)

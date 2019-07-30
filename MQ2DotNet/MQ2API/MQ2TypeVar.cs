@@ -15,6 +15,24 @@ namespace MQ2DotNet.MQ2API
         // Only a 4 byte field but gets packed to 8 bytes. Many hours wasted before realizing this :(
         [FieldOffset(0)] internal IntPtr pType;
         [FieldOffset(8)] internal MQ2VarPtr VarPtr;
+        
+        internal bool TryGetMember(string memberName, string index, out MQ2TypeVar result)
+        {
+            if (pType == IntPtr.Zero)
+                throw new InvalidOperationException();
+
+            return MQ2Type__GetMember(pType, VarPtr, memberName, index, out result) && result.pType != IntPtr.Zero;
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var result = new StringBuilder(2048);
+            if (!MQ2Type__ToString(pType, VarPtr, result))
+                throw new ApplicationException("MQ2Type::ToString failed");
+
+            return result.ToString();
+        }
 
         #region Unmanaged imports
         // These are all class methods and I don't want to deal with PInvoking that, so the loader dll has some helper methods
@@ -40,26 +58,5 @@ namespace MQ2DotNet.MQ2API
         [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool MQ2Type__ToString(IntPtr pThis, MQ2VarPtr varPtr, [MarshalAs(UnmanagedType.LPStr)] StringBuilder destination);
         #endregion
-        
-        internal T GetMember<T>(string memberName, string index) where T : MQ2DataType
-        {
-            if (pType == IntPtr.Zero)
-                throw new InvalidOperationException();
-
-            if (!MQ2Type__GetMember(pType, VarPtr, memberName, index, out var result) || result.pType == IntPtr.Zero)
-                return null;
-
-            return (T) MQ2TypeFactory.Create(result);
-        }
-
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            var result = new StringBuilder(2048);
-            if (!MQ2Type__ToString(pType, VarPtr, result))
-                throw new ApplicationException("MQ2Type::ToString failed");
-
-            return result.ToString();
-        }
     }
 }

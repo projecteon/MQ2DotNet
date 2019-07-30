@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MQ2DotNet;
 using MQ2DotNet.MQ2API;
 using MQ2DotNet.MQ2API.DataTypes;
+using MQ2DotNet.Services;
 
 namespace AddDataType
 {

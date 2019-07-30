@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("advlootitem")]
     public class AdvLootItemType : MQ2DataType
     {
-        internal AdvLootItemType(MQ2TypeVar typeVar) : base(typeVar)
+        internal AdvLootItemType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

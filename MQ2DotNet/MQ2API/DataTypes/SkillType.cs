@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("skill")]
     public class SkillType : MQ2DataType
     {
-        internal SkillType(MQ2TypeVar typeVar) : base(typeVar)
+        internal SkillType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     //[MQ2Type("benchmark")]
     public class BenchmarkType : MQ2DataType
     {
-        internal BenchmarkType(MQ2TypeVar typeVar) : base(typeVar)
+        internal BenchmarkType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
     }

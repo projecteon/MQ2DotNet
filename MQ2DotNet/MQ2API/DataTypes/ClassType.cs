@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("class")]
     public class ClassType : MQ2DataType
     {
-        internal ClassType(MQ2TypeVar typeVar) : base(typeVar)
+        internal ClassType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

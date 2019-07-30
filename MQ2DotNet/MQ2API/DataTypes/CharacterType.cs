@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("character")]
     public class CharacterType : MQ2DataType // Inheritance won't work, use Spawn
     {
-        internal CharacterType(MQ2TypeVar typeVar) : base(typeVar)
+        internal CharacterType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Language = new IndexedStringMember<int, IntType, string>(this, "Language");
             XTarget = new IndexedMember<XTargetType, int>(this, "XTarget");
@@ -381,7 +381,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current endurance
         /// </summary>
-        public new int? CurrentEndurance => GetMember<IntType>("CurrentEndurance");
+        public int? CurrentEndurance => GetMember<IntType>("CurrentEndurance");
 
         /// <summary>
         /// Current favor/tribute
@@ -391,12 +391,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current hit points
         /// </summary>
-        public new int? CurrentHPs => GetMember<IntType>("CurrentHPs");
+        public int? CurrentHPs => GetMember<IntType>("CurrentHPs");
 
         /// <summary>
         /// Current mana
         /// </summary>
-        public new int? CurrentMana => GetMember<IntType>("CurrentMana");
+        public int? CurrentMana => GetMember<IntType>("CurrentMana");
 
         /// <summary>
         /// Current weight
@@ -843,17 +843,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Max endurance
         /// </summary>
-        public new int? MaxEndurance => GetMember<IntType>("MaxEndurance");
+        public int? MaxEndurance => GetMember<IntType>("MaxEndurance");
 
         /// <summary>
         /// Max hit points
         /// </summary>
-        public new int? MaxHPs => GetMember<IntType>("MaxHPs");
+        public int? MaxHPs => GetMember<IntType>("MaxHPs");
 
         /// <summary>
         /// Max mana
         /// </summary>
-        public new int? MaxMana => GetMember<IntType>("MaxMana");
+        public int? MaxMana => GetMember<IntType>("MaxMana");
 
         /// <summary>
         /// Mercenary AA experience, out of 1000
@@ -903,12 +903,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Moving? (including strafe)
         /// </summary>
-        public new bool Moving => GetMember<BoolType>("Moving");
+        public bool Moving => GetMember<BoolType>("Moving");
 
         /// <summary>
         /// First name
         /// </summary>
-        public new string Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// Nobles (alt currency)
@@ -944,7 +944,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current endurance as a percentage
         /// </summary>
-        public new int? PctEndurance => GetMember<IntType>("PctEndurance");
+        public int? PctEndurance => GetMember<IntType>("PctEndurance");
 
         /// <summary>
         /// Current experience as a percentage
@@ -959,12 +959,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current hit points as a percentage
         /// </summary>
-        public new int? PctHPs => GetMember<IntType>("PctHPs");
+        public int? PctHPs => GetMember<IntType>("PctHPs");
 
         /// <summary>
         /// Current mana as a percentage
         /// </summary>
-        public new int? PctMana => GetMember<IntType>("PctMana");
+        public int? PctMana => GetMember<IntType>("PctMana");
 
         /// <summary>
         /// Current mercenary AA experience as a oercentage
@@ -1195,7 +1195,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Am I stunned?
         /// </summary>
-        public new bool Stunned => GetMember<BoolType>("Stunned");
+        public bool Stunned => GetMember<BoolType>("Stunned");
 
         /// <summary>
         /// Stun Resist bonus from gear and spells
@@ -1274,7 +1274,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Your target's target
         /// </summary>
-        public new SpawnType TargetOfTarget => GetMember<SpawnType>("TargetOfTarget");
+        public SpawnType TargetOfTarget => GetMember<SpawnType>("TargetOfTarget");
 
         /// <summary>
         /// Debuff from the Tash line

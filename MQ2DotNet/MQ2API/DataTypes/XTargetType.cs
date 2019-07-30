@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using MQ2DotNet.Services;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -7,9 +8,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("xtarget")]
-    public class XTargetType : MQ2DataType
+    public class XTargetType : MQ2DataType // MQ2XTargetType inherits MQ2SpawnType, but we can't do this as it needs to do a transform on the VarPtr before calling the base's GetMember
     {
-        internal XTargetType(MQ2TypeVar typeVar) : base(typeVar)
+        internal XTargetType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 
@@ -41,6 +42,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Spawn in the XTarget slot
         /// </summary>
-        public SpawnType Spawn => TLO.Spawn["id " + ID];
+        public SpawnType GetSpawn(TLO tlo) => tlo.Spawn["id " + ID];
     }
 }

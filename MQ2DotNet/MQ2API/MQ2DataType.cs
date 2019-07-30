@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using MQ2DotNet.MQ2API.DataTypes;
 
 /* To create the member properties, grab everything in the switch statement from the cpp MQ2xxxType::GetMember function
@@ -15,30 +16,44 @@ namespace MQ2DotNet.MQ2API
     /// <summary>
     /// Base class from which all wrapped MQ2 data types derive
     /// </summary>
-    public class MQ2DataType : MarshalByRefObject // Allows passing across AppDomains e.g. in Events
+    public class MQ2DataType
     {
+        private readonly MQ2TypeFactory _typeFactory;
         private MQ2TypeVar _typeVar;
-
-        internal MQ2DataType()
-        {
-        }
 
         /// <summary>
         /// Create a new MQ2DataType from an MQ2TypeVar
         /// </summary>
+        /// <param name="typeFactory">MQ2TypeFactory to use with GetMember calls</param>
         /// <param name="typeVar"></param>
-        public MQ2DataType(MQ2TypeVar typeVar)
+        public MQ2DataType(MQ2TypeFactory typeFactory, MQ2TypeVar typeVar)
         {
+            _typeFactory = typeFactory;
             _typeVar = typeVar;
         }
 
-        internal MQ2DataType(string typeName, MQ2VarPtr varPtr)
+        /// <summary>
+        /// Creates a new MQ2DataType of the specified typename from an MQ2VarPtr
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <param name="typeFactory">MQ2TypeFactory to use with GetMember calls</param>
+        /// <param name="varPtr"></param>
+        protected MQ2DataType(string typeName, MQ2TypeFactory typeFactory, MQ2VarPtr varPtr)
+            : this(typeFactory, new MQ2TypeVar { pType = FindMQ2DataType(typeName), VarPtr = varPtr })
         {
-            _typeVar.pType = MQ2TypeFactory.FindMQ2DataType(typeName);
             if (_typeVar.pType == IntPtr.Zero)
                 throw new KeyNotFoundException($"MQ2Type not found: {typeName}");
+        }
+        
+        /// <summary>
+        /// Underlying data storage. Exposed for use in basic types e.g. int, double, etc
+        /// </summary>
+        protected MQ2VarPtr VarPtr => _typeVar.VarPtr;
 
-            _typeVar.VarPtr = varPtr;
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return _typeVar.ToString();
         }
 
         #region Helpers for derived classes
@@ -52,7 +67,10 @@ namespace MQ2DotNet.MQ2API
         /// <exception cref="InvalidCastException" />
         protected T GetMember<T>(string name, string index = "") where T : MQ2DataType
         {
-            return _typeVar.GetMember<T>(name, index);
+            if (!_typeVar.TryGetMember(name, index, out var result))
+                return null;
+
+            return (T) _typeFactory.Create(result);
         }
 
         /// <summary>
@@ -209,13 +227,9 @@ namespace MQ2DotNet.MQ2API
         }
         #endregion
 
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return _typeVar.ToString();
-        }
-
-        // Exposed for use in basic types e.g. int, double, etc
-        internal MQ2VarPtr VarPtr => _typeVar.VarPtr;
+        #region Unmanaged imports
+        [DllImport("MQ2Main.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr FindMQ2DataType(string name);
+        #endregion
     }
 }

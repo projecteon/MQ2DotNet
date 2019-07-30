@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("plugin")]
     public class PluginType : MQ2DataType
     {
-        internal PluginType(MQ2TypeVar typeVar) : base(typeVar)
+        internal PluginType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

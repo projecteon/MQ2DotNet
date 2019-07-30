@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("int")]
     public class IntType : MQ2DataType
     {
-        internal IntType(MQ2TypeVar typeVar) : base(typeVar)
+        internal IntType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

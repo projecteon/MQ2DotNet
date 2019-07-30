@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("raid")]
     public class RaidType : MQ2DataType
     {
-        internal RaidType(MQ2TypeVar typeVar) : base(typeVar)
+        internal RaidType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Member = new IndexedMember<RaidMemberType, string, RaidMemberType, int>(this, "Member");
         }

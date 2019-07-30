@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("pet")]
     public class PetType : MQ2DataType
     {
-        internal PetType(MQ2TypeVar typeVar) : base(typeVar)
+        internal PetType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             BuffDuration = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "BuffDuration");
             Buff = new IndexedMember<SpellType, int, IntType, string>(this, "Buff");

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("heading")]
     public class HeadingType : MQ2DataType
     {
-        internal HeadingType(MQ2TypeVar typeVar) : base(typeVar)
+        internal HeadingType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

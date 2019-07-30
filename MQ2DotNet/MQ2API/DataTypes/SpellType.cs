@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("spell")]
     public class SpellType : MQ2DataType
     {
-        internal SpellType(MQ2TypeVar typeVar) : base(typeVar)
+        internal SpellType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             ReagentID = new IndexedMember<IntType, int>(this, "ReagentID");
             ReagentCount = new IndexedMember<IntType, int>(this, "ReagentCount");

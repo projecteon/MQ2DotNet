@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("dzmember")]
     public class DZMemberType : MQ2DataType
     {
-        internal DZMemberType(MQ2TypeVar typeVar) : base(typeVar)
+        internal DZMemberType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

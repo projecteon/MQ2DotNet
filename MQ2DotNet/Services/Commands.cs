@@ -1,20 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using MQ2DotNet.MQ2API;
 using MQ2DotNet.Utility;
 
-namespace MQ2DotNet.MQ2API
+namespace MQ2DotNet.Services
 {
     /// <summary>
     /// Plugin functions for adding or removing commands
     /// </summary>
     [PublicAPI]
-    public static class Commands
+    public sealed class Commands : CriticalFinalizerObject, IDisposable
     {
+        private readonly EventLoopContext _eventLoopContext;
+
+        internal Commands(EventLoopContext eventLoopContext)
+        {
+            _eventLoopContext = eventLoopContext;
+        }
+
+        /// <inheritdoc />
+        ~Commands()
+        {
+            RemoveAllCommands();
+        }
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            RemoveAllCommands();
+            GC.SuppressFinalize(this);
+            _disposed = true;
+        }
+
         /// <summary>
         /// Delegate for a synchronous command handler
         /// </summary>
@@ -28,40 +52,6 @@ namespace MQ2DotNet.MQ2API
         /// <returns></returns>
         public delegate Task AsyncCommand(params string[] args);
 
-        #region MQ2Main imports
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void fEQCommand(IntPtr pCharSpawn, [MarshalAs(UnmanagedType.LPStr)] string Buffer);
-
-        [DllImport("MQ2Main.dll", EntryPoint = "AddCommand", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void MQ2AddCommand([MarshalAs(UnmanagedType.LPStr)] string Command, fEQCommand Function, bool EQ = false, bool Parse = true, bool InGame = false);
-
-        [DllImport("MQ2Main.dll", EntryPoint = "RemoveCommand", CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool MQ2RemoveCommand([MarshalAs(UnmanagedType.LPStr)] string Command);
-        #endregion
-
-        // .NET marshalling of delegates is a bit painful. If you pass a delegate to an unmanaged function, that doesn't count as a reference.
-        // This means it could later get garbage collected, since the delegate is no longer referenced (even though the function it points to still exists).
-        // To make life easier, this class keeps a copy of it so whatever class uses AddCommand can use it like normal
-        private static readonly Dictionary<string, fEQCommand> _commands = new Dictionary<string, fEQCommand>();
-
-        /// <summary>
-        /// Adds a new command
-        /// Note: this function will ensure the delegate is not garbage collected prior to RemoveCommand being called
-        /// </summary>
-        /// <param name="command">Text to look for, including the slash e.g. "/echo"</param>
-        /// <param name="function">Method to be invoked when command is executed</param>
-        /// <param name="EQ">TODO: What is this?</param>
-        /// <param name="parse">If <c>true</c>, MQ2 variables will be parsed prior to invoking <paramref name="function"/></param>
-        /// <param name="inGame">TODO: What is this?</param>
-        private static void AddCommand(string command, fEQCommand function, bool EQ = false, bool parse = true, bool inGame = false)
-        {
-            if (_commands.ContainsKey(command))
-                throw new ApplicationException("Command already exists");
-
-            _commands[command] = function;
-            MQ2AddCommand(command, function, EQ, parse, inGame);
-        }
-
         /// <summary>
         /// Add a new synchronous command
         /// </summary>
@@ -70,14 +60,17 @@ namespace MQ2DotNet.MQ2API
         /// <param name="EQ"></param>
         /// <param name="parse"></param>
         /// <param name="inGame"></param>
-        public static void AddCommand(string command, Command handler, bool EQ = false, bool parse = true, bool inGame = false)
+        public void AddCommand(string command, Command handler, bool EQ = false, bool parse = true, bool inGame = false)
         {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(Commands));
+
             AddCommand(command, (pChar, buffer) =>
             {
                 try
                 {
                     // Like plugin API callbacks, command handlers get executed with our sync context set
-                    EventLoopContext.Instance.SetExecuteRestore(() => handler(GetArgs(buffer).ToArray()));
+                    _eventLoopContext.SetExecuteRestore(() => handler(GetArgs(buffer).ToArray()));
                 }
                 catch (Exception e)
                 {
@@ -95,12 +88,15 @@ namespace MQ2DotNet.MQ2API
         /// <param name="EQ"></param>
         /// <param name="parse"></param>
         /// <param name="inGame"></param>
-        public static void AddAsyncCommand(string command, AsyncCommand handler, bool EQ = false, bool parse = true, bool inGame = false)
+        public void AddAsyncCommand(string command, AsyncCommand handler, bool EQ = false, bool parse = true, bool inGame = false)
         {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(Commands));
+
             AddCommand(command, (pChar, buffer) =>
             {
                 // Like plugin API callbacks, command handlers get executed with our sync context set
-                EventLoopContext.Instance.SetExecuteRestore(() =>
+                _eventLoopContext.SetExecuteRestore(() =>
                 {
                     try
                     {
@@ -124,8 +120,11 @@ namespace MQ2DotNet.MQ2API
         /// Removes a command, and removes the stored reference to the delegate if it was added from this plugin
         /// </summary>
         /// <param name="command">Command to remove, including the slash e.g. "/echo"</param>
-        public static void RemoveCommand(string command)
+        public void RemoveCommand(string command)
         {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(Commands));
+
             if (_commands.ContainsKey(command))
             {
                 _commands.Remove(command);
@@ -137,7 +136,7 @@ namespace MQ2DotNet.MQ2API
             }
         }
 
-        internal static int RemoveAllCommands()
+        private int RemoveAllCommands()
         {
             var count = 0;
 
@@ -148,6 +147,31 @@ namespace MQ2DotNet.MQ2API
             }
 
             return count;
+        }
+
+        // .NET marshalling of delegates is a bit painful. If you pass a delegate to an unmanaged function, that doesn't count as a reference.
+        // This means it could later get garbage collected, since the delegate is no longer referenced (even though the function it points to still exists).
+        // To make life easier, this class keeps a copy of it so whatever class uses AddCommand can use it like normal
+        private readonly Dictionary<string, fEQCommand> _commands = new Dictionary<string, fEQCommand>();
+
+        private bool _disposed;
+
+        /// <summary>
+        /// Adds a new command
+        /// Note: this function will ensure the delegate is not garbage collected prior to RemoveCommand being called
+        /// </summary>
+        /// <param name="command">Text to look for, including the slash e.g. "/echo"</param>
+        /// <param name="function">Method to be invoked when command is executed</param>
+        /// <param name="EQ">TODO: What is this?</param>
+        /// <param name="parse">If <c>true</c>, MQ2 variables will be parsed prior to invoking <paramref name="function"/></param>
+        /// <param name="inGame">TODO: What is this?</param>
+        private void AddCommand(string command, fEQCommand function, bool EQ = false, bool parse = true, bool inGame = false)
+        {
+            if (_commands.ContainsKey(command))
+                throw new ApplicationException("Command already exists");
+
+            _commands[command] = function;
+            MQ2AddCommand(command, function, EQ, parse, inGame);
         }
 
         /// <summary>
@@ -190,5 +214,19 @@ namespace MQ2DotNet.MQ2API
 
             return args;
         }
+
+        #region MQ2Main imports
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private delegate void fEQCommand(IntPtr pCharSpawn, [MarshalAs(UnmanagedType.LPStr)] string Buffer);
+
+        [DllImport("MQ2Main.dll", EntryPoint = "AddCommand", CallingConvention = CallingConvention.Cdecl)]
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private static extern void MQ2AddCommand([MarshalAs(UnmanagedType.LPStr)] string Command, fEQCommand Function, bool EQ = false, bool Parse = true, bool InGame = false);
+
+        [DllImport("MQ2Main.dll", EntryPoint = "RemoveCommand", CallingConvention = CallingConvention.Cdecl)]
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private static extern bool MQ2RemoveCommand([MarshalAs(UnmanagedType.LPStr)] string Command);
+        #endregion
     }
 }

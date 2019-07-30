@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("pointmerchantitem")]
     public class PointMerchantItemType : MQ2DataType
     {
-        internal PointMerchantItemType(MQ2TypeVar typeVar) : base(typeVar)
+        internal PointMerchantItemType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

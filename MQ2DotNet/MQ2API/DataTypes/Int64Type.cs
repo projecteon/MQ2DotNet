@@ -9,11 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("int64")]
     public class Int64Type : MQ2DataType
     {
-        internal Int64Type(MQ2TypeVar typeVar) : base(typeVar)
-        {
-        }
-
-        internal Int64Type(long value) : base("int64", new MQ2VarPtr() {Int64 = value})
+        internal Int64Type(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("macroquest")]
     public class MacroQuestType : EverQuestType
     {
-        internal MacroQuestType(MQ2TypeVar typeVar) : base(typeVar)
+        internal MacroQuestType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

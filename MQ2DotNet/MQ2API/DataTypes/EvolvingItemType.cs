@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("Evolving")]
     public class EvolvingItemType : MQ2DataType
     {
-        internal EvolvingItemType(MQ2TypeVar typeVar) : base(typeVar)
+        internal EvolvingItemType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

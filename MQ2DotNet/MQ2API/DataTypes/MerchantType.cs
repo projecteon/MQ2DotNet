@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("merchant")]
     public class MerchantType : SpawnType
     {
-        internal MerchantType(MQ2TypeVar typeVar) : base(typeVar)
+        internal MerchantType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Item = new IndexedMember<ItemType, int, ItemType, string>(this, "Item");
         }

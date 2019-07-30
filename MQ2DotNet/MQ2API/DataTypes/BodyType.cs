@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("body")]
     public class BodyType : MQ2DataType
     {
-        internal BodyType(MQ2TypeVar typeVar) : base(typeVar)
+        internal BodyType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

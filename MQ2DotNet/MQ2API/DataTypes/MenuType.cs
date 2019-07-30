@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("menu")]
     public class MenuType : MQ2DataType
     {
-        internal MenuType(MQ2TypeVar typeVar) : base(typeVar)
+        internal MenuType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Items = new IndexedMember<StringType, int>(this, "Items");
         }

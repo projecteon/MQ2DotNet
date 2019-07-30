@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("race")]
     public class RaceType : MQ2DataType
     {
-        internal RaceType(MQ2TypeVar typeVar) : base(typeVar)
+        internal RaceType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("dynamiczone")]
     public class DynamicZoneType : MQ2DataType
     {
-        internal DynamicZoneType(MQ2TypeVar typeVar) : base(typeVar)
+        internal DynamicZoneType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Member = new IndexedMember<DZMemberType, int, DZMemberType, string>(this, "Member");
         }

@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("targetbuff")]
     public class TargetBuffType : SpellType
     {
-        internal TargetBuffType(MQ2TypeVar typeVar) : base(typeVar)
+        internal TargetBuffType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

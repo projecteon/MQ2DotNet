@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("itemfilterdata")]
     public class ItemFilterDataType : MQ2DataType
     {
-        internal ItemFilterDataType(MQ2TypeVar typeVar) : base(typeVar)
+        internal ItemFilterDataType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

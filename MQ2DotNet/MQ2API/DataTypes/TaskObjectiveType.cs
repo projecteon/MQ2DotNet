@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("taskobjectivemember")]
     public class TaskObjectiveType : MQ2DataType
     {
-        internal TaskObjectiveType(MQ2TypeVar typeVar) : base(typeVar)
+        internal TaskObjectiveType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

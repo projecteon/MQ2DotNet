@@ -28,17 +28,28 @@ namespace MQ2DotNet.Utility
         /// <summary>
         /// Invoke all queued continuations
         /// </summary>
-        public void DoEvents()
+        /// <param name="setSyncContext">
+        /// If true, continuations will be invoked on this synchronization context. If false, they will be invoked on SynchronizationContext.Current
+        /// </param>
+        public void DoEvents(bool setSyncContext)
         {
-            // Any continuations currently in the queue get removed and inserted into a list
-            var continuations = new List<KeyValuePair<SendOrPostCallback, object>>();
-            while (_queue.TryDequeue(out var continuation))
-                continuations.Add(continuation);
+            void Action()
+            {
+                // Any continuations currently in the queue get removed and inserted into a list
+                var continuations = new List<KeyValuePair<SendOrPostCallback, object>>();
+                while (_queue.TryDequeue(out var continuation))
+                    continuations.Add(continuation);
 
-            // Now all the continuations in the list get executed
-            // Any further continuations posted as a result of one of the existing ones will go in the queue to get executed next iteration of the loop
-            foreach (var continuation in continuations)
-                continuation.Key(continuation.Value);
+                // Now all the continuations in the list get executed
+                // Any further continuations posted as a result of one of the existing ones will go in the queue to get executed next iteration of the loop
+                foreach (var continuation in continuations)
+                    continuation.Key(continuation.Value);
+            }
+
+            if (setSyncContext)
+                SetExecuteRestore(Action);
+            else
+                Action();
         }
 
         /// <summary>
@@ -75,11 +86,6 @@ namespace MQ2DotNet.Utility
                 SetSynchronizationContext(oldContext);
             }
         }
-
-        /// <summary>
-        /// Singleton instance of the context
-        /// </summary>
-        public static EventLoopContext Instance { get; } = new EventLoopContext();
 
         /// <summary>
         /// Remove all queued continuations

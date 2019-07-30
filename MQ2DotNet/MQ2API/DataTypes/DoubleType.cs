@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("double")]
     public class DoubleType : MQ2DataType
     {
-        internal DoubleType(MQ2TypeVar typeVar) : base(typeVar)
+        internal DoubleType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

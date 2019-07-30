@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("currentzone")]
     public class CurrentZoneType : MQ2DataType
     {
-        internal CurrentZoneType(MQ2TypeVar typeVar) : base(typeVar)
+        internal CurrentZoneType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

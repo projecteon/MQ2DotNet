@@ -10,7 +10,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("worldlocation")]
     public class WorldLocationType : MQ2DataType
     {
-        internal WorldLocationType(MQ2TypeVar typeVar) : base(typeVar)
+        internal WorldLocationType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 

@@ -10,19 +10,17 @@ namespace MQ2DotNet.MQ2API.DataTypes
     [MQ2Type("ground")]
     public class GroundType : MQ2DataType
     {
-        internal GroundType(MQ2TypeVar typeVar) : base(typeVar)
+        internal GroundType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 
         /// <summary>
         /// Create a new instance from a pointer to a GROUNDOBJECT struct
         /// </summary>
+        /// <param name="mq2TypeFactory"></param>
         /// <param name="pGroundItem"></param>
-        public GroundType(IntPtr pGroundItem) : base("ground",
-            new MQ2VarPtr()
-            {
-                Ptr = pGroundItem
-            })
+        public GroundType(MQ2TypeFactory mq2TypeFactory, IntPtr pGroundItem)
+            : base("ground", mq2TypeFactory, new MQ2VarPtr { Ptr = pGroundItem })
         {
         }
 
