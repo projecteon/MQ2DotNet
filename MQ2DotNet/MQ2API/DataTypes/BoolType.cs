@@ -19,7 +19,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <param name="typeVar"></param>
         public static implicit operator bool(BoolType typeVar)
         {
-            return typeVar.VarPtr.Dword != 0;
+            // A null will be converted to a false
+            return typeVar?.VarPtr.Dword != 0;
         }
     }
 }

@@ -38,7 +38,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// AGI value on item
         /// </summary>
-        /// 
         public int? AGI => GetMember<IntType>("AGI");
         /// <summary>
         /// Attack value on item

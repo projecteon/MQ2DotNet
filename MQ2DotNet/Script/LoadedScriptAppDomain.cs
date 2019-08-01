@@ -23,8 +23,8 @@ namespace MQ2DotNet.Script
 
         public LoadedScriptAppDomain()
         {
-            // Nothing happens on startup right now
-            // TODO: Force load of compilation assemblies
+            // Compile & run a nothing script on the thread pool. This will force it to load all the assemblies required for compilation and make it much quicker when we run something
+            Task.Run(async () => await CSharpScript.RunAsync("return true;"));
         }
 
         public override bool Finished => new TaskStatus?[] { TaskStatus.RanToCompletion, TaskStatus.Canceled, TaskStatus.Faulted }.Contains(_task?.Status);
@@ -149,7 +149,7 @@ namespace MQ2DotNet.Script
                 }
                 catch (Exception e)
                 {
-                    MQ2.WriteChatScriptError($"Error running script {Name}: {e}");
+                    MQ2.WriteChatScriptError($"Exception in \ag{Name}\ax at line \ag{(new StackTrace(e, true)).GetFrame(0).GetFileLineNumber()}\ax: {e}");
                 }
             }
             finally

@@ -26,7 +26,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <returns></returns>
         public static implicit operator string(StringType typeVar)
         {
-            return typeVar._string;
+            return typeVar?._string;
         }
     }
 }

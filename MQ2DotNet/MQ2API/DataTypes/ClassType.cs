@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 using MQ2DotNet.EQ;
 
 namespace MQ2DotNet.MQ2API.DataTypes
@@ -79,6 +80,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         /// <param name="typeVar"></param>
         /// <returns></returns>
-        public static implicit operator Class?(ClassType typeVar) => (Class?) typeVar?.VarPtr.Int;
+        public static implicit operator Class?(ClassType typeVar) => (Class?) (1 << (typeVar?.VarPtr.Int - 1));
     }
 }

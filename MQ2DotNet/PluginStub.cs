@@ -103,7 +103,7 @@ namespace MQ2DotNet
         private static IReadOnlyList<ScriptAppDomain> ScriptDomains =>  _appDomains.Where(d => d is ScriptAppDomain).Cast<ScriptAppDomain>().ToList().AsReadOnly();
 
         private static ReadOnlyDictionary<string, ScriptAppDomain> ActiveScripts =>
-            new ReadOnlyDictionary<string, ScriptAppDomain>(ScriptDomains.ToDictionary(s => s.Name, s => s));
+            new ReadOnlyDictionary<string, ScriptAppDomain>(ScriptDomains.Where(d => d.Active).ToDictionary(s => s.Name, s => s));
 
         /// <summary>
         /// Entrypoint, called by MQ2DotNetLoader
@@ -146,6 +146,7 @@ namespace MQ2DotNet
                 // And C# scripts
                 _commands.AddCommand("/cs", CsCommand);
                 _commands.AddCommand("/endcs", EndCsCommand);
+                _commands.AddCommand("/csreload", CsReloadCommand);
 
                 // Load any plugins that are set to autoload. Fuck ini files
                 try
@@ -316,6 +317,22 @@ namespace MQ2DotNet
             }
         }
 
+        private static void CsReloadCommand(params string[] args)
+        {
+            var count = 0;
+
+            // Force unload on each inactive domain, and load a new one in its place
+            foreach (var scriptAppDomain in ScriptDomains.Where(d => !d.Active).ToList())
+            {
+                count++;
+                scriptAppDomain.Dispose();
+                _appDomains.Remove(scriptAppDomain);
+                _appDomains.Add(ScriptAppDomain.Load("ScriptDomain" + Guid.NewGuid()));
+            }
+
+            MQ2.WriteChatScript($"Unloaded {count} idle app domains");
+        }
+
         private static void StartScript(string scriptName, params string[] args)
         {
             if (ActiveScripts.ContainsKey(scriptName))
@@ -340,7 +357,7 @@ namespace MQ2DotNet
                 // Or in a loaded one if there's none available
                 if (scriptDomain == null)
                 {
-                    scriptDomain = ScriptAppDomain.Load("ScriptDomain" + ScriptDomains.Count);
+                    scriptDomain = ScriptAppDomain.Load("ScriptDomain" + Guid.NewGuid());
                     _appDomains.Add(scriptDomain);
                 }
 
@@ -504,7 +521,12 @@ namespace MQ2DotNet
                 }
             }
 
-            // TODO: Load new script domains if needed
+            // Make sure there's 2 available script domains
+            if (ScriptDomains.Count(d => !d.Active) < 2)
+            {
+                _appDomains.Add(ScriptAppDomain.Load("ScriptDomain" + Guid.NewGuid()));
+                _appDomains.Add(ScriptAppDomain.Load("ScriptDomain" + Guid.NewGuid()));
+            }
         }
 
         private static void BeginZone()
