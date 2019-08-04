@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MQ2DotNet.Script
@@ -22,7 +23,8 @@ namespace MQ2DotNet.Script
         {
             var scriptAppDomain = Load<ScriptAppDomain, LoadedScriptAppDomain>(
                 appDomainName,
-                (appDomain, loadedScript) => new ScriptAppDomain(appDomain, loadedScript));
+                (appDomain, loadedScript) => new ScriptAppDomain(appDomain, loadedScript),
+                Enumerable.Empty<string>());
             
             return scriptAppDomain;
         }

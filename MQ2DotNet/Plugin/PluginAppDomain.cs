@@ -20,6 +20,7 @@ namespace MQ2DotNet.Plugin
             var pluginAppDomain = Load<PluginAppDomain, LoadedPluginAppDomain>(
                 appDomainName,
                 (appDomain, loadedPlugin) => new PluginAppDomain(appDomain, loadedPlugin),
+                new[] { Path.GetDirectoryName(assemblyFilePath) },
                 assemblyFilePath);
             
             return pluginAppDomain;

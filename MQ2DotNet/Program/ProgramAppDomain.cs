@@ -23,6 +23,7 @@ namespace MQ2DotNet.Program
             var programAppDomain = Load<ProgramAppDomain, LoadedProgramAppDomain>(
                 appDomainName,
                 (appDomain, loadedProgram) => new ProgramAppDomain(appDomain, loadedProgram),
+                new[] { Path.GetDirectoryName(assemblyFilePath) },
                 assemblyFilePath);
             
             return programAppDomain;
@@ -33,5 +34,7 @@ namespace MQ2DotNet.Program
         public void Cancel() => LoadedProgram.Cancel();
 
         public TaskStatus Status => LoadedProgram.Status;
+
+        public Exception Exception => LoadedProgram.Exception;
     }
 }

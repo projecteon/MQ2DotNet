@@ -107,7 +107,6 @@ namespace MQ2DotNet
 
         /// <summary>
         /// Entrypoint, called by MQ2DotNetLoader
-        /// Entrypoint, called by MQ2DotNetLoader
         /// </summary>
         /// <param name="arg"></param>
         /// <returns></returns>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using MQ2DotNet.MQ2API;
 using Ninject;
 
 namespace MQ2DotNet.Program
@@ -22,7 +24,7 @@ namespace MQ2DotNet.Program
 
             // Load the assembly, and find the first/only class that inherits IProgram
             var assembly = Assembly.LoadFile(assemblyFilePath);
-
+            
             var pluginClass = assembly.GetExportedTypes().Single(t => t.GetInterfaces().Contains(typeof(IProgram)) && !t.IsAbstract);
 
             // Create an instance of the class, using Ninject to resolve any constructor dependencies
@@ -34,6 +36,26 @@ namespace MQ2DotNet.Program
         }
 
         public override bool Finished => new TaskStatus?[] { TaskStatus.RanToCompletion, TaskStatus.Canceled, TaskStatus.Faulted }.Contains(_task?.Status);
+
+        protected override void AfterPulse()
+        {
+            // If it's faulted, show some details
+            if (_task.IsFaulted)
+            {
+                Debug.Assert(_task.Exception != null);
+                var stackFrame = (new StackTrace(_task.Exception, true)).GetFrame(0);
+                if (stackFrame != null)
+                {
+                    var file = stackFrame.GetFileName();
+                    var line = stackFrame.GetFileLineNumber();
+                    MQ2.WriteChatProgramError($"Exception in \ag{Name}\ax at \ag{file}:{line}\ax: {Exception}");
+                }
+                else
+                    MQ2.WriteChatProgramError($"Exception in \ag{Name}\ax: {Exception}");
+            }
+        }
+
+        public Exception Exception => _task.Exception?.InnerException;
 
         public TaskStatus Status => _task?.Status ?? TaskStatus.Created;
 

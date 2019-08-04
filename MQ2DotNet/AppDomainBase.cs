@@ -70,7 +70,7 @@ namespace MQ2DotNet
         ///  <param name="constructor">Function to create an instance of <typeparamref name="T"/> given an AppDomain and a <typeparamref name="TLoaded"/></param>
         /// <param name="args">Arguments to pass to the constructor of <typeparamref name="TLoaded"/></param>
         /// <returns></returns>
-        protected static T Load<T, TLoaded>(string appDomainName, Func<AppDomain, TLoaded, T> constructor, params object[] args)
+        protected static T Load<T, TLoaded>(string appDomainName, Func<AppDomain, TLoaded, T> constructor, IEnumerable<string> binPaths, params object[] args)
             where T : AppDomainBase
             where TLoaded : LoadedAppDomainBase
         {
@@ -78,7 +78,7 @@ namespace MQ2DotNet
             var appDomainSetup = new AppDomainSetup
             {
                 ApplicationBase = new MQ2().INIPath, // TODO: Not hardcode this
-                PrivateBinPath = Path.GetDirectoryName(typeof(TLoaded).Assembly.Location)
+                PrivateBinPath = string.Join(";", binPaths)
             };
             var appDomain = AppDomain.CreateDomain(appDomainName, null, appDomainSetup);
 
