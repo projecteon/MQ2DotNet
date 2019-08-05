@@ -28,7 +28,7 @@ release_deploy:
     - '$fileUrl = "https://gitlab.com/alynel/MQ2DotNet$(($response | ConvertFrom-Json).url)"'
     - '$data = @{ "name"=$env:CI_COMMIT_TAG; "tag_name"=$env:CI_COMMIT_TAG; "description"="Auto generated release"; "assets" = @{ "links" = @(@{"name"="Zip"; "url"=$fileUrl})}}'
     - 'Write-Host "Creating release: $($data | ConvertTo-Json -Depth 3)"'
-    - '$response = wsl curl --request POST --header "Private-Token: $($env:GITLAB_API_KEY)" --data ($data | ConvertTo-Json -Depth 3) https://gitlab.com/api/v4/projects/7242930/releases'
+    - '$response = wsl echo curl --request POST --header "Private-Token: $($env:GITLAB_API_KEY)" --data ($data | ConvertTo-Json -Depth 3 -Compress) https://gitlab.com/api/v4/projects/7242930/releases'
     - 'Write-Host "File uploaded: $($response)"'
   only:
     - tags
