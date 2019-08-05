@@ -1,0 +1,20 @@
+debug_build:
+  stage: build
+  script:
+    - pwd
+    - 'msbuild -t:build /p:Configuration=MQ2DotNet-Debug -restore -p:RestorePackagesPath=build/Debug/packages'
+  artifacts:
+    paths:
+    - build/Debug/MQ2DotNet
+  only:
+    - develop
+
+release_build:
+  stage: build
+  script:
+    - 'msbuild -t:build /p:Configuration=MQ2DotNet-Release -restore -p:RestorePackagesPath=build/Release/packages'
+  artifacts:
+    paths:
+    - build/Release/MQ2DotNet
+  only:
+    - tags
