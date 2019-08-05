@@ -135,7 +135,11 @@ namespace MQ2DotNet
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfEndZone"), Marshal.GetFunctionPointerForDelegate(_endZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnZoned"), Marshal.GetFunctionPointerForDelegate(_onZoned));
 
+#if DEBUG
+                MQ2.WriteChatGeneral($"Loaded debug version {GitVersionInformation.MajorMinorPatch} ({GitVersionInformation.ShortSha})");
+#else
                 MQ2.WriteChatGeneral($"Loaded version {GitVersionInformation.MajorMinorPatch} ({GitVersionInformation.ShortSha})");
+#endif
                 
                 // Add command to load/unload .net plugins
                 _commands.AddCommand("/netplugin", NetPluginCommand);
@@ -146,7 +150,7 @@ namespace MQ2DotNet
 
                 // And C# scripts
                 _commands.AddCommand("/cs", CsCommand);
-                _commands.AddCommand("/endcs", EndCsCommand);
+                _commands.AddCommand("/csend", EndCsCommand);
                 _commands.AddCommand("/csreload", CsReloadCommand);
 
                 // Load any plugins that are set to autoload. Fuck ini files
@@ -180,7 +184,7 @@ namespace MQ2DotNet
             }
         }
 
-        #region .NET plugin commands
+#region .NET plugin commands
         private static void NetPluginCommand(params string[] args)
         {
             // Argument parsing & validation
@@ -267,9 +271,9 @@ namespace MQ2DotNet
                 MQ2.WriteChatPlugin($"{pluginName} is not loaded");
             }
         }
-        #endregion
+#endregion
 
-        #region C# script commands
+#region C# script commands
         private static void CsCommand(params string[] args)
         {
             if (args.Length == 0)
@@ -394,9 +398,9 @@ namespace MQ2DotNet
                 MQ2.WriteChatScript($"{scriptName} is not running");
             }
         }
-        #endregion
+#endregion
 
-        #region .NET program commands
+#region .NET program commands
         private static void NetRunCommand(params string[] args)
         {
             if (args.Length == 0)
@@ -495,9 +499,9 @@ namespace MQ2DotNet
                 MQ2.WriteChatProgram($"{programName} is not running");
             }
         }
-        #endregion
+#endregion
 
-        #region Plugin API callbacks, each of these will invoke the corresponding method on each loaded AppDomain
+#region Plugin API callbacks, each of these will invoke the corresponding method on each loaded AppDomain
         private static void OnPulse()
         {
             _eventLoopContext.DoEvents(true);
@@ -766,6 +770,6 @@ namespace MQ2DotNet
                 }
             }
         }
-        #endregion
+#endregion
     }
 }
