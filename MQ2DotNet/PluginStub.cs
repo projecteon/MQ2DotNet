@@ -134,6 +134,8 @@ namespace MQ2DotNet
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfBeginZone"), Marshal.GetFunctionPointerForDelegate(_beginZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfEndZone"), Marshal.GetFunctionPointerForDelegate(_endZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnZoned"), Marshal.GetFunctionPointerForDelegate(_onZoned));
+
+                MQ2.WriteChatGeneral($"Loaded version {GitVersionInformation.MajorMinorPatch} ({GitVersionInformation.ShortSha})");
                 
                 // Add command to load/unload .net plugins
                 _commands.AddCommand("/netplugin", NetPluginCommand);
