@@ -6,6 +6,8 @@ debug_build:
   artifacts:
     paths:
     - build/Debug/MQ2DotNet
+  only:
+    - develop
 
 release_build:
   stage: build
@@ -14,4 +16,5 @@ release_build:
   artifacts:
     paths:
     - build/Release/MQ2DotNet
-    
+  only:
+    - tags
