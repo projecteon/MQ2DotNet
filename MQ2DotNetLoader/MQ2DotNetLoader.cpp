@@ -1,5 +1,14 @@
-#define TEST
-#include "../../MQ2Plugin.h"
+// MQ2DotNetLoader.cpp : Defines the entry point for the DLL application.
+//
+
+// PLUGIN_API is only to be used for callbacks.  All existing callbacks at this time
+// are shown below. Remove the ones your plugin does not use.  Always use Initialize
+// and Shutdown for setup and cleanup.
+
+
+#pragma comment(lib, "mscoree.lib")	
+
+#include <mq/Plugin.h>
 #include <strsafe.h>
 #include <metahost.h>
 #import <mscorlib.tlb> raw_interfaces_only				\
@@ -7,17 +16,21 @@
     high_property_prefixes("_get","_put","_putref")		\
     rename("ReportEvent", "InteropServices_ReportEvent")
 
-#pragma comment(lib, "mscoree.lib")
 
-//using namespace mscorlib;
-
-PLUGIN_VERSION(0.1);
 PreSetup("MQ2DotNetLoader");
+PLUGIN_VERSION(0.1);
+
+/**
+ * Avoid Globals if at all possible, since they persist throughout your program.
+ * But if you must have them, here is the place to put them.
+ */
+// bool ShowMQ2DotNetLoaderWindow = true;
 
 // COM smart pointer typedefs
 _COM_SMARTPTR_TYPEDEF(ICLRMetaHost, IID_ICLRMetaHost);
 _COM_SMARTPTR_TYPEDEF(ICLRRuntimeInfo, IID_ICLRRuntimeInfo);
 _COM_SMARTPTR_TYPEDEF(ICLRRuntimeHost, IID_ICLRRuntimeHost);
+
 
 // CLR functions & globals
 bool LoadCLR();
@@ -54,9 +67,16 @@ extern "C" __declspec(dllexport) void MQ2Type__InitVariable(MQ2Type * pThis, MQ2
 extern "C" __declspec(dllexport) void MQ2Type__FreeVariable(MQ2Type * pThis, MQ2VARPTR &VarPtr) { pThis->FreeVariable(VarPtr); }
 extern "C" __declspec(dllexport) bool MQ2Type__GetMember(MQ2Type * pThis, MQ2VARPTR VarPtr, PCHAR Member, PCHAR Index, MQ2TYPEVAR &Dest) { return pThis->GetMember(VarPtr, Member, Index, Dest); }
 extern "C" __declspec(dllexport) bool MQ2Type__ToString(MQ2Type * pThis, MQ2VARPTR VarPtr, PCHAR Destination) { return pThis->ToString(VarPtr, Destination); }
-
-PLUGIN_API VOID InitializePlugin(VOID)
+/**
+ * @fn InitializePlugin
+ *
+ * This is called once on plugin initialization and can be considered the startup
+ * routine for the plugin.
+ */
+PLUGIN_API void InitializePlugin()
 {
+	DebugSpewAlways("MQ2DotNetLoader::Initializing version %f", MQ2Version);
+
 	if (gszINIPath[0])
 		StringCbPrintfW(g_wzStubPath, MAX_PATH, L"%hs\\%ws", gszINIPath, L"MQ2DotNet.dll");
 	else // If loaded by the test program, INIPath won't be set
@@ -81,10 +101,16 @@ PLUGIN_API VOID InitializePlugin(VOID)
 	}
 }
 
-// The rest of the PLUGIN_API functions just call the callback (which will be set to the managed version of the function) if they're set and the CLR is loaded
-
-PLUGIN_API VOID ShutdownPlugin(VOID)
+/**
+ * @fn ShutdownPlugin
+ *
+ * This is called once when the plugin has been asked to shutdown.  The plugin has
+ * not actually shut down until this completes.
+ */
+PLUGIN_API void ShutdownPlugin()
 {
+	DebugSpewAlways("MQ2DotNetLoader::Shutting down");
+
 	// Unfortunately, no way to fully unload. The default appdomain stays, as does any assembly loaded in it, e.g. MQ2DotNet.
 	// The only side effect of this is the inability to patch this dll while a game instance is open.
 	// Other assemblies are loaded in their own AppDomain, and can be unloaded any time
@@ -92,90 +118,340 @@ PLUGIN_API VOID ShutdownPlugin(VOID)
 		g_pfShutdownPlugin();
 }
 
-PLUGIN_API VOID OnCleanUI(VOID)
+/**
+ * @fn OnCleanUI
+ *
+ * This is called once just before the shutdown of the UI system and each time the
+ * game requests that the UI be cleaned.  Most commonly this happens when a
+ * /loadskin command is issued, but it also occurs when reaching the character
+ * select screen and when first entering the game.
+ *
+ * One purpose of this function is to allow you to destroy any custom windows that
+ * you have created and cleanup any UI items that need to be removed.
+ */
+PLUGIN_API void OnCleanUI()
 {
 	if (g_bLoaded && g_pfOnCleanUI)
 		g_pfOnCleanUI();
 }
 
-PLUGIN_API VOID OnReloadUI(VOID)
+/**
+ * @fn OnReloadUI
+ *
+ * This is called once just after the UI system is loaded. Most commonly this
+ * happens when a /loadskin command is issued, but it also occurs when first
+ * entering the game.
+ *
+ * One purpose of this function is to allow you to recreate any custom windows
+ * that you have setup.
+ */
+PLUGIN_API void OnReloadUI()
 {
 	if (g_bLoaded && g_pfOnReloadUI)
 		g_pfOnReloadUI();
 }
 
-PLUGIN_API VOID OnDrawHUD(VOID)
+/**
+ * @fn OnDrawHUD
+ *
+ * This is called each time the Heads Up Display (HUD) is drawn.  The HUD is
+ * responsible for the net status and packet loss bar.
+ *
+ * Note that this is not called at all if the HUD is not shown (default F11 to
+ * toggle).
+ *
+ * Because the net status is updated frequently, it is recommended to have a
+ * timer or counter at the start of this call to limit the amount of times the
+ * code in this section is executed.
+ */
+PLUGIN_API void OnDrawHUD()
 {
 	if (g_bLoaded && g_pfOnDrawHUD)
 		g_pfOnDrawHUD();
 }
 
-PLUGIN_API VOID SetGameState(DWORD GameState)
+/**
+ * @fn SetGameState
+ *
+ * This is called when the GameState changes.  It is also called once after the
+ * plugin is initialized.
+ *
+ * For a list of known GameState values, see the constants that begin with
+ * GAMESTATE_.  The most commonly used of these is GAMESTATE_INGAME.
+ *
+ * When zoning, this is called once after @ref OnBeginZone @ref OnRemoveSpawn
+ * and @ref OnRemoveGroundItem are all done and then called once again after
+ * @ref OnEndZone and @ref OnAddSpawn are done but prior to @ref OnAddGroundItem
+ * and @ref OnZoned
+ *
+ * @param GameState int - The value of GameState at the time of the call
+ */
+PLUGIN_API void SetGameState(int GameState)
 {
 	if (g_bLoaded && g_pfSetGameState)
 		g_pfSetGameState(GameState);
 }
 
-PLUGIN_API VOID OnPulse(VOID)
+
+/**
+ * @fn OnPulse
+ *
+ * This is called each time MQ2 goes through its heartbeat (pulse) function.
+ *
+ * Because this happens very frequently, it is recommended to have a timer or
+ * counter at the start of this call to limit the amount of times the code in
+ * this section is executed.
+ */
+PLUGIN_API void OnPulse()
 {
 	if (g_bLoaded && g_pfOnPulse)
 		g_pfOnPulse();
 }
 
-PLUGIN_API DWORD OnWriteChatColor(PCHAR Line, DWORD Color, DWORD Filter)
+/**
+ * @fn OnWriteChatColor
+ *
+ * This is called each time WriteChatColor is called (whether by MQ2Main or by any
+ * plugin).  This can be considered the "when outputting text from MQ" callback.
+ *
+ * This ignores filters on display, so if they are needed either implement them in
+ * this section or see @ref OnIncomingChat where filters are already handled.
+ *
+ * If CEverQuest::dsp_chat is not called, and events are required, they'll need to
+ * be implemented here as well.  Otherwise, see @ref OnIncomingChat where that is
+ * already handled.
+ *
+ * For a list of Color values, see the constants for USERCOLOR_.  The default is
+ * USERCOLOR_DEFAULT.
+ *
+ * @param Line const char* - The line that was passed to WriteChatColor
+ * @param Color int - The type of chat text this is to be sent as
+ * @param Filter int - (default 0)
+ */
+PLUGIN_API DWORD OnWriteChatColor(const char* Line, int Color, int Filter)
 {
 	if (g_bLoaded && g_pfOnWriteChatColor)
 		return g_pfOnWriteChatColor(Line, Color, Filter);
 	return 0;
 }
 
-PLUGIN_API DWORD OnIncomingChat(PCHAR Line, DWORD Color)
+/**
+ * @fn OnIncomingChat
+ *
+ * This is called each time a line of chat is shown.  It occurs after MQ filters
+ * and chat events have been handled.  If you need to know when MQ2 has sent chat,
+ * consider using @ref OnWriteChatColor instead.
+ *
+ * For a list of Color values, see the constants for USERCOLOR_. The default is
+ * USERCOLOR_DEFAULT.
+ *
+ * @param Line const char* - The line of text that was shown
+ * @param Color int - The type of chat text this was sent as
+ *
+ * @return bool - Whether to filter this chat from display
+ */
+PLUGIN_API bool OnIncomingChat(const char* Line, DWORD Color)
 {
 	if (g_bLoaded && g_pfOnIncomingChat)
 		return g_pfOnIncomingChat(Line, Color);
-	return 0;
+	return false;
 }
 
-PLUGIN_API VOID OnAddSpawn(PSPAWNINFO pNewSpawn)
+/**
+ * @fn OnAddSpawn
+ *
+ * This is called each time a spawn is added to a zone (ie, something spawns). It is
+ * also called for each existing spawn when a plugin first initializes.
+ *
+ * When zoning, this is called for all spawns in the zone after @ref OnEndZone is
+ * called and before @ref OnZoned is called.
+ *
+ * @param pNewSpawn PSPAWNINFO - The spawn that was added
+ */
+PLUGIN_API void OnAddSpawn(PSPAWNINFO pNewSpawn)
 {
 	if (g_bLoaded && g_pfOnAddSpawn)
 		g_pfOnAddSpawn(pNewSpawn);
 }
 
-PLUGIN_API VOID OnRemoveSpawn(PSPAWNINFO pSpawn)
+/**
+ * @fn OnRemoveSpawn
+ *
+ * This is called each time a spawn is removed from a zone (ie, something despawns
+ * or is killed).  It is NOT called when a plugin shuts down.
+ *
+ * When zoning, this is called for all spawns in the zone after @ref OnBeginZone is
+ * called.
+ *
+ * @param pSpawn PSPAWNINFO - The spawn that was removed
+ */
+PLUGIN_API void OnRemoveSpawn(PSPAWNINFO pSpawn)
 {
 	if (g_bLoaded && g_pfOnRemoveSpawn)
 		g_pfOnRemoveSpawn(pSpawn);
 }
 
-PLUGIN_API VOID OnAddGroundItem(PGROUNDITEM pNewGroundItem)
+/**
+ * @fn OnAddGroundItem
+ *
+ * This is called each time a ground item is added to a zone (ie, something spawns).
+ * It is also called for each existing ground item when a plugin first initializes.
+ *
+ * When zoning, this is called for all ground items in the zone after @ref OnEndZone
+ * is called and before @ref OnZoned is called.
+ *
+ * @param pNewGroundItem PGROUNDITEM - The ground item that was added
+ */
+PLUGIN_API void OnAddGroundItem(PGROUNDITEM pNewGroundItem)
 {
 	if (g_bLoaded && g_pfOnAddGroundItem)
 		g_pfOnAddGroundItem(pNewGroundItem);
 }
 
-PLUGIN_API VOID OnRemoveGroundItem(PGROUNDITEM pGroundItem)
+/**
+ * @fn OnRemoveGroundItem
+ *
+ * This is called each time a ground item is removed from a zone (ie, something
+ * despawns or is picked up).  It is NOT called when a plugin shuts down.
+ *
+ * When zoning, this is called for all ground items in the zone after
+ * @ref OnBeginZone is called.
+ *
+ * @param pGroundItem PGROUNDITEM - The ground item that was removed
+ */
+PLUGIN_API void OnRemoveGroundItem(PGROUNDITEM pGroundItem)
 {
 	if (g_bLoaded && g_pfOnRemoveGroundItem)
 		g_pfOnRemoveGroundItem(pGroundItem);
 }
 
-PLUGIN_API VOID BeginZone(VOID)
+/**
+ * @fn OnBeginZone
+ *
+ * This is called just after entering a zone line and as the loading screen appears.
+ */
+PLUGIN_API void OnBeginZone()
 {
 	if (g_bLoaded && g_pfBeginZone)
 		g_pfBeginZone();
 }
 
-PLUGIN_API VOID EndZone(VOID)
+/**
+ * @fn OnEndZone
+ *
+ * This is called just after the loading screen, but prior to the zone being fully
+ * loaded.
+ *
+ * This should occur before @ref OnAddSpawn and @ref OnAddGroundItem are called. It
+ * always occurs before @ref OnZoned is called.
+ */
+PLUGIN_API void OnEndZone()
 {
 	if (g_bLoaded && g_pfEndZone)
 		g_pfEndZone();
 }
 
-PLUGIN_API VOID OnZoned(VOID)
+/**
+ * @fn OnZoned
+ *
+ * This is called after entering a new zone and the zone is considered "loaded."
+ *
+ * It occurs after @ref OnEndZone @ref OnAddSpawn and @ref OnAddGroundItem have
+ * been called.
+ */
+PLUGIN_API void OnZoned()
 {
 	if (g_bLoaded && g_pfOnZoned)
 		g_pfOnZoned();
+}
+
+/**
+ * @fn OnUpdateImGui
+ *
+ * This is called each time that the ImGui Overlay is rendered. Use this to render
+ * and update plugin specific widgets.
+ *
+ * Because this happens extremely frequently, it is recommended to move any actual
+ * work to a separate call and use this only for updating the display.
+ */
+PLUGIN_API void OnUpdateImGui()
+{
+/*
+	if (GetGameState() == GAMESTATE_INGAME)
+	{
+		if (ShowMQ2DotNetLoaderWindow)
+		{
+			if (ImGui::Begin("MQ2DotNetLoader", &ShowMQ2DotNetLoaderWindow, ImGuiWindowFlags_MenuBar))
+			{
+				if (ImGui::BeginMenuBar())
+				{
+					ImGui::Text("MQ2DotNetLoader is loaded!");
+					ImGui::EndMenuBar();
+				}
+			}
+			ImGui::End();
+		}
+	}
+*/
+}
+
+/**
+ * @fn OnMacroStart
+ *
+ * This is called each time a macro starts (ex: /mac somemacro.mac), prior to
+ * launching the macro.
+ *
+ * @param Name const char* - The name of the macro that was launched
+ */
+PLUGIN_API void OnMacroStart(const char* Name)
+{
+	// DebugSpewAlways("MQ2DotNetLoader::OnMacroStart(%s)", Name);
+}
+
+/**
+ * @fn OnMacroStop
+ *
+ * This is called each time a macro stops (ex: /endmac), after the macro has ended.
+ *
+ * @param Name const char* - The name of the macro that was stopped.
+ */
+PLUGIN_API void OnMacroStop(const char* Name)
+{
+	// DebugSpewAlways("MQ2DotNetLoader::OnMacroStop(%s)", Name);
+}
+
+/**
+ * @fn OnLoadPlugin
+ *
+ * This is called each time a plugin is loaded (ex: /plugin someplugin), after the
+ * plugin has been loaded and any associated -AutoExec.cfg file has been launched.
+ * This means it will be executed after the plugin's @ref InitializePlugin callback.
+ *
+ * This is also called when THIS plugin is loaded, but initialization tasks should
+ * still be done in @ref InitializePlugin.
+ *
+ * @param Name const char* - The name of the plugin that was loaded
+ */
+PLUGIN_API void OnLoadPlugin(const char* Name)
+{
+	// DebugSpewAlways("MQ2DotNetLoader::OnLoadPlugin(%s)", Name);
+}
+
+/**
+ * @fn OnUnloadPlugin
+ *
+ * This is called each time a plugin is unloaded (ex: /plugin someplugin unload),
+ * just prior to the plugin unloading.  This means it will be executed prior to that
+ * plugin's @ref ShutdownPlugin callback.
+ *
+ * This is also called when THIS plugin is unloaded, but shutdown tasks should still
+ * be done in @ref ShutdownPlugin.
+ *
+ * @param Name const char* - The name of the plugin that is to be unloaded
+ */
+PLUGIN_API void OnUnloadPlugin(const char* Name)
+{
+	// DebugSpewAlways("MQ2DotNetLoader::OnUnloadPlugin(%s)", Name);
 }
 
 bool LoadCLR()
