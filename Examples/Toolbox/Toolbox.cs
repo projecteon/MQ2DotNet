@@ -5,6 +5,7 @@ using System.Linq;
 using MQ2DotNet;
 using MQ2DotNet.EQ;
 using MQ2DotNet.MQ2API;
+using MQ2DotNet.Plugin;
 using MQ2DotNet.Services;
 using Newtonsoft.Json;
 
@@ -20,21 +21,38 @@ namespace Toolbox
     /// "Blocks" any spell that has an effect with the specified SPA
     /// This is done by removing the spells rather than with the blocked spells window
     /// </summary>
-    public class Toolbox : Plugin
+    public class Toolbox : IPlugin
     {
+        private readonly MQ2 _mq2;
+        private readonly Chat _chat;
+        private readonly Commands _commands;
+        private readonly Events _events;
+        private readonly Spawns _spawns;
+        private readonly TLO _tlo;
+
+        public Toolbox(MQ2 mq2, Chat chat, Commands commands, Events events, Spawns spawns, TLO tlo)
+        {
+            _mq2 = mq2;
+            _chat = chat;
+            _commands = commands;
+            _events = events;
+            _spawns = spawns;
+            _tlo = tlo;
+        }
+
         #region Plugin API
-        public override void InitializePlugin()
+        public void InitializePlugin()
         {
             LoadSettings();
 
             // Note the commands don't need to be removed, MQ2DotNet handles this when the plugin is unloaded
-            Commands.AddCommand("/removespa", RemoveSPACommand);
-            Commands.AddCommand("/blockspa", BlockSPACommand);
+            _commands.AddCommand("/removespa", RemoveSPACommand);
+            _commands.AddCommand("/blockspa", BlockSPACommand);
         }
 
-        public override void OnPulse()
+        public void OnPulse()
         {
-            if (TLO.EverQuest.GameState != "INGAME")
+            if (_tlo.EverQuest.GameState != "INGAME")
                 return;
 
             if (++_frame % 30 == 0)
@@ -45,7 +63,11 @@ namespace Toolbox
             }
         }
 
-        public override void SetGameState(GameState gameState)
+        public void ShutdownPlugin()
+        {
+        }
+
+        public void SetGameState(GameState gameState)
         {
             if (gameState == GameState.InGame)
                 LoadSettings();
@@ -58,22 +80,22 @@ namespace Toolbox
         {
             if (args.Length != 1 || !int.TryParse(args[0], out var spa))
             {
-                MQ2.WriteChat("Usage: /blockspa <spa>");
+                _mq2.WriteChat("Usage: /blockspa <spa>");
                 if (_blocked.Count > 0)
-                    MQ2.WriteChat("Currently blocking: " + string.Join(", ", _blocked));
+                    _mq2.WriteChat("Currently blocking: " + string.Join(", ", _blocked));
                 else
-                    MQ2.WriteChat("No SPAs are currently blocked");
+                    _mq2.WriteChat("No SPAs are currently blocked");
                 return;
             }
 
             if (_blocked.Contains(spa))
             {
-                MQ2.WriteChat($"No longer blocking SPA {spa}");
+                _mq2.WriteChat($"No longer blocking SPA {spa}");
                 _blocked.Remove(spa);
             }
             else
             {
-                MQ2.WriteChat($"Now blocking SPA {spa}");
+                _mq2.WriteChat($"Now blocking SPA {spa}");
                 _blocked.Add(spa);
             }
 
@@ -84,26 +106,26 @@ namespace Toolbox
         {
             if (args.Length != 1 || !int.TryParse(args[0], out var spa))
             {
-                MQ2.WriteChat("Usage: /removespa <spa>");
+                _mq2.WriteChat("Usage: /removespa <spa>");
                 return;
             }
 
             var removedCount = RemoveSPA(spa);
 
-            MQ2.WriteChat(removedCount > 0
+            _mq2.WriteChat(removedCount > 0
                 ? $"Removed {removedCount} buffs with SPA {spa}"
                 : $"No buffs found with SPA {spa}");
         }
         #endregion
 
-        private string _settingsFilePath => MQ2.INIPath + "\\Toolbox.json";
+        private string _settingsFilePath => _mq2.INIPath + "\\Toolbox.json";
 
         private int _frame = 0;
         private List<int> _blocked;
 
         private void LoadSettings()
         {
-            if (TLO.EverQuest.GameState != "INGAME")
+            if (_tlo.EverQuest.GameState != "INGAME")
                 return;
 
             try
@@ -111,19 +133,19 @@ namespace Toolbox
                 var settings = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(
                         File.ReadAllText(_settingsFilePath));
 
-                _blocked = settings[TLO.EverQuest.Server + "_" + TLO.Me.Name];
+                _blocked = settings[_tlo.EverQuest.Server + "_" + _tlo.Me.Name];
 
             }
             catch (Exception)
             {
-                MQ2.WriteChat("Toolbox failed to load settings");
+                _mq2.WriteChat("Toolbox failed to load settings");
                 _blocked = new List<int>();
             }
         }
 
         private void SaveSettings()
         {
-            if (TLO.EverQuest.GameState != "INGAME")
+            if (_tlo.EverQuest.GameState != "INGAME")
                 return;
 
             try
@@ -138,29 +160,29 @@ namespace Toolbox
                     settings = new Dictionary<string, List<int>>();
                 }
 
-                settings[TLO.EverQuest.Server + "_" + TLO.Me.Name] = _blocked;
+                settings[_tlo.EverQuest.Server + "_" + _tlo.Me.Name] = _blocked;
 
                 File.WriteAllText(_settingsFilePath, JsonConvert.SerializeObject(settings, Formatting.Indented));
 
-                MQ2.WriteChat("Toolbox settings saved");
+                _mq2.WriteChat("Toolbox settings saved");
 
             }
             catch (Exception e)
             {
-                MQ2.WriteChat("Toolbox failed to save settings");
+                _mq2.WriteChat("Toolbox failed to save settings");
             }
         }
 
-        private static int RemoveSPA(int spa)
+        private int RemoveSPA(int spa)
         {
-            var buffs = Enumerable.Range(1, TLO.Me.MaxBuffSlots ?? 1)
-                .Select(index => TLO.Me.Buff[index])
+            var buffs = Enumerable.Range(1, _tlo.Me.MaxBuffSlots ?? 1)
+                .Select(index => _tlo.Me.Buff[index])
                 .Where(buff => buff != null && buff.Spell.HasSPA[spa])
                 .ToList();
 
             foreach (var buff in buffs)
             {
-                MQ2.WriteChat($"Removing buff with SPA {spa}: {buff}");
+                _mq2.WriteChat($"Removing buff with SPA {spa}: {buff}");
                 buff.Remove();
             }
 

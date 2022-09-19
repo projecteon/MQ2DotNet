@@ -7,31 +7,57 @@ using System.Threading.Tasks;
 using MQ2DotNet;
 using MQ2DotNet.MQ2API;
 using MQ2DotNet.MQ2API.DataTypes;
+using MQ2DotNet.Plugin;
 using MQ2DotNet.Services;
 
 namespace AddDataType
 {
-    public class AddDataType : Plugin
+    public class AddDataType : IPlugin
     {
-        public override void InitializePlugin()
+        private readonly MQ2 _mq2;
+        private readonly Chat _chat;
+        private readonly Commands _commands;
+        private readonly Events _events;
+        private readonly Spawns _spawns;
+        private readonly TLO _tlo;
+
+        public AddDataType(MQ2 mq2, Chat chat, Commands commands, Events events, Spawns spawns, TLO tlo)
         {
-            Commands.AddAsyncCommand("/datatypetest", DataTypeTest);
+            _mq2 = mq2;
+            _chat = chat;
+            _commands = commands;
+            _events = events;
+            _spawns = spawns;
+            _tlo = tlo;
+        }
+
+        public void InitializePlugin()
+        {
+            _commands.AddAsyncCommand("/datatypetest", DataTypeTest);
 
             // Commands do need unregistering because they do stuff in the unmanaged world and MQ2 doesn't keep track of what plugin owns them
             // But MQ2DotNet is nice enough to clean up after you if you forget
         }
 
+        public void OnPulse()
+        {
+        }
+
+        public void ShutdownPlugin()
+        {
+        }
+
         private async Task DataTypeTest(string[] args)
         {
             // Open bazaar window and wait one frame
-            TLO.Window["BazaarSearchWnd"].DoOpen();
+            _tlo.Window["BazaarSearchWnd"].DoOpen();
             await Task.Yield();
 
             // To get a top level object:
-            var bazaarTLO = TLO.GetTLO<BazaarType>("Bazaar");
+            var bazaarTLO = _tlo.GetTLO<BazaarType>("Bazaar");
 
             // Search and wait for it to finish
-            MQ2.DoCommand("/bzsrch silk");
+            _mq2.DoCommand("/bzsrch silk");
             while (!bazaarTLO.Done)
                 await Task.Yield();
 
@@ -51,7 +77,7 @@ namespace AddDataType
     public class BazaarType : MQ2DataType
     {
         // Constructor typically needs to call the base with the typeVar, and create any IndexedMember helpers
-        public BazaarType(MQ2TypeVar typeVar) : base(typeVar)
+        public BazaarType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Item = new IndexedMember<BazaarItemType, int>(this, "Item");
         }
@@ -70,7 +96,7 @@ namespace AddDataType
     [MQ2Type("bazaaritem")]
     public class BazaarItemType : MQ2DataType
     {
-        public BazaarItemType(MQ2TypeVar typeVar) : base(typeVar)
+        public BazaarItemType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
 
