@@ -118,7 +118,7 @@ namespace Toolbox
         }
         #endregion
 
-        private string _settingsFilePath => _mq2.INIPath + "\\Toolbox.json";
+        private string _settingsFilePath => _mq2.ConfigPath + "\\Toolbox.json";
 
         private int _frame = 0;
         private List<int> _blocked;

@@ -85,14 +85,38 @@ namespace MQ2DotNet.MQ2API
         }
 
         /// <summary>
-        /// Directory of MQ2 ini files (and binaries too hopefully)
+        /// Directory of MQ2 ini files
         /// </summary>
-        public string INIPath
+        public string RootPath
         {
             get
             {
                 var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
-                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gszINIPath"));
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathMQRoot"));
+            }
+        }
+
+        /// <summary>
+        /// Directory of MQ2 Resources
+        /// </summary>
+        public string ResourcePath
+        {
+            get
+            {
+                var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathResources")) + "\\MQ2DotNet";
+            }
+        }
+
+        /// <summary>
+        /// Directory of MQ2 Config
+        /// </summary>
+        public string ConfigPath
+        {
+            get
+            {
+                var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathConfig"));
             }
         }
 
