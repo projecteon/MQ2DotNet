@@ -78,7 +78,7 @@ namespace MQ2DotNet
             // Configure & create a new app domain
             var appDomainSetup = new AppDomainSetup
             {
-                ApplicationBase = new MQ2().RootPath, // TODO: Not hardcode this
+                ApplicationBase = new MQ2().ResourcePath, // TODO: Not hardcode this
                 PrivateBinPath = string.Join(";", binPaths)
             };
             var appDomain = AppDomain.CreateDomain(appDomainName, null, appDomainSetup);
