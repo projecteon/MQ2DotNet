@@ -86,7 +86,9 @@ PLUGIN_API void InitializePlugin()
 {
 	DebugSpewAlways("MQ2DotNetLoader::Initializing version %f", MQ2Version);
 
+	//StringCbPrintfW(g_wzStubPath, MAX_PATH, L"%hs\\MQ2DotNet\\%ws", gPathResources, L"MQ2DotNet.dll");
 	StringCbPrintfW(g_wzStubPath, MAX_PATH, L"%hs\\%ws", gPathMQRoot, L"MQ2DotNet.dll");
+	WriteChatf("[MQ2DotNetLoader] Attemping to load CLR <%ls>", g_wzStubPath);
 
 	if (g_bLoaded = LoadCLR())
 	{
