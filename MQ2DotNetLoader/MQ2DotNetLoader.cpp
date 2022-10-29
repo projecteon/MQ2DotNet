@@ -61,20 +61,13 @@ extern "C" __declspec(dllexport) fMQZoned g_pfOnZoned{ nullptr };
 extern "C" __declspec(dllexport) PCHAR __stdcall GetIniPath() { return gPathConfig; }
 
 // Exported MQ2Type functions
-extern "C" __declspec(dllexport) bool MQ2Type__FromData(MQ2Type * pThis, MQ2VARPTR &VarPtr, MQ2TYPEVAR &Source) { return pThis->FromData(VarPtr, Source); }
-extern "C" __declspec(dllexport) bool MQ2Type__FromString(MQ2Type * pThis, MQ2VARPTR &VarPtr, PCHAR Source) { return pThis->FromString(VarPtr, Source); }
-extern "C" __declspec(dllexport) void MQ2Type__InitVariable(MQ2Type * pThis, MQ2VARPTR &VarPtr) { pThis->InitVariable(VarPtr); }
-extern "C" __declspec(dllexport) void MQ2Type__FreeVariable(MQ2Type * pThis, MQ2VARPTR &VarPtr) { pThis->FreeVariable(VarPtr); }
-extern "C" __declspec(dllexport) bool MQ2Type__GetMember(MQ2Type * pThis, MQ2VARPTR VarPtr, PCHAR Member, PCHAR Index, MQ2TYPEVAR &Dest) { return pThis->GetMember(VarPtr, Member, Index, Dest); }
-extern "C" __declspec(dllexport) bool MQ2Type__ToString(MQ2Type * pThis, MQ2VARPTR VarPtr, PCHAR Destination) { return pThis->ToString(VarPtr, Destination); }
 
-
-//extern "C" __declspec(dllexport) bool MQ2Type__FromData(MQ2Type * pThis, MQVarPtr & VarPtr, const MQTypeVar & Source) { return pThis->FromData(VarPtr, Source); }
-//extern "C" __declspec(dllexport) bool MQ2Type__FromString(MQ2Type * pThis, MQVarPtr & VarPtr, const char* Source) { return pThis->FromString(VarPtr, Source); }
-//extern "C" __declspec(dllexport) void MQ2Type__InitVariable(MQ2Type * pThis, MQVarPtr & VarPtr) { pThis->InitVariable(VarPtr); }
-//extern "C" __declspec(dllexport) void MQ2Type__FreeVariable(MQ2Type * pThis, MQVarPtr & VarPtr) { pThis->FreeVariable(VarPtr); }
-//extern "C" __declspec(dllexport) bool MQ2Type__GetMember(MQ2Type * pThis, MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar & Dest) { return pThis->GetMember(VarPtr, Member, Index, Dest); }
-//extern "C" __declspec(dllexport) bool MQ2Type__ToString(MQ2Type * pThis, MQVarPtr VarPtr, char* Destination) { return pThis->ToString(VarPtr, Destination); }
+extern "C" __declspec(dllexport) bool MQ2Type__FromData(MQ2Type * pThis, MQVarPtr &VarPtr, const MQTypeVar &Source) { return pThis->FromData(VarPtr, Source); }
+extern "C" __declspec(dllexport) bool MQ2Type__FromString(MQ2Type * pThis, MQVarPtr &VarPtr, const char* Source) { return pThis->FromString(VarPtr, Source); }
+extern "C" __declspec(dllexport) void MQ2Type__InitVariable(MQ2Type * pThis, MQVarPtr &VarPtr) { pThis->InitVariable(VarPtr); }
+extern "C" __declspec(dllexport) void MQ2Type__FreeVariable(MQ2Type * pThis, MQVarPtr &VarPtr) { pThis->FreeVariable(VarPtr); }
+extern "C" __declspec(dllexport) bool MQ2Type__GetMember(MQ2Type * pThis, MQVarPtr VarPtr, const char* Member, char* Index, MQTypeVar &Dest) { return pThis->GetMember(VarPtr, Member, Index, Dest); }
+extern "C" __declspec(dllexport) bool MQ2Type__ToString(MQ2Type * pThis, MQVarPtr VarPtr, char* Destination) { return pThis->ToString(VarPtr, Destination); }
 
 /**
  * @fn InitializePlugin
