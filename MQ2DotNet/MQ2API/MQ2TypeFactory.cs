@@ -55,6 +55,7 @@ namespace MQ2DotNet.MQ2API
                 _registeredAssemblies.Add(assembly);
             }
 
+            AssemblyName assemblyName = assembly.GetName();
             try
             {
                 // Can ignore any assemblies that don't reference this one
@@ -63,7 +64,7 @@ namespace MQ2DotNet.MQ2API
                     return;
 
                 // Find all subclasses of MQ2DataType, and get their MQ2Type attribute
-                foreach (var type in assembly.GetTypes())
+                foreach (var type in assembly.ExportedTypes)
                 {
                     if (!type.IsSubclassOf(typeof(MQ2DataType)))
                         continue;
@@ -101,7 +102,7 @@ namespace MQ2DotNet.MQ2API
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Error finding types in assembly: " + assembly.GetName());
+                Debug.WriteLine("Error finding types in assembly: " + assemblyName?.ToString() ?? " null");
                 Debug.WriteLine(e);
             }
         }
@@ -113,19 +114,25 @@ namespace MQ2DotNet.MQ2API
         /// <param name="constructor"></param>
         private void Register(string typeName, Func<MQ2TypeFactory, MQ2TypeVar, MQ2DataType> constructor)
         {
-            var dataType = FindMQ2DataType(typeName);
+            try
+            {
+                var dataType = FindMQ2DataType(typeName);
 
-            if (dataType == IntPtr.Zero)
-                throw new KeyNotFoundException($"Could not find data type: {typeName}");
+                if (dataType == IntPtr.Zero)
+                    throw new KeyNotFoundException($"Could not find data type: {typeName}");
 
-            if (_constructors.ContainsKey(dataType))
-                throw new InvalidOperationException($"An MQ2DataType for {typeName} has already been registered");
+                if (_constructors.ContainsKey(dataType))
+                    throw new InvalidOperationException($"An MQ2DataType for {typeName} has already been registered");
 
-            _constructors[dataType] = constructor;
+                _constructors[dataType] = constructor;
+            } catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
 
         #region Unmanaged imports
-        [DllImport("MQ2Main.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("MQ2Main.dll", EntryPoint = "FindMQ2DataType", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr FindMQ2DataType(string name);
         #endregion
     }
