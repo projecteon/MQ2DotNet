@@ -9,7 +9,17 @@ git submodule add -b master-mqnext -f https://github.com/projecteon/MQ2DotNet.gi
 
 Add `MQ2DotNetLoader` to the plugins directory in the Macroquest solution.
 
-![MQ2DotNetLoader](images\mq2dotnetloader.png)
+![MQ2DotNetLoader](/images/mq2dotnetloader.png)
+
+
+Add `MQ2DotNet` to the resources directory in the Macroquest solution.
+
+![MQ2DotNetLoader](/images/resources.png)
+
+
+Add `program` plugins to the `MQ2DotNet` directory.
+
+![MQ2DotNetLoader](/images/macros.png)
 
 ### Debugging
 For debugging MQ2DotNet, enable mixed mode in project settings for `Macroquest`and `MQ2Main`.
@@ -17,9 +27,14 @@ For debugging MQ2DotNet, enable mixed mode in project settings for `Macroquest`a
 
 Open the `MQ2DotNet.sln` and attach to debug managed code.
 
-![Project Settings](images\projectsettings.png)
+![Project Settings](/images/projectsettings.png)
 
-:warning: If you want to debug `Macroquest`c++ source, you will need to disable the MQ2DotNetLoader. Seems visual studio struggles loading symbols while `dotnet` is loaded.
+:warning: If you want to debug `Macroquest`c++ source, you have two options. (you wont be able to debug managed and unmanged at the same time)
+
+* Disable the MQ2DotNetLoader. Seems visual studio struggles loading symbols while `dotnet` is loaded.
+* Change default `Attach too` option when attaching to `eqgame.exe` from `automatic` to `native`
+
+![Project Settings](/images/native_debugging.png)
 
 
 
