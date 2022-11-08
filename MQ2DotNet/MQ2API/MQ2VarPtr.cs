@@ -9,7 +9,7 @@ namespace MQ2DotNet.MQ2API
     /// Data component of an MQ2 variable
     /// </summary>
     [PublicAPI]
-    [StructLayout(LayoutKind.Explicit, Size = 8)]
+    [StructLayout(LayoutKind.Explicit, Size = 0x18)]
     public struct MQ2VarPtr
     {
 #pragma warning disable 1591
@@ -48,7 +48,10 @@ namespace MQ2DotNet.MQ2API
             set => Int = value.ToArgb();
         }
 
-        [FieldOffset(4)]
+        [FieldOffset(0x8)]
+        public long Which;
+
+        [FieldOffset(0x10)]
         public uint HighPart;
 #pragma warning restore 1591
     }

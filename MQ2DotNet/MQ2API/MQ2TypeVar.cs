@@ -11,24 +11,24 @@ namespace MQ2DotNet.MQ2API
     [StructLayout(LayoutKind.Explicit, Size = 16)]
     public struct MQ2TypeVar
     {
+        [FieldOffset(0)] internal MQ2VarPtr VarPtr;
         // Since we don't care about members and will only be calling functions, marshalling as IntPtr seems the easiest/safest option
         // Only a 4 byte field but gets packed to 8 bytes. Many hours wasted before realizing this :(
-        [FieldOffset(0)] internal IntPtr pType;
-        [FieldOffset(8)] internal MQ2VarPtr VarPtr;
-        
+        [FieldOffset(24)] internal IntPtr Type;
+
         internal bool TryGetMember(string memberName, string index, out MQ2TypeVar result)
         {
-            if (pType == IntPtr.Zero)
+            if (Type == IntPtr.Zero)
                 throw new InvalidOperationException();
 
-            return MQ2Type__GetMember(pType, VarPtr, memberName, index, out result) && result.pType != IntPtr.Zero;
+            return MQ2Type__GetMember(Type, VarPtr, memberName, index, out result) && result.Type != IntPtr.Zero;
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
             var result = new StringBuilder(2048);
-            if (!MQ2Type__ToString(pType, VarPtr, result))
+            if (!MQ2Type__ToString(Type, VarPtr, result))
                 throw new ApplicationException("MQ2Type::ToString failed");
 
             return result.ToString();

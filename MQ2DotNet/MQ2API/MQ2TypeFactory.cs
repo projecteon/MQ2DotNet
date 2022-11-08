@@ -37,8 +37,8 @@ namespace MQ2DotNet.MQ2API
         internal MQ2DataType Create(MQ2TypeVar typeVar)
         {
             // If we have a special constructor registered, use it, otherwise create an MQ2DataType by default
-            var dataType = _constructors.ContainsKey(typeVar.pType)
-                ? _constructors[typeVar.pType](this, typeVar)
+            var dataType = _constructors.ContainsKey(typeVar.Type)
+                ? _constructors[typeVar.Type](this, typeVar)
                 : new MQ2DataType(this, typeVar);
 
             return dataType;
