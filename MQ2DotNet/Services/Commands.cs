@@ -225,6 +225,7 @@ namespace MQ2DotNet.Services
         private static extern void MQ2AddCommand([MarshalAs(UnmanagedType.LPStr)] string Command, fEQCommand Function, bool EQ = false, bool Parse = true, bool InGame = false);
 
         [DllImport("MQ2Main.dll", EntryPoint = "RemoveCommand", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         private static extern bool MQ2RemoveCommand([MarshalAs(UnmanagedType.LPStr)] string Command);
         #endregion

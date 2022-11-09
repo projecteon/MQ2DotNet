@@ -37,10 +37,12 @@ namespace MQ2DotNet.MQ2API
         #region Unmanaged imports
         // These are all class methods and I don't want to deal with PInvoking that, so the loader dll has some helper methods
         [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static extern bool MQ2Type__FromData(IntPtr pThis, out MQ2VarPtr varPtr, ref MQ2TypeVar source);
 
         [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static extern bool MQ2Type__FromString(IntPtr pThis, out MQ2VarPtr varPtr, string source);
 
@@ -53,9 +55,11 @@ namespace MQ2DotNet.MQ2API
         private static extern void MQ2Type__FreeVariable(IntPtr pThis, ref MQ2VarPtr varPtr);
 
         [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool MQ2Type__GetMember(IntPtr pThis, MQ2VarPtr varPtr, string member, string index, out MQ2TypeVar dest);
 
         [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool MQ2Type__ToString(IntPtr pThis, MQ2VarPtr varPtr, [MarshalAs(UnmanagedType.LPStr)] StringBuilder destination);
         #endregion
     }
