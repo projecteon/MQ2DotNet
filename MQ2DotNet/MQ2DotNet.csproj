@@ -4,7 +4,7 @@
     <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))\src\Common.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))' != '' " />
   </ImportGroup>
   <PropertyGroup>
-    <OutDir>$(MQ2BuildDirectory)bin\$(MQ2BinaryDirName)\resources\MQ2DotNet</OutDir>
+    <OutDir>$(MQ2BuildDirectory)bin\$(MQ2BinaryDirName)\resources\$(MSBuildProjectName)</OutDir>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>

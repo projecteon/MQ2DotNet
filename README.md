@@ -40,6 +40,12 @@ Open the `MQ2DotNet.sln` and attach to debug managed code.
 
 ##  Programs
 
+### Create a new
+```
+dotnet new install .\
+dotnet new mq2dotnet_program --dry-run --name TestTemplate --output TestTemplate
+```
+
 ```csharp
 using System.Threading.Tasks;
 using MQ2DotNet.MQ2API;
