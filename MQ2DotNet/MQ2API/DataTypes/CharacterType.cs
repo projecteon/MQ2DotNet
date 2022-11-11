@@ -703,6 +703,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public BuffType HybridHP => GetMember<BuffType>("HybridHP");
 
         /// <summary>
+        /// Your spawn ID
+        /// </summary>
+        public int? ID => GetMember<IntType>("ID");
+
+        /// <summary>
         /// Are you in an instanced zone?
         /// </summary>
         public bool InInstance => GetMember<BoolType>("InInstance");
