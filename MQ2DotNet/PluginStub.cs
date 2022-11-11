@@ -455,7 +455,6 @@ namespace MQ2DotNet
             {
                 // First look for it in its own folder
                 var programFilePath = $"{_resourcePath}\\Programs\\{programName}\\{programName}.dll";
-                MQ2.WriteChatProgramError($"Attemtping to load [{programFilePath}]");
                 if (!File.Exists(programFilePath))
                 {
                     // Then in the programs folder
