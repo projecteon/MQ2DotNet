@@ -5,6 +5,7 @@
   "identity": "MQ2DotNetTemplate.Program",
   "name": "MQ2DotNet Template: Program",
   "shortName": "mq2dotnet_program",
+  "sourceName": "MQ2DotNet_Program",
   "tags": {
     "language": "C#",
     "type": "project"

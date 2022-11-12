@@ -13,8 +13,8 @@
     <ProjectGuid>{0FF0A7A7-5DA2-4E09-9544-1F71A437AA37}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestProgram</RootNamespace>
-    <AssemblyName>TestProgram</AssemblyName>
+    <RootNamespace>MQ2DotNet_Program</RootNamespace>
+    <AssemblyName>MQ2DotNet_Program</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="MQ2DotNet_Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MQ2DotNet\MQ2DotNet.csproj">
