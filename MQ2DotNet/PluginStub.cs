@@ -51,6 +51,14 @@ namespace MQ2DotNet
         private delegate void fMQEndZone();
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void fMQZoned();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQMacroStart();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQMacroStop();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQLoadPlugin();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQUnloadPlugin();
         // ReSharper restore InconsistentNaming
         #endregion
 
@@ -71,8 +79,12 @@ namespace MQ2DotNet
         private static readonly fMQWriteChatColor _onWriteChatColor = OnWriteChatColor;
         private static readonly fMQSetGameState _setGameState = SetGameState;
         private static readonly fMQZoned _onZoned = OnZoned;
+        private static readonly fMQMacroStart _onMacroStart = OnMacroStart;
+        private static readonly fMQMacroStop _onMacroStop = OnMacroStop;
+        private static readonly fMQLoadPlugin _onLoadPlugin = OnLoadPlugin;
+        private static readonly fMQUnloadPlugin _onUnloadPlugin = OnUnloadPlugin;
         #endregion
-        
+
         /// <summary>
         /// Synchronization context that runs all continuations in OnPulse
         /// </summary>
@@ -135,6 +147,10 @@ namespace MQ2DotNet
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfBeginZone"), Marshal.GetFunctionPointerForDelegate(_beginZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfEndZone"), Marshal.GetFunctionPointerForDelegate(_endZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnZoned"), Marshal.GetFunctionPointerForDelegate(_onZoned));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnMacroStart"), Marshal.GetFunctionPointerForDelegate(_onMacroStart));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnMacroStop"), Marshal.GetFunctionPointerForDelegate(_onMacroStop));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnLoadPlugin"), Marshal.GetFunctionPointerForDelegate(_onLoadPlugin));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnUnloadPlugin"), Marshal.GetFunctionPointerForDelegate(_onUnloadPlugin));
 
 #if DEBUG
                 MQ2.WriteChatGeneral($"Loaded debug version {GitVersionInformation.MajorMinorPatch} ({GitVersionInformation.ShortSha})");
@@ -747,6 +763,70 @@ namespace MQ2DotNet
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnZoned in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnMacroStart()
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnMacroStart();
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnMacroStart in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnMacroStop()
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnMacroStop();
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnMacroStop in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnLoadPlugin()
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnLoadPlugin();
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnLoadPlugin in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnUnloadPlugin()
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnUnloadPlugin();
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnUnloadPlugin in {appDomain.Name}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
             }

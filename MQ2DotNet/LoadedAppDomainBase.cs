@@ -258,6 +258,54 @@ namespace MQ2DotNet
         }
 
         /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public WeakEventSource<EventArgs> OnMacroStart = new WeakEventSource<EventArgs>();
+        internal void InvokeOnMacroStart()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
+
+            EventLoopContext.SetExecuteRestore(() => OnMacroStart.Raise(null, new EventArgs()));
+        }
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public WeakEventSource<EventArgs> OnMacroStop = new WeakEventSource<EventArgs>();
+        internal void InvokeOnMacroStop()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
+
+            EventLoopContext.SetExecuteRestore(() => OnMacroStop.Raise(null, new EventArgs()));
+        }
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public WeakEventSource<EventArgs> OnLoadPlugin = new WeakEventSource<EventArgs>();
+        internal void InvokeOnLoadPlugin()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
+
+            EventLoopContext.SetExecuteRestore(() => OnLoadPlugin.Raise(null, new EventArgs()));
+        }
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public WeakEventSource<EventArgs> OnUnloadPlugin = new WeakEventSource<EventArgs>();
+        internal void InvokeOnUnloadPlugin()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
+
+            EventLoopContext.SetExecuteRestore(() => OnUnloadPlugin.Raise(null, new EventArgs()));
+        }
+
+        /// <summary>
         /// Called once directly after initialization, and then every time the gamestate changes
         /// </summary>
         public WeakEventSource<GameState> SetGameState = new WeakEventSource<GameState>();

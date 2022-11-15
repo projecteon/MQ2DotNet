@@ -221,6 +221,38 @@ namespace MQ2DotNet
             LoadedAppDomain.InvokeOnZoned();
         }
 
+        internal void InvokeOnMacroStart()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(AppDomainBase));
+
+            LoadedAppDomain.InvokeOnMacroStart();
+        }
+
+        internal void InvokeOnMacroStop()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(AppDomainBase));
+
+            LoadedAppDomain.InvokeOnMacroStop();
+        }
+
+        internal void InvokeOnLoadPlugin()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(AppDomainBase));
+
+            LoadedAppDomain.InvokeOnLoadPlugin();
+        }
+
+        internal void InvokeOnUnloadPlugin()
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(nameof(AppDomainBase));
+
+            LoadedAppDomain.InvokeOnUnloadPlugin();
+        }
+
         internal void InvokeSetGameState(GameState gameState)
         {
             if (_disposed)

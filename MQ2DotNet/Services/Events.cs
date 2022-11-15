@@ -272,6 +272,78 @@ namespace MQ2DotNet.Services
         [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onZoned;
 
         /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public event EventHandler OnMacroStart
+        {
+            add
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onMacroStart += value;
+            }
+            remove
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onMacroStart -= value;
+            }
+        }
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onMacroStart;
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public event EventHandler OnMacroStop
+        {
+            add
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onMacroStop += value;
+            }
+            remove
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onMacroStop -= value;
+            }
+        }
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onMacroStop;
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public event EventHandler OnLoadPlugin
+        {
+            add
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onLoadPlugin += value;
+            }
+            remove
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onLoadPlugin -= value;
+            }
+        }
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onLoadPlugin;
+
+        /// <summary>
+        /// Similar/same as EndZone ?
+        /// </summary>
+        public event EventHandler OnUnloadPlugin
+        {
+            add
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onUnloadPlugin += value;
+            }
+            remove
+            {
+                if (_disposed) throw new ObjectDisposedException(nameof(Events));
+                _onUnloadPlugin -= value;
+            }
+        }
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onUnloadPlugin;
+
+        /// <summary>
         /// Called once directly after initialization, and then every time the gamestate changes
         /// </summary>
         public event EventHandler<GameState> SetGameState

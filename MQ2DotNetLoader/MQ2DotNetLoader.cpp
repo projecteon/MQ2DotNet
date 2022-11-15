@@ -55,7 +55,11 @@ extern "C" __declspec(dllexport) fMQGroundItem g_pfOnAddGroundItem{ nullptr };
 extern "C" __declspec(dllexport) fMQGroundItem g_pfOnRemoveGroundItem{ nullptr };
 extern "C" __declspec(dllexport) fMQBeginZone g_pfBeginZone{ nullptr };
 extern "C" __declspec(dllexport) fMQEndZone g_pfEndZone{ nullptr };
-extern "C" __declspec(dllexport) fMQZoned g_pfOnZoned{ nullptr };
+extern "C" __declspec(dllexport) fMQZoned g_pfOnZoned { nullptr };
+extern "C" __declspec(dllexport) fMQMacroStart g_pfOnMacroStart { nullptr };
+extern "C" __declspec(dllexport) fMQMacroStop g_pfOnMacroStop { nullptr };
+extern "C" __declspec(dllexport) fMQLoadPlugin g_pfOnLoadPlugin { nullptr };
+extern "C" __declspec(dllexport) fMQUnloadPlugin g_pfOnUnloadPlugin { nullptr };
 
 // Exported helper functions to make things easier in the managed world
 extern "C" __declspec(dllexport) PCHAR __stdcall GetIniPath() { return gPathConfig; }
@@ -406,7 +410,8 @@ PLUGIN_API void OnUpdateImGui()
  */
 PLUGIN_API void OnMacroStart(const char* Name)
 {
-	// DebugSpewAlways("MQ2DotNetLoader::OnMacroStart(%s)", Name);
+	if (g_bLoaded && g_pfOnMacroStart)
+		g_pfOnMacroStart();
 }
 
 /**
@@ -418,7 +423,8 @@ PLUGIN_API void OnMacroStart(const char* Name)
  */
 PLUGIN_API void OnMacroStop(const char* Name)
 {
-	// DebugSpewAlways("MQ2DotNetLoader::OnMacroStop(%s)", Name);
+	if (g_bLoaded && g_pfOnMacroStop)
+		g_pfOnMacroStop();
 }
 
 /**
@@ -435,7 +441,8 @@ PLUGIN_API void OnMacroStop(const char* Name)
  */
 PLUGIN_API void OnLoadPlugin(const char* Name)
 {
-	// DebugSpewAlways("MQ2DotNetLoader::OnLoadPlugin(%s)", Name);
+	if (g_bLoaded && g_pfOnLoadPlugin)
+		g_pfOnLoadPlugin();
 }
 
 /**
@@ -452,7 +459,8 @@ PLUGIN_API void OnLoadPlugin(const char* Name)
  */
 PLUGIN_API void OnUnloadPlugin(const char* Name)
 {
-	// DebugSpewAlways("MQ2DotNetLoader::OnUnloadPlugin(%s)", Name);
+	if (g_bLoaded && g_pfOnUnloadPlugin)
+		g_pfOnUnloadPlugin();
 }
 
 bool LoadCLR()
