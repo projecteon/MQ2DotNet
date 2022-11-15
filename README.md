@@ -44,6 +44,8 @@ Open the `MQ2DotNet.sln` and attach to debug managed code.
 ##  Programs
 
 ### Create a new
+
+#### With selfbuilding Macroquest
 Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
 
 Run the following command once:
@@ -55,6 +57,17 @@ Run the following command for each program you want to create, exchanging `TestT
 ```
 dotnet new mq2dotnet_program --name TestTemplate --output TestTemplate
 ```
+
+#### Standalone
+* Create a new `Class library (.Net Framework)`
+* Select `.Net Framework 4.8`
+
+Once solution is created:
+* Right click project `References`
+* Click `Add reference...`
+* Select `Browse` and then click `Browse...` button
+* Navigate to your MQ directory: `Macroquest\Resources\MQ2DotNet`
+* Select `MQ2DotNet.dll`
 
 #### Build and install
 * Add `Programs` plugins to the `MQ2DotNet` directory.
@@ -252,6 +265,8 @@ Visual studio intellisense will show you a warning if you do this, pay attention
 ## Plugins
 
 ### Create a new
+
+#### With selfbuilding Macroquest
 Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
 
 Run the following command once (if you havent already):
@@ -263,6 +278,17 @@ Run the following command for each plugin you want to create, exchanging `TestTe
 ```
 dotnet new mq2dotnet_plugin --name TestTemplate --output TestTemplate
 ```
+
+#### Standalone
+* Create a new `Class library (.Net Framework)`
+* Select `.Net Framework 4.8`
+
+Once solution is created:
+* Right click project `References`
+* Click `Add reference...`
+* Select `Browse` and then click `Browse...` button
+* Navigate to your MQ directory: `Macroquest\Resources\MQ2DotNet`
+* Select `MQ2DotNet.dll`
 
 #### Build and install
 * Add `Plugins` plugins to the `MQ2DotNet` directory.
