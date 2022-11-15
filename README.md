@@ -9,17 +9,12 @@ Requirements
 
 * MacroQuest (next)
 
-MQ2DotNet project files have a lot of parts, so unless you know what you are doing, you usually do not want to add it to your solution. Instead, you can open up the MQ2DotNet.sln file and build it on its own. Make sure that you build the core distribution in MacroQuest.sln first.
+MQ2DotNet project files have two parts. To build it with `Macroquest` do the following:
 
 * Check out the sources into `/plugins/MQ2DotNet`. MQ2DotNet should be placed in the /plugins folder in the root of the checkout. This folder is dedicated to your plugins.
 ```
 git submodule add -b master-mqnext -f https://github.com/projecteon/MQ2DotNet.git plugins/mq2dotnet
 ```
-* Open `MacroQuest.sln` and build
-* Open `MQ2DotNet/MQ2DotNet.sln` and select a configuration (most people will want Release)
-* build MQ2DotNet.dll: select the architecture used to build MacroQuest.sln (x64 for live, x86 for emu) and build
-
-If you want to build MQ2DotNet with your MacroQuest.sln
 * Add a solution folder `MQ2Dotnet` under plugins folder
 * Right click folder and choose `Add existing project`
 * Navigate to `/plugins/MQ2DotNet` and type in `MQ2DotNet.sln` as file name and accept.
@@ -45,7 +40,7 @@ Open the `MQ2DotNet.sln` and attach to debug managed code.
 
 ### Create a new
 
-#### With selfbuilding Macroquest
+#### When building Macroquest yourself
 Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
 
 Run the following command once:
@@ -59,6 +54,7 @@ dotnet new mq2dotnet_program --name TestTemplate --output TestTemplate
 ```
 
 #### Standalone
+* Start up Visual Studio 2019 or 2022
 * Create a new `Class library (.Net Framework)`
 * Select `.Net Framework 4.8`
 
@@ -266,7 +262,7 @@ Visual studio intellisense will show you a warning if you do this, pay attention
 
 ### Create a new
 
-#### With selfbuilding Macroquest
+#### When building Macroquest yourself
 Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
 
 Run the following command once (if you havent already):
@@ -280,6 +276,7 @@ dotnet new mq2dotnet_plugin --name TestTemplate --output TestTemplate
 ```
 
 #### Standalone
+* Start up Visual Studio 2019 or 2022
 * Create a new `Class library (.Net Framework)`
 * Select `.Net Framework 4.8`
 
