@@ -411,7 +411,7 @@ PLUGIN_API void OnUpdateImGui()
 PLUGIN_API void OnMacroStart(const char* Name)
 {
 	if (g_bLoaded && g_pfOnMacroStart)
-		g_pfOnMacroStart();
+		g_pfOnMacroStart(Name);
 }
 
 /**
@@ -424,7 +424,7 @@ PLUGIN_API void OnMacroStart(const char* Name)
 PLUGIN_API void OnMacroStop(const char* Name)
 {
 	if (g_bLoaded && g_pfOnMacroStop)
-		g_pfOnMacroStop();
+		g_pfOnMacroStop(Name);
 }
 
 /**
@@ -442,7 +442,7 @@ PLUGIN_API void OnMacroStop(const char* Name)
 PLUGIN_API void OnLoadPlugin(const char* Name)
 {
 	if (g_bLoaded && g_pfOnLoadPlugin)
-		g_pfOnLoadPlugin();
+		g_pfOnLoadPlugin(Name);
 }
 
 /**
@@ -460,7 +460,7 @@ PLUGIN_API void OnLoadPlugin(const char* Name)
 PLUGIN_API void OnUnloadPlugin(const char* Name)
 {
 	if (g_bLoaded && g_pfOnUnloadPlugin)
-		g_pfOnUnloadPlugin();
+		g_pfOnUnloadPlugin(Name);
 }
 
 bool LoadCLR()

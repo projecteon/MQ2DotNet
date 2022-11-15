@@ -274,7 +274,7 @@ namespace MQ2DotNet.Services
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public event EventHandler OnMacroStart
+        public event EventHandler<string> OnMacroStart
         {
             add
             {
@@ -287,12 +287,12 @@ namespace MQ2DotNet.Services
                 _onMacroStart -= value;
             }
         }
-        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onMacroStart;
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler<string> _onMacroStart;
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public event EventHandler OnMacroStop
+        public event EventHandler<string> OnMacroStop
         {
             add
             {
@@ -305,12 +305,12 @@ namespace MQ2DotNet.Services
                 _onMacroStop -= value;
             }
         }
-        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onMacroStop;
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler<string> _onMacroStop;
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public event EventHandler OnLoadPlugin
+        public event EventHandler<string> OnLoadPlugin
         {
             add
             {
@@ -323,12 +323,12 @@ namespace MQ2DotNet.Services
                 _onLoadPlugin -= value;
             }
         }
-        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onLoadPlugin;
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler<string> _onLoadPlugin;
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public event EventHandler OnUnloadPlugin
+        public event EventHandler<string> OnUnloadPlugin
         {
             add
             {
@@ -341,7 +341,7 @@ namespace MQ2DotNet.Services
                 _onUnloadPlugin -= value;
             }
         }
-        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler _onUnloadPlugin;
+        [SuppressMessage("ReSharper", "InconsistentNaming")] private event EventHandler<string> _onUnloadPlugin;
 
         /// <summary>
         /// Called once directly after initialization, and then every time the gamestate changes

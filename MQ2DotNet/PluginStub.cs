@@ -52,13 +52,13 @@ namespace MQ2DotNet
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void fMQZoned();
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void fMQMacroStart();
+        private delegate void fMQMacroStart([MarshalAs(UnmanagedType.LPStr)] string name);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void fMQMacroStop();
+        private delegate void fMQMacroStop([MarshalAs(UnmanagedType.LPStr)] string name);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void fMQLoadPlugin();
+        private delegate void fMQLoadPlugin([MarshalAs(UnmanagedType.LPStr)] string name);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void fMQUnloadPlugin();
+        private delegate void fMQUnloadPlugin([MarshalAs(UnmanagedType.LPStr)] string name);
         // ReSharper restore InconsistentNaming
         #endregion
 
@@ -768,13 +768,13 @@ namespace MQ2DotNet
             }
         }
 
-        private static void OnMacroStart()
+        private static void OnMacroStart(string name)
         {
             foreach (var appDomain in _appDomains)
             {
                 try
                 {
-                    appDomain.InvokeOnMacroStart();
+                    appDomain.InvokeOnMacroStart(name);
                 }
                 catch (Exception e)
                 {
@@ -784,13 +784,13 @@ namespace MQ2DotNet
             }
         }
 
-        private static void OnMacroStop()
+        private static void OnMacroStop(string name)
         {
             foreach (var appDomain in _appDomains)
             {
                 try
                 {
-                    appDomain.InvokeOnMacroStop();
+                    appDomain.InvokeOnMacroStop(name);
                 }
                 catch (Exception e)
                 {
@@ -800,13 +800,13 @@ namespace MQ2DotNet
             }
         }
 
-        private static void OnLoadPlugin()
+        private static void OnLoadPlugin(string name)
         {
             foreach (var appDomain in _appDomains)
             {
                 try
                 {
-                    appDomain.InvokeOnLoadPlugin();
+                    appDomain.InvokeOnLoadPlugin(name);
                 }
                 catch (Exception e)
                 {
@@ -816,13 +816,13 @@ namespace MQ2DotNet
             }
         }
 
-        private static void OnUnloadPlugin()
+        private static void OnUnloadPlugin(string name)
         {
             foreach (var appDomain in _appDomains)
             {
                 try
                 {
-                    appDomain.InvokeOnUnloadPlugin();
+                    appDomain.InvokeOnUnloadPlugin(name);
                 }
                 catch (Exception e)
                 {

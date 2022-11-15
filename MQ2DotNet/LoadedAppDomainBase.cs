@@ -260,49 +260,49 @@ namespace MQ2DotNet
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public WeakEventSource<EventArgs> OnMacroStart = new WeakEventSource<EventArgs>();
-        internal void InvokeOnMacroStart()
+        public WeakEventSource<string> OnMacroStart = new WeakEventSource<string>();
+        internal void InvokeOnMacroStart(string name)
         {
             if (_disposed)
                 throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
 
-            EventLoopContext.SetExecuteRestore(() => OnMacroStart.Raise(null, new EventArgs()));
+            EventLoopContext.SetExecuteRestore(() => OnMacroStart.Raise(null, name));
         }
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public WeakEventSource<EventArgs> OnMacroStop = new WeakEventSource<EventArgs>();
-        internal void InvokeOnMacroStop()
+        public WeakEventSource<string> OnMacroStop = new WeakEventSource<string>();
+        internal void InvokeOnMacroStop(string name)
         {
             if (_disposed)
                 throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
 
-            EventLoopContext.SetExecuteRestore(() => OnMacroStop.Raise(null, new EventArgs()));
+            EventLoopContext.SetExecuteRestore(() => OnMacroStop.Raise(null, name));
         }
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public WeakEventSource<EventArgs> OnLoadPlugin = new WeakEventSource<EventArgs>();
-        internal void InvokeOnLoadPlugin()
+        public WeakEventSource<string> OnLoadPlugin = new WeakEventSource<string>();
+        internal void InvokeOnLoadPlugin(string name)
         {
             if (_disposed)
                 throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
 
-            EventLoopContext.SetExecuteRestore(() => OnLoadPlugin.Raise(null, new EventArgs()));
+            EventLoopContext.SetExecuteRestore(() => OnLoadPlugin.Raise(null, name));
         }
 
         /// <summary>
         /// Similar/same as EndZone ?
         /// </summary>
-        public WeakEventSource<EventArgs> OnUnloadPlugin = new WeakEventSource<EventArgs>();
-        internal void InvokeOnUnloadPlugin()
+        public WeakEventSource<string> OnUnloadPlugin = new WeakEventSource<string>();
+        internal void InvokeOnUnloadPlugin(string name)
         {
             if (_disposed)
                 throw new ObjectDisposedException(nameof(LoadedAppDomainBase));
 
-            EventLoopContext.SetExecuteRestore(() => OnUnloadPlugin.Raise(null, new EventArgs()));
+            EventLoopContext.SetExecuteRestore(() => OnUnloadPlugin.Raise(null, name));
         }
 
         /// <summary>
