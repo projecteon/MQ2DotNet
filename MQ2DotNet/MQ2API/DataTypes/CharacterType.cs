@@ -8,7 +8,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("character")]
-    public class CharacterType : MQ2DataType // Inheritance won't work, use Spawn
+    public class CharacterType : SpawnType // Inheritance won't work, use Spawn
     {
         internal CharacterType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
@@ -701,11 +701,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Buff from the Hybrid HP line TODO What is this
         /// </summary>
         public BuffType HybridHP => GetMember<BuffType>("HybridHP");
-
-        /// <summary>
-        /// Your spawn ID
-        /// </summary>
-        public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
         /// Are you in an instanced zone?
