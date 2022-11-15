@@ -15,7 +15,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Name of the ability
+        /// First line of button label (if any)
         /// </summary>
         public string Name => GetMember<StringType>("Name");
         
@@ -23,6 +23,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Short name of the ability
         /// </summary>
         public string ShortName => GetMember<StringType>("ShortName");
+
+        /// <summary>
+        /// Second line of button label (if any)
+        /// </summary>
+        public string ShortName2 => GetMember<StringType>("ShortName2");
 
         /// <summary>
         /// Description as it appears in the AA window
@@ -120,6 +125,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Returns true/false on if the Alternative Ability can be trained
         /// </summary>
         public bool CanTrain => GetMember<BoolType>("CanTrain");
+
+        /// <summary>
+        /// Returns name of the category that this AA belongs to.
+        /// </summary>
+        public string Category => GetMember<StringType>("Category");
 
         /// <summary>
         /// Returns the next index number of the Alternative Ability

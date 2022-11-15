@@ -42,14 +42,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
             AltAbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AltAbilityTimer");
             AltAbility = new IndexedMember<AltAbilityType, int, AltAbilityType, string>(this, "AltAbility");
             AbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AbilityReady");
+            AbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AbilityTimer");
             Ability = new IndexedStringMember<int, IntType, string>(this, "Ability");
             Bandolier = new IndexedMember<BandolierType, string, BandolierType, int>(this, "Bandolier");
+            Bank = new IndexedMember<ItemType, int>(this, "Bank");
+            FreeInventorySlotSize = new IndexedMember<IntType, int>(this, "FreeInventory");
         }
 
         /// <summary>
         /// Ability with this name or on this button # ready?
         /// </summary>
         public IndexedMember<BoolType, int, BoolType, string> AbilityReady;
+
+        /// <summary>
+        /// Ability with this name or on this button # ready?
+        /// </summary>
+        public IndexedMember<TimeStampType, int, TimeStampType, string> AbilityTimer;
 
         /// <summary>
         /// Returns an alt ability by name or number
@@ -124,7 +132,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The total number of AA Vitality you have
         /// </summary>
-        public int? AAVitality => GetMember<IntType>("AAVitality");
+        public long? AAVitality => GetMember<Int64Type>("AAVitality");
+
+        /// <summary>
+        /// ?
+        /// </summary>
+        public long? AAVitalityCap => GetMember<Int64Type>("AAVitalityCap");
 
         /// <summary>
         /// The doability button number that the skill name is on, or the skill name assigned to a doability button
@@ -147,6 +160,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? ActiveFavorCost => GetMember<IntType>("ActiveFavorCost");
 
         /// <summary>
+        /// ?
+        /// </summary>
+        public int? AdoptiveCoin => GetMember<IntType>("AdoptiveCoin");
+
+        /// <summary>
         /// Buff from the Aegolism line
         /// </summary>
         public BuffType Aego => GetMember<BuffType>("Aego");
@@ -160,6 +178,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Agility
         /// </summary>
         public int? AGI => GetMember<IntType>("AGI");
+
+        /// <summary>
+        /// AirSupply
+        /// </summary>
+        public int? AirSupply => GetMember<IntType>("AirSupply");
 
         /// <summary>
         /// Quantity of an alt currency by name or number
@@ -176,6 +199,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Am I the group leader?
         /// </summary>
         public string AmIGroupLeader => GetMember<StringType>("AmIGroupLeader");
+
+        /// <summary>
+        /// AncientDraconicCoin
+        /// </summary>
+        public IntType AncientDraconicCoin => GetMember<IntType>("AncientDraconicCoin");
+
+        /// <summary>
+        /// AncientSebilisianCoins
+        /// </summary>
+        public IntType AncientSebilisianCoins => GetMember<IntType>("AncientSebilisianCoins");
 
         /// <summary>
         /// Returns true/false if the assist is complete
@@ -210,7 +243,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Item in this bankslot #
         /// </summary>
-        public ItemType Bank => GetMember<ItemType>("Bank");
+        public IndexedMember<ItemType, int> Bank { get; }
 
         /// <summary>
         /// True if you're currently playing a bard song
@@ -276,12 +309,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total cash on your character, expressed in coppers (eg. if you are carrying 100pp, Cash will return 100000)
         /// </summary>
-        public int? Cash => GetMember<IntType>("Cash");
+        public long? Cash => GetMember<Int64Type>("Cash");
 
         /// <summary>
         /// Total cash in your bank, expressed in coppers
         /// </summary>
-        public int? CashBank => GetMember<IntType>("CashBank");
+        public long? CashBank => GetMember<Int64Type>("CashBank");
 
         /// <summary>
         /// Charisma
@@ -351,22 +384,22 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total number of corruption counters
         /// </summary>
-        public int? CountersCorruption => GetMember<IntType>("CountersCorruption");
+        public long? CountersCorruption => GetMember<Int64Type>("CountersCorruption");
 
         /// <summary>
         /// Total number of curse counters
         /// </summary>
-        public int? CountersCurse => GetMember<IntType>("CountersCurse");
+        public long? CountersCurse => GetMember<Int64Type>("CountersCurse");
 
         /// <summary>
         /// Total number of disease counters
         /// </summary>
-        public int? CountersDisease => GetMember<IntType>("CountersDisease");
+        public long? CountersDisease => GetMember<Int64Type>("CountersDisease");
 
         /// <summary>
         /// Total number of poison counters
         /// </summary>
-        public int? CountersPoison => GetMember<IntType>("CountersPoison");
+        public long? CountersPoison => GetMember<Int64Type>("CountersPoison");
 
         /// <summary>
         /// Number of short duration buffs (songs) you have
@@ -379,24 +412,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public BuffType Crippled => GetMember<BuffType>("Crippled");
 
         /// <summary>
-        /// Current endurance
-        /// </summary>
-        public int? CurrentEndurance => GetMember<IntType>("CurrentEndurance");
-
-        /// <summary>
         /// Current favor/tribute
         /// </summary>
         public long? CurrentFavor => GetMember<Int64Type>("CurrentFavor");
-        
-        /// <summary>
-        /// Current hit points
-        /// </summary>
-        public int? CurrentHPs => GetMember<IntType>("CurrentHPs");
-
-        /// <summary>
-        /// Current mana
-        /// </summary>
-        public int? CurrentMana => GetMember<IntType>("CurrentMana");
 
         /// <summary>
         /// Current weight
@@ -446,7 +464,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Damage absorption remaining (eg. from Rune-type spells)
         /// </summary>
-        public int? Dar => GetMember<IntType>("Dar");
+        public long? Dar => GetMember<Int64Type>("Dar");
 
         /// <summary>
         /// Dexterity
@@ -547,6 +565,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Number of free inventory slots remaining
         /// </summary>
         public int? FreeInventory => GetMember<IntType>("FreeInventory");
+
+        /// <summary>
+        /// Number of free inventory spaces of at least # size (giant=4)
+        /// </summary>
+        public IndexedMember<IntType, int> FreeInventorySlotSize { get; }
 
         /// <summary>
         /// The gem number that a spell name is memorized in, or the spell in a gem number
@@ -841,21 +864,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? MaxBuffSlots => GetMember<IntType>("MaxBuffSlots");
 
         /// <summary>
-        /// Max endurance
-        /// </summary>
-        public int? MaxEndurance => GetMember<IntType>("MaxEndurance");
-
-        /// <summary>
-        /// Max hit points
-        /// </summary>
-        public int? MaxHPs => GetMember<IntType>("MaxHPs");
-
-        /// <summary>
-        /// Max mana
-        /// </summary>
-        public int? MaxMana => GetMember<IntType>("MaxMana");
-
-        /// <summary>
         /// Mercenary AA experience, out of 1000
         /// </summary>
         public long? MercAAExp => GetMember<Int64Type>("MercAAExp");
@@ -901,16 +909,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? MMEarned => GetMember<IntType>("MMEarned");
 
         /// <summary>
-        /// Moving? (including strafe)
-        /// </summary>
-        public bool Moving => GetMember<BoolType>("Moving");
-
-        /// <summary>
-        /// First name
-        /// </summary>
-        public string Name => GetMember<StringType>("Name");
-
-        /// <summary>
         /// Nobles (alt currency)
         /// </summary>
         public int? Nobles => GetMember<IntType>("Nobles");
@@ -942,11 +940,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? PctAggro => GetMember<IntType>("PctAggro");
 
         /// <summary>
-        /// Current endurance as a percentage
-        /// </summary>
-        public int? PctEndurance => GetMember<IntType>("PctEndurance");
-
-        /// <summary>
         /// Current experience as a percentage
         /// </summary>
         public float? PctExp => GetMember<FloatType>("PctExp");
@@ -955,16 +948,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Percentage of your experience going to AA
         /// </summary>
         public int? PctExpToAA => GetMember<IntType>("PctExpToAA");
-
-        /// <summary>
-        /// Current hit points as a percentage
-        /// </summary>
-        public int? PctHPs => GetMember<IntType>("PctHPs");
-
-        /// <summary>
-        /// Current mana as a percentage
-        /// </summary>
-        public int? PctMana => GetMember<IntType>("PctMana");
 
         /// <summary>
         /// Current mercenary AA experience as a oercentage
@@ -1193,11 +1176,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? StrikeThroughBonus => GetMember<IntType>("StrikeThroughBonus");
 
         /// <summary>
-        /// Am I stunned?
-        /// </summary>
-        public bool Stunned => GetMember<BoolType>("Stunned");
-
-        /// <summary>
         /// Stun Resist bonus from gear and spells
         /// </summary>
         public int? StunResistBonus => GetMember<IntType>("StunResistBonus");
@@ -1272,11 +1250,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? TakEarned => GetMember<IntType>("TakEarned");
 
         /// <summary>
-        /// Your target's target
-        /// </summary>
-        public SpawnType TargetOfTarget => GetMember<SpawnType>("TargetOfTarget");
-
-        /// <summary>
         /// Debuff from the Tash line
         /// </summary>
         public BuffType Tashed => GetMember<BuffType>("Tashed");
@@ -1289,7 +1262,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Total number of counters on you
         /// </summary>
-        public int? TotalCounters => GetMember<IntType>("TotalCounters");
+        public long? TotalCounters => GetMember<Int64Type>("TotalCounters");
 
         /// <summary>
         /// Personal tribute currently active?
@@ -1405,6 +1378,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// DoT debuff if the target has one
         /// </summary>
         public BuffType Dotted => GetMember<BuffType>("Dotted");
+
+        /// <summary>
+        /// Can you use a mount here?
+        /// </summary>
+        public BoolType CanMount => GetMember<BoolType>("CanMount");
 
         /// <summary>
         /// Equivalent of the command /stand on

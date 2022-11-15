@@ -14,11 +14,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the LOOTITEM struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Index of the item in either the shared or personal loot list
         /// </summary>
         // ReSharper disable once InconsistentNaming
@@ -32,7 +27,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// ID of the item
         /// </summary>
-        public int? ID => GetMember<IntType>("ID");
+        public long? ID => GetMember<Int64Type>("ID");
 
         /// <summary>
         /// Maximum number of these items in one stack

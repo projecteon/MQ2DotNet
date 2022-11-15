@@ -7,7 +7,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("cachedbuff")]
-    public class CachedBuffType : MQ2DataType
+    public class CachedBuffType : SpellType
     {
         internal CachedBuffType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
@@ -17,9 +17,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Memory address of the SPELLBUFF struct
         /// </summary>
         public string CasterName => GetMember<StringType>("CasterName");
-        
+
         /// <summary>
-        /// TODO: What is this?
+        /// Returns the amount of buffs catched, or -1 it none
         /// </summary>
         public int? Count => GetMember<IntType>("Count");
 
@@ -34,8 +34,18 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? SpellID => GetMember<IntType>("SpellID");
 
         /// <summary>
-        /// The time remaining before the buff fades (not total duration)
+        /// Original duration of the buff.
         /// </summary>
-        public TimeStampType Duration => GetMember<TimeStampType>("Duration");
+        public TimeStampType OriginalDuration => GetMember<TimeStampType>("OriginalDuration");
+
+        /// <summary>
+        /// The spell
+        /// </summary>
+        public SpellType Spell => GetMember<SpellType>("Spell");
+
+        /// <summary>
+        /// How long it has been since this information was refreshed.
+        /// </summary>
+        public TimeStampType Staleness => GetMember<TimeStampType>("Staleness");
     }
 }

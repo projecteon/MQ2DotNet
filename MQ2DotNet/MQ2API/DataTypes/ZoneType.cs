@@ -36,6 +36,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Zone flags, see ZONELIST::ZoneFlags in eqdata.h
         /// </summary>
-        public int? ZoneFlags => GetMember<IntType>("ZoneFlags");
+        public long? ZoneFlags => GetMember<Int64Type>("ZoneFlags");
     }
 }

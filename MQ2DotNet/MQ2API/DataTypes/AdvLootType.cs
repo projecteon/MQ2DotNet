@@ -13,6 +13,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         {
             PList = new IndexedMember<AdvLootItemType>(this, "PList");
             SList = new IndexedMember<AdvLootItemType>(this, "SList");
+            Filter = new IndexedMember<ItemFilterDataType, int>(this, "Filter");
         }
 
         /// <summary>
@@ -53,6 +54,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Returns a filter from the advanced loot filters TODO: By what? Number in list or item ID?
         /// </summary>
-        public ItemFilterDataType Filter => GetMember<ItemFilterDataType>("Filter");
+        public IndexedMember<ItemFilterDataType, int> Filter { get; }
     }
 }
