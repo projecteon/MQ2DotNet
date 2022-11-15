@@ -1,25 +1,29 @@
 # MQ2DotNet
 
-## Setup
-Add MQ2DotNet to your Macroquest build.
+## Building
+Requirements
+* Visual Studio 2019 (16.10+)
+	
+	or
+* Visual Studio 2022
 
+* MacroQuest (next)
+
+MQ2DotNet project files have a lot of parts, so unless you know what you are doing, you usually do not want to add it to your solution. Instead, you can open up the MQ2DotNet.sln file and build it on its own. Make sure that you build the core distribution in MacroQuest.sln first.
+
+* Check out the sources into `/plugins/MQ2DotNet`. MQ2DotNet should be placed in the /plugins folder in the root of the checkout. This folder is dedicated to your plugins.
 ```
 git submodule add -b master-mqnext -f https://github.com/projecteon/MQ2DotNet.git plugins/mq2dotnet
 ```
+* Open `MacroQuest.sln` and build
+* Open `MQ2DotNet/MQ2DotNet.sln` and select a configuration (most people will want Release)
+* build MQ2DotNet.dll: select the architecture used to build MacroQuest.sln (x64 for live, x86 for emu) and build
 
-Add `MQ2DotNetLoader` to the plugins directory in the Macroquest solution.
-
-![MQ2DotNetLoader](/images/mq2dotnetloader.png)
-
-
-Add `MQ2DotNet` to the resources directory in the Macroquest solution.
-
-![MQ2DotNetLoader](/images/resources.png)
-
-
-Add `program` plugins to the `MQ2DotNet` directory.
-
-![MQ2DotNetLoader](/images/macros.png)
+If you want to build MQ2DotNet with your MacroQuest.sln
+* Add a solution folder `MQ2Dotnet` under plugins folder
+* Right click folder and choose `Add existing project`
+* Navigate to `/plugins/MQ2DotNet` and type in `MQ2DotNet.sln` as file name and accept.
+* build `MacroQuest` with your choice of architecture
 
 ### Debugging
 For debugging MQ2DotNet, enable mixed mode in project settings for `Macroquest`and `MQ2Main`.
@@ -37,14 +41,29 @@ Open the `MQ2DotNet.sln` and attach to debug managed code.
 ![Project Settings](/images/native_debugging.png)
 
 
-
 ##  Programs
 
 ### Create a new
+Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
+
+Run the following command once:
 ```
 dotnet new install .\
-dotnet new mq2dotnet_program --dry-run --name TestTemplate --output TestTemplate
 ```
+
+Run the following command for each program you want to create, exchanging `TestTemplate` with your program name.
+```
+dotnet new mq2dotnet_program --name TestTemplate --output TestTemplate
+```
+
+#### Build and install
+* Add `Programs` plugins to the `MQ2DotNet` directory.
+* Add a folder for each program inside the `Programs` folder containing the `dll's` for the given program.
+
+ie for `TestProgram`
+![MQ2DotNetLoader](/images/macros.png)
+
+#### Write a program
 
 ```csharp
 using System.Threading.Tasks;
@@ -230,7 +249,25 @@ A word of warning, if you don't await either in your command, it will never pass
 
 Visual studio intellisense will show you a warning if you do this, pay attention to it! This includes any async functions of your own creation, eventually something needs to call a function that actually relinquishes control, e.g. Task.Yield or Task.Delay.
 
-Plugins
+## Plugins
+
+### Create a new
+Open a command prompt and go to the `/plugins/MQ2DotNet` directory.
+
+Run the following command once (if you havent already):
+```
+dotnet new install .\
+```
+
+Run the following command for each plugin you want to create, exchanging `TestTemplate` with your plugin name.
+```
+dotnet new mq2dotnet_plugin --name TestTemplate --output TestTemplate
+```
+
+#### Build and install
+* Add `Plugins` plugins to the `MQ2DotNet` directory.
+* Add a folder for each plugin inside the `Plugins` folder containing the `dll's` for the given program.
+
 
 If you want to write a regular old plugin, not just a "program", you can do that too, just have a class that inherits Plugin:
 
