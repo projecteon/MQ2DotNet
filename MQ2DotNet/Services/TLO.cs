@@ -413,7 +413,11 @@ namespace MQ2DotNet.Services
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool fMQData([MarshalAs(UnmanagedType.LPStr)] string szIndex, out MQ2TypeVar ret);
 
+#if WIN64
+        [StructLayout(LayoutKind.Explicit, Size = 0x48)]
+#else
         [StructLayout(LayoutKind.Explicit, Size = 0x44)]
+#endif
         internal struct MQ2DataItem
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x40)]

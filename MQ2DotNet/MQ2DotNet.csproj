@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\build\Release\MQ2DotNet\MQ2DotNet.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
+    <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />

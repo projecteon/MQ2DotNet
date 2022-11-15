@@ -8,13 +8,23 @@ namespace MQ2DotNet.MQ2API
     /// <summary>
     /// Used by MQ2 to represent a variable. Consists of a type component, pType, that points to an instance of MQ2Type, and a data component, VarPtr, that stores data for this variable
     /// </summary>
-    [StructLayout(LayoutKind.Explicit, Size = 16)]
+
+# if WIN64
+    [StructLayout(LayoutKind.Explicit, Size = 0x28)]
+# else
+    [StructLayout(LayoutKind.Explicit, Size = 0x20)]
+#endif
     public struct MQ2TypeVar
     {
-        [FieldOffset(0)] internal MQ2VarPtr VarPtr;
         // Since we don't care about members and will only be calling functions, marshalling as IntPtr seems the easiest/safest option
-        // Only a 4 byte field but gets packed to 8 bytes. Many hours wasted before realizing this :(
-        [FieldOffset(24)] internal IntPtr Type;
+        [FieldOffset(0)] 
+        internal MQ2VarPtr VarPtr;
+#if WIN64
+        [FieldOffset(0x20)]
+#else
+        [FieldOffset(0x18)]
+#endif
+        internal IntPtr Type;
 
         internal bool TryGetMember(string memberName, string index, out MQ2TypeVar result)
         {
