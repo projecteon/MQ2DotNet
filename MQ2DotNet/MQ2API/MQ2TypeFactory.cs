@@ -66,7 +66,7 @@ namespace MQ2DotNet.MQ2API
                 // Find all subclasses of MQ2DataType, and get their MQ2Type attribute
                 foreach (var type in assembly.ExportedTypes)
                 {
-                    if (!type.IsSubclassOf(typeof(MQ2DataType)))
+                    if (!InheritsFrom<MQ2DataType>(type))
                         continue;
 
                     var mq2Type = type.GetCustomAttribute<MQ2TypeAttribute>();
@@ -105,6 +105,21 @@ namespace MQ2DotNet.MQ2API
                 Debug.WriteLine("Error finding types in assembly: " + assemblyName?.ToString() ?? " null");
                 Debug.WriteLine(e);
             }
+        }
+
+        bool InheritsFrom<T>(Type type)
+        {
+            if (type == null)
+            {
+                return false;
+            }
+
+            if (type.IsSubclassOf(typeof(T)))
+            {
+                return true;
+            }
+
+            return InheritsFrom<T>(type.BaseType);
         }
 
         /// <summary>
