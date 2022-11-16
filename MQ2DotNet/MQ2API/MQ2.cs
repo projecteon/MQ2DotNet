@@ -122,7 +122,7 @@ namespace MQ2DotNet.MQ2API
 
         private static IntPtr GetCharSpawn()
         {
-            var pppPlayer = NativeMethods.GetProcAddress(NativeMethods.LoadLibrary("MQ2Main.dll"), "ppLocalPlayer");
+            var pppPlayer = NativeMethods.GetProcAddress(NativeMethods.LoadLibrary("eqlib.dll"), "pLocalPlayer");
             var ppPlayer = Marshal.ReadIntPtr(pppPlayer);
             return Marshal.ReadIntPtr(ppPlayer);
         }
