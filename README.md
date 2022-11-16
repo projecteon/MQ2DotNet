@@ -64,6 +64,9 @@ Once solution is created:
 * Select `Browse` and then click `Browse...` button
 * Navigate to your MQ directory: `Macroquest\Resources\MQ2DotNet`
 * Select `MQ2DotNet.dll`
+* Right click MQ2DotNet reference and set `copy local` to `false`
+
+![Project Settings](/images/set_copy_local_false.png)
 
 #### Build and install
 * Add `Programs` plugins to the `MQ2DotNet` directory.
@@ -286,6 +289,9 @@ Once solution is created:
 * Select `Browse` and then click `Browse...` button
 * Navigate to your MQ directory: `Macroquest\Resources\MQ2DotNet`
 * Select `MQ2DotNet.dll`
+* Right click MQ2DotNet reference and set `copy local` to `false`
+
+![Project Settings](/images/set_copy_local_false.png)
 
 #### Build and install
 * Add `Plugins` plugins to the `MQ2DotNet` directory.
