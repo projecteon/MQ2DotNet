@@ -11,14 +11,17 @@ Requirements
 
 MQ2DotNet project files have two parts. To build it with `Macroquest` do the following:
 
-* Check out the sources into `/plugins/MQ2DotNet`. MQ2DotNet should be placed in the /plugins folder in the root of the checkout. This folder is dedicated to your plugins.
+* Check out the sources into `/plugins/MQ2DotNet`. MQ2DotNet should be placed in the /plugins folder in the root of the checkout. This folder is dedicated to your plugins. Via a command prompt/shell do the following:
 ```
-git submodule add -b master-mqnext -f https://github.com/projecteon/MQ2DotNet.git plugins/mq2dotnet
+cd your/build/directory/for/MQ
+git submodule add -f https://github.com/projecteon/MQ2DotNet.git plugins/MQ2DotNet
 ```
 * Add a solution folder `MQ2Dotnet` under plugins folder
 * Right click folder and choose `Add existing project`
 * Navigate to `/plugins/MQ2DotNet` and type in `MQ2DotNet.sln` as file name and accept.
-* build `MacroQuest` with your choice of architecture
+* Remove `Any CPU` from build configurations:   
+` Configuration Manager --> Active Solution Platform --> Edit --> remove Any CPU`
+* Build `MacroQuest` with your choice of architecture
 
 ### Debugging
 For debugging MQ2DotNet, enable mixed mode in project settings for `Macroquest`and `MQ2Main`.
