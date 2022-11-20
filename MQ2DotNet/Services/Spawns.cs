@@ -14,17 +14,17 @@ namespace MQ2DotNet.Services
     [PublicAPI]
     public class Spawns
     {
-        # if WIN64
-            private const int NEXT_SPAWN_PTR_SIZE = 16;
-        # else
-            private const int NEXT_SPAWN_PTR_SIZE = 8;
-        #endif
+# if WIN64
+        private const int NEXT_SPAWN_PTR_SIZE = 16;
+# else
+        private const int NEXT_SPAWN_PTR_SIZE = 8;
+#endif
 
-        # if WIN64
-            private const int NEXT_GROUND_ITEM_PTR_SIZE = 8;
-        # else
-            private const int NEXT_GROUND_ITEM_PTR_SIZE = 4;
-        #endif
+#if WIN64
+        private const int NEXT_GROUND_ITEM_PTR_SIZE = 8;
+#else
+        private const int NEXT_GROUND_ITEM_PTR_SIZE = 4;
+#endif
 
         private readonly MQ2TypeFactory _mq2TypeFactory;
 
@@ -56,6 +56,7 @@ namespace MQ2DotNet.Services
         /// <summary>
         /// All ground spawns in the current zone
         /// </summary>
+        [Obsolete("Not working correctly with MQ next", true)]
         public IEnumerable<GroundType> AllGround
         {
             get
