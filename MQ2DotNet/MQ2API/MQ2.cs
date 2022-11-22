@@ -85,22 +85,46 @@ namespace MQ2DotNet.MQ2API
         }
 
         /// <summary>
-        /// Directory of MQ2 ini files (and binaries too hopefully)
+        /// Directory of MQ2 ini files
         /// </summary>
-        public string INIPath
+        public string RootPath
         {
             get
             {
                 var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
-                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gszINIPath"));
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathMQRoot"));
+            }
+        }
+
+        /// <summary>
+        /// Directory of MQ2 Resources
+        /// </summary>
+        public string ResourcePath
+        {
+            get
+            {
+                var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathResources")) + "\\MQ2DotNet";
+            }
+        }
+
+        /// <summary>
+        /// Directory of MQ2 Config
+        /// </summary>
+        public string ConfigPath
+        {
+            get
+            {
+                var hDll = NativeMethods.LoadLibrary("MQ2Main.dll");
+                return Marshal.PtrToStringAnsi(NativeMethods.GetProcAddress(hDll, "gPathConfig"));
             }
         }
 
         private static IntPtr GetCharSpawn()
         {
-            var pppPlayer = NativeMethods.GetProcAddress(NativeMethods.LoadLibrary("MQ2Main.dll"), "ppLocalPlayer");
-            var ppPlayer = Marshal.ReadIntPtr(pppPlayer);
-            return Marshal.ReadIntPtr(ppPlayer);
+            var ppPlayer = NativeMethods.GetProcAddress(NativeMethods.LoadLibrary("eqlib.dll"), "pLocalPlayer");
+            var pPlayer = Marshal.ReadIntPtr(ppPlayer);
+            return Marshal.ReadIntPtr(pPlayer);
         }
 
         private static string Sanitize(string text)
@@ -178,9 +202,11 @@ namespace MQ2DotNet.MQ2API
 
         #region MQ2Main imports
         [DllImport("MQ2Main.dll", EntryPoint = "Calculate", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool MQ2Calculate([MarshalAs(UnmanagedType.LPStr)] string formula, out double result);
 
         [DllImport("MQ2Main.dll", EntryPoint = "ParseMacroData", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool MQ2ParseMacroData([MarshalAs(UnmanagedType.LPStr)] StringBuilder szOriginal, uint BufferSize);
 
         [DllImport("MQ2Main.dll", EntryPoint = "HideDoCommand", CallingConvention = CallingConvention.Cdecl)]

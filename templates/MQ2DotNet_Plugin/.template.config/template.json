@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Aleksaner Spro",
+  "classifications": [ "mq2dotnet" ],
+  "identity": "MQ2DotNetTemplate.Plugin",
+  "name": "MQ2DotNet Template: Plugin",
+  "shortName": "mq2dotnet_plugin",
+  "sourceName": "MQ2DotNet_Plugin",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

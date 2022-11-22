@@ -17,7 +17,6 @@ namespace MQ2DotNet.Script
         /// <summary>
         /// Loads a new .NET program from the specified assembly file, in a new app domain
         /// </summary>
-        /// <param name="scriptFilePath"></param>
         /// <param name="appDomainName"></param>
         public static ScriptAppDomain Load(string appDomainName)
         {

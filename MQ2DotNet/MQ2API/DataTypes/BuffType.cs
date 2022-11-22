@@ -17,9 +17,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the SPELLBUFF struct
+        /// Name of the caster who cast the buff, if available.
         /// </summary>
-        public int? Address => GetMember<IntType>("Address");
+        public string Caster => GetMember<StringType>("Caster");
 
         /// <summary>
         /// The ID of the buff or shortbuff slot
@@ -50,32 +50,32 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// The remaining damage absorption of the buff (if any)
         /// This is not entirely accurate, it will only show you to the Dar of your spell when it was initially cast, or what it was when you last zoned (whichever is more recent)
         /// </summary>
-        public int? Dar => GetMember<IntType>("Dar");
+        public long? Dar => GetMember<Int64Type>("Dar");
 
         /// <summary>
         /// Total number of counters (disease, poison, curse, corruption) added by the buff
         /// </summary>
-        public int? TotalCounters => GetMember<IntType>("TotalCounters");
+        public long? TotalCounters => GetMember<Int64Type>("TotalCounters");
 
         /// <summary>
         /// Total number of counters disease added by the buff
         /// </summary>
-        public int? CountersDisease => GetMember<IntType>("CountersDisease");
+        public long? CountersDisease => GetMember<Int64Type>("CountersDisease");
 
         /// <summary>
         /// Total number of counters poison added by the buff
         /// </summary>
-        public int? CountersPoison => GetMember<IntType>("CountersPoison");
+        public long? CountersPoison => GetMember<Int64Type>("CountersPoison");
 
         /// <summary>
         /// Total number of counters curse added by the buff
         /// </summary>
-        public int? CountersCurse => GetMember<IntType>("CountersCurse");
+        public long? CountersCurse => GetMember<Int64Type>("CountersCurse");
 
         /// <summary>
         /// Total number of counters corruption added by the buff
         /// </summary>
-        public int? CountersCorruption => GetMember<IntType>("CountersCorruption");
+        public long? CountersCorruption => GetMember<Int64Type>("CountersCorruption");
 
         /// <summary>
         /// Number of hit counts remaining on the buff

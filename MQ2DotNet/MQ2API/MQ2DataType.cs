@@ -39,9 +39,9 @@ namespace MQ2DotNet.MQ2API
         /// <param name="typeFactory">MQ2TypeFactory to use with GetMember calls</param>
         /// <param name="varPtr"></param>
         protected MQ2DataType(string typeName, MQ2TypeFactory typeFactory, MQ2VarPtr varPtr)
-            : this(typeFactory, new MQ2TypeVar { pType = FindMQ2DataType(typeName), VarPtr = varPtr })
+            : this(typeFactory, new MQ2TypeVar { Type = FindMQ2DataType(typeName), VarPtr = varPtr })
         {
-            if (_typeVar.pType == IntPtr.Zero)
+            if (_typeVar.Type == IntPtr.Zero)
                 throw new KeyNotFoundException($"MQ2Type not found: {typeName}");
         }
         

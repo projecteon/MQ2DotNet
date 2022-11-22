@@ -51,6 +51,14 @@ namespace MQ2DotNet
         private delegate void fMQEndZone();
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void fMQZoned();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQMacroStart([MarshalAs(UnmanagedType.LPStr)] string name);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQMacroStop([MarshalAs(UnmanagedType.LPStr)] string name);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQLoadPlugin([MarshalAs(UnmanagedType.LPStr)] string name);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void fMQUnloadPlugin([MarshalAs(UnmanagedType.LPStr)] string name);
         // ReSharper restore InconsistentNaming
         #endregion
 
@@ -71,8 +79,12 @@ namespace MQ2DotNet
         private static readonly fMQWriteChatColor _onWriteChatColor = OnWriteChatColor;
         private static readonly fMQSetGameState _setGameState = SetGameState;
         private static readonly fMQZoned _onZoned = OnZoned;
+        private static readonly fMQMacroStart _onMacroStart = OnMacroStart;
+        private static readonly fMQMacroStop _onMacroStop = OnMacroStop;
+        private static readonly fMQLoadPlugin _onLoadPlugin = OnLoadPlugin;
+        private static readonly fMQUnloadPlugin _onUnloadPlugin = OnUnloadPlugin;
         #endregion
-        
+
         /// <summary>
         /// Synchronization context that runs all continuations in OnPulse
         /// </summary>
@@ -86,9 +98,10 @@ namespace MQ2DotNet
 
         private static readonly List<AppDomainBase> _appDomains = new List<AppDomainBase>();
 
-        private static readonly string _iniFilePath = new MQ2().INIPath + "\\MQ2DotNet.ini";
+        private static readonly string _configFilePath = new MQ2().ConfigPath + "\\MQ2DotNet.ini";
 
-        private static readonly string _mq2DirectoryPath = new MQ2().INIPath;
+        private static readonly string _resourcePath = new MQ2().ResourcePath;
+
 
         private static ReadOnlyDictionary<string, PluginAppDomain> Plugins => new ReadOnlyDictionary<string, PluginAppDomain>(_appDomains
             .Where(d => d is PluginAppDomain)
@@ -134,6 +147,10 @@ namespace MQ2DotNet
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfBeginZone"), Marshal.GetFunctionPointerForDelegate(_beginZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfEndZone"), Marshal.GetFunctionPointerForDelegate(_endZone));
                 Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnZoned"), Marshal.GetFunctionPointerForDelegate(_onZoned));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnMacroStart"), Marshal.GetFunctionPointerForDelegate(_onMacroStart));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnMacroStop"), Marshal.GetFunctionPointerForDelegate(_onMacroStop));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnLoadPlugin"), Marshal.GetFunctionPointerForDelegate(_onLoadPlugin));
+                Marshal.WriteIntPtr(NativeMethods.GetProcAddress(hDll, "g_pfOnUnloadPlugin"), Marshal.GetFunctionPointerForDelegate(_onUnloadPlugin));
 
 #if DEBUG
                 MQ2.WriteChatGeneral($"Loaded debug version {GitVersionInformation.MajorMinorPatch} ({GitVersionInformation.ShortSha})");
@@ -156,7 +173,7 @@ namespace MQ2DotNet
                 // Load any plugins that are set to autoload. Fuck ini files
                 try
                 {
-                    foreach (Match match in Regex.Matches(File.ReadAllText(_iniFilePath), @"(?<name>\w+)=1"))
+                    foreach (Match match in Regex.Matches(File.ReadAllText(_configFilePath), @"(?<name>\w+)=1"))
                         LoadPlugin(match.Groups["name"].Value, true, false);
                 }
                 catch (FileNotFoundException)
@@ -228,11 +245,11 @@ namespace MQ2DotNet
             try
             {
                 // First look for it in its own folder
-                var pluginFilePath = $"{_mq2DirectoryPath}\\DotNet\\Plugins\\{pluginName}\\{pluginName}.dll";
+                var pluginFilePath = $"{_resourcePath}\\Plugins\\{pluginName}\\{pluginName}.dll";
                 if (!File.Exists(pluginFilePath))
                 {
                     // Then in the plugins folder
-                    pluginFilePath = $"{_mq2DirectoryPath}\\DotNet\\Plugins\\{pluginName}.dll";
+                    pluginFilePath = $"{_resourcePath}\\Plugins\\{pluginName}.dll";
                     if (!File.Exists(pluginFilePath))
                     {
                         MQ2.WriteChatPluginError($"Couldn't find plugin: {pluginName}");
@@ -241,7 +258,7 @@ namespace MQ2DotNet
                 }
 
                 _appDomains.Add(PluginAppDomain.Load(pluginFilePath, pluginName + "PluginDomain"));
-                NativeMethods.WritePrivateProfileString("Plugins", pluginName, noauto ? "0" : "1", _iniFilePath);
+                NativeMethods.WritePrivateProfileString("Plugins", pluginName, noauto ? "0" : "1", _configFilePath);
 
                 // No need to spam for each plugin that's loaded automatically from the ini file
                 if (showSuccessMessage)
@@ -262,7 +279,7 @@ namespace MQ2DotNet
                 _appDomains.Remove(pluginAppDomain);
 
                 if (noauto)
-                    NativeMethods.WritePrivateProfileString("Plugins", pluginName, "0", _iniFilePath);
+                    NativeMethods.WritePrivateProfileString("Plugins", pluginName, "0", _configFilePath);
 
                 MQ2.WriteChatPlugin($"{pluginName} unloaded");
             }
@@ -349,7 +366,7 @@ namespace MQ2DotNet
             try
             {
                 // Find the file
-                var scriptFilePath = _mq2DirectoryPath + "\\DotNet\\Scripts\\" + scriptName;
+                var scriptFilePath = _resourcePath + "\\Scripts\\" + scriptName;
                 if (!scriptFilePath.EndsWith(".csx"))
                     scriptFilePath += ".csx";
 
@@ -453,11 +470,11 @@ namespace MQ2DotNet
             try
             {
                 // First look for it in its own folder
-                var programFilePath = $"{_mq2DirectoryPath}\\DotNet\\Programs\\{programName}\\{programName}.dll";
+                var programFilePath = $"{_resourcePath}\\Programs\\{programName}\\{programName}.dll";
                 if (!File.Exists(programFilePath))
                 {
                     // Then in the programs folder
-                    programFilePath = $"{_mq2DirectoryPath}\\DotNet\\Programs\\{programName}.dll";
+                    programFilePath = $"{_resourcePath}\\Programs\\{programName}.dll";
                     if (!File.Exists(programFilePath))
                     {
                         MQ2.WriteChatProgramError($"Couldn't find program: {programName}");
@@ -714,7 +731,7 @@ namespace MQ2DotNet
                 {
                     appDomain.InvokeOnChatMQ2(line);
                 }
-                catch (Exception e)
+                catch 
                 {
                     // Writing an error message in chat caused by an error message in chat is probably not a great idea
                     //MQ2.WriteChatPluginError($"Exception in OnChatMQ2 in {appDomain.Name}");
@@ -725,7 +742,7 @@ namespace MQ2DotNet
                 {
                     appDomain.InvokeOnChat(line);
                 }
-                catch (Exception e)
+                catch 
                 {
                     //MQ2.WriteChatPluginError($"Exception in OnChat in {appDomain.Name}");
                     //MQ2.WriteChatPluginError(e.ToString());
@@ -746,6 +763,70 @@ namespace MQ2DotNet
                 catch (Exception e)
                 {
                     MQ2.WriteChatPluginError($"Exception in OnZoned in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnMacroStart(string name)
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnMacroStart(name);
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnMacroStart in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnMacroStop(string name)
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnMacroStop(name);
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnMacroStop in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnLoadPlugin(string name)
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnLoadPlugin(name);
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnLoadPlugin in {appDomain.Name}");
+                    MQ2.WriteChatPluginError(e.ToString());
+                }
+            }
+        }
+
+        private static void OnUnloadPlugin(string name)
+        {
+            foreach (var appDomain in _appDomains)
+            {
+                try
+                {
+                    appDomain.InvokeOnUnloadPlugin(name);
+                }
+                catch (Exception e)
+                {
+                    MQ2.WriteChatPluginError($"Exception in OnUnloadPlugin in {appDomain.Name}");
                     MQ2.WriteChatPluginError(e.ToString());
                 }
             }

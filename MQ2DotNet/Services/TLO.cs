@@ -336,7 +336,7 @@ namespace MQ2DotNet.Services
             var tlo = FindMQ2Data(name);// ?? throw new KeyNotFoundException();
 
             // Then we call that function, providing the index as a parameter
-            if (tlo.pFunction == IntPtr.Zero || !tlo.Function(index, out var typeVar))
+            if (tlo.pFunction == IntPtr.Zero || !tlo.Function(index, out var typeVar) || typeVar.Type == IntPtr.Zero)
                 return null;
 
             return (T)_typeFactory.Create(typeVar);
@@ -413,27 +413,37 @@ namespace MQ2DotNet.Services
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool fMQData([MarshalAs(UnmanagedType.LPStr)] string szIndex, out MQ2TypeVar ret);
 
-        [StructLayout(LayoutKind.Explicit, Size = 68)]
+#if WIN64
+        [StructLayout(LayoutKind.Explicit, Size = 0x48)]
+#else
+        [StructLayout(LayoutKind.Explicit, Size = 0x44)]
+#endif
         internal struct MQ2DataItem
         {
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x40)]
             [FieldOffset(0)]
             public byte[] Name;
 
-            [FieldOffset(64)]
+            [FieldOffset(0x40)]
             public IntPtr pFunction;
-
+                        
             public fMQData Function => Marshal.GetDelegateForFunctionPointer<fMQData>(pFunction);
         }
 
         // Marshal doesn't want to return this struct (since it's non-blittable thanks to the delegate & string) so gotta do it manually
         internal static MQ2DataItem FindMQ2Data(string szName)
         {
-            return Marshal.PtrToStructure<MQ2DataItem>(FindMQ2DataIntPtr(szName));
+            IntPtr ptr = FindMQ2DataIntPtr(szName);
+            if (ptr == IntPtr.Zero) {
+                throw new NullReferenceException($"FindMQ2DataIntPtr returned bad IntPtr for type name [{szName}]");
+            }
+
+            return Marshal.PtrToStructure<MQ2DataItem>(ptr);
         }
 
         [DllImport("MQ2Main.dll", EntryPoint = "FindMQ2Data", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr FindMQ2DataIntPtr([MarshalAs(UnmanagedType.LPStr)] string szName);
+
         #endregion
     }
 }

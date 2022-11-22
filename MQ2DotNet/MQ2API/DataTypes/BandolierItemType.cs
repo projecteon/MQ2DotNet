@@ -14,11 +14,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// 0 based index of the item in the set
-        /// </summary>
-        public int? Index => GetMember<IntType>("Index");
-
-        /// <summary>
         /// Icon ID of the item
         /// </summary>
         public int? IconID => GetMember<IntType>("IconID");

@@ -7,31 +7,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("currentzone")]
-    public class CurrentZoneType : MQ2DataType
+    public class CurrentZoneType : ZoneType
     {
         internal CurrentZoneType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
-
-        /// <summary>
-        /// Memory address of the TODO: struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-        
-        /// <summary>
-        /// ID of the zone
-        /// </summary>
-        public int? ID => GetMember<IntType>("ID");
-
-        /// <summary>
-        /// Full name of the zone e.g. "The Plane of Knowledge"
-        /// </summary>
-        public string Name => GetMember<StringType>("Name");
-        
-        /// <summary>
-        /// Short name of the zone e.g. "PoKnowledge"
-        /// </summary>
-        public string ShortName => GetMember<StringType>("ShortName");
         
         /// <summary>
         /// TODO: Description
