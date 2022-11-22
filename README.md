@@ -28,13 +28,6 @@ Open the `MQ2DotNet.sln` and attach to debug managed code.
 
 ![Project Settings](/images/projectsettings.png)
 
-:warning: If you want to debug `Macroquest`c++ source, you have two options. (you wont be able to debug managed and unmanged at the same time)
-
-* Disable the MQ2DotNetLoader. Seems visual studio struggles loading symbols while `dotnet` is loaded.
-* Change default `Attach too` option when attaching to `eqgame.exe` from `automatic` to `native`
-
-![Project Settings](/images/native_debugging.png)
-
 
 ##  Programs
 
