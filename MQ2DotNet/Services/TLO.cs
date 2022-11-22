@@ -435,7 +435,7 @@ namespace MQ2DotNet.Services
         {
             IntPtr ptr = FindMQ2DataIntPtr(szName);
             if (ptr == IntPtr.Zero) {
-                throw new NullReferenceException("FindMQ2DataIntPtr returned bad IntPtr");
+                throw new NullReferenceException($"FindMQ2DataIntPtr returned bad IntPtr for type name [{szName}]");
             }
 
             return Marshal.PtrToStructure<MQ2DataItem>(ptr);
