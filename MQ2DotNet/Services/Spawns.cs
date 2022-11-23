@@ -56,15 +56,12 @@ namespace MQ2DotNet.Services
         /// <summary>
         /// All ground spawns in the current zone
         /// </summary>
-        [Obsolete("Not working correctly with MQ next", true)]
         public IEnumerable<GroundType> AllGround
         {
             get
             {
-                var hDll = NativeMethods.LoadLibrary("eqlib.dll");
-                var ppGroundItemListManager = Marshal.ReadIntPtr(NativeMethods.GetProcAddress(hDll, "pItemList"));
-                var pGroundItemListManager = Marshal.ReadIntPtr(ppGroundItemListManager);
-                var pGroundItem = Marshal.ReadIntPtr(pGroundItemListManager + NEXT_GROUND_ITEM_PTR_SIZE);
+                var pGroundItemListManager = GetItemList();
+                var pGroundItem = Marshal.ReadIntPtr(pGroundItemListManager);
 
                 while (pGroundItem != IntPtr.Zero)
                 {
@@ -73,5 +70,10 @@ namespace MQ2DotNet.Services
                 }
             }
         }
+
+        #region Unmanaged imports
+        [DllImport("MQ2DotNetLoader.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr GetItemList();
+        #endregion
     }
 }
