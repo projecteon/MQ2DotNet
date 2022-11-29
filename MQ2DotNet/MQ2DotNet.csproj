@@ -45,7 +45,7 @@
     </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
-	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	<RuntimeIdentifiers>win;win-x64</RuntimeIdentifiers>
     <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
