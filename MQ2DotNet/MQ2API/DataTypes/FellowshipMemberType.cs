@@ -37,5 +37,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Member's name
         /// </summary>
         public string Name => GetMember<StringType>("Name");
+
+        /// <summary>
+        /// TRUE if member has exp sharing enabled
+        /// </summary>
+        public bool Sharing => GetMember<BoolType>("Sharing");
     }
 }

@@ -166,5 +166,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Is the given location, in yxz format separated by spaces, a valid location in the current zone?
         /// </summary>
         public IndexedMember<BoolType, string> ValidLoc { get; }
+
+        /// <summary>
+        /// Path to the Everquest folder
+        /// </summary>
+        public string Path => GetMember<StringType>("Path");
     }
 }

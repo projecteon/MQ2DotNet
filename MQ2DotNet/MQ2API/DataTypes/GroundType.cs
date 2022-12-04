@@ -129,8 +129,23 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public GroundType Last => GetMember<GroundType>("Last");
 
         /// <summary>
+        /// Will cause the toon to face the called for spawn if it exists
+        /// </summary>
+        public void DoFace() => GetMember<MQ2DataType>("DoFace");
+
+        /// <summary>
+        /// Will cause the toon to target the called for spawn if it exists
+        /// </summary>
+        public void DoTarget() => GetMember<MQ2DataType>("DoTarget");
+
+        /// <summary>
         /// Pick up the item (must be within 20 units of it)
         /// </summary>
         public void Grab() => GetMember<MQ2DataType>("Grab");
+
+        /// <summary>
+        /// Clears the currently selected ground spawn
+        /// </summary>
+        public void Reset() => GetMember<MQ2DataType>("Reset");
     }
 }
