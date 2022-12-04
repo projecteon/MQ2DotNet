@@ -12,7 +12,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-  	<PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
     <ProjectGuid>{158B70BD-4F02-4A0B-9F8C-B56E9E422B24}</ProjectGuid>
@@ -45,7 +45,7 @@
     </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
-	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
@@ -86,7 +86,6 @@
     <Compile Include="MQ2API\DataTypes\AuraType.cs" />
     <Compile Include="MQ2API\DataTypes\BandolierItemType.cs" />
     <Compile Include="MQ2API\DataTypes\BandolierType.cs" />
-    <Compile Include="MQ2API\DataTypes\BenchmarkType.cs" />
     <Compile Include="MQ2API\DataTypes\BodyType.cs" />
     <Compile Include="MQ2API\DataTypes\BoolType.cs" />
     <Compile Include="MQ2API\DataTypes\CachedBuffType.cs" />
