@@ -14,11 +14,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the ZONELIST struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Long name of the zone e.g. "The Plane of Knowledge"
         /// </summary>
         public string Name => GetMember<StringType>("Name");

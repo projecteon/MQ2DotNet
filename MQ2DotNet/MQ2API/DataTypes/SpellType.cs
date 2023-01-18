@@ -204,11 +204,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public float? MyRange => GetMember<FloatType>("MyRange");
 
         /// <summary>
-        /// Memory address of the SPELL struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Endurance cost of the spell
         /// </summary>
         public int? EnduranceCost => GetMember<IntType>("EnduranceCost");

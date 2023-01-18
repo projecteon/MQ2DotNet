@@ -17,11 +17,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the CSIDLWND struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Returns TRUE if the window is open
         /// </summary>
         public bool Open => GetMember<BoolType>("Open");

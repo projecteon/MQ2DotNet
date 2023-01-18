@@ -25,11 +25,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Address of the GROUNDOBJECT struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Ground item ID (not the same as item ID, this is like spawn ID)
         /// </summary>
         public int? ID => GetMember<IntType>("ID");

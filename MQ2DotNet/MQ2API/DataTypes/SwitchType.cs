@@ -14,11 +14,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the DOOR struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Switch ID
         /// </summary>
         public int? ID => GetMember<IntType>("ID");

@@ -16,11 +16,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the TASKMEMBER struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Type of task, either Shared or Quest
         /// </summary>
         public string Type => GetMember<StringType>("Type");
