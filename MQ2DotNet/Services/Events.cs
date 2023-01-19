@@ -390,6 +390,10 @@ namespace MQ2DotNet.Services
             _appDomainBase.OnChatMQ2.Unsubscribe(_appDomainBase_OnChatMQ2);
             _appDomainBase.OnCleanUI.Unsubscribe(_appDomainBase_OnCleanUI);
             _appDomainBase.OnDrawHUD.Unsubscribe(_appDomainBase_OnDrawHUD);
+            _appDomainBase.OnMacroStart.Unsubscribe(_appDomainBase_OnMacroStart);
+            _appDomainBase.OnMacroStop.Unsubscribe(_appDomainBase_OnMacroStop);
+            _appDomainBase.OnLoadPlugin.Unsubscribe(_appDomainBase_OnLoadPlugin);
+            _appDomainBase.OnUnloadPlugin.Unsubscribe(_appDomainBase_OnUnLoadPlugin);
             _appDomainBase.OnReloadUI.Unsubscribe(_appDomainBase_OnReloadUI);
             _appDomainBase.OnRemoveGroundItem.Unsubscribe(_appDomainBase_OnRemoveGroundItem);
             _appDomainBase.OnRemoveSpawn.Unsubscribe(_appDomainBase_OnRemoveSpawn);
@@ -440,6 +444,26 @@ namespace MQ2DotNet.Services
         private void _appDomainBase_OnDrawHUD(object sender, EventArgs e)
         {
             _onDrawHUD?.Invoke(this, e);
+        }
+
+        private void _appDomainBase_OnMacroStart(object sender, string e)
+        {
+            _onMacroStart?.Invoke(this, e);
+        }
+
+        private void _appDomainBase_OnMacroStop(object sender, string e)
+        {
+            _onMacroStop?.Invoke(this, e);
+        }
+
+        private void _appDomainBase_OnLoadPlugin(object sender, string e)
+        {
+            _onLoadPlugin?.Invoke(this, e);
+        }
+
+        private void _appDomainBase_OnUnLoadPlugin(object sender, string e)
+        {
+            _onUnloadPlugin?.Invoke(this, e);
         }
 
         private void _appDomainBase_OnReloadUI(object sender, EventArgs e)

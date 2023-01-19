@@ -63,6 +63,7 @@ extern "C" __declspec(dllexport) fMQUnloadPlugin g_pfOnUnloadPlugin { nullptr };
 
 // Exported helper functions to make things easier in the managed world
 extern "C" __declspec(dllexport) PCHAR __stdcall GetIniPath() { return gPathConfig; }
+extern "C" __declspec(dllexport) EQGroundItemListManager* GetItemList() { return &pItemList->Instance(); }
 
 // Exported MQ2Type functions
 
