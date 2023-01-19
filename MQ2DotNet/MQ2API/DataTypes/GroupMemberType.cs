@@ -7,16 +7,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("groupmember")]
-    public class GroupMemberType : SpawnType
+    public class GroupMemberType : MQ2DataType
     {
         internal GroupMemberType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
         }
-
-        /// <summary>
-        /// Memory address of the GROUPMEMBER struct
-        /// </summary>
-        public new int? Address => GetMember<IntType>("Address");
 
         /// <summary>
         /// The name of the group member. This works even if they are not in the same zone as you
@@ -29,7 +24,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public bool Leader => GetMember<BoolType>("Leader");
 
         /// <summary>
-        /// Accesses the group member's spawn directly
+        /// Accesses the group member's spawn. Not all members will have a spawn (if they are out of the zone).
         /// </summary>
         public SpawnType Spawn => GetMember<SpawnType>("Spawn");
 
@@ -92,5 +87,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// TRUE if the member is online but in another zone and FALSE if online and in same zone as you
         /// </summary>
         public bool OtherZone => GetMember<BoolType>("OtherZone");
+
     }
 }

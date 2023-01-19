@@ -11,7 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal FellowshipType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
-            xMember = new IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int>(this, "xMember");
+            Member = new IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int>(this, "Member");
         }
 
         /// <summary>
@@ -35,9 +35,14 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? Members => GetMember<IntType>("Members");
 
         /// <summary>
+        /// Returns TRUE if a fellowship exists.
+        /// </summary>
+        public bool Exists => GetMember<BoolType>("Exists");
+
+        /// <summary>
         /// Member data by name or #
         /// </summary>
-        public IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int> xMember { get; }
+        public IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int> Member { get; }
 
         /// <summary>
         /// Time left on current campfire

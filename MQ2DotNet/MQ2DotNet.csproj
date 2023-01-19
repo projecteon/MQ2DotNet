@@ -45,7 +45,7 @@
     </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
-	<RuntimeIdentifiers>win;win-x64</RuntimeIdentifiers>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
@@ -86,7 +86,6 @@
     <Compile Include="MQ2API\DataTypes\AuraType.cs" />
     <Compile Include="MQ2API\DataTypes\BandolierItemType.cs" />
     <Compile Include="MQ2API\DataTypes\BandolierType.cs" />
-    <Compile Include="MQ2API\DataTypes\BenchmarkType.cs" />
     <Compile Include="MQ2API\DataTypes\BodyType.cs" />
     <Compile Include="MQ2API\DataTypes\BoolType.cs" />
     <Compile Include="MQ2API\DataTypes\CachedBuffType.cs" />

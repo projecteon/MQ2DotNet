@@ -31,11 +31,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? Accuracy => GetMember<IntType>("Accuracy");
 
         /// <summary>
-        /// Address of the ITEMINFO struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// AGI value on item
         /// </summary>
         public int? AGI => GetMember<IntType>("AGI");
@@ -158,11 +153,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// CombatEffects value on the item
         /// </summary>
         public int? CombatEffects => GetMember<IntType>("CombatEffects");
-
-        /// <summary>
-        /// Memory address of the CONTENTS struct
-        /// </summary>
-        public int? ContAddress => GetMember<IntType>("ContAddress");
 
         /// <summary>
         /// If the item is a container, the number of slots it has

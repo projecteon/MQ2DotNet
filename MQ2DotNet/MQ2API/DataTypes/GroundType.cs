@@ -25,11 +25,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Address of the GROUNDOBJECT struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Ground item ID (not the same as item ID, this is like spawn ID)
         /// </summary>
         public int? ID => GetMember<IntType>("ID");
@@ -129,8 +124,23 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public GroundType Last => GetMember<GroundType>("Last");
 
         /// <summary>
+        /// Will cause the toon to face the called for spawn if it exists
+        /// </summary>
+        public void DoFace() => GetMember<MQ2DataType>("DoFace");
+
+        /// <summary>
+        /// Will cause the toon to target the called for spawn if it exists
+        /// </summary>
+        public void DoTarget() => GetMember<MQ2DataType>("DoTarget");
+
+        /// <summary>
         /// Pick up the item (must be within 20 units of it)
         /// </summary>
         public void Grab() => GetMember<MQ2DataType>("Grab");
+
+        /// <summary>
+        /// Clears the currently selected ground spawn
+        /// </summary>
+        public void Reset() => GetMember<MQ2DataType>("Reset");
     }
 }

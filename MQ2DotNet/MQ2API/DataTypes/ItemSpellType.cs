@@ -72,5 +72,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// The spell
         /// </summary>
         public SpellType Spell => GetMember<SpellType>("Spell");
+
+        /// <summary>
+        /// Same as OtherName
+        /// </summary>
+        public string OverrideName => GetMember<StringType>("OverrideName");
+
+        /// <summary>
+        /// TODO: What is this?
+        /// </summary>
+        public string OverrideDescription => GetMember<StringType>("OverrideDescription");
     }
 }

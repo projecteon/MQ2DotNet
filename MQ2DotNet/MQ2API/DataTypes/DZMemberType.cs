@@ -14,6 +14,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
+        /// Returns true if the dzmember can successfully enter the dz. where x is either index or the name.
+        /// </summary>
+        public bool Flagged => GetMember<BoolType>("Flagged");
+
+        /// <summary>
         /// The name of the member
         /// </summary>
         public string Name => GetMember<StringType>("Name");

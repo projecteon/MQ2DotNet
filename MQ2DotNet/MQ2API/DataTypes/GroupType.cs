@@ -12,14 +12,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         internal GroupType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Injured = new IndexedMember<IntType, int>(this, "Injured");
+            LowMana = new IndexedMember<IntType, int>(this, "LowMana");
             Member = new IndexedMember<GroupMemberType, string, GroupMemberType, int>(this, "Member");
         }
 
-        /// <summary>
-        /// Memory address of the GROUPINFO struct
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-        
         /// <summary>
         /// A group member by name or number (0 - 5)
         /// </summary>
@@ -111,9 +107,14 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IndexedMember<IntType, int> Injured;
 
         /// <summary>
+        /// Will return the numbers of people in the group that has less than a certain percentage mana
+        /// </summary>
+        public IndexedMember<IntType, int> LowMana;
+
+        /// <summary>
         /// The first non-mercenary cleric in the group
         /// </summary>
-        public SpawnType XCleric => GetMember<SpawnType>("XCleric");
+        public SpawnType Cleric => GetMember<SpawnType>("Cleric");
 
         /// <summary>
         /// Group member the mouse is currently over

@@ -15,11 +15,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of XTargetMgr
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// Extended target type e.g. Auto Hater
         /// </summary>
         public string TargetType => GetMember<StringType>("TargetType");

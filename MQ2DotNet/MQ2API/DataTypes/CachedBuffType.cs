@@ -14,7 +14,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         }
 
         /// <summary>
-        /// Memory address of the SPELLBUFF struct
+        /// Returns the name of the caster who applied the buff
         /// </summary>
         public string CasterName => GetMember<StringType>("CasterName");
 

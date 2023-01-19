@@ -22,11 +22,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public bool Select(string containing) => GetMember<BoolType>("Select", containing);
 
         /// <summary>
-        /// Memory address of the CContextMenu structure
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// TODO: What is this?
         /// </summary>
         public int? NumVisibleMenus => GetMember<IntType>("NumVisibleMenus");

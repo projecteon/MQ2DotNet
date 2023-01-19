@@ -51,11 +51,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string ActorDef => GetMember<StringType>("ActorDef");
 
         /// <summary>
-        /// Memory address of the SPAWNINFO struct for this spawn
-        /// </summary>
-        public int? Address => GetMember<IntType>("Address");
-
-        /// <summary>
         /// AFK flag set?
         /// </summary>
         public bool AFK => GetMember<BoolType>("AFK");
