@@ -17,10 +17,5 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Index (0 based) of this buff in the target's buff window, i.e. slot #
         /// </summary>
         public int? Index => GetMember<IntType>("Index");
-
-        /// <summary>
-        /// Remaining duration on the buff
-        /// </summary>
-        public TimeStampType Duration => GetMember<TimeStampType>("Duration");
     }
 }

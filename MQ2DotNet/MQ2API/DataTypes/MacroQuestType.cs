@@ -39,11 +39,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? Build => GetMember<IntType>("Build");
 
         /// <summary>
-        /// Directory of MQ2Main.dll (equivalent of INI path, <seealso cref="MQ2.INIPath"/>)
-        /// </summary>
-        public string Path => GetMember<StringType>("Path");
-
-        /// <summary>
         /// Version number of MQ2Main.dll
         /// </summary>
         public string Version => GetMember<StringType>("Version");

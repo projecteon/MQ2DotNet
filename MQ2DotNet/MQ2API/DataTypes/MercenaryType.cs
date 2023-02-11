@@ -24,11 +24,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string Stance => GetMember<StringType>("Stance");
 
         /// <summary>
-        /// Current state of the mercenary (returns "DEAD","SUSPENDED","ACTIVE", or "UNKNOWN")
-        /// </summary>
-        public string State => GetMember<StringType>("State");
-
-        /// <summary>
         /// Current state ID of the mercenary as a number.
         /// </summary>
         public int? StateID => GetMember<IntType>("StateID");
