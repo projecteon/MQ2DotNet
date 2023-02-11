@@ -16,7 +16,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The name of the group member. This works even if they are not in the same zone as you
         /// </summary>
-        public new string Name => GetMember<StringType>("Name");
+        public string Name => GetMember<StringType>("Name");
 
         /// <summary>
         /// TRUE if the member is the group's leader, FALSE otherwise
@@ -31,7 +31,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// The member's level
         /// </summary>
-        public new int? Level => GetMember<IntType>("Level");
+        public int? Level => GetMember<IntType>("Level");
 
         /// <summary>
         /// TRUE if the member is designated as the group's Main Tank, FALSE otherwise

@@ -21,6 +21,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Remaining duration on the buff
         /// </summary>
-        public new TimeStampType Duration => GetMember<TimeStampType>("Duration");
+        public TimeStampType Duration => GetMember<TimeStampType>("Duration");
     }
 }

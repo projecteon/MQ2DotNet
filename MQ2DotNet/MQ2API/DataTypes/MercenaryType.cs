@@ -26,7 +26,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Current state of the mercenary (returns "DEAD","SUSPENDED","ACTIVE", or "UNKNOWN")
         /// </summary>
-        public new string State => GetMember<StringType>("State");
+        public string State => GetMember<StringType>("State");
 
         /// <summary>
         /// Current state ID of the mercenary as a number.
