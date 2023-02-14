@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ImportGroup Label="PropertySheets">
     <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))\src\Common.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))' != '' " />
   </ImportGroup>
@@ -12,163 +11,21 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'win32'">
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
     <PlatformTarget>x86</PlatformTarget>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <PlatformToolset>v142</PlatformToolset>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
-    <ProjectGuid>{158B70BD-4F02-4A0B-9F8C-B56E9E422B24}</ProjectGuid>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MQ2DotNet</RootNamespace>
     <AssemblyName>MQ2DotNet</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>net48</TargetFramework>
+    <Platforms>x64;x86</Platforms>
+    <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppDomainBase.cs" />
-    <Compile Include="Script\ScriptAppDomain.cs" />
-    <Compile Include="Services\Chat.cs" />
-    <Compile Include="Services\Spawns.cs" />
-    <Compile Include="EQ\GameState.cs" />
-    <Compile Include="LoadedAppDomainBase.cs" />
-    <Compile Include="Plugin\LoadedPluginAppDomain.cs" />
-    <Compile Include="MQ2API\MQ2TypeAttribute.cs" />
-    <Compile Include="Program\LoadedProgramAppDomain.cs" />
-    <Compile Include="Plugin\PluginAppDomain.cs" />
-    <Compile Include="Program\ProgramAppDomain.cs" />
-    <Compile Include="Script\ScriptGlobals.cs" />
-    <Compile Include="Utility\TaskExtensions.cs" />
-    <Compile Include="Utility\EventLoopContext.cs" />
-    <Compile Include="MQ2API\DataTypes\AdvLootItemType.cs" />
-    <Compile Include="MQ2API\DataTypes\AdvLootType.cs" />
-    <Compile Include="MQ2API\DataTypes\AlertListType.cs" />
-    <Compile Include="MQ2API\DataTypes\AlertType.cs" />
-    <Compile Include="MQ2API\DataTypes\AltAbilityType.cs" />
-    <Compile Include="MQ2API\DataTypes\ArgbType.cs" />
-    <Compile Include="MQ2API\DataTypes\ArrayType.cs" />
-    <Compile Include="MQ2API\DataTypes\AugType.cs" />
-    <Compile Include="MQ2API\DataTypes\AuraType.cs" />
-    <Compile Include="MQ2API\DataTypes\BandolierItemType.cs" />
-    <Compile Include="MQ2API\DataTypes\BandolierType.cs" />
-    <Compile Include="MQ2API\DataTypes\BodyType.cs" />
-    <Compile Include="MQ2API\DataTypes\BoolType.cs" />
-    <Compile Include="MQ2API\DataTypes\CachedBuffType.cs" />
-    <Compile Include="MQ2API\DataTypes\BuffType.cs" />
-    <Compile Include="MQ2API\DataTypes\ByteType.cs" />
-    <Compile Include="MQ2API\DataTypes\CastType.cs" />
-    <Compile Include="MQ2API\DataTypes\CharacterType.cs" />
-    <Compile Include="MQ2API\DataTypes\CharSelectListType.cs" />
-    <Compile Include="EQ\Class.cs" />
-    <Compile Include="MQ2API\DataTypes\ClassType.cs" />
-    <Compile Include="MQ2API\DataTypes\CorpseType.cs" />
-    <Compile Include="MQ2API\DataTypes\CurrentZoneType.cs" />
-    <Compile Include="MQ2API\DataTypes\DeityType.cs" />
-    <Compile Include="MQ2API\DataTypes\DoubleType.cs" />
-    <Compile Include="MQ2API\DataTypes\DynamicZoneType.cs" />
-    <Compile Include="MQ2API\DataTypes\DZMemberType.cs" />
-    <Compile Include="MQ2API\DataTypes\EverQuestType.cs" />
-    <Compile Include="MQ2API\DataTypes\EvolvingItemType.cs" />
-    <Compile Include="MQ2API\DataTypes\FellowshipMemberType.cs" />
-    <Compile Include="MQ2API\DataTypes\FellowshipType.cs" />
-    <Compile Include="MQ2API\DataTypes\FloatType.cs" />
-    <Compile Include="MQ2API\DataTypes\FriendsType.cs" />
-    <Compile Include="MQ2API\DataTypes\GroundType.cs" />
-    <Compile Include="MQ2API\DataTypes\GroupMemberType.cs" />
-    <Compile Include="MQ2API\DataTypes\GroupType.cs" />
-    <Compile Include="MQ2API\DataTypes\HeadingType.cs" />
-    <Compile Include="MQ2API\DataTypes\Int64Type.cs" />
-    <Compile Include="MQ2API\DataTypes\IntType.cs" />
-    <Compile Include="MQ2API\DataTypes\InvSlotType.cs" />
-    <Compile Include="MQ2API\DataTypes\ItemFilterDataType.cs" />
-    <Compile Include="MQ2API\DataTypes\ItemSpellType.cs" />
-    <Compile Include="MQ2API\DataTypes\ItemType.cs" />
-    <Compile Include="MQ2API\DataTypes\KeyRingType.cs" />
-    <Compile Include="MQ2API\DataTypes\MacroQuestType.cs" />
-    <Compile Include="MQ2API\DataTypes\MacroType.cs" />
-    <Compile Include="MQ2API\DataTypes\MathType.cs" />
-    <Compile Include="MQ2API\DataTypes\MercenaryType.cs" />
-    <Compile Include="MQ2API\DataTypes\MenuType.cs" />
-    <Compile Include="MQ2API\DataTypes\MerchantType.cs" />
-    <Compile Include="MQ2API\DataTypes\PetType.cs" />
-    <Compile Include="MQ2API\DataTypes\PluginType.cs" />
-    <Compile Include="MQ2API\DataTypes\PointMerchantItemType.cs" />
-    <Compile Include="MQ2API\DataTypes\PointMerchantType.cs" />
-    <Compile Include="EQ\Race.cs" />
-    <Compile Include="MQ2API\DataTypes\RaceType.cs" />
-    <Compile Include="MQ2API\DataTypes\RaidMemberType.cs" />
-    <Compile Include="MQ2API\DataTypes\RaidType.cs" />
-    <Compile Include="MQ2API\DataTypes\SkillType.cs" />
-    <Compile Include="MQ2API\DataTypes\SolventType.cs" />
-    <Compile Include="MQ2API\DataTypes\SpawnType.cs" />
-    <Compile Include="MQ2API\DataTypes\SpellType.cs" />
-    <Compile Include="MQ2API\DataTypes\StringType.cs" />
-    <Compile Include="MQ2API\DataTypes\SwitchType.cs" />
-    <Compile Include="MQ2API\DataTypes\TargetBuffType.cs" />
-    <Compile Include="MQ2API\DataTypes\TargetType.cs" />
-    <Compile Include="MQ2API\DataTypes\TaskMemberType.cs" />
-    <Compile Include="MQ2API\DataTypes\TaskObjectiveType.cs" />
-    <Compile Include="MQ2API\DataTypes\TaskType.cs" />
-    <Compile Include="MQ2API\DataTypes\TicksType.cs" />
-    <Compile Include="MQ2API\DataTypes\TimerType.cs" />
-    <Compile Include="MQ2API\DataTypes\TimeStampType.cs" />
-    <Compile Include="MQ2API\DataTypes\TimeType.cs" />
-    <Compile Include="MQ2API\DataTypes\TypeType.cs" />
-    <Compile Include="MQ2API\DataTypes\WindowType.cs" />
-    <Compile Include="MQ2API\DataTypes\WorldLocationType.cs" />
-    <Compile Include="MQ2API\DataTypes\XTargetType.cs" />
-    <Compile Include="MQ2API\DataTypes\ZoneType.cs" />
-    <Compile Include="Services\Events.cs" />
-    <Compile Include="MQ2API\MQ2.cs" />
-    <Compile Include="MQ2API\MQ2DataType.cs" />
-    <Compile Include="MQ2API\MQ2TypeFactory.cs" />
-    <Compile Include="MQ2API\MQ2TypeVar.cs" />
-    <Compile Include="MQ2API\MQ2VarPtr.cs" />
-    <Compile Include="Services\TLO.cs" />
-    <Compile Include="Program\IProgram.cs" />
-    <Compile Include="Plugin\IPlugin.cs" />
-    <Compile Include="Services\Commands.cs" />
-    <Compile Include="Utility\NativeMethods.cs" />
-    <Compile Include="PluginStub.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Script\LoadedScriptAppDomain.cs" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
       <Version>3.3.3</Version>
@@ -196,9 +53,4 @@
       <Version>3.0.0</Version>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>
