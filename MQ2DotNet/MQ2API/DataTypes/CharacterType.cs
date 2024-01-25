@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using static MQ2DotNet.MQ2API.MQ2DataType;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -35,8 +36,8 @@ namespace MQ2DotNet.MQ2API.DataTypes
             BoundLocation = new IndexedMember<WorldLocationType, int>(this, "BoundLocation");
             AutoSkill = new IndexedMember<SkillType, int>(this, "AutoSkill");
             AltCurrency = new IndexedMember<IntType, int, IntType, string>(this, "AltCurrency");
-            Buff = new IndexedMember<BuffType, string, BuffType, int>(this, "Buff");
             Book = new IndexedMember<SpellType, int, IntType, string>(this, "Book");
+            Spell = new IndexedMember<SpellType, int, IntType, string>(this, "Spell");
             Aura = new IndexedMember<AuraType, string, AuraType, int>(this, "Aura");
             AltAbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AltAbilityReady");
             AltAbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AltAbilityTimer");
@@ -46,63 +47,67 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Ability = new IndexedStringMember<int, IntType, string>(this, "Ability");
             Bandolier = new IndexedMember<BandolierType, string, BandolierType, int>(this, "Bandolier");
             Bank = new IndexedMember<ItemType, int>(this, "Bank");
+            SharedBank = new IndexedMember<ItemType, int>(this, "SharedBank");
             FreeInventorySlotSize = new IndexedMember<IntType, int>(this, "FreeInventory");
+            PersonaLevel = new IndexedMember<IntType>(this, "PersonaLevel");
+            MercListInfo = new IndexedStringMember<int, IntType, string>(this, "MercListInfo");
         }
 
         /// <summary>
         /// Ability with this name or on this button # ready?
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> AbilityReady;
+        public IndexedMember<BoolType, int, BoolType, string> AbilityReady {  get; }
 
         /// <summary>
         /// Ability with this name or on this button # ready?
         /// </summary>
-        public IndexedMember<TimeStampType, int, TimeStampType, string> AbilityTimer;
+        public IndexedMember<TimeStampType, int, TimeStampType, string> AbilityTimer { get; }
 
         /// <summary>
         /// Returns an alt ability by name or number
         /// </summary>
-        public IndexedMember<AltAbilityType, int, AltAbilityType, string> AltAbility;
+        public IndexedMember<AltAbilityType, int, AltAbilityType, string> AltAbility { get; }
 
         /// <summary>
         /// Alt ability ready by name or number
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> AltAbilityReady;
+        public IndexedMember<BoolType, int, BoolType, string> AltAbilityReady { get; }
 
         /// <summary>
         /// Alt ability reuse time remaining by name or number
         /// </summary>
-        public IndexedMember<TimeStampType, int, TimeStampType, string> AltAbilityTimer;
+        public IndexedMember<TimeStampType, int, TimeStampType, string> AltAbilityTimer { get; }
 
         /// <summary>
         /// Aura by name or slot #
         /// </summary>
-        public IndexedMember<AuraType, string, AuraType, int> Aura;
+        public IndexedMember<AuraType, string, AuraType, int> Aura { get; }
 
         /// <summary>
         /// Spell in your spellbook by slot number, or slot in your spellbook by spell name
         /// </summary>
-        public IndexedMember<SpellType, int, IntType, string> Book;
+        public IndexedMember<SpellType, int, IntType, string> Book { get; }
 
         /// <summary>
-        /// Buff by name or slot number
+        /// Spell in your spellbook by slot number, or slot in your spellbook by spell name
         /// </summary>
-        public IndexedMember<BuffType, string, BuffType, int> Buff;
+        [Obsolete("Use Book instead")]
+        public IndexedMember<SpellType, int, IntType, string> Spell { get; }
 
         /// <summary>
         /// Combat ability spell by number, or number by name
         /// </summary>
-        public IndexedMember<SpellType, int, IntType, string> CombatAbility;
+        public IndexedMember<SpellType, int, IntType, string> CombatAbility { get; }
 
         /// <summary>
         /// Combat ability ready by name or number
         /// </summary>
-        public IndexedMember<BoolType, int, BoolType, string> CombatAbilityReady;
+        public IndexedMember<BoolType, int, BoolType, string> CombatAbilityReady { get; }
         
         /// <summary>
         /// Combat ability reuse time remaining by name or number
         /// </summary>
-        public IndexedMember<TicksType, int, TicksType, string> CombatAbilityTimer;
+        public IndexedMember<TicksType, int, TicksType, string> CombatAbilityTimer { get; }
 
         /// <summary>
         /// AA exp as a raw number out of 330 (330=100%)
@@ -187,7 +192,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Quantity of an alt currency by name or number
         /// </summary>
-        public IndexedMember<IntType, int, IntType, string> AltCurrency;
+        public IndexedMember<IntType, int, IntType, string> AltCurrency {  get; }
 
         /// <summary>
         /// Don't use this
@@ -226,6 +231,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? AttackSpeed => GetMember<IntType>("AttackSpeed");
 
         /// <summary>
+        /// Current Endurance points. Use <see cref="CurrentEndurance"/>
+        /// </summary>
+        [Obsolete]
+        public int? Endurance => CurrentEndurance;
+
+        /// <summary>
         /// Is Autofire on?
         /// </summary>
         public bool AutoFire => GetMember<BoolType>("AutoFire");
@@ -233,7 +244,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Autoskill by number
         /// </summary>
-        public IndexedMember<SkillType, int> AutoSkill;
+        public IndexedMember<SkillType, int> AutoSkill {  get; }
 
         /// <summary>
         /// Avoidance bonus from gear/spells
@@ -244,6 +255,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Item in this bankslot #
         /// </summary>
         public IndexedMember<ItemType, int> Bank { get; }
+
+        /// <summary>
+        /// Item in this sharedbankslot #
+        /// </summary>
+        public IndexedMember<ItemType, int> SharedBank { get; }
 
         /// <summary>
         /// True if you're currently playing a bard song
@@ -288,7 +304,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// First beneficial buff on character
         /// </summary>
-        public TargetBuffType Beneficial => GetMember<TargetBuffType>("Beneficial");
+        public BuffType Beneficial => GetMember<BuffType>("Beneficial");
 
         /// <summary>
         /// Bind location, valid indexes are 0 - 4
@@ -980,6 +996,186 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? PiecesofEight => GetMember<IntType>("PiecesofEight");
 
         /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? SilverTokens => GetMember<IntType>("SilverTokens");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? GoldTokens => GetMember<IntType>("GoldTokens");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? McKenzie => GetMember<IntType>("McKenzie");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? Bayle => GetMember<IntType>("Bayle");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? Reclamation => GetMember<IntType>("Reclamation");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? Brellium => GetMember<IntType>("Brellium");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? Motes => GetMember<IntType>("Motes");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? RebellionChits => GetMember<IntType>("RebellionChits");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? DiamondCoins => GetMember<IntType>("DiamondCoins");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? BronzeFiats => GetMember<IntType>("BronzeFiats");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? Voucher => GetMember<IntType>("Voucher");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? VeliumShards => GetMember<IntType>("VeliumShards");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? CrystallizedFear => GetMember<IntType>("CrystallizedFear");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? ShadowStones => GetMember<IntType>("ShadowStones");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? DreadStones => GetMember<IntType>("DreadStones");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? MarksOfValor => GetMember<IntType>("MarksOfValor");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? MedalsOfHeroism => GetMember<IntType>("MedalsOfHeroism");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? RemnantOfTranquility => GetMember<IntType>("RemnantOfTranquility");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? BifurcatedCoin => GetMember<IntType>("BifurcatedCoin");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? SathirsTradeGems => GetMember<IntType>("SathirsTradeGems");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? BathezidTradeGems => GetMember<IntType>("BathezidTradeGems");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? FetterredIfritCoins => GetMember<IntType>("FetterredIfritCoins");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? EntwinedDjinnCoins => GetMember<IntType>("EntwinedDjinnCoins");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? CrystallizedLuck => GetMember<IntType>("CrystallizedLuck");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? FroststoneDucat => GetMember<IntType>("FroststoneDucat");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? WarlordsSymbol => GetMember<IntType>("WarlordsSymbol");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? OverseerTetradrachm => GetMember<IntType>("OverseerTetradrachm");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? WarforgedEmblem => GetMember<IntType>("WarforgedEmblem");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? RestlessMark => GetMember<IntType>("RestlessMark");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? ScarletMarks => GetMember<IntType>("ScarletMarks");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? MedalsOfConflict => GetMember<IntType>("MedalsOfConflict");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? ShadedSpecie => GetMember<IntType>("ShadedSpecie");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? SpiritualMedallions => GetMember<IntType>("SpiritualMedallions");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? LaurionInnVoucher => GetMember<IntType>("LaurionInnVoucher");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? ShalowainsPrivateReserve => GetMember<IntType>("ShalowainsPrivateReserve");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? LoyaltyTokens => GetMember<IntType>("LoyaltyTokens");
+
+        /// <summary>
         /// Platinum on your character
         /// </summary>
         public int? Platinum => GetMember<IntType>("Platinum");
@@ -1383,6 +1579,116 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Can you use a mount here?
         /// </summary>
         public BoolType CanMount => GetMember<BoolType>("CanMount");
+
+        /// <summary>
+        /// Given the class shortname as a param, returns level of that class persona. e.g. ${Me.PersonaLevel[DRU]} returns the level of your Druid persona. If you do not have a Persona of the given class, the member will return 0.
+        /// </summary>
+        public IndexedMember<IntType> PersonaLevel { get; }
+
+        /// <summary>
+        /// The index is base 1.
+        /// </summary>
+        public IndexedStringMember<int, IntType, string> MercListInfo { get; }
+
+        /// <summary>
+        /// TODO: new field
+        /// </summary>
+        public long? VitalityCap => GetMember<Int64Type>("VitalityCap");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public TimeSpan? LastZoned => GetMember<TimeStampType>("LastZoned");
+
+        /// <summary>
+        /// The player origin zone.
+        /// </summary>
+        public ZoneType Origin => GetMember<ZoneType>("Origin");
+
+        /// <summary>
+        /// TODO: new field
+        /// </summary>
+        public int? SubscriptionDays => GetMember<IntType>("SubscriptionDays");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? ParcelStatus => GetMember<IntType>("ParcelStatus");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public TimeSpan? CastTimeLeft => GetMember<TimeStampType>("CastTimeLeft");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? SpellRankCap => GetMember<IntType>("SpellRankCap");
+
+        /// <summary>
+        /// Maximum level, inclusive
+        /// </summary>
+        public int? MaxLevel => GetMember<IntType>("MaxLevel");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? MaxAirSupply => GetMember<IntType>("MaxAirSupply");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? PctAirSupply => GetMember<IntType>("PctAirSupply");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? NumBagSlots => GetMember<IntType>("NumBagSlots");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public string Inviter => GetMember<StringType>("Inviter");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public bool Invited => GetMember<BoolType>("Invited");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? IsBerserk => GetMember<IntType>("IsBerserk");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public float? GroupLeaderExp => GetMember<FloatType>("GroupLeaderExp");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? GroupLeaderPoints => GetMember<IntType>("GroupLeaderPoints");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public float? PctGroupLeaderExp => GetMember<FloatType>("PctGroupLeaderExp");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public float? RaidLeaderExp => GetMember<FloatType>("RaidLeaderExp");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public int? RaidLeaderPoints => GetMember<IntType>("RaidLeaderPoints");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public float? PctRaidLeaderExp => GetMember<FloatType>("PctRaidLeaderExp");
 
         /// <summary>
         /// Equivalent of the command /stand on

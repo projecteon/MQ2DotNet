@@ -12,6 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         internal FellowshipType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Member = new IndexedMember<FellowshipMemberType, string, FellowshipMemberType, int>(this, "Member");
+            Sharing = new IndexedMember<BoolType, int>(this, "Sharing");
         }
 
         /// <summary>
@@ -73,5 +74,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// TRUE if campfire is up, FALSE if not
         /// </summary>
         public bool Campfire => GetMember<BoolType>("Campfire");
+
+        /// <summary>
+        /// Returns TRUE if exp sharing is enabled for the Nth member.
+        /// Sharing[ N ]
+        /// </summary>
+        public IndexedMember<BoolType, int> Sharing { get; }
     }
 }

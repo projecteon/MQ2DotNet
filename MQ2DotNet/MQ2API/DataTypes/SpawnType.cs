@@ -17,9 +17,13 @@ namespace MQ2DotNet.MQ2API.DataTypes
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
-            DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
             CachedBuff = new IndexedMember<CachedBuffType>(this, "CachedBuff");
+            FindBuff = new IndexedMember<CachedBuffType>(this, "FindBuff");
+            Buff = new IndexedMember<CachedBuffType, int, CachedBuffType, string>(this, "Buff");
+            BuffDuration = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "BuffDuration");
+            MyBuff = new IndexedMember<CachedBuffType, int, CachedBuffType, string>(this, "Buff");
+            MyBuffDuration = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "MyBuffDuration");
         }
 
         /// <summary>
@@ -35,7 +39,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
             NearestSpawn = new IndexedMember<SpawnType, int, SpawnType, string>(this, "NearestSpawn");
             HeadingToLoc = new IndexedMember<HeadingType>(this, "HeadingToLoc");
             Equipment = new IndexedMember<IntType, int, IntType, string>(this, "Equipment");
-            DragNames = new IndexedStringMember<int>(this, "DragNames");
             CombatSkillTicks = new IndexedMember<IntType, int>(this, "CombatSkillTicks");
             CachedBuff = new IndexedMember<CachedBuffType>(this, "CachedBuff");
         }
@@ -81,24 +84,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string AssistName => GetMember<StringType>("AssistName");
 
         /// <summary>
-        /// TODO: What is SpawnType.bAlwaysShowAura
-        /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public bool bAlwaysShowAura => GetMember<BoolType>("bAlwaysShowAura");
-
-        /// <summary>
-        /// TODO: What is SpawnType.bBetaBuffed
-        /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public bool bBetaBuffed => GetMember<BoolType>("bBetaBuffed");
-
-        /// <summary>
-        /// Returns stupid numbers
-        /// </summary>
-        [Obsolete]
-        public float? BearingToTarget => GetMember<FloatType>("BearingToTarget");
-
-        /// <summary>
         /// Binding wounds?
         /// </summary>
         public bool Binding => GetMember<BoolType>("Binding");
@@ -120,27 +105,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public bool bShowHelm => GetMember<BoolType>("bShowHelm");
 
         /// <summary>
-        /// True for stationary spawns maybe? Returns FALSE for me when I'm standing still
-        /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public bool bStationary => GetMember<BoolType>("bStationary");
-
-        /// <summary>
         /// Is the spawn a temp pet?
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public bool bTempPet => GetMember<BoolType>("bTempPet");
+        public bool TemporaryPet => GetMember<BoolType>("TemporaryPet");
 
         /// <summary>
         /// Is a buyer? (ie. Buyer in the bazaar)
         /// </summary>
         public bool Buyer => GetMember<BoolType>("Buyer");
-
-        /// <summary>
-        /// No idea
-        /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public bool bWaitingForPort => GetMember<BoolType>("bWaitingForPort");
 
         /// <summary>
         /// TRUE/FALSE on if a splash spell can land...NOTE! This check is ONLY for line of sight to the targetindicator (red/green circle)
@@ -166,11 +139,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// The "cleaned up" name
         /// </summary>
         public string CleanName => GetMember<StringType>("CleanName");
-
-        /// <summary>
-        /// Collision counter
-        /// </summary>
-        public int? CollisionCounter => GetMember<IntType>("CollisionCounter");
 
         /// <summary>
         /// Valid indexes are 0 and 1. TODO: What is SpawnType.CombatSkillTicks
@@ -254,14 +222,19 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public float? DistanceZ => GetMember<FloatType>("DistanceZ");
 
         /// <summary>
-        /// Player this corpse is being dragged by
+        /// Distance from player in Y plane (North/South)
         /// </summary>
-        public string DraggingPlayer => GetMember<StringType>("DraggingPlayer");
+        public float? DistanceN => GetMember<FloatType>("DistanceN");
 
         /// <summary>
-        /// Players whose corpse this spawn is dragging. Valid indexes are 0 and 1
+        /// Distance from player in Z plane (Up/Down)
         /// </summary>
-        public IndexedStringMember<int> DragNames { get; }
+        public float? DistanceU => GetMember<FloatType>("DistanceU");
+
+        /// <summary>
+        /// Distance from player in X plane (East/West)
+        /// </summary>
+        public float? DistanceW => GetMember<FloatType>("DistanceW");
 
         /// <summary>
         /// Ducking?
@@ -284,14 +257,19 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IndexedMember<IntType, int, IntType, string> Equipment { get; }
 
         /// <summary>
-        /// TODO: What is SpawnType.FD?
-        /// </summary>
-        public int? FD => GetMember<IntType>("FD");
-
-        /// <summary>
         /// Feet wet/swimming?
         /// </summary>
         public bool FeetWet => GetMember<BoolType>("FeetWet");
+
+        /// <summary>
+        /// Body wet
+        /// </summary>
+        public virtual bool BodyWet => GetMember<BoolType>("BodyWet");
+
+        /// <summary>
+        /// Head wet
+        /// </summary>
+        public virtual bool HeadWet => GetMember<BoolType>("HeadWet");
 
         /// <summary>
         /// Feigning?
@@ -389,39 +367,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public bool Invis => GetMember<BoolType>("Invis");
 
         /// <summary>
-        /// Spawn has been invited to a group
-        /// </summary>
-        public bool Invited => GetMember<BoolType>("Invited");
-
-        /// <summary>
-        /// Who invited the spawn to a group?
-        /// </summary>
-        public string Inviter => GetMember<StringType>("Inviter");
-
-        /// <summary>
-        /// Spawn is berserk?
-        /// </summary>
-        public int? IsBerserk => GetMember<IntType>("IsBerserk");
-
-        /// <summary>
-        /// Spawn is a passenger?
-        /// </summary>
-        public int? IsPassenger => GetMember<IntType>("IsPassenger");
-
-        /// <summary>
         /// If it's a summoned being (pet for example). Unsure if useful for druid nukes.
         /// </summary>
         public bool IsSummoned => GetMember<BoolType>("IsSummoned");
-
-        /// <summary>
-        /// TODO: What is SpawnType.LastCastNum
-        /// </summary>
-        public int? LastCastNum => GetMember<IntType>("LastCastNum");
-
-        /// <summary>
-        /// TODO: What is SpawnType.LastCastTime
-        /// </summary>
-        public int? LastCastTime => GetMember<IntType>("LastCastTime");
 
         /// <summary>
         /// Level of the spawn
@@ -587,10 +535,9 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? Primary => GetMember<IntType>("Primary");
 
         /// <summary>
-        /// TODO: What is SpawnType.pTouchingSwitch
+        /// Spawn is touching switch
         /// </summary>
-        // ReSharper disable once InconsistentNaming
-        public int? pTouchingSwitch => GetMember<IntType>("pTouchingSwitch");
+        public int? IsTouchingSwitch => GetMember<IntType>("IsTouchingSwitch");
 
         /// <summary>
         /// Spawn's race
@@ -651,7 +598,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// STAND, SIT, DUCK, BIND, FEIGN, DEAD, STUN, HOVER, MOUNT, UNKNOWN
         /// </summary>
-        public string State => GetMember<StringType>("State");
+        public virtual string State => GetMember<StringType>("State");
 
         /// <summary>
         /// Stuck?
@@ -704,12 +651,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public bool Underwater => GetMember<BoolType>("Underwater");
 
         /// <summary>
-        /// TODO: What is SpawnType.WarCry?
+        /// X, the Northward-positive coordinate
         /// </summary>
-        public int? WarCry => GetMember<IntType>("WarCry");
+        public float? N => GetMember<FloatType>("N");
 
         /// <summary>
-        /// X, the Northward-positive coordinate
+        /// X coordinate
         /// </summary>
         public float? X => GetMember<FloatType>("X");
 
@@ -736,22 +683,81 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Y, the Westward-positive coordinate
         /// </summary>
+        public float? W => GetMember<FloatType>("W");
+
+        /// <summary>
+        /// Y coordinate
+        /// </summary>
         public float? Y => GetMember<FloatType>("Y");
 
         /// <summary>
         /// Z, the Upward-positive coordinate
         /// </summary>
+        public float? U => GetMember<FloatType>("U");
+
+        /// <summary>
+        /// Z coordinate
+        /// </summary>
         public float? Z => GetMember<FloatType>("Z");
 
         /// <summary>
-        /// This is fucked, not dealing with it
+        /// Get a cached buff by query.
+        /// Query syntax seems to:
+        /// Exact spell name match
+        /// # by buff slot
+        /// * by buff index (looks like 1 based)
+        /// ^ by keyword
+        /// Keywords seem to be:
+        /// slowed, rooted, mezzed, crippled, maloed, tashed, snared, beneficial
+        /// 
+        /// IE "^rooted"
         /// </summary>
         public IndexedMember<CachedBuffType> CachedBuff { get; }
+
+        /// <summary>
+        /// Find a buff by string predicate
+        /// </summary>
+        public IndexedMember<CachedBuffType> FindBuff { get; }
 
         /// <summary>
         /// Number of cached buffs
         /// </summary>
         public int? CachedBuffCount => GetMember<IntType>("CachedBuffCount");
+
+        /// <summary>
+        /// Buffs populated
+        /// </summary>
+        public bool BuffsPopulated => GetMember<BoolType>("BuffsPopulated");
+
+        /// <summary>
+        /// Number of buffs
+        /// </summary>
+        public int? BuffCount => GetMember<IntType>("BuffCount");
+
+        /// <summary>
+        /// A buff by index (1 based), or the index of a buff by name
+        /// </summary>
+        public IndexedMember<CachedBuffType, int, CachedBuffType, string> Buff { get; }
+
+        /// <summary>
+        /// Same as <see cref="Buff"/> but durations.
+        /// </summary>
+        public IndexedMember<TimeStampType, int, TimeStampType, string> BuffDuration { get; }
+
+        /// <summary>
+        /// Number of my buffs
+        /// </summary>
+        public int? MyBuffCount => GetMember<IntType>("MyBuffCount");
+
+        /// <summary>
+        /// A buff by index (1 based), or the index of a buff by name
+        /// </summary>
+        public IndexedMember<CachedBuffType, int, CachedBuffType, string> MyBuff { get; }
+
+        /// <summary>
+        /// Same as <see cref="MyBuff"/> but durations.
+        /// </summary>
+        public IndexedMember<TimeStampType, int, TimeStampType, string> MyBuffDuration { get; }
 
         /// <summary>
         /// Targets the spawn (equivalent of /target)

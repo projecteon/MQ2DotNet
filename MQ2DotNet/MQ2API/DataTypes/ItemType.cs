@@ -39,10 +39,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// </summary>
         /// 
         public int? Attack => GetMember<IntType>("Attack");
+
         /// <summary>
         /// Attuneable?
         /// </summary>
         public bool Attuneable => GetMember<BoolType>("Attuneable");
+
+        /// <summary>
+        /// Attunable?
+        /// </summary>
+        public bool Attunable => GetMember<BoolType>("Attunable");
 
         /// <summary>
         /// Augment Restrictions
@@ -239,6 +245,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Familiar spell cast by the item
         /// </summary>
         public ItemSpellType Familiar => GetMember<ItemSpellType>("Familiar");
+
+        /// <summary>
+        /// Blessing spell cast by the item
+        /// </summary>
+        public ItemSpellType Blessing => GetMember<ItemSpellType>("Blessing");
+
 
         /// <summary>
         /// If the item is a container, the 1 based index of the first free slot in it
@@ -556,6 +568,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? RequiredLevel => GetMember<IntType>("RequiredLevel");
 
         /// <summary>
+        /// Returns the Recommended Level of an item. Items with no recommended level will return 0.
+        /// </summary>
+        public int? RecommendedLevel => GetMember<IntType>("RecommendedLevel");
+
+        /// <summary>
         /// Spell taught by the item if it is a scroll
         /// </summary>
         public ItemSpellType Scroll => GetMember<ItemSpellType>("Scroll");
@@ -765,5 +782,25 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Maximum luck value on item
         /// </summary>
         public int? MaxLuck => GetMember<IntType>("MaxLuck");
+
+        /// <summary>
+        /// TODO: not in official docs
+        /// </summary>
+        public int? RefCount => GetMember<IntType>("RefCount");
+
+        /// <summary>
+        /// TODO: new member, used to be a pointer pre 2020-04-13
+        /// </summary>
+        public int? IDFile => GetMember<IntType>("IDFile");
+
+        /// <summary>
+        /// TODO: new member, used to be a pointer pre 2020-04-13
+        /// </summary>
+        public int? IDFile2 => GetMember<IntType>("IDFile2");
+
+        /// <summary>
+        /// Opens the item display window for this item
+        /// </summary>
+        public void Inspect() => GetMember<MQ2DataType>("Inspect");
     }
 }

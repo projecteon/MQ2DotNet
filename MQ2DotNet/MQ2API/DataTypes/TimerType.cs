@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System;
 
 namespace MQ2DotNet.MQ2API.DataTypes
 {
@@ -22,5 +23,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Original value of the timer in 100ms, from when the variable was first created
         /// </summary>
         public int? OriginalValue => GetMember<IntType>("OriginalValue");
+
+        /// <summary>
+        /// Reset the timer
+        /// </summary>
+        public void Reset() => GetMember<MQ2DataType>("Reset");
+
+        /// <summary>
+        /// Set the timer
+        /// </summary>
+        public void Set(TimeSpan duration) => GetMember<MQ2DataType>("Set", $"{duration.TotalSeconds}s");
     }
 }

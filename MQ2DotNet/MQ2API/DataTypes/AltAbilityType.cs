@@ -40,6 +40,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? ID => GetMember<IntType>("ID");
 
         /// <summary>
+        /// GroupID of the ability
+        /// </summary>
+        public int? GroupID => GetMember<IntType>("GroupID");
+
+        /// <summary>
         /// Reuse time in seconds
         /// </summary>
         public int? ReuseTime => GetMember<IntType>("ReuseTime");

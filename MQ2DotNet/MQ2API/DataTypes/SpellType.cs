@@ -28,6 +28,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
             Trigger = new IndexedMember<SpellType, int>(this, "Trigger");
             NoExpendReagentID = new IndexedMember<IntType, int>(this, "NoExpendReagentID");
             StacksSpawn = new IndexedMember<BoolType, string, BoolType, int>(this, "StacksSpawn");
+            Link = new IndexedStringMember<string>(this, "Link");
         }
 
         /// <summary>
@@ -119,6 +120,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Duration of the spell (if any), MQ2 version
         /// </summary>
+        public virtual TimeSpan? MyDuration => GetMember<TicksType>("MyDuration");
+
+        /// <summary>
+        /// Duration of the spell (if any), MQ2 version
+        /// </summary>
         public TicksType Duration => GetMember<TicksType>("Duration");
 
         /// <summary>
@@ -179,6 +185,14 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public IndexedMember<BoolType, int> Stacks { get; }
 
         /// <summary>
+        /// This extra member is exactly like stacks but without a duration check. The duration
+        /// check on stacks implies that we _don't_ want overwrites, but that means that any
+        /// spell that will land but overwrites something will fail that check. So provide the
+        /// raw "this will land on your target" check as well
+        /// </summary>
+        public virtual bool WillLand => (int)GetMember<IntType>("WillLand") > 0;
+
+        /// <summary>
         /// Will this spell stack on your target?
         /// </summary>
         public bool StacksTarget => GetMember<BoolType>("StacksTarget");
@@ -187,6 +201,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Does this spell stack with your pet's current buffs (duration is in ticks)
         /// </summary>
         public IndexedMember<BoolType, int> StacksPet { get; }
+
+        /// <summary>
+        /// This is the same as <see cref="WillLand"/>, but for pets
+        /// </summary>
+        public virtual bool WillLandPet => (int)GetMember<IntType>("WillLandPet") > 0;
 
         /// <summary>
         /// Does this spell stack with another spell?
@@ -220,10 +239,20 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string Category => GetMember<StringType>("Category");
 
         /// <summary>
+        /// Numeric Id of the category this spell belongs to.
+        /// </summary>
+        public int? CategoryID => GetMember<IntType>("CategoryID");
+
+        /// <summary>
         /// Subcategory of the spell e.g. Combat Innates, Damage Shield
         /// Second level of the menu when you right click a gem
         /// </summary>
         public string Subcategory => GetMember<StringType>("Subcategory");
+
+                /// <summary>
+        /// Numeric Id of the subcategory this spell belongs to.
+        /// </summary>
+        public int? SubcategoryID => GetMember<IntType>("SubcategoryID");
 
         /// <summary>
         /// Text of the nth restriction (1 based) on the spell
@@ -283,11 +312,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? RecastTimerID => GetMember<IntType>("RecastTimerID");
 
         /// <summary>
-        /// SPA number of this spell
-        /// </summary>
-        public int? SPA => GetMember<IntType>("SPA");
-
-        /// <summary>
         /// Item ID of the nth required reagent (valid indexes are 1 - 4)
         /// </summary>
         public IndexedMember<IntType, int> ReagentID { get; }
@@ -328,19 +352,24 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? BookIcon => GetMember<IntType>("BookIcon");
 
         /// <summary>
-        /// TODO: What is SpellType.Target?
+        /// Icon number of the spell. Example ${Spell[blah].GemIcon}.
         /// </summary>
-        public string Target => GetMember<StringType>("Target");
+        public virtual int? GemIcon => BookIcon;
+
+        /// <summary>
+        /// Numeric ID of the Icon used to represent the spell.
+        /// </summary>
+        public virtual int? SpellIcon => BookIcon;
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public virtual int? ActorTagId => GetMember<IntType>("ActorTagId");
 
         /// <summary>
         /// Spell effect description from the spell window
         /// </summary>
         public string Description => GetMember<StringType>("Description");
-
-        /// <summary>
-        /// TODO: What is SpellType.Caster?
-        /// </summary>
-        public string Caster => GetMember<StringType>("Caster");
 
         /// <summary>
         /// Returns either 1, 2 or 3 for spells and 4-30 for clickys and potions.
@@ -388,6 +417,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? DurationValue1 => GetMember<IntType>("DurationValue1");
 
         /// <summary>
+        /// No info in online doco for this member.
+        /// </summary>
+        public virtual bool StacksWithDiscs => GetMember<BoolType>("StacksWithDiscs");
+
+        /// <summary>
         /// Illusion cast by this spell is allowed when you are mounted
         /// </summary>
         public bool IllusionOkWhenMounted => GetMember<BoolType>("IllusionOkWhenMounted");
@@ -416,5 +450,49 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Uses cached buffs to see if the spell will stack on a spawn, by name or Id. Not recommended.
         /// </summary>
         public IndexedMember<BoolType, string, BoolType, int> StacksSpawn { get; }
+
+
+
+        /// <summary>
+        /// Percentage of slow, example of use ${Target.Slowed.SlowPct} or ${Spell[Slowing Helix].SlowPct}
+        /// </summary>
+        public virtual int? SlowPct => GetMember<IntType>("SlowPct");
+
+        /// <summary>
+        /// Percentage of haste, example of use ${Me.Hasted.HastePct} or ${Spell[Speed of Milyex].HastePct}.
+        /// </summary>
+        public virtual int? HastePct => GetMember<IntType>("HastePct");
+
+        /// <summary>
+        /// TODO: new member
+        /// </summary>
+        public virtual int? BaseEffectsFocusCap => GetMember<IntType>("BaseEffectsFocusCap");
+
+        /// <summary>
+        /// Whether a spell can be dispelled.
+        /// </summary>
+        public bool Dispellable => GetMember<BoolType>("Dispellable");
+
+        /// <summary>
+        /// Generate a clickable spell link. text is optional and overrides the text of the link.
+        /// Link[ text ]
+        /// </summary>
+        public IndexedStringMember<string> Link { get; }
+
+        /// <summary>
+        /// Minimum level required by any class to cast this spell.
+        /// </summary>
+        public int? MinCasterLevel => GetMember<IntType>("MinCasterLevel");
+
+        /// <summary>
+        /// Opens the spell display window for this spell.
+        /// </summary>
+        /// <param name="spellNameOverride"></param>
+        public void Inspect(string spellNameOverride) => GetMember<MQ2DataType>("Inspect", spellNameOverride);
+
+        /// <summary>
+        /// Opens the spell display window for this spell.
+        /// </summary>
+        public void Inspect() => GetMember<MQ2DataType>("Inspect");
     }
 }
