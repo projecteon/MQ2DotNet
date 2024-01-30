@@ -104,12 +104,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Will return the numbers of people in the group that has less than a certain percentage HP
         /// </summary>
-        public IndexedMember<IntType, int> Injured;
+        public IndexedMember<IntType, int> Injured { get; }
 
         /// <summary>
         /// Will return the numbers of people in the group that has less than a certain percentage mana
         /// </summary>
-        public IndexedMember<IntType, int> LowMana;
+        public IndexedMember<IntType, int> LowMana { get; }
 
         /// <summary>
         /// The first non-mercenary cleric in the group

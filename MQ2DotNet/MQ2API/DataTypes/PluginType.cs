@@ -22,5 +22,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Plugin's version as exported by the PLUGIN_VERSION macro
         /// </summary>
         public float? Version => GetMember<FloatType>("Version");
+
+        /// <summary>
+        /// Is the plugin loaded?
+        /// </summary>
+        public bool IsLoaded => GetMember<BoolType>("IsLoaded");
     }
 }

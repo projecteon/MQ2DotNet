@@ -44,6 +44,7 @@ namespace MQ2DotNet.Services
             Mount = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Mount");
             Illusion = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Illusion");
             Familiar = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Familiar");
+            TeleportationItem = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "TeleportationItem");
             Alias = new IndexedTLO<BoolType>(this, "Alias");
             AlertByNumber = new IndexedTLO<AlertType>(this, "Alert");
             SubDefined = new IndexedTLO<BoolType>(this, "SubDefined");
@@ -292,6 +293,11 @@ namespace MQ2DotNet.Services
         /// Familiar (on keyring) by name or position in window (1 based). Name is partial match unless it begins with =
         /// </summary>
         public IndexedTLO<KeyRingType, string, KeyRingType, int> Familiar { get; }
+
+        /// <summary>
+        /// Familiar (on keyring) by name or position in window (1 based). Name is partial match unless it begins with =
+        /// </summary>
+        public IndexedTLO<KeyRingType, string, KeyRingType, int> TeleportationItem { get; }
 
         /// <summary>
         /// Is an alias set for a command, including the slash e.g. Alias["/chaseon"]

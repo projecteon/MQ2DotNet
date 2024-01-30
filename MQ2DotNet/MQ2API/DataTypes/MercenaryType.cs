@@ -29,6 +29,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? StateID => GetMember<IntType>("StateID");
 
         /// <summary>
+        /// Current state of the mercenary (returns "DEAD","SUSPENDED","ACTIVE", or "UNKNOWN")
+        /// </summary>
+        public override string State => GetMember<StringType>("State");
+
+        /// <summary>
         /// Index of the mercenary in your mercenary list (1 based)
         /// </summary>
         public int? Index => GetMember<IntType>("Index");

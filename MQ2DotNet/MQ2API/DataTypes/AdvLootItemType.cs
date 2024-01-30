@@ -83,5 +83,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// True if the item is no drop
         /// </summary>
         public bool NoDrop => GetMember<BoolType>("NoDrop");
+
+        /// <summary>
+        /// True if the item is free grab
+        /// </summary>
+        public bool FreeGrab => GetMember<BoolType>("FreeGrab");
+
+        /// <summary>
+        /// Status of the item, One of WAITING, ASKING, ROLLING, STOPPED, CLICKROLL, FREEGRAB, UNKNOWN(%d)
+        /// </summary>
+        public string Status => GetMember<StringType>("Status");
     }
 }

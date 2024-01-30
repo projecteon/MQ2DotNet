@@ -19,16 +19,6 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public int? Type => GetMember<IntType>("Type");
         
         /// <summary>
-        /// Value of gravity in the zone
-        /// </summary>
-        public float? Gravity => GetMember<FloatType>("Gravity");
-        
-        /// <summary>
-        /// Type of sky in the zone
-        /// </summary>
-        public int? SkyType => GetMember<IntType>("SkyType");
-        
-        /// <summary>
         /// Minimum setting for far clip plane
         /// </summary>
         public float? MinClip => GetMember<FloatType>("MinClip");

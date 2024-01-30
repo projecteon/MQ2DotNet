@@ -12,6 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal GroundType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
+            Search = new IndexedMember<GroundType, int, GroundType, string>(this, "Search");
         }
 
         /// <summary>
@@ -22,6 +23,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public GroundType(MQ2TypeFactory mq2TypeFactory, IntPtr pGroundItem)
             : base("ground", mq2TypeFactory, new MQ2VarPtr { Ptr = pGroundItem })
         {
+            Search = new IndexedMember<GroundType, int, GroundType, string>(this, "Search");
         }
 
         /// <summary>
@@ -122,6 +124,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Last ground spawn in the linked list
         /// </summary>
         public GroundType Last => GetMember<GroundType>("Last");
+
+        /// <summary>
+        /// Get a ground spawn by ID or by name.
+        /// </summary>
+        public IndexedMember<GroundType, int, GroundType, string> Search { get; }
 
         /// <summary>
         /// Will cause the toon to face the called for spawn if it exists

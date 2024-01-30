@@ -7,24 +7,12 @@ namespace MQ2DotNet.MQ2API.DataTypes
     /// </summary>
     [PublicAPI]
     [MQ2Type("pet")]
-    public class PetType : MQ2DataType
+    public class PetType : SpawnType
     {
         internal PetType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
-            BuffDuration = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "BuffDuration");
-            Buff = new IndexedMember<SpellType, int, IntType, string>(this, "Buff");
         }
 
-        /// <summary>
-        /// A buff on your pet index (1 based), or the index of a buff on your pet by name
-        /// </summary>
-        public IndexedMember<SpellType, int, IntType, string> Buff { get; }
-
-        /// <summary>
-        /// Remaining duration on a pet's buff, by spell name or index (1 based)
-        /// </summary>
-        public IndexedMember<TimeStampType, int, TimeStampType, string> BuffDuration { get; }
-    
         /// <summary>
         /// Is pet in combat?
         /// </summary>
@@ -64,5 +52,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Is Taunt enabled?
         /// </summary>
         public bool Taunt => GetMember<BoolType>("Taunt");
+
+        /// <summary>
+        /// Focus state
+        /// </summary>
+        public bool Focus => GetMember<BoolType>("Focus");
     }
 }
