@@ -51,6 +51,11 @@ namespace MQ2DotNet.Services
         }
 
         /// <summary>
+        /// Provides access to achievements.
+        /// </summary>
+        public AchievementManagerType Achievement => GetTLO<AchievementManagerType>("Achievement");
+
+        /// <summary>
         /// Your character
         /// </summary>
         public CharacterType Me => GetTLO<CharacterType>("Me");
