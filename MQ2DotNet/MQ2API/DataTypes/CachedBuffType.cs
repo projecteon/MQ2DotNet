@@ -19,6 +19,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public string CasterName => GetMember<StringType>("CasterName");
 
         /// <summary>
+        /// Returns the name of the caster who applied the buff
+        /// </summary>
+        public string Caster => GetMember<StringType>("Caster");
+
+        /// <summary>
         /// Returns the amount of buffs catched, or -1 it none
         /// </summary>
         public int? Count => GetMember<IntType>("Count");

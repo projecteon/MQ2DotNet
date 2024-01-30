@@ -11,46 +11,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
     {
         internal TargetType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
-            BuffDuration = new IndexedMember<TimeStampType, string, TimeStampType, int>(this, "BuffDuration");
-            MyBuffDuration = new IndexedMember<TimeStampType, string, TimeStampType, int>(this, "MyBuffDuration");
-            MyBuff = new IndexedMember<SpellType, string, SpellType, int>(this, "MyBuff");
-            Buff = new IndexedMember<SpellType, string, SpellType, int>(this, "Buff");
         }
-
-        /// <summary>
-        /// Returns TRUE when the target's buffs are finished populating.
-        /// </summary>
-        public bool BuffsPopulated => GetMember<BoolType>("BuffsPopulated");
-
-        /// <summary>
-        /// Buff/debuff on the target by name or slot # (1 based)
-        /// </summary>
-        public IndexedMember<SpellType, string, SpellType, int> Buff { get; }
-
-        /// <summary>
-        /// Buff/debuff on the target that you cast, by name or slot # (1 based)
-        /// </summary>
-        public IndexedMember<SpellType, string, SpellType, int> MyBuff { get; }
-
-        /// <summary>
-        /// Total number of buffs/debuffs
-        /// </summary>
-        public int? BuffCount => GetMember<IntType>("BuffCount");
-
-        /// <summary>
-        /// Total number of buffs/debuffs cast by you
-        /// </summary>
-        public int? MyBuffCount => GetMember<IntType>("MyBuffCount");
-
-        /// <summary>
-        /// Remaining duration on a buff you cast by name or slot # (1 based)
-        /// </summary>
-        public IndexedMember<TimeStampType, string, TimeStampType, int> MyBuffDuration { get; }
-
-        /// <summary>
-        /// Remaining duration on a buff by name or slot # (1 based)
-        /// </summary>
-        public IndexedMember<TimeStampType, string, TimeStampType, int> BuffDuration { get; }
 
         /// <summary>
         /// Your percentage aggro on the target
@@ -75,176 +36,176 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// <summary>
         /// Slow debuff if the target has one
         /// </summary>
-        public TargetBuffType Slowed => GetMember<TargetBuffType>("Slowed");
+        public CachedBuffType Slowed => GetMember<CachedBuffType>("Slowed");
 
         /// <summary>
         /// Root debuff it the target has one
         /// </summary>
-        public TargetBuffType Rooted => GetMember<TargetBuffType>("Rooted");
+        public CachedBuffType Rooted => GetMember<CachedBuffType>("Rooted");
 
         /// <summary>
         /// Mez debuff if the target has one
         /// </summary>
-        public TargetBuffType Mezzed => GetMember<TargetBuffType>("Mezzed");
+        public CachedBuffType Mezzed => GetMember<CachedBuffType>("Mezzed");
 
         /// <summary>
         /// Cripple debuff if the target has one
         /// </summary>
-        public TargetBuffType Crippled => GetMember<TargetBuffType>("Crippled");
+        public CachedBuffType Crippled => GetMember<CachedBuffType>("Crippled");
 
         /// <summary>
         /// Malo debuff if the target has one
         /// </summary>
-        public TargetBuffType Maloed => GetMember<TargetBuffType>("Maloed");
+        public CachedBuffType Maloed => GetMember<CachedBuffType>("Maloed");
 
         /// <summary>
         /// Tash debuff if the target has one
         /// </summary>
-        public TargetBuffType Tashed => GetMember<TargetBuffType>("Tashed");
+        public CachedBuffType Tashed => GetMember<CachedBuffType>("Tashed");
 
         /// <summary>
         /// Snare debuff if the target has one
         /// </summary>
-        public TargetBuffType Snared => GetMember<TargetBuffType>("Snared");
+        public CachedBuffType Snared => GetMember<CachedBuffType>("Snared");
 
         /// <summary>
         /// Haste buff if the target has one
         /// </summary>
-        public TargetBuffType Hasted => GetMember<TargetBuffType>("Hasted");
+        public CachedBuffType Hasted => GetMember<CachedBuffType>("Hasted");
 
         /// <summary>
         /// First beneficial buff if the target has one
         /// </summary>
-        public TargetBuffType Beneficial => GetMember<TargetBuffType>("Beneficial");
+        public CachedBuffType Beneficial => GetMember<CachedBuffType>("Beneficial");
 
         /// <summary>
         /// Damage shield buff if the target has one
         /// </summary>
-        public TargetBuffType DSed => GetMember<TargetBuffType>("DSed");
+        public CachedBuffType DSed => GetMember<CachedBuffType>("DSed");
 
         /// <summary>
         /// Reverse damage shield buff if the target has one
         /// </summary>
-        public TargetBuffType RevDSed => GetMember<TargetBuffType>("RevDSed");
+        public CachedBuffType RevDSed => GetMember<CachedBuffType>("RevDSed");
 
         /// <summary>
         /// Charm debuff if the target has one
         /// </summary>
-        public TargetBuffType Charmed => GetMember<TargetBuffType>("Charmed");
+        public CachedBuffType Charmed => GetMember<CachedBuffType>("Charmed");
 
         /// <summary>
         /// Aego buff if the target has one
         /// </summary>
-        public TargetBuffType Aego => GetMember<TargetBuffType>("Aego");
+        public CachedBuffType Aego => GetMember<CachedBuffType>("Aego");
 
         /// <summary>
         /// Skin buff if the target has one
         /// </summary>
-        public TargetBuffType Skin => GetMember<TargetBuffType>("Skin");
+        public CachedBuffType Skin => GetMember<CachedBuffType>("Skin");
 
         /// <summary>
         /// Focus buff if the target has one
         /// </summary>
-        public TargetBuffType Focus => GetMember<TargetBuffType>("Focus");
+        public CachedBuffType Focus => GetMember<CachedBuffType>("Focus");
 
         /// <summary>
         /// Regen buff if the target has one
         /// </summary>
-        public TargetBuffType Regen => GetMember<TargetBuffType>("Regen");
+        public CachedBuffType Regen => GetMember<CachedBuffType>("Regen");
 
         /// <summary>
         /// Debuff that is increasing target's disease counter
         /// </summary>
-        public TargetBuffType Diseased => GetMember<TargetBuffType>("Diseased");
+        public CachedBuffType Diseased => GetMember<CachedBuffType>("Diseased");
 
         /// <summary>
         /// Debuff that is increasing target's poison counter
         /// </summary>
-        public TargetBuffType Poisoned => GetMember<TargetBuffType>("Poisoned");
+        public CachedBuffType Poisoned => GetMember<CachedBuffType>("Poisoned");
 
         /// <summary>
         /// Debuff that is increasing target's curse counter
         /// </summary>
-        public TargetBuffType Cursed => GetMember<TargetBuffType>("Cursed");
+        public CachedBuffType Cursed => GetMember<CachedBuffType>("Cursed");
 
         /// <summary>
         /// Debuff that is increasing target's corruption counter
         /// </summary>
-        public TargetBuffType Corrupted => GetMember<TargetBuffType>("Corrupted");
+        public CachedBuffType Corrupted => GetMember<CachedBuffType>("Corrupted");
 
         /// <summary>
         /// Symbol buff if the target has one
         /// </summary>
-        public TargetBuffType Symbol => GetMember<TargetBuffType>("Symbol");
+        public CachedBuffType Symbol => GetMember<CachedBuffType>("Symbol");
 
         /// <summary>
         /// Clarify buff if the target has one
         /// </summary>
-        public TargetBuffType Clarity => GetMember<TargetBuffType>("Clarity");
+        public CachedBuffType Clarity => GetMember<CachedBuffType>("Clarity");
 
         /// <summary>
         /// Pred buff if the target has one
         /// </summary>
-        public TargetBuffType Pred => GetMember<TargetBuffType>("Pred");
+        public CachedBuffType Pred => GetMember<CachedBuffType>("Pred");
 
         /// <summary>
         /// Strength buff if the target has one
         /// </summary>
-        public TargetBuffType Strength => GetMember<TargetBuffType>("Strength");
+        public CachedBuffType Strength => GetMember<CachedBuffType>("Strength");
 
         /// <summary>
         /// Brells buff if the target has one
         /// </summary>
-        public TargetBuffType Brells => GetMember<TargetBuffType>("Brells");
+        public CachedBuffType Brells => GetMember<CachedBuffType>("Brells");
 
         /// <summary>
         /// Spiritual Vitality buff if the target has one
         /// </summary>
-        public TargetBuffType SV => GetMember<TargetBuffType>("SV");
+        public CachedBuffType SV => GetMember<CachedBuffType>("SV");
 
         /// <summary>
         /// Spiritual Enlightenment buff if the target has one
         /// </summary>
-        public TargetBuffType SE => GetMember<TargetBuffType>("SE");
+        public CachedBuffType SE => GetMember<CachedBuffType>("SE");
 
         /// <summary>
         /// Hybrid HP buff if the target has one
         /// </summary>
-        public TargetBuffType HybridHP => GetMember<TargetBuffType>("HybridHP");
+        public CachedBuffType HybridHP => GetMember<CachedBuffType>("HybridHP");
 
         /// <summary>
         /// Growth buff if the target has one
         /// </summary>
-        public TargetBuffType Growth => GetMember<TargetBuffType>("Growth");
+        public CachedBuffType Growth => GetMember<CachedBuffType>("Growth");
 
         /// <summary>
         /// Shining buff if the target has one
         /// </summary>
-        public TargetBuffType Shining => GetMember<TargetBuffType>("Shining");
+        public CachedBuffType Shining => GetMember<CachedBuffType>("Shining");
 
         /// <summary>
         /// Fear debuff if the target has one
         /// </summary>
-        public TargetBuffType Feared => GetMember<TargetBuffType>("Feared");
+        public CachedBuffType Feared => GetMember<CachedBuffType>("Feared");
 
         /// <summary>
         /// Silence debuff if the target has one
         /// </summary>
-        public TargetBuffType Silenced => GetMember<TargetBuffType>("Silenced");
+        public CachedBuffType Silenced => GetMember<CachedBuffType>("Silenced");
 
         /// <summary>
         /// Invulnerability buff if the target has one
         /// </summary>
-        public TargetBuffType Invulnerable => GetMember<TargetBuffType>("Invulnerable");
+        public CachedBuffType Invulnerable => GetMember<CachedBuffType>("Invulnerable");
 
         /// <summary>
         /// DoT debuff if the target has one
         /// </summary>
-        public TargetBuffType Dotted => GetMember<TargetBuffType>("Dotted");
+        public CachedBuffType Dotted => GetMember<CachedBuffType>("Dotted");
 
         /// <summary>
         /// Maximum range from which the character can melee hit the target
         /// </summary>
-        public TargetBuffType MaxMeleeTo => GetMember<TargetBuffType>("MaxMeleeTo");
+        public float? MaxMeleeTo => GetMember<FloatType>("MaxMeleeTo");
     }
 }

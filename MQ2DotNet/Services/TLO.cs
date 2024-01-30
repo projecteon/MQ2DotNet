@@ -44,10 +44,16 @@ namespace MQ2DotNet.Services
             Mount = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Mount");
             Illusion = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Illusion");
             Familiar = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "Familiar");
+            TeleportationItem = new IndexedTLO<KeyRingType, string, KeyRingType, int>(this, "TeleportationItem");
             Alias = new IndexedTLO<BoolType>(this, "Alias");
             AlertByNumber = new IndexedTLO<AlertType>(this, "Alert");
             SubDefined = new IndexedTLO<BoolType>(this, "SubDefined");
         }
+
+        /// <summary>
+        /// Provides access to achievements.
+        /// </summary>
+        public AchievementManagerType Achievement => GetTLO<AchievementManagerType>("Achievement");
 
         /// <summary>
         /// Your character
@@ -168,6 +174,11 @@ namespace MQ2DotNet.Services
         /// Heading to a location in y,x format
         /// </summary>
         public HeadingType Heading => GetTLO<HeadingType>("Heading");
+
+        /// <summary>
+        /// This is a hierarchical container for things relating to inventory (Bank, etc). It is not currently fully implemented and will be added onto.
+        /// </summary>
+        public InventoryType Inventory => GetTLO<InventoryType>("Inventory");
 
         /// <summary>
         /// First spawn that matches a search string
@@ -292,6 +303,11 @@ namespace MQ2DotNet.Services
         /// Familiar (on keyring) by name or position in window (1 based). Name is partial match unless it begins with =
         /// </summary>
         public IndexedTLO<KeyRingType, string, KeyRingType, int> Familiar { get; }
+
+        /// <summary>
+        /// Familiar (on keyring) by name or position in window (1 based). Name is partial match unless it begins with =
+        /// </summary>
+        public IndexedTLO<KeyRingType, string, KeyRingType, int> TeleportationItem { get; }
 
         /// <summary>
         /// Is an alias set for a command, including the slash e.g. Alias["/chaseon"]

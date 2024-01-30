@@ -18,7 +18,7 @@ namespace MQ2DotNet.MQ2API
     /// </summary>
     public class MQ2DataType
     {
-        private readonly MQ2TypeFactory _typeFactory;
+        protected readonly MQ2TypeFactory _typeFactory;
         private MQ2TypeVar _typeVar;
 
         /// <summary>

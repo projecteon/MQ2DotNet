@@ -12,6 +12,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         internal RaidType(MQ2TypeFactory mq2TypeFactory, MQ2TypeVar typeVar) : base(mq2TypeFactory, typeVar)
         {
             Member = new IndexedMember<RaidMemberType, string, RaidMemberType, int>(this, "Member");
+            MarkNPC = new IndexedMember<RaidMemberType, string, RaidMemberType, int>(this, "MarkNPC");
         }
 
         /// <summary>
@@ -78,5 +79,10 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Raid master looter
         /// </summary>
         public RaidMemberType MasterLooter => GetMember<RaidMemberType>("MasterLooter");
+
+        /// <summary>
+        /// Raid mark NPC
+        /// </summary>
+        public IndexedMember<RaidMemberType, string, RaidMemberType, int> MarkNPC { get; }
     }
 }

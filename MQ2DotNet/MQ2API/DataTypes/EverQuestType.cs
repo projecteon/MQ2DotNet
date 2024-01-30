@@ -171,5 +171,20 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Path to the Everquest folder
         /// </summary>
         public string Path => GetMember<StringType>("Path");
+
+        /// <summary>
+        /// Max foreground FPS
+        /// </summary>
+        public int? MaxFPS => GetMember<IntType>("MaxFPS");
+
+        /// <summary>
+        /// Max background FPS
+        /// </summary>
+        public int? MaxBGFPS => GetMember<IntType>("MaxBGFPS");
+
+        /// <summary>
+        /// UI scale factor
+        /// </summary>
+        public float? UiScale => GetMember<FloatType>("UiScale");
     }
 }

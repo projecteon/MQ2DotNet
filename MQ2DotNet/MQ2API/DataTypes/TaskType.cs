@@ -61,6 +61,16 @@ namespace MQ2DotNet.MQ2API.DataTypes
         public TaskObjectiveType Step => GetMember<TaskObjectiveType>("Step");
 
         /// <summary>
+        /// Returns an int of the task ID
+        /// </summary>
+        public int? ID => GetMember<IntType>("ID");
+
+        /// <summary>
+        /// Returns the Quest Window List Index. (if the window actually has the list filled)
+        /// </summary>
+        public int? WindowIndex => GetMember<IntType>("WindowIndex");
+
+        /// <summary>
         /// Select the task in the task window
         /// </summary>
         public void Select() => GetMember<MQ2DataType>("Select");
