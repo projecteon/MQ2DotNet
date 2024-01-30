@@ -171,6 +171,11 @@ namespace MQ2DotNet.Services
         public HeadingType Heading => GetTLO<HeadingType>("Heading");
 
         /// <summary>
+        /// This is a hierarchical container for things relating to inventory (Bank, etc). It is not currently fully implemented and will be added onto.
+        /// </summary>
+        public InventoryType Inventory => GetTLO<InventoryType>("Inventory");
+
+        /// <summary>
         /// First spawn that matches a search string
         /// </summary>
         public IndexedTLO<SpawnType> Spawn { get; }
