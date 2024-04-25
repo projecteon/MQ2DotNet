@@ -41,14 +41,15 @@ namespace MQ2DotNet.MQ2API.DataTypes
 
         private T GetTLO<T>(string name, string index = "") where T : MQ2DataType
         {
-            // To get an MQ2TypeVar from a TLO, first we call FindMQ2Data to get a function pointer to the TLO's function
-            var tlo = TLO.FindMQ2Data(name);// ?? throw new KeyNotFoundException();
+            //// To get an MQ2TypeVar from a TLO, first we call FindMQ2Data to get a function pointer to the TLO's function
+            //var tlo = TLO.FindMQ2Data(name);// ?? throw new KeyNotFoundException();
 
-            // Then we call that function, providing the index as a parameter
-            if (tlo.pFunction == IntPtr.Zero || !tlo.Function(index, out var typeVar) || typeVar.Type == IntPtr.Zero)
-                return null;
+            //// Then we call that function, providing the index as a parameter
+            //if (tlo.pFunction == IntPtr.Zero || !tlo.Function(index, out var typeVar) || typeVar.Type == IntPtr.Zero)
+            //    return null;
 
-            return (T)_typeFactory.Create(typeVar);
+            //return (T)_typeFactory.Create(typeVar);
+            return null;
         }
     }
 }

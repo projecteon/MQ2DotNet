@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using MQ2DotNet.MQ2API.DataTypes;
 
 namespace MQ2DotNet.MQ2API
 {
@@ -131,24 +130,28 @@ namespace MQ2DotNet.MQ2API
         {
             try
             {
-                var dataType = FindMQ2DataType(typeName);
+                var intPtr = NativeMethods.FindMQ2DataType(typeName);
 
-                if (dataType == IntPtr.Zero)
+                if (intPtr == IntPtr.Zero)
                     throw new KeyNotFoundException($"Could not find data type: {typeName}");
 
-                if (_constructors.ContainsKey(dataType))
+                if (_constructors.ContainsKey(intPtr))
                     throw new InvalidOperationException($"An MQ2DataType for {typeName} has already been registered");
 
-                _constructors[dataType] = constructor;
-            } catch(Exception e)
+                _constructors[intPtr] = constructor;
+            }
+            catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
             }
         }
 
         #region Unmanaged imports
-        [DllImport("MQ2Main.dll", EntryPoint = "FindMQ2DataType", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr FindMQ2DataType(string name);
+        private static class NativeMethods
+        {
+            [DllImport("MQ2Main.dll", EntryPoint = "FindMQ2DataType", CallingConvention = CallingConvention.Cdecl)]
+            public static extern IntPtr FindMQ2DataType(string name);
+        }
         #endregion
     }
 }

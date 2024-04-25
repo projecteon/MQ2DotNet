@@ -67,6 +67,14 @@ extern "C" __declspec(dllexport) EQGroundItemListManager* GetItemList() { return
 
 // Exported MQ2Type functions
 
+extern "C" __declspec(dllexport) bool TLO_MQ2Type__MQTypeVar(const char* szName, const char* sIndex, MQTypeVar & source) {
+	if (auto  tlo = FindTopLevelObject(szName)) {
+		return tlo->Function(sIndex, source);
+	}
+
+	return false;
+}
+
 extern "C" __declspec(dllexport) bool MQ2Type__FromData(MQ2Type * pThis, MQVarPtr &VarPtr, const MQTypeVar &Source) { return pThis->FromData(VarPtr, Source); }
 extern "C" __declspec(dllexport) bool MQ2Type__FromString(MQ2Type * pThis, MQVarPtr &VarPtr, const char* Source) { return pThis->FromString(VarPtr, Source); }
 extern "C" __declspec(dllexport) void MQ2Type__InitVariable(MQ2Type * pThis, MQVarPtr &VarPtr) { pThis->InitVariable(VarPtr); }
