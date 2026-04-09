@@ -37,7 +37,11 @@ namespace MQ2DotNet.MQ2API.DataTypes
             AutoSkill = new IndexedMember<SkillType, int>(this, "AutoSkill");
             AltCurrency = new IndexedMember<IntType, int, IntType, string>(this, "AltCurrency");
             Book = new IndexedMember<SpellType, int, IntType, string>(this, "Book");
+            // Keep this for our downstream users so things work while they're
+            // getting deprecation notices but suppress it during normal builds.
+#pragma warning disable CS0618
             Spell = new IndexedMember<SpellType, int, IntType, string>(this, "Spell");
+#pragma warning restore CS0618
             Aura = new IndexedMember<AuraType, string, AuraType, int>(this, "Aura");
             AltAbilityReady = new IndexedMember<BoolType, int, BoolType, string>(this, "AltAbilityReady");
             AltAbilityTimer = new IndexedMember<TimeStampType, int, TimeStampType, string>(this, "AltAbilityTimer");
@@ -103,7 +107,7 @@ namespace MQ2DotNet.MQ2API.DataTypes
         /// Combat ability ready by name or number
         /// </summary>
         public IndexedMember<BoolType, int, BoolType, string> CombatAbilityReady { get; }
-        
+
         /// <summary>
         /// Combat ability reuse time remaining by name or number
         /// </summary>
