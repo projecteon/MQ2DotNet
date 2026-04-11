@@ -3,8 +3,8 @@
     <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))\src\Common.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), src\Common.props))' != '' " />
   </ImportGroup>
   <PropertyGroup>
-    <OutDir>$(MQ2BuildDirectory)bin\$(MQ2BinaryDirName)\resources\$(MSBuildProjectName)</OutDir>
-    <OutputPath>$(MQ2BuildDirectory)bin\$(MQ2BinaryDirName)\resources\$(MSBuildProjectName)</OutputPath>
+    <OutDir>$(MQBuildDirectory)bin\$(MQBinaryDirName)\resources\$(MSBuildProjectName)</OutDir>
+    <OutputPath>$(MQBuildDirectory)bin\$(MQBinaryDirName)\resources\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' == 'x64'">
     <PlatformTarget>x64</PlatformTarget>
